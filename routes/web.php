@@ -62,4 +62,5 @@ Route::prefix('client')->name('client.')->group(function () {
     Route::get('/cart-page', [ClHomeController::class, 'cart'])->name('cart-page');
     Route::get('/logIn-page', [ClHomeController::class, 'logIn'])->name('logIn-page');
     Route::get('/signIn-page', [ClHomeController::class, 'signIn'])->name('signIn-page');
+    Route::get('/blog-page', [ClHomeController::class, 'blog'])->name('blog-page');
 });

@@ -2,10 +2,12 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid px-xl-5 px-0">
             <div class="col-xl-2 col-6 d-flex align-items-center">
-                <img src="/assets/clients/img/Logo_bran/logoweb.jpg" alt=""
-                    style="border-radius: 50%; height: 55px; width: 55px;">
-                <p class="web-name ms-3 m-0" style="font-family: 'Dancing Script', cursive; font-size: 18px;">PATINA
-                </p>
+                <a href="{{ route('client.home-page') }}" class="d-flex align-items-center text-decoration-none">
+                    <img src="/assets/clients/img/Logo_bran/logoweb.jpg" alt=""
+                        style="border-radius: 50%; height: 55px; width: 55px;">
+                    <p class="web-name ms-3 m-0" style="font-family: 'Dancing Script', cursive; font-size: 18px;">PATINA
+                    </p>
+                </a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -22,7 +24,7 @@
                         <a class="nav-link fs-5" href="{{ route('client.shop-page') }}">Cửa hàng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="">Blog</a>
+                        <a class="nav-link fs-5" href="{{ route('client.blog-page') }}">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-5" href="{{ route('client.introduce-page') }}">Giới thiệu</a>
