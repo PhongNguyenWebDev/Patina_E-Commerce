@@ -32,13 +32,13 @@
                     </div>
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="floatingEmail" placeholder="Email address">
-                        <label class="fs-5" for="floatingEmail">Email address</label>
+                        <label class="fs-5" for="floatingEmail">Địa chỉ email</label>
                     </div>
                     <div class="form-floating mb-3">
                         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px"></textarea>
-                        <label class="fs-5" for="floatingTextarea2">Comments</label>
+                        <label class="fs-5" for="floatingTextarea2">Bình luận</label>
                     </div>
-                    <button class="btn mt-4 rounded-1 px-4 py-2 btn-contact fs-4">Send Message</button>
+                    <button class="btn mt-4 rounded-1 px-4 py-2 btn-contact fs-4">Gửi bình luận</button>
                 </form>
             </div>
         </div>
