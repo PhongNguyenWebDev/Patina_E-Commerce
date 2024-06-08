@@ -53,8 +53,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 
-Route::prefix('client')->name('client.')->group(function () {
-    Route::get('/home-page', [ClHomeController::class, 'homePage'])->name('home-page');
+Route::prefix('/')->name('client.')->group(function () {
+    Route::get('/', [ClHomeController::class, 'homePage'])->name('home-page');
     Route::get('/shop-page', [ClHomeController::class, 'shop'])->name('shop-page');
     Route::get('/introduce-page', [ClHomeController::class, 'introduce'])->name('introduce-page');
     Route::get('/contact-page', [ClHomeController::class, 'contact'])->name('contact-page');
