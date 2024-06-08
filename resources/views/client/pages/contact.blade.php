@@ -23,11 +23,11 @@
                     <div class="row g-2">
                         <div class="col-md-6 form-floating mb-3">
                             <input type="text" class="form-control" id="floatingFirstName" placeholder="First Name">
-                            <label class="fs-5" for="floatingFirstName">First Name</label>
+                            <label class="fs-5" for="floatingFirstName">Họ</label>
                         </div>
                         <div class="col-md-6 form-floating mb-3">
                             <input type="text" class="form-control" id="floatingLastName" placeholder="Last Name">
-                            <label class="fs-5" for="floatingLastName">Last Name</label>
+                            <label class="fs-5" for="floatingLastName">Tên</label>
                         </div>
                     </div>
                     <div class="form-floating mb-3">

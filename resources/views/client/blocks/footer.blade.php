@@ -32,37 +32,37 @@
             <div class="container-fluid">
                 <div class="row d-flex justify-content-xl-end">
                     <div class="col-xl-3 col-6">
-                        <h5 class="fs-3">Shop</h5>
+                        <h5 class="fs-3">Cửa hàng</h5>
                         <div class="p-0 mt-2">
-                            <a href="" class="list-group-item">Shirt</a>
-                            <a href="" class="list-group-item">Pants</a>
-                            <a href="" class="list-group-item">Set of clothes</a>
-                            <a href="" class="list-group-item">Footware</a>
-                            <a href="" class="list-group-item">Accessories</a>
+                            <a href="" class="list-group-item">Áo</a>
+                            <a href="" class="list-group-item">Quần</a>
+                            <a href="" class="list-group-item">Quần áo bộ</a>
+                            <a href="" class="list-group-item">Giày</a>
+                            <a href="" class="list-group-item">Phụ kiện thời trang</a>
                         </div>
                     </div>
                     <div class="col-xl-3 col-6">
-                        <h5 class="fs-3">Useful Links</h5>
+                        <h5 class="fs-3">Patina</h5>
                         <div class="p-0 mt-2">
-                            <a href="" class="list-group-item">Home</a>
-                            <a href="" class="list-group-item">Shop</a>
-                            <a href="" class="list-group-item">About Us</a>
-                            <a href="" class="list-group-item">Services</a>
-                            <a href="" class="list-group-item">Contact</a>
+                            <a href="" class="list-group-item">Trang chủ</a>
+                            <a href="" class="list-group-item">Cửa hàng</a>
+                            <a href="" class="list-group-item">Giới thiệu</a>
+                            <a href="" class="list-group-item">Dịch vụ</a>
+                            <a href="" class="list-group-item">Liên hệ</a>
                         </div>
                     </div>
                     <div class="col-xl-4 col-6 pt-xl-0 pt-3">
                         <div class="flex-xl-row">
                             <div class="my-ms-3">
-                                <h4 class="fs-3">Address</h4>
+                                <h4 class="fs-3">Địa chỉ</h4>
                                 <span class="text-break">8911 Tanglewood Ave. Capitol
                                     Heights,MD
                                     20743</span>
                             </div>
                             <div class="mt-3">
-                                <h4 class="fs-3">Opening Hours</h4>
-                                <span class="text-break">Mon-Fri 08:00AM - 08:00PM</span>
-                                <span class="text-break">Sat-Sun 10:00AM - 06:00PM</span>
+                                <h4 class="fs-3">Giờ mở cửa</h4>
+                                <span class="text-break">Thứ 2-Thứ 6 08:00AM - 08:00PM</span>
+                                <span class="text-break">Thứ 7-Chủ nhật 10:00AM - 06:00PM</span>
                             </div>
                         </div>
                     </div>

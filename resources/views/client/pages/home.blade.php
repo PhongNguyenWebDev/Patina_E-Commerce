@@ -38,8 +38,8 @@
                     <i class="fa-regular fa-credit-card fs-1" style="color: #5F2D00C9;"></i>
                     <p class="my-1 fs-4 fw-semibold">Thanh toán an toàn</p>
                     <div class="d-flex justify-content-center">
-                        <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">Feugiat mi
-                            gravida vestibulum orci ac volutpat non. Semper turpissed maecenas
+                        <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">
+                            Khách hàng có thể đặt cọc từ 10% hoặc thanh toán 100% giá trị hàng hóa cho cửa hàng. Số tiền này sẽ được giữ an toàn cho đến khi quý khách nhận được hàng đúng như mong muốn
                         </p>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                     <i class="fa-solid fa-truck-fast fs-1" style="color: #5F2D00C9;"></i>
                     <p class="my-1 fs-4 fw-semibold">Miễn phí vận chuyển</p>
                     <div class="d-flex justify-content-center">
-                        <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">Feugiat mi
-                            gravida vestibulum orci ac volutpat non. Semper turpissed maecenas
+                        <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">
+                            Với đơn hàng có giá trị từ 399k trở lên thì dù bạn ở nơi đâu tại Việt Nam thì sẽ được miễn phí cho phí vận chuyển
                         </p>
                     </div>
                 </div>
@@ -56,8 +56,8 @@
                     <i class="fa-regular fa-comments fs-1" style="color: #5F2D00C9;"></i>
                     <p class="my-1 fs-4 fw-semibold">Hỗ trợ 24/7</p>
                     <div class="d-flex justify-content-center">
-                        <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">Feugiat mi
-                            gravida vestibulum orci ac volutpat non. Semper turpissed maecenas
+                        <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">
+                            Đội ngũ nhân viên thân thiện của chúng tôi sẽ nhiệt tình giải đáp những thắc mắc của quý khách tại mọi thời điểm
                         </p>
                     </div>
                 </div>
