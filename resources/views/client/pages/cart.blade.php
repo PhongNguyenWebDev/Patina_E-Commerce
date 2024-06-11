@@ -1,5 +1,6 @@
-@extends('layouts.client2')
+@extends('layouts.client')
 @section('content')
+    @include('client.blocks.banner')
     <section class="container my-5">
         <div class="untree_co-section before-footer-section">
             <div class="container">

@@ -37,7 +37,7 @@
                     </li>
                 </ul>
                 <div class="user d-flex align-items-center">
-                    <a href="" class="position-relative">
+                    <a href="{{ route('client.favorite-page') }}" class="position-relative">
                         <i class="fa-regular fa-heart fa-xl" style="color: #8D6440;"></i>
                         <div class="count position-absolute bottom-50 start-50">
                             <span style="font-size: x-small; color: black">99</span>

@@ -1,5 +1,6 @@
-@extends('layouts.client2')
+@extends('layouts.client')
 @section('content')
+    @include('client.blocks.banner')
     <section class="container my-3">
         <p class="fs-1 fw-semibold">Hệ thống cửa hàng</p>
         <div class="row g-3 px-3">

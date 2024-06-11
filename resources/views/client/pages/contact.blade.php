@@ -1,5 +1,6 @@
-@extends('layouts.client2')
+@extends('layouts.client')
 @section('content')
+    @include('client.blocks.banner')
     <section class="container p-3 p-xl-5 my-5" style="max-width: 1000px;">
         <div class="row justify-content-center">
             <div class="col-12 d-flex flex-column justify-content-center align-items-center">

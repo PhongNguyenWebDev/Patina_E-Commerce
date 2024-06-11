@@ -1,5 +1,6 @@
-@extends('layouts.client2')
+@extends('layouts.client')
 @section('content')
+    @include('client.blocks.banner')
     <section class="container my-5">
         <div class="d-flex flex-xl-row flex-column">
             <div class="col-xl-5 col-12">

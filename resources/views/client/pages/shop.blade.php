@@ -1,6 +1,7 @@
-@extends('layouts.client2')
+@extends('layouts.client')
 @section('content')
     <!-- Products -->
+    @include('client.blocks.banner')
     <section class="container pt-5">
         <div class="row">
             <!-- Left -->
@@ -175,7 +176,8 @@
                 <!-- Products -->
                 <div class="container-fluid p-0">
                     <div class="row g-2">
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
                             <img class="img-thumbnail"
                                 src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
                             <div class="position-absolute top-0 p-3 w-100 end-0">
@@ -193,57 +195,9 @@
                                 <p style="font-size: var(--font-size); margin: 0; color: black;">$160
                                 </p>
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                            <img class="img-thumbnail"
-                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
-                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <span class="badge text-bg-dark fs-6">New</span>
-                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
-                                </div>
-                            </div>
-                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                            <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                            <img class="img-thumbnail"
-                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
-                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-end">
-                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
-                                        class="fas fa-heart rounded-5 p-2 fs-5"></i>
-                                </div>
-                            </div>
-                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                            <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                            <img class="img-thumbnail"
-                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
-                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-end">
-                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
-                                </div>
-                            </div>
-                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                            <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
                             <img class="img-thumbnail"
                                 src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
                             <div class="position-absolute top-0 p-3 w-100 end-0">
@@ -258,60 +212,12 @@
                             <div class="d-flex">
                                 <p style="font-size: var(--font-size); margin: 0;"
                                     class="text-decoration-line-through text-danger mx-2">$200</p>
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
                                 </p>
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                            <img class="img-thumbnail"
-                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
-                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <span class="badge text-bg-dark fs-6">New</span>
-                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
-                                </div>
-                            </div>
-                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                            <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                            <img class="img-thumbnail"
-                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
-                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-end">
-                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
-                                        class="fas fa-heart rounded-5 p-2 fs-5"></i>
-                                </div>
-                            </div>
-                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                            <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                            <img class="img-thumbnail"
-                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
-                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-end">
-                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
-                                </div>
-                            </div>
-                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                            <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
                             <img class="img-thumbnail"
                                 src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
                             <div class="position-absolute top-0 p-3 w-100 end-0">
@@ -326,16 +232,17 @@
                             <div class="d-flex">
                                 <p style="font-size: var(--font-size); margin: 0;"
                                     class="text-decoration-line-through text-danger mx-2">$200</p>
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
                                 </p>
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
                             <img class="img-thumbnail"
                                 src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
                             <div class="position-absolute top-0 p-3 w-100 end-0">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <span class="badge text-bg-dark fs-6">New</span>
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
                                     <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
                                         class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
                                 </div>
@@ -343,31 +250,19 @@
                             <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
                             <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
                             <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
                                 </p>
                             </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
                             <img class="img-thumbnail"
                                 src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
                             <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-end">
-                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
-                                        class="fas fa-heart rounded-5 p-2 fs-5"></i>
-                                </div>
-                            </div>
-                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                            <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                            <img class="img-thumbnail"
-                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
-                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-end">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
                                     <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
                                         class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
                                 </div>
@@ -375,10 +270,152 @@
                             <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
                             <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
                             <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
                                 </p>
                             </div>
-                        </div>
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                            <img class="img-thumbnail"
+                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
+                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                                </div>
+                            </div>
+                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
+                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
+                            <div class="d-flex">
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
+                                </p>
+                            </div>
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                            <img class="img-thumbnail"
+                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
+                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                                </div>
+                            </div>
+                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
+                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
+                            <div class="d-flex">
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
+                                </p>
+                            </div>
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                            <img class="img-thumbnail"
+                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
+                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                                </div>
+                            </div>
+                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
+                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
+                            <div class="d-flex">
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
+                                </p>
+                            </div>
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                            <img class="img-thumbnail"
+                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
+                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                                </div>
+                            </div>
+                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
+                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
+                            <div class="d-flex">
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
+                                </p>
+                            </div>
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                            <img class="img-thumbnail"
+                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
+                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                                </div>
+                            </div>
+                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
+                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
+                            <div class="d-flex">
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
+                                </p>
+                            </div>
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                            <img class="img-thumbnail"
+                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
+                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                                </div>
+                            </div>
+                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
+                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
+                            <div class="d-flex">
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
+                                </p>
+                            </div>
+                        </a>
+                        <a href="{{ route('client.product-detail-page') }}"
+                            class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                            <img class="img-thumbnail"
+                                src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
+                                    <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                        class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                                </div>
+                            </div>
+                            <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
+                            <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
+                            <div class="d-flex">
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">$200</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">$160
+                                </p>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <!-- Pagination -->
