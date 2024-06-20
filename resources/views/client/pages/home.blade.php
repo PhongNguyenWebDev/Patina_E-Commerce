@@ -3,31 +3,22 @@
     <div class="main-content">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+                @foreach($sliders as $key => $slider)
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="true" aria-label="Slide {{ $key + 1 }}"></button>
+                @endforeach
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="/assets/clients/img/slide_show/slideshow_1.png" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/clients/img/slide_show/slideshow_2.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="/assets/clients/img/slide_show/slideshow_3.png" class="d-block w-100" alt="...">
-                </div>
+                @foreach($sliders as $key => $slider)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <img src="{{ $slider->image }}" class="d-block w-100" alt="Slide {{ $key + 1 }}">
+                    </div>
+                @endforeach
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -39,7 +30,8 @@
                     <p class="my-1 fs-4 fw-semibold">Thanh toán an toàn</p>
                     <div class="d-flex justify-content-center">
                         <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">
-                            Khách hàng có thể đặt cọc từ 10% hoặc thanh toán 100% giá trị hàng hóa cho cửa hàng. Số tiền này sẽ được giữ an toàn cho đến khi quý khách nhận được hàng đúng như mong muốn
+                            Khách hàng có thể đặt cọc từ 10% hoặc thanh toán 100% giá trị hàng hóa cho cửa hàng. Số tiền này
+                            sẽ được giữ an toàn cho đến khi quý khách nhận được hàng đúng như mong muốn
                         </p>
                     </div>
                 </div>
@@ -48,7 +40,8 @@
                     <p class="my-1 fs-4 fw-semibold">Miễn phí vận chuyển</p>
                     <div class="d-flex justify-content-center">
                         <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">
-                            Với đơn hàng có giá trị từ 399k trở lên thì dù bạn ở nơi đâu tại Việt Nam thì sẽ được miễn phí cho phí vận chuyển
+                            Với đơn hàng có giá trị từ 399k trở lên thì dù bạn ở nơi đâu tại Việt Nam thì sẽ được miễn phí
+                            cho phí vận chuyển
                         </p>
                     </div>
                 </div>
@@ -57,7 +50,8 @@
                     <p class="my-1 fs-4 fw-semibold">Hỗ trợ 24/7</p>
                     <div class="d-flex justify-content-center">
                         <p class="text-xl-center col-xl-6 col-12" style="font-size: 14px; color: #000516A4;">
-                            Đội ngũ nhân viên thân thiện của chúng tôi sẽ nhiệt tình giải đáp những thắc mắc của quý khách tại mọi thời điểm
+                            Đội ngũ nhân viên thân thiện của chúng tôi sẽ nhiệt tình giải đáp những thắc mắc của quý khách
+                            tại mọi thời điểm
                         </p>
                     </div>
                 </div>
@@ -74,7 +68,8 @@
         <div class="container-fluid p-0 img-category">
             <div class="row g-2">
                 <div class="col-xl-3 position-relative" style="height: 31.7em;">
-                    <img class="object-fit-contain border rounded w-100 h-100" src="/assets/clients/img/Cate_img/pants.png" alt="">
+                    <img class="object-fit-contain border rounded w-100 h-100" src="/assets/clients/img/Cate_img/pants.png"
+                        alt="">
                     <div class="container-fluid position-absolute" style="top: 88%;">
                         <div class="d-flex flex-row justify-content-between align-items-center">
                             <div class="d-flex flex-column">
@@ -93,8 +88,8 @@
                 <div class="col-xl-9">
                     <div class="row g-2">
                         <div class="col-xl-8 position-relative" style="height: 15.625em;">
-                            <img class="object-fit-contain border rounded w-100 h-100" src="/assets/clients/img/Cate_img/setofclothes.png"
-                                alt="">
+                            <img class="object-fit-contain border rounded w-100 h-100"
+                                src="/assets/clients/img/Cate_img/setofclothes.png" alt="">
                             <div class="container-fluid position-absolute" style="top: 78%;">
                                 <div class="d-flex flex-row justify-content-between align-items-center">
                                     <div class="d-flex flex-column">
@@ -112,8 +107,8 @@
                             </div>
                         </div>
                         <div class="col-xl-4 position-relative" style="height: 15.625em;">
-                            <img class="object-fit-contain border rounded w-100 h-100" src="/assets/clients/img/Cate_img/assor.png"
-                                alt="">
+                            <img class="object-fit-contain border rounded w-100 h-100"
+                                src="/assets/clients/img/Cate_img/assor.png" alt="">
                             <div class="container-fluid position-absolute" style="top: 78%;">
                                 <div class="d-flex flex-row justify-content-between align-items-center">
                                     <div class="d-flex flex-column">
@@ -132,8 +127,8 @@
                     </div>
                     <div class="row g-2 pt-2">
                         <div class="col-xl-4 position-relative" style="height: 15.625em;">
-                            <img class="object-fit-contain border rounded w-100 h-100" src="/assets/clients/img/Cate_img/footware.png"
-                                alt="">
+                            <img class="object-fit-contain border rounded w-100 h-100"
+                                src="/assets/clients/img/Cate_img/footware.png" alt="">
                             <div class="container-fluid position-absolute" style="top: 78%;">
                                 <div class="d-flex flex-row justify-content-between align-items-center">
                                     <div class="d-flex flex-column">
@@ -151,8 +146,8 @@
 
                         </div>
                         <div class="col-xl-8 position-relative" style="height: 15.625em;">
-                            <img class="object-fit-contain border rounded w-100 h-100" src="/assets/clients/img/Cate_img/shirt.png"
-                                alt="">
+                            <img class="object-fit-contain border rounded w-100 h-100"
+                                src="/assets/clients/img/Cate_img/shirt.png" alt="">
                             <div class="container-fluid position-absolute" style="top: 78%;">
                                 <div class="d-flex flex-row justify-content-between align-items-center">
                                     <div class="d-flex flex-column">
@@ -222,8 +217,8 @@
             </div>
         </div>
         <div class="my-xl-5 my-2 w-75 d-flex justify-content-center">
-            <form class="d-flex search-popular-products w-75">
-                <input class="w-100 form-control" type="text" placeholder="Search...">
+            <form class="d-flex search-popular-products w-75" method="GET" action="{{ route('client.shop-page') }}">
+                <input class="w-100 form-control" type="text" name="query" placeholder="Search...">
                 <button class="border-0" type="submit">
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </button>
@@ -232,26 +227,31 @@
         </div>
         <div class="container">
             <div class="row g-2">
-                <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
-                    <div class="position-absolute top-0 p-3 w-100 end-0">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <span class="badge text-bg-danger fs-6">- 20%</span>
-                            <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                @foreach ($products as $product)
+                    <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                        <a href="{{ route('client.detail', $product->slug) }}">
+                            <img class="img-thumbnail" src="{{ $product->images }}" alt="">
+                        </a>
+                        <div class="position-absolute top-0 p-3 w-100 end-0">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="badge text-bg-danger fs-6">- 20%</span>
+                                <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                    class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                            </div>
+                        </div>
+                        <h4 class="pt-1 mt-1">{{ $product->name }}</h4>
+                        <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $product->category->name }}</p>
+                        <div class="d-flex">
+                            <p style="font-size: var(--font-size); margin: 0;"
+                                class="text-decoration-line-through text-danger mx-2">${{ $product->price }}</p>
+                            <p style="font-size: var(--font-size); margin: 0; color: black;">${{ $product->sale_price }}
+                            </p>
                         </div>
                     </div>
-                    <h4 class="pt-1 mt-1">Products Name</h4>
-                    <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                    <div class="d-flex">
-                        <p style="font-size: var(--font-size); margin: 0;"
-                            class="text-decoration-line-through text-danger mx-2">$200</p>
-                        <p style="font-size: var(--font-size); margin: 0; color: black;">$160
-                        </p>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                @endforeach
+
+                {{-- <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                    <a href="/"><img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt=""></a>
                     <div class="position-absolute top-0 p-3 w-100 end-0">
                         <div class="d-flex align-items-center justify-content-between">
                             <span class="badge text-bg-dark fs-6">New</span>
@@ -267,7 +267,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                    <a href="/"><img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt=""></a>
                     <div class="position-absolute top-0 p-3 w-100 end-0">
                         <div class="d-flex align-items-center justify-content-end">
                             <i style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
@@ -282,7 +282,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                    <a href="/"><img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt=""></a>
                     <div class="position-absolute top-0 p-3 w-100 end-0">
                         <div class="d-flex align-items-center justify-content-end">
                             <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
@@ -297,7 +297,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                    <a href="/"><img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt=""></a>
                     <div class="position-absolute top-0 p-3 w-100 end-0">
                         <div class="d-flex align-items-center justify-content-between">
                             <span class="badge text-bg-danger fs-6">- 20%</span>
@@ -315,7 +315,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                    <a href="/"><img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt=""></a>
                     <div class="position-absolute top-0 p-3 w-100 end-0">
                         <div class="d-flex align-items-center justify-content-between">
                             <span class="badge text-bg-dark fs-6">New</span>
@@ -331,7 +331,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                    <a href="/"><img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt=""></a>
                     <div class="position-absolute top-0 p-3 w-100 end-0">
                         <div class="d-flex align-items-center justify-content-end">
                             <i style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
@@ -346,7 +346,7 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp" alt="">
+                    <a href="/"><img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt=""></a>
                     <div class="position-absolute top-0 p-3 w-100 end-0">
                         <div class="d-flex align-items-center justify-content-end">
                             <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
@@ -359,27 +359,17 @@
                         <p style="font-size: var(--font-size); margin: 0; color: var(--primary-1200-color);">$160
                         </p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
     <div class="container-fluid px-4 mt-5 logo-brand">
         <div class="row g-2 px-5 d-flex justify-content-between align-items-center">
+            @foreach($bannerbots as $bannerbot)
             <span class="col-lg-2">
-                <img class="w-100" src="/assets/clients/img/Logo_bran/adidas.png" alt="">
+                <img class="w-100" src="{{$bannerbot->image}}" alt="">
             </span>
-            <span class="col-lg-2">
-                <img class="w-100" src="/assets/clients/img/Logo_bran/Hades.png" alt="">
-            </span>
-            <span class="col-lg-2">
-                <img class="w-100" src="/assets/clients/img/Logo_bran/SWE.png" alt="">
-            </span>
-            <span class="col-lg-2">
-                <img class="w-100" src="/assets/clients/img/Logo_bran/BAMA.png" alt="">
-            </span>
-            <span class="col-lg-2">
-                <img class="w-100" src="/assets/clients/img/Logo_bran/BOBUI.png" alt="">
-            </span>
+            @endforeach
         </div>
     </div>
 @endsection

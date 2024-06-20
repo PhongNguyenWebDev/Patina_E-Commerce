@@ -61,7 +61,7 @@
                             </div>
                             <div class="mt-3">
                                 <h4 class="fs-3">Giờ mở cửa</h4>
-                                <span class="text-break">Thứ 2-Thứ 6 08:00AM - 08:00PM</span>
+                                <span class="text-break">Thứ 2-Thứ 6 08:00AM - 08:00PM</span><br>
                                 <span class="text-break">Thứ 7-Chủ nhật 10:00AM - 06:00PM</span>
                             </div>
                         </div>

@@ -5,11 +5,12 @@
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
                 aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item fs-4"><a href="#" style="color: var(--primary-900-color);">Home</a></li>
-                    <li class="breadcrumb-item active fs-4" aria-current="page">Details</li>
+                    <li class="breadcrumb-item fs-4"><a href="/" style="color: var(--primary-900-color);">Home</a></li>
+                    <li class="breadcrumb-item fs-4"><a href="/" style="color: var(--primary-900-color);">Shop</a></li>
+                    <li class="breadcrumb-item active fs-4" aria-current="page">Detail: {{ $product->name }}</li>
                 </ol>
             </nav>
-            <h1>Basic hooded sweatshirt in pink</h1>
+            <h1>{{ $product->name }}</h1>
             <hr style="color: orange;">
         </div>
     </section>
@@ -27,8 +28,7 @@
                                     style="color: var(--primary-1200-color); cursor: pointer;"></i>
                             </div>
                         </div>
-                        <img class="w-100" id="mainImage"
-                            src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt="">
+                        <img class="w-100" id="mainImage" src="{{ $product->images }}" alt="">
                     </div>
                     <div class="d-flex flex-row justify-content-between p-0">
                         <img class="img-thumbnail thumbnail w-25 h-75"
@@ -47,11 +47,12 @@
                     <!-- Price Products -->
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex flex-row">
-                            <p class="text-danger fs-3 pe-3">$15.75</p>
-                            <p class="fs-3 text-decoration-line-through " style="color: var(--primary-1000-color);">
-                                $30.5</p>
+                            <p id="price" class="text-danger fs-3 pe-3">${{ $product->sale_price }}</p>
+                            <p id="sale_price" class="fs-3 text-decoration-line-through"
+                                style="color: var(--primary-1000-color);">
+                                ${{ $product->price }}</p>
                         </div>
-                        <p class="fs-3">SKU: AFF586</p>
+                        <p class="fs-3">SKU: PTN{{ $product->id }}</p>
                     </div>
                     <!-- Reviews -->
                     <div class="d-flex flex-row align-items-center">
@@ -65,87 +66,64 @@
                         <p class="m-0 px-3" style="color: var(--secondary-1000-color);">(12 reviews)</p>
                     </div>
                     <!-- Color Products -->
-                    <div class="py-3">
-                        <h5 class="py-1" style="font-weight: var(--Medium);">Color
-                        </h5>
+                    <form action="">
+                        <div class="py-3">
+                            <h5 class="py-1" style="font-weight: var(--Medium);">Color
+                            </h5>
+                            <div>
+
+                                @foreach ($uniqueColors as $index => $color)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input color-radio" type="radio" name="colorOptions"
+                                            id="color_{{ $color->id }}" value="{{ $color->id }}"
+                                            data-price="{{ $color->price }}" data-sale-price="{{ $color->sale_price }}"
+                                            {{ $index == 0 ? 'checked' : '' }}>
+                                        <label class="form-check-label fs-5 fw-medium"
+                                            for="color_{{ $color->id }}">{{ $color->name }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- Size Products -->
                         <div>
-                            <form action="">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1">
-                                    <label class="form-check-label fs-5 fw-medium" for="inlineRadio1">Red</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
-                                    <label class="form-check-label fs-5 fw-medium" for="inlineRadio2">Pink</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio3" value="option3">
-                                    <label class="form-check-label fs-5 fw-medium" for="inlineRadio3">Yellow</label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Size Products -->
-                    <div>
-                        <h5 style="font-weight: var(--Medium);">Select Size</h5>
-                        <div class="py-3 d-flex justify-content-between" style="width: 16rem;">
-                            <div class="item-size">
-                                <span class="fs-3">S</span>
-                            </div>
-                            <div class="item-size">
-                                <span class="fs-3">M</span>
-                            </div>
-                            <div class="item-size">
-                                <span class="fs-3">L</span>
-                            </div>
-                            <div class="item-size">
-                                <span class="fs-3">XL</span>
+                            <h5 style="font-weight: var(--Medium);">Select Size</h5>
+                            <div class="py-3 d-flex justify-content-between" style="width: 16rem;">
+                                @foreach ($product->productDetails as $detail)
+                                    <div class="form-check form-check-inline size-option"
+                                        data-color-id="{{ $detail->color_id }}" data-quantity="{{ $detail->quantity }}">
+                                        <input class="form-check-input size-radio" type="radio" name="sizeOptions"
+                                            id="size_{{ $detail->size_id }}" value="{{ $detail->size_id }}"
+                                            data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}">
+                                        <label class="form-check-label fs-5 fw-medium"
+                                            for="size_{{ $detail->size_id }}">{{ $detail->size->name }}</label>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
-                    <!-- Add to card -->
-                    <div class="container">
-                        <div class="row g-3">
-                            <input class="px-xl-2 col-2 col-xl-1" type="number" min="1" value="1">
-                            <form action="" class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
-                                <button style="background-color:#8D6440;"
-                                    class="btn h-100 fs-5 d-flex align-items-center justify-content-center text-white"
-                                    type="submit"><i class="fa-solid fa-cart-shopping me-2 "></i>Thêm giỏ hàng</button>
-                            </form>
-                            <form action="" class="col-xl-3 col-4">
-                                <button class="btn favourite d-flex align-items-center justify-content-center w-100 h-100">
-                                    <i class="fa-regular fs-5 fa-heart"></i>
-                                    <p class="m-0 px-1 fs-5">Yêu thích</p>
-                                </button>
-                            </form>
+                        <!-- Add to card -->
+                        <div class="container">
+                            <div class="row g-3">
+                                <input class="px-xl-2 col-2 col-xl-1" type="number" min="1" value="1">
+                                <div class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
+                                    <button style="background-color:#8D6440;"
+                                        class="btn h-100 fs-5 d-flex align-items-center justify-content-center text-white"
+                                        type="submit"><i class="fa-solid fa-cart-shopping me-2 "></i>Thêm giỏ
+                                        hàng</button>
+                                </div>
+                                <div class="col-xl-3 col-4">
+                                    <a class="btn favourite d-flex align-items-center justify-content-center w-100 h-100">
+                                        <i class="fa-regular fs-5 fa-heart"></i>
+                                        <p class="m-0 px-1 fs-5">Yêu thích</p>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <!-- Description -->
                 <div class="my-3">
-                    <h5 style="font-weight: var(--Medium);">Description: </h5>
-                    <ul>
-                        <li>
-                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem
-                                Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                        </li>
-                        <li>
-                            <p class="m-0">When an unknown printer took a galley of type and scrambled it to make a
-                                type
-                                specimen book. It has survived not only five centuries, but also the leap into
-                                electronic typesetting, remaining essentially unchanged. It was popularised in.</p>
-                        </li>
-                        <li>
-                            <p class="m-0">The 1960s with the release of Letraset sheets containing Lorem Ipsum
-                                passages, and
-                                more recently with desktop publishing software like Aldus PageMaker including
-                                versions of Lorem Ipsum.</p>
-                        </li>
-                    </ul>
+                    <h5 style="font-weight: var(--Medium);">Summary: </h5>
+                    {!!$product->summary!!}
                 </div>
                 <!-- share & Tags -->
                 <div class="d-flex flex-row w-100">
@@ -166,9 +144,11 @@
                     <div class="d-flex flex-row">
                         <h6>Tags: </h6>
                         <div class="d-flex">
-                            <a class="mx-2 text-dark" href="#">Shirt</a>
-                            <a class="text-dark" href="#">Hades</a>
+                            @foreach ($product->tags as $tag)
+                                <a class="mx-2 text-dark" href="#">{{ $tag->name }}</a>
+                            @endforeach
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -259,86 +239,76 @@
     <section class="container">
         <h2 style="font-weight: var(--Medium);" class="text-center my-5 fs-1">Sản phẩm liên quan</h2>
         <div class="row g-2">
-            <a href="{{ route('client.product-detail-page') }}"
-                class="text-decoration-none text-black col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp"
-                    alt="">
-                <div class="position-absolute top-0 p-3 w-100 end-0">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge text-bg-danger fs-6">- 20%</span>
-                        <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                            class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+            @foreach ($relatedProducts as $relatedProduct)
+                <a href="{{ route('client.detail', $relatedProduct->slug) }}"
+                    class="text-decoration-none text-black col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                    <img class="img-thumbnail" src="{{ $relatedProduct->images }}" alt="">
+                    <div class="position-absolute top-0 p-3 w-100 end-0">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span class="badge text-bg-danger fs-6">- 20%</span>
+                            <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                        </div>
                     </div>
-                </div>
-                <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                <div class="d-flex">
-                    <p style="font-size: var(--font-size); margin: 0;"
-                        class="text-decoration-line-through text-danger mx-2">$200</p>
-                    <p style="font-size: var(--font-size); margin: 0; color: black;">$160
-                    </p>
-                </div>
-            </a>
-            <a href="{{ route('client.product-detail-page') }}"
-                class="text-decoration-none text-black col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp"
-                    alt="">
-                <div class="position-absolute top-0 p-3 w-100 end-0">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge text-bg-danger fs-6">- 20%</span>
-                        <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                            class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                    <h4 class="pt-1 mt-1 fs-5">{{ $relatedProduct->name }}</h4>
+                    <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $relatedProduct->category->name }}</p>
+                    <div class="d-flex">
+                        <p style="font-size: var(--font-size); margin: 0;"
+                            class="text-decoration-line-through text-danger mx-2">${{ $relatedProduct->price }}</p>
+                        <p style="font-size: var(--font-size); margin: 0; color: black;">
+                            ${{ $relatedProduct->sale_price }}
+                        </p>
                     </div>
-                </div>
-                <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                <div class="d-flex">
-                    <p style="font-size: var(--font-size); margin: 0;"
-                        class="text-decoration-line-through text-danger mx-2">$200</p>
-                    <p style="font-size: var(--font-size); margin: 0; color: black;">$160
-                    </p>
-                </div>
-            </a>
-            <a href="{{ route('client.product-detail-page') }}"
-                class="text-decoration-none text-black col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp"
-                    alt="">
-                <div class="position-absolute top-0 p-3 w-100 end-0">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge text-bg-danger fs-6">- 20%</span>
-                        <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                            class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
-                    </div>
-                </div>
-                <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                <div class="d-flex">
-                    <p style="font-size: var(--font-size); margin: 0;"
-                        class="text-decoration-line-through text-danger mx-2">$200</p>
-                    <p style="font-size: var(--font-size); margin: 0; color: black;">$160
-                    </p>
-                </div>
-            </a>
-            <a href="{{ route('client.product-detail-page') }}"
-                class="text-decoration-none text-black col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                <img class="img-thumbnail" src="/assets/clients/img/Products/Shirt/HadesNewBalanceLongSleeve.webp"
-                    alt="">
-                <div class="position-absolute top-0 p-3 w-100 end-0">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span class="badge text-bg-danger fs-6">- 20%</span>
-                        <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                            class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
-                    </div>
-                </div>
-                <h4 class="pt-1 mt-1 fs-5">Products Name</h4>
-                <p style="font-size: 16px; color:#000516A4; margin: 0;">Shirt</p>
-                <div class="d-flex">
-                    <p style="font-size: var(--font-size); margin: 0;"
-                        class="text-decoration-line-through text-danger mx-2">$200</p>
-                    <p style="font-size: var(--font-size); margin: 0; color: black;">$160
-                    </p>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const priceElement = document.getElementById('price');
+            const salePriceElement = document.getElementById('sale_price');
+            const colorRadios = document.querySelectorAll('.color-radio');
+            const sizeOptions = document.querySelectorAll('.size-option');
+
+            // Show all sizes initially
+            sizeOptions.forEach(option => {
+                option.style.display = 'inline-block';
+            });
+
+            // Function to handle color change
+            const handleColorChange = function() {
+                const selectedColorPrice = this.getAttribute('data-price');
+                const selectedColorSalePrice = this.getAttribute('data-sale-price');
+                const selectedColorId = this.value;
+
+                priceElement.textContent = `$${selectedColorPrice}`;
+                salePriceElement.textContent = `$${selectedColorSalePrice}`;
+
+                sizeOptions.forEach(option => {
+                    const colorId = option.getAttribute('data-color-id');
+                    const quantity = option.getAttribute('data-quantity');
+
+                    if (colorId === selectedColorId || colorId === "all") {
+                        if (quantity > 0) {
+                            option.style.display = 'inline-block';
+                        } else {
+                            option.style.display = 'none';
+                        }
+                    } else {
+                        option.style.display = 'none';
+                    }
+                });
+            };
+
+            // Attach change event listeners to color radios
+            colorRadios.forEach(radio => {
+                radio.addEventListener('change', handleColorChange);
+            });
+
+            // Automatically trigger change event on the first color radio
+            if (colorRadios.length > 0) {
+                colorRadios[0].dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
 @endsection

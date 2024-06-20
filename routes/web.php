@@ -20,6 +20,7 @@ use App\Http\Controllers\Client\ClContactController;
 use App\Http\Controllers\Client\ClFavoriteController;
 use App\Http\Controllers\Client\ClHomeController;
 use App\Http\Controllers\Client\ClInTroController;
+use App\Http\Controllers\Client\ClProductController;
 use App\Http\Controllers\Client\ClProfileController;
 use App\Http\Controllers\Client\ClSeriesShopController;
 use App\Http\Controllers\Client\ClShopController;
@@ -64,13 +65,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('/')->name('client.')->group(function () {
     Route::get('/', [ClHomeController::class, 'homePage'])->name('home-page');
     Route::get('/shop-page', [ClShopController::class, 'shop'])->name('shop-page');
+    Route::get('shop/{product:slug}', [ClProductController::class, 'show'])->name('detail');
     Route::get('/blog-page', [ClBlogController::class, 'blog'])->name('blog-page');
     Route::get('/introduce-page', [ClInTroController::class, 'introduce'])->name('introduce-page');
     Route::get('/contact-page', [ClContactController::class, 'contact'])->name('contact-page');
+    Route::post('/contact-page', [ClContactController::class, 'contactDetail']);
     Route::get('/series-shop-page', [ClSeriesShopController::class, 'seriesShop'])->name('series-shop-page');
     Route::get('/cart-page', [ClCartController::class, 'cart'])->name('cart-page');
     Route::get('/logIn-page', [ClProfileController::class, 'logIn'])->name('logIn-page');
     Route::get('/signIn-page', [ClProfileController::class, 'signIn'])->name('signIn-page');
-    Route::get('/product-detail-page', [ClShopController::class, 'productDetail'])->name('product-detail-page');
     Route::get('/favorite-page', [ClFavoriteController::class, 'favorite'])->name('favorite-page');
 });

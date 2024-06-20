@@ -10,14 +10,13 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'images','summary', 'price', 'sale_price', 'description', 
-        'quantity_available', 'quantity_sold', 'status','hot', 'slug', 
+        'name', 'images', 'summary', 'price', 'sale_price', 'description', 'status', 'hot', 'slug',
         'brand_id', 'category_id'
     ];
 
     public function getRouteKey()
     {
-     return 'slug';   
+        return 'slug';
     }
     public function brand()
     {
@@ -36,15 +35,18 @@ class Product extends Model
 
     public function colors()
     {
-        return $this->belongsToMany(Color::class, 'product_color');
+        return $this->belongsToMany(Color::class, 'product_detail');
     }
     public function sizes()
     {
-        return $this->belongsToMany(Size::class, 'product_size');
+        return $this->belongsToMany(Size::class, 'product_detail');
     }
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'product_tag');
     }
-
+    public function productDetails()
+{
+    return $this->hasMany(ProductDetail::class);
+}
 }
