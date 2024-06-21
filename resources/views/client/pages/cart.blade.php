@@ -18,28 +18,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="product-id d-none d-md-table-cell">1</td>
-                                        <td class="product-name d-flex justify-content-center align-items-center">
-                                            <img class="d-none d-lg-block me-3 product-thumbnail"
-                                                src="https://via.placeholder.com/100" alt="Image">
-                                            <h2 class="h5 text-black m-0">Product name</h2>
-                                        </td>
-                                        <td>
-                                            <p class="p-0 m-0">$15.35</p>
-                                        </td>
-                                        <td>
-                                            <div class="quantity-input-group d-flex justify-content-center">
-                                                <button type="button" class="btn btn-outline-secondary btn-sm">-</button>
-                                                <input type="number" class="form-control rounded quantity-input mx-2"
-                                                    value="1" min="1">
-                                                <button type="button" class="btn btn-outline-secondary btn-sm">+</button>
-                                            </div>
-                                        </td>
-                                        <td class="cart_delete">
-                                            <a class="btn btn-danger btn-sm cart_delete" href="#">Delete</a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($cart as $item)
+                                        <tr>
+                                            <td class="product-id d-none d-md-table-cell">1</td>
+                                            <td class="product-name d-flex justify-content-center align-items-center">
+                                                <img class="d-none d-lg-block me-3 product-thumbnail"
+                                                    src="{{ $item->product->images }}" alt="Image">
+                                                <h2 class="h5 text-black m-0">{{ $item->product->name }}</h2>
+                                            </td>
+                                            <td>
+                                                <p class="p-0 m-0">${{ number_format($item->price) }}</p>
+                                            </td>
+                                            <td>
+                                                <div class="quantity-input-group d-flex justify-content-center">
+                                                    <button type="button"
+                                                        class="btn btn-outline-secondary btn-sm">-</button>
+                                                    <input type="number" class="form-control rounded quantity-input mx-2"
+                                                        value="{{ $item->quantity }}" min="1">
+                                                    <button type="button"
+                                                        class="btn btn-outline-secondary btn-sm">+</button>
+                                                </div>
+                                            </td>
+                                            <td class="cart_delete">
+                                                <a class="btn btn-danger btn-sm cart_delete" href="#">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -47,7 +52,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <a class="btn btn-outline-dark btn-giohang fs-5" href="#">Tiếp tục mua sắm</a>
+                        <a class="btn btn-outline-dark btn-giohang fs-5" href="{{ route('client.shop-page') }}">Tiếp tục mua
+                            sắm</a>
                     </div>
                     <div class="col-md-6">
                         <div class="row justify-content-end">
@@ -62,7 +68,7 @@
                                         <span class="text-black h5"><strong>Tổng</strong></span>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <strong class="fs-5">$30.15</strong>
+                                        <strong class="fs-5">${{ number_format($item->subTotal) }}</strong>
                                     </div>
                                 </div>
                                 <div class="row">

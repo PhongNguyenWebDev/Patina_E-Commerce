@@ -24,6 +24,7 @@ use App\Http\Controllers\Client\ClProductController;
 use App\Http\Controllers\Client\ClProfileController;
 use App\Http\Controllers\Client\ClSeriesShopController;
 use App\Http\Controllers\Client\ClShopController;
+use App\Http\Controllers\LogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,11 @@ use App\Http\Controllers\Client\ClShopController;
 |
 */
 
+Route::get('/logIn-page', [LogController::class, 'logIn'])->name('logIn-page');
+Route::post('/logIn-page', [LogController::class, 'aclogin']);
+Route::get('/signIn-page', [LogController::class, 'signIn'])->name('signIn-page');
+Route::post('/signIn-page', [LogController::class, 'register']);
+Route::get('/verify-account/{email}', [LogController::class, 'verify'])->name('verify');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdHomeController::class, 'admin'])->name('home');
@@ -71,8 +77,13 @@ Route::prefix('/')->name('client.')->group(function () {
     Route::get('/contact-page', [ClContactController::class, 'contact'])->name('contact-page');
     Route::post('/contact-page', [ClContactController::class, 'contactDetail']);
     Route::get('/series-shop-page', [ClSeriesShopController::class, 'seriesShop'])->name('series-shop-page');
-    Route::get('/cart-page', [ClCartController::class, 'cart'])->name('cart-page');
-    Route::get('/logIn-page', [ClProfileController::class, 'logIn'])->name('logIn-page');
-    Route::get('/signIn-page', [ClProfileController::class, 'signIn'])->name('signIn-page');
+    Route::prefix('cart-page')->name('cart-page.')->group(function () {
+        Route::get('/', [ClCartController::class, 'cart'])->name('index');
+        Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
+        // Route::get('/update/{product}', [CartController::class, 'update'])->name('update');
+        // Route::get('/delete/{product}', [CartController::class, 'delete'])->name('delete');
+        // Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
+    });
+    
     Route::get('/favorite-page', [ClFavoriteController::class, 'favorite'])->name('favorite-page');
 });

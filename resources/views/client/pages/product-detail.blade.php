@@ -66,7 +66,8 @@
                         <p class="m-0 px-3" style="color: var(--secondary-1000-color);">(12 reviews)</p>
                     </div>
                     <!-- Color Products -->
-                    <form action="">
+                    <form action="{{ route('client.cart-page.add', $product->id) }}" method="POST">
+                        @csrf
                         <div class="py-3">
                             <h5 class="py-1" style="font-weight: var(--Medium);">Color
                             </h5>
@@ -74,7 +75,7 @@
 
                                 @foreach ($uniqueColors as $index => $color)
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input color-radio" type="radio" name="colorOptions"
+                                        <input class="form-check-input color-radio" type="radio" name="color_id"
                                             id="color_{{ $color->id }}" value="{{ $color->id }}"
                                             data-price="{{ $color->price }}" data-sale-price="{{ $color->sale_price }}"
                                             {{ $index == 0 ? 'checked' : '' }}>
@@ -91,7 +92,7 @@
                                 @foreach ($product->productDetails as $detail)
                                     <div class="form-check form-check-inline size-option"
                                         data-color-id="{{ $detail->color_id }}" data-quantity="{{ $detail->quantity }}">
-                                        <input class="form-check-input size-radio" type="radio" name="sizeOptions"
+                                        <input class="form-check-input size-radio" type="radio" name="size_id"
                                             id="size_{{ $detail->size_id }}" value="{{ $detail->size_id }}"
                                             data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}">
                                         <label class="form-check-label fs-5 fw-medium"
@@ -103,7 +104,7 @@
                         <!-- Add to card -->
                         <div class="container">
                             <div class="row g-3">
-                                <input class="px-xl-2 col-2 col-xl-1" type="number" min="1" value="1">
+                                <input class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1" value="1">
                                 <div class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
                                     <button style="background-color:#8D6440;"
                                         class="btn h-100 fs-5 d-flex align-items-center justify-content-center text-white"

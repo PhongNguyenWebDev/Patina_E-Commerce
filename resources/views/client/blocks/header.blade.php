@@ -43,14 +43,20 @@
                             <span style="font-size: x-small; color: black">99</span>
                         </div>
                     </a>
-                    <a href="{{ route('client.cart-page') }}" class="position-relative mx-3">
+                    <a href="{{ route('client.cart-page.index') }}" class="position-relative mx-3">
                         <i class="fa-solid fa-cart-shopping fa-xl" style="color: #8D6440;"></i>
                         <div class="count position-absolute bottom-50 start-50">
                             <span style="font-size: x-small; color: black">99</span>
                         </div>
                     </a>
-                    <a href="{{ route('client.logIn-page') }}"><i class="fa-regular fa-user fa-xl"
+                    @if (Auth::check())
+                    <a href="{{ route('client.home-page') }}"><i class="fa-regular fa-user fa-xl"
+                        style="color: #8D6440;"></i></a>   
+                    @else
+                        <a href="{{ route('logIn-page') }}"><i class="fa-regular fa-user fa-xl"
                             style="color: #8D6440;"></i></a>
+                    @endif
+                    
                 </div>
             </div>
         </div>
