@@ -44,7 +44,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
@@ -72,9 +71,9 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <a href="{{ route('client.bill-page') }}" class="col-md-12">
                                         <button class="btn btn-giohang px-4 fs-5 border">Thanh toán</button>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>

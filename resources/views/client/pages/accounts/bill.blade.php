@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="css/index.css">
-    <title>Hoá đơn</title>
-</head>
-
-<body>
+@extends('layouts.client')
+@section('content')
     <main class="container-fluid">
         <div class="container d-flex flex-column flex-xl-row align-items-center justify-content-between ">
             <div class="col-12 col-xl-6">
@@ -99,8 +85,4 @@
 
         </div>
     </section>
-    <script src="js/index.js"></script>
-    <script src="https://kit.fontawesome.com/625c309197.js" crossorigin="anonymous"></script>
-</body>
-
-</html>
+@endsection
