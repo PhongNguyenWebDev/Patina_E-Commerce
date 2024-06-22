@@ -1,108 +1,255 @@
 @extends('layouts.client')
-@section('css')
-<style>
-    .header__menu ul li a {
-        text-decoration: none
-    }
-</style>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-@endsection
 @section('content')
-    <section class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__text">
-                        <h4>Đổi Mật Khẩu</h4>
-                        <div class="breadcrumb__links">
-                            <a href="/">Home</a>
-                            <span>Tài Khoản</span>
-                        </div>
-                    </div>
+    <main class="container-fluid">
+        <div class="container d-flex flex-column flex-xl-row align-items-center justify-content-between ">
+            <div class="col-12 col-xl-6">
+                <h1>Thông tin khách hàng</h1>
+                <p class="text-banner pt-3 pt-xl-5 pb-3">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
+                    velit.
+                    Aliquam vulputate velit imperdiet
+                    dolor tempor tristique.</p>
+                <div class="d-flex align-items-center">
+                    <a class="btn-home nav-link">Trang chủ</a>
+                    <a class="btn-explore nav-link">Khám phá</a>
                 </div>
             </div>
+            <div class="col-12 col-xl-6 d-flex justify-content-xl-end justify-content-center">
+                <img class="w-75" src="./img/Image-banner.png" alt="">
+            </div>
         </div>
-    </section>
-    <div class="container-md mt-5">
-        <div class="row g-3">
-            <div class="col-12">
-                <div class="row g-3">
-                    <div class="col-lg-3 col-md-4 col-12">
-                        <div class="nav nav-pills flex-column" role="tablist">
-                            <div class="card">
-                                <button class="nav-link border-0 border-bottom p-3 pdcatt active" id="home-tab"
-                                    data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
-                                    aria-controls="home" aria-selected="true" style="font-size: 17px;; background-color:black;">THÔNG TIN TÀI
-                                    KHOẢN
-                                </button>
-                                <a href="{{ route('account.hoadon') }}"
-                                    class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="font-size: 17px; color:black;">HÓA ĐƠN
-                                </a>
-                                <a href="{{ route('account.update') }}"
-                                    class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="font-size: 17px; color:black;">THAY
-                                    ĐỔI THÔNG TIN
-                                </a>
-                                <a href="{{ route('account.updatePass') }}"
-                                    class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="font-size: 17px; color:black;">ĐỔI MẬT
-                                    KHẨU
-                                </a>
-                                <a style="font-size: 17px; color:black;" class="btn p-3 pdcatt" href="{{ route('logout') }}">ĐĂNG
-                                    XUẤT</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-12">
-                        <div class="tab-content border-0">
-                            <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab"
-                                tabindex="0">
-                                <div class="row row-40 justify-content-center">
-                                    <div class="col-md-9 justify-content-center card p-4">
-                                        <div id="billing-form" class="mb-10">
-                                            <div class="row g-3">
-                                                <div class="col-md-12 col-12 mb-3">
-                                                    <label class="p-2">Mã Tài Khoản</label>
-                                                    <input type="text" disabled name="id"
-                                                        value="{{ $users->id }}" class="form-control">
-                                                </div>
-                                                <div class="col-md-12 col-12 mb-3">
-                                                    <label class="p-2">Họ và tên</label>
-                                                    <input type="text" disabled name="name"
-                                                        value="{{ $users->name }}" class="form-control">
-                                                </div>
-                                                <div class="col-md-12 col-12 mb-3">
-                                                    <label class="p-2">Email</label>
-                                                    <input type="email" disabled name="email"
-                                                        value="{{ $users->email }}" class="form-control">
-                                                </div>
-                                                <div class="col-md-12 col-12 mb-3">
-                                                    <label class="p-2">Số điện thoại</label>
-                                                    <input type="text" disabled name="phone"
-                                                        value="{{ $users->phone }}" class="form-control">
-                                                </div>
-                                                <div class="col-md-12 col-12 mb-3">
-                                                    <label class="p-2">Địa chỉ</label>
-                                                    <input type="text" disabled name="address"
-                                                        value="{{ $users->address }}" class="form-control">
-                                                </div>
-                                                <div class="col-md-12 col-12 mb-3">
-                                                    <label class="p-2">Trạng Thái</label>
-                                                    <input type="text" disabled name="active"
-                                                        value="{{ $users->active == 1 ? 'Đã kích hoạt' : 'Chưa kích hoạt' }}"
-                                                        class="form-control">
+    </main>
+    <section class="container my-5 pb-5">
+        <div class="d-flex row">
+            <div class="col-lg-4 p-0">
+                <ul class="list-group">
+                    <li class="text-white list-group-item" style="background: var(--primary-1000-color);">
+                        <h1 class="m-0 fs-1">Thông tin khách hàng</h1>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#update-info">Cập
+                            nhật</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#invoice-info">Hóa
+                            đơn</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#bank-info">Ngân
+                            hàng</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#other-info">Chức
+                            năng khác</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-8 d-flex justify-content-center">
+                <div class="container">
+                    <div id="update-info" class="info-content">
+                        <div class="row flex-lg-nowrap">
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="e-profile">
+                                                    <div class="row">
+                                                        <div class="col-12 col-sm-auto mb-3">
+                                                            <div class="mx-auto" style="width: 140px;">
+                                                                <div class="d-flex justify-content-center align-items-center rounded"
+                                                                    style="height: 140px; background-color: rgb(233, 236, 239);">
+                                                                    <span
+                                                                        style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                            <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith
+                                                                </h4>
+                                                                <p class="mb-0">@johnny.s</p>
+                                                                <div class="mt-2">
+                                                                    <button class="btn btn-primary" type="button">
+                                                                        <i class="fa fa-fw fa-camera"></i>
+                                                                        <span>Change Photo</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="nav-item"><a href=""
+                                                                class="active nav-link">Settings</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content pt-3">
+                                                        <div class="tab-pane active">
+                                                            <form class="form" novalidate="">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <div class="form-group">
+                                                                                    <label>Full Name</label>
+                                                                                    <input class="form-control"
+                                                                                        type="text" name="name"
+                                                                                        placeholder="John Smith"
+                                                                                        value="John Smith">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <div class="form-group">
+                                                                                    <label>Username</label>
+                                                                                    <input class="form-control"
+                                                                                        type="text" name="username"
+                                                                                        placeholder="johnny.s"
+                                                                                        value="johnny.s">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <div class="form-group">
+                                                                                    <label>Email</label>
+                                                                                    <input class="form-control"
+                                                                                        type="text"
+                                                                                        placeholder="user@example.com">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-2"><b>Change Password</b></div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <div class="col">
+                                                                                    <div class="form-group">
+                                                                                        <label>Current Password</label>
+                                                                                        <input class="form-control"
+                                                                                            type="password"
+                                                                                            placeholder="••••••">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <div class="form-group">
+                                                                                    <label>New Password</label>
+                                                                                    <input class="form-control"
+                                                                                        type="password"
+                                                                                        placeholder="••••••">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Confirm <span
+                                                                                    class="d-none d-xl-inline">Password</span></label>
+                                                                            <input class="form-control" type="password"
+                                                                                placeholder="••••••">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="col d-flex justify-content-end">
+                                                            <button class="btn btn-primary" type="submit">Save
+                                                                Changes</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+                    </div>
+                    <div id="invoice-info" class="info-content d-none">
+                        <div class="container">
+                            <h2>Order Details</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer Name</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                        <th>Total Amount</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Phong</td>
+                                        <td>Đồng Nai</td>
+                                        <td>+84 305 6661</td>
+                                        <td>$ 15.36</td>
+                                        <td><i class="fas fa-eye eye-icon" onclick="showOrderDetails()"></i>
+                                        </td>
+                                        <td>
+                                            <div id="orderDetailsContainer" class="order-details-container">
+                                                <div class="order-details-content">
+                                                    <span class="close-btn" onclick="closeOrderDetails()">&times;</span>
+                                                    <h2>Order Details</h2>
+                                                    <p>Address: Đồng Nai - Tân Lập 2</p>
+                                                    <p>Phone: +84 305 6661</p>
+                                                    <p>Time: 30/12/2023</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Add more rows for other orders -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="bank-info" class="info-content d-none">
+                        <div class="container">
+                            <h2>Transfer Information</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Payment Method</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Bank Transfer</td>
+                                        <td>$100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>PayPal</td>
+                                        <td>$50</td>
+                                    </tr>
+                                    <!-- Add more rows for additional transfer information -->
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2" class="text-right"><strong>Total:</strong></td>
+                                        <td><strong>$150</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="other-info" class="info-content d-none">
+
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-@endsection
-@section('script')
-<script src="https://kit.fontawesome.com/3377b5a3db.js" crossorigin="anonymous"></script>
+    </section>
 @endsection

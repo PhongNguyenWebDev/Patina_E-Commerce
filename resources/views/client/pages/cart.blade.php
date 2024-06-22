@@ -22,8 +22,8 @@
                                         <tr>
                                             <td class="product-id d-none d-md-table-cell">1</td>
                                             <td class="product-name d-flex justify-content-center align-items-center">
-                                                <img class="d-none d-lg-block me-3 product-thumbnail"
-                                                    src="{{ $item->product->images }}" alt="Image">
+                                                <img class="me-3 img-thumnail" src="{{ $item->product->images }}"
+                                                    width="100" height="100" alt="Image">
                                                 <h2 class="h5 text-black m-0">{{ $item->product->name }}</h2>
                                             </td>
                                             <td>

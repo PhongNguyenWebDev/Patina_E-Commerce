@@ -50,13 +50,32 @@
                         </div>
                     </a>
                     @if (Auth::check())
-                    <a href="{{ route('client.home-page') }}"><i class="fa-regular fa-user fa-xl"
-                        style="color: #8D6440;"></i></a>   
+                        {{-- <a href="{{ route('client.home-page') }}"><i class="fa-regular fa-user fa-xl"
+                                style="color: #8D6440;"></i></a> --}}
+                        <div class="dropdown">
+                            <a class="btn dropdown-toggle border-0" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="user-img"><img class="rounded-circle"
+                                        src="{{ asset('assets/admin/img/user-06.jpg') }}" width="35" alt="Admin">
+                                    <span class="status online"></span></span>
+                                <span>
+                                    @if (Auth::check())
+                                        {{ Auth::user()->name }}
+                                    @endif
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('client.profile-page') }}">My Profile</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
                     @else
                         <a href="{{ route('logIn-page') }}"><i class="fa-regular fa-user fa-xl"
-                            style="color: #8D6440;"></i></a>
+                                style="color: #8D6440;"></i></a>
                     @endif
-                    
+
                 </div>
             </div>
         </div>

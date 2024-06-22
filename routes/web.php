@@ -77,6 +77,7 @@ Route::prefix('/')->name('client.')->group(function () {
     Route::get('/contact-page', [ClContactController::class, 'contact'])->name('contact-page');
     Route::post('/contact-page', [ClContactController::class, 'contactDetail']);
     Route::get('/series-shop-page', [ClSeriesShopController::class, 'seriesShop'])->name('series-shop-page');
+    Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');
     Route::prefix('cart-page')->name('cart-page.')->group(function () {
         Route::get('/', [ClCartController::class, 'cart'])->name('index');
         Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
@@ -84,6 +85,6 @@ Route::prefix('/')->name('client.')->group(function () {
         // Route::get('/delete/{product}', [CartController::class, 'delete'])->name('delete');
         // Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
     });
-    
+
     Route::get('/favorite-page', [ClFavoriteController::class, 'favorite'])->name('favorite-page');
 });
