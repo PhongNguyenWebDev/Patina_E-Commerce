@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\AdUserController;
 use App\Http\Controllers\Client\ClBillController;
 use App\Http\Controllers\Client\ClBlogController;
 use App\Http\Controllers\Client\ClCartController;
+use App\Http\Controllers\Client\ClCheckOutController;
 use App\Http\Controllers\Client\ClContactController;
 use App\Http\Controllers\Client\ClFavoriteController;
 use App\Http\Controllers\Client\ClHomeController;
@@ -79,7 +80,8 @@ Route::prefix('/')->name('client.')->group(function () {
     Route::post('/contact-page', [ClContactController::class, 'contactDetail']);
     Route::get('/series-shop-page', [ClSeriesShopController::class, 'seriesShop'])->name('series-shop-page');
     Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');  //thêm ngày 22/6 bởi ta
-    Route::get('/bill-page', [ClBillController::class, 'bill'])->name('bill-page');  //thêm ngày 22/6 bởi ta
+    // Route::get('/bill-page', [ClBillController::class, 'bill'])->name('bill-page');  //thêm ngày 22/6 bởi ta
+    Route::get('/checkout-page', [ClCheckOutController::class, 'checkOut'])->name('checkout-page');
     Route::prefix('cart-page')->name('cart-page.')->group(function () {
         Route::get('/', [ClCartController::class, 'cart'])->name('index');
         Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');

@@ -1,5 +1,6 @@
 @extends('layouts.client')
 @section('content')
+    @include('client.blocks.banner')
     <main class="container-fluid">
         <div class="container d-flex flex-column flex-xl-row align-items-center justify-content-between ">
             <div class="col-12 col-xl-6">

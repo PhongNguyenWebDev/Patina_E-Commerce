@@ -9,7 +9,6 @@ class ClBillController extends Controller
 {
     public function bill()
     {
-        $title = 'Hóa Đơn';
-        return view('client.pages.accounts.bill', compact('title'));
+        //chưa có gì đâu nhé!
     }
 }
