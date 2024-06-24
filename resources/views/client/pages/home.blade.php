@@ -3,22 +3,26 @@
     <div class="main-content">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                @foreach($sliders as $key => $slider)
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="true" aria-label="Slide {{ $key + 1 }}"></button>
+                @foreach ($sliders as $key => $slider)
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}"
+                        class="{{ $key == 0 ? 'active' : '' }}" aria-current="true"
+                        aria-label="Slide {{ $key + 1 }}"></button>
                 @endforeach
             </div>
             <div class="carousel-inner">
-                @foreach($sliders as $key => $slider)
+                @foreach ($sliders as $key => $slider)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                         <img src="{{ $slider->image }}" class="d-block w-100" alt="Slide {{ $key + 1 }}">
                     </div>
                 @endforeach
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -235,8 +239,23 @@
                         <div class="position-absolute top-0 p-3 w-100 end-0">
                             <div class="d-flex align-items-center justify-content-between">
                                 <span class="badge text-bg-danger fs-6">- 20%</span>
-                                <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                    class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+                                @php
+                                    $isFavorite = false;
+                                    foreach ($favorite as $item) {
+                                        if ($item->product_id === $product->id) {
+                                            $isFavorite = true;
+                                            break;
+                                        }
+                                    }
+                                @endphp
+                                @if ($isFavorite)
+                                <a href="{{ route('client.favorite.index') }}"><i style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
+                                        class="fas fa-heart rounded-5 p-2 fs-5"></i></a>
+                                @else
+                                    <a href="{{ route('client.favorite.add', $product->id) }}"><i
+                                            style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                            class="fa-regular fa-heart rounded-5 p-2 fs-5"></i></a>
+                                @endif
                             </div>
                         </div>
                         <h4 class="pt-1 mt-1">{{ $product->name }}</h4>
@@ -365,10 +384,10 @@
     </div>
     <div class="container-fluid px-4 mt-5 logo-brand">
         <div class="row g-2 px-5 d-flex justify-content-between align-items-center">
-            @foreach($bannerbots as $bannerbot)
-            <span class="col-lg-2">
-                <img class="w-100" src="{{$bannerbot->image}}" alt="">
-            </span>
+            @foreach ($bannerbots as $bannerbot)
+                <span class="col-lg-2">
+                    <img class="w-100" src="{{ $bannerbot->image }}" alt="">
+                </span>
             @endforeach
         </div>
     </div>

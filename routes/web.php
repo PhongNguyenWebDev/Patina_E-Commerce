@@ -120,10 +120,15 @@ Route::prefix('/')->name('client.')->group(function () {
     Route::prefix('cart-page')->name('cart-page.')->group(function () {
         Route::get('/', [ClCartController::class, 'cart'])->name('index');
         Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
-        // Route::get('/update/{product}', [CartController::class, 'update'])->name('update');
-        // Route::get('/delete/{product}', [CartController::class, 'delete'])->name('delete');
+        Route::get('/update/{id}', [ClCartController::class, 'update'])->name('update');
+        Route::get('/delete/{product}', [ClCartController::class, 'delete'])->name('delete');
         // Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
     });
-
-    Route::get('/favorite-page', [ClFavoriteController::class, 'favorite'])->name('favorite-page');
+    Route::prefix('favorite-page')->name('favorite.')->group(function () {
+        Route::get('/', [ClFavoriteController::class, 'favorite'])->name('index');
+        Route::get('/add/{product}', [ClFavoriteController::class, 'add'])->name('add');
+        Route::get('/delete/{product}', [ClFavoriteController::class, 'delete'])->name('delete');
+    });
+    
 });
+Route::get('/logout', [LogController::class, 'logout'])->name('logout');

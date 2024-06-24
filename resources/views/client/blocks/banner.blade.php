@@ -8,7 +8,7 @@
                 dolor tempor tristique.</p>
             <div class="d-flex align-items-center">
                 <a class="btn-home nav-link" href="{{ route('client.home-page') }}">Trang chủ</a>
-                <a class="btn-explore nav-link">Khám phá</a>
+                <a class="btn-explore nav-link" href="{{ route('client.shop-page') }}">Khám phá</a>
             </div>
         </div>
         <div class="col-12 col-xl-6 d-flex justify-content-xl-end justify-content-center">

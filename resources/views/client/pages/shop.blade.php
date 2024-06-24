@@ -96,13 +96,14 @@
                     <h5 class="bg-filter p-2 mt-2">Lọc theo thương hiệu</h5>
                     <div class="container-fluid px-0 py-2">
                         <div class="row g-2">
-                            @foreach($brands as $brand)
-                            <div class="col-4 item-brand">
-                                <a href="{{ route('client.shop-page', array_merge(request()->except('brand'), ['brand' => $brand->slug])) }}">
-                                    <img class="object-fit-contain img-thumbnail w-100 h-100"
-                                        src="{{$brand->image}}" alt="">
-                                </a>
-                            </div>
+                            @foreach ($brands as $brand)
+                                <div class="col-4 item-brand">
+                                    <a
+                                        href="{{ route('client.shop-page', array_merge(request()->except('brand'), ['brand' => $brand->slug])) }}">
+                                        <img class="object-fit-contain img-thumbnail w-100 h-100" src="{{ $brand->image }}"
+                                            alt="">
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -163,27 +164,42 @@
                 <div class="container-fluid p-0">
                     <div class="row g-2">
                         @foreach ($products as $product)
-                            <a href="{{ route('client.detail', $product->slug) }}"
-                                class="text-decoration-none text-black col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                            <a href="{{ route('client.detail', $product->slug) }}">
                                 <img class="img-thumbnail" src="{{ $product->images }}" alt="">
-                                <div class="position-absolute top-0 p-3 w-100 end-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge text-bg-danger fs-6">- 20%</span>
-                                        <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                            class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
-                                    </div>
-                                </div>
-                                <h4 class="pt-1 mt-1 fs-5">{{ $product->name }}</h4>
-                                <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $product->category->name }}</p>
-                                <div class="d-flex">
-                                    <p style="font-size: var(--font-size); margin: 0;"
-                                        class="text-decoration-line-through text-danger mx-2">${{ $product->price }}</p>
-                                    <p style="font-size: var(--font-size); margin: 0; color: black;">
-                                        ${{ $product->sale_price }}
-                                    </p>
-                                </div>
                             </a>
-                        @endforeach
+                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="badge text-bg-danger fs-6">- 20%</span>
+                                    @php
+                                        $isFavorite = false;
+                                        foreach ($favorite as $item) {
+                                            if ($item->product_id === $product->id) {
+                                                $isFavorite = true;
+                                                break;
+                                            }
+                                        }
+                                    @endphp
+                                    @if ($isFavorite)
+                                    <a href="{{ route('client.favorite.index') }}"><i style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
+                                            class="fas fa-heart rounded-5 p-2 fs-5"></i></a>
+                                    @else
+                                        <a href="{{ route('client.favorite.add', $product->id) }}"><i
+                                                style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                                class="fa-regular fa-heart rounded-5 p-2 fs-5"></i></a>
+                                    @endif
+                                </div>
+                            </div>
+                            <h4 class="pt-1 mt-1 fs-5">{{ $product->name }}</h4>
+                            <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $product->category->name }}</p>
+                            <div class="d-flex">
+                                <p style="font-size: var(--font-size); margin: 0;"
+                                    class="text-decoration-line-through text-danger mx-2">${{ $product->price }}</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">${{ $product->sale_price }}
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
                     </div>
                 </div>
                 <!-- Pagination -->

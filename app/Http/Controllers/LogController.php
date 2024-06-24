@@ -52,4 +52,9 @@ class LogController extends Controller
         $acc->update(['email_verified_at' => now(), 'active' => 1]);
         return redirect()->route('logIn-page')->with('ssmsg', 'Hãy tiếp tục đăng nhập.');
     }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('client.home-page')->with('ssmsg', 'Hẹn gặp lại quý khách.');
+    }
 }

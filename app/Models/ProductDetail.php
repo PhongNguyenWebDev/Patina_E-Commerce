@@ -9,6 +9,7 @@ class ProductDetail extends Model
 {
     use HasFactory;
     protected $table = 'product_detail';
+    public $timestamps = false;
     protected $fillable = [
         'product_id', 'size_id', 'color_id', 'quantity', 'price', 'sale_price'
     ];

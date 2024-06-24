@@ -24,8 +24,6 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required | unique:products,name,' . request()->id,
             'summary' => 'nullable',
-            'colors' => 'required',
-            'sizes' => 'required',
             'tags' => 'required',
             'price' => 'required | numeric|max:100000000',
             'sale_price' => 'nullable|numeric|max:100000000',
@@ -37,8 +35,7 @@ class ProductRequest extends FormRequest
         return [
             'name.required' => 'Tên sản phẩm bắt buộc phải nhập',
             'name.unique' => 'Tên sản phẩm đã tồn tại, vui lòng chọn tên khác',
-            'colors.required' => 'Vui lòng chọn ít nhất một màu sắc cho sản phẩm',
-            'sizes.required' => 'Vui lòng chọn ít nhất một kích thước cho sản phẩm',
+            
             'tags.required' => 'Vui lòng chọn ít nhất một thẻ cho sản phẩm',
             'price.required' => 'Giá sản phẩm bắt buộc phải nhập',
             'price.numeric' => 'Giá sản phẩm phải là một số',

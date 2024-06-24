@@ -37,16 +37,16 @@
                     </li>
                 </ul>
                 <div class="user d-flex align-items-center">
-                    <a href="{{ route('client.favorite-page') }}" class="position-relative">
+                    <a href="{{ route('client.favorite.index') }}" class="position-relative">
                         <i class="fa-regular fa-heart fa-xl" style="color: #8D6440;"></i>
                         <div class="count position-absolute bottom-50 start-50">
-                            <span style="font-size: x-small; color: black">99</span>
+                            <span style="font-size: x-small; color: black">{{ $favorite->count() }}</span>
                         </div>
                     </a>
                     <a href="{{ route('client.cart-page.index') }}" class="position-relative mx-3">
                         <i class="fa-solid fa-cart-shopping fa-xl" style="color: #8D6440;"></i>
                         <div class="count position-absolute bottom-50 start-50">
-                            <span style="font-size: x-small; color: black">99</span>
+                            <span style="font-size: x-small; color: black">{{ $cart->sum('quantity') }}</span>
                         </div>
                     </a>
                     @if (Auth::check())
@@ -56,7 +56,8 @@
                             <a class="btn dropdown-toggle border-0" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="user-img"><img class="rounded-circle"
-                                        src="{{ asset('assets/admin/img/user-06.jpg') }}" width="35" alt="Admin">
+                                        src="{{ asset('assets/admin/img/user-06.jpg') }}" width="35"
+                                        alt="Admin">
                                     <span class="status online"></span></span>
                                 <span>
                                     @if (Auth::check())
@@ -68,7 +69,7 @@
                                 <li>
                                     <a class="dropdown-item" href="{{ route('client.profile-page') }}">My Profile</a>
                                 </li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                             </ul>
                         </div>
                     @else

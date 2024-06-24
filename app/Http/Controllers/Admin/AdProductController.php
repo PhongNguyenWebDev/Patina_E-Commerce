@@ -9,8 +9,7 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\Gallery;
 use App\Models\Product;
-use App\Models\ProductColor;
-use App\Models\ProductSize;
+use App\Models\ProductDetail;
 use App\Models\ProductTag;
 use App\Models\Size;
 use App\Models\Tag;
@@ -49,59 +48,70 @@ class AdProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $products = Product::create($request->all());
+        $data = $request->all();
+        $product = Product::create([
+            'name' => $request->name,
+            'summary' => $request->summary,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'brand_id' => $request->brand_id,
+            'price' => $request->price,
+            'sale_price' => $request->sale_price,
+            'hot' => $request->hot,
+            'status' => $request->status,
+        ]);
 
         if ($request->hasFile('images')) {
             $image = $request->file('images');
             $imageName = $image->getClientOriginalName();
-            $image->storeAs('public/products', $imageName);
-
-            $products->images = Storage::url('public/products/' . $imageName);
+            $image->move(public_path('uploads/products'), $imageName);
+            $product->images = '/uploads/products/' . $imageName;
         }
-        $products->slug = Str::slug($products->name, '-');
-        $products->save();
+
+        $product->slug = Str::slug($product->name, '-');
+        $product->save();
 
         if ($request->hasFile('imgdetail')) {
             foreach ($request->file('imgdetail') as $imgdetail) {
                 $imgName = $imgdetail->getClientOriginalName();
-                $imgdetail->storeAs('public/products', $imgName);
+                $imgdetail->move(public_path('uploads/products'), $imgName);
 
                 $gallery = new Gallery();
-                $gallery->name = Storage::url('public/products/' . $imgName);
-                $gallery->product_id = $products->id;
+                $gallery->name = '/uploads/products/' . $imgName;
+                $gallery->product_id = $product->id;
                 $gallery->save();
             }
         }
+
         if (is_array($request->tags)) {
             foreach ($request->tags as $tagItem) {
-                $tags = Tag::firstOrCreate(['name' => $tagItem]);
+                $tag = Tag::firstOrCreate(['name' => $tagItem]);
                 ProductTag::create([
-                    'product_id' => $products->id,
-                    'tag_id' => $tags->id,
-                ]);
-            }
-        }
-        if (is_array($request->sizes)) {
-            foreach ($request->sizes as $sizeItem) {
-                $sizes = Size::firstOrCreate(['name' => $sizeItem]);
-                ProductSize::create([
-                    'product_id' => $products->id,
-                    'size_id' => $sizes->id,
-                ]);
-            }
-        }
-        if (is_array($request->colors)) {
-            foreach ($request->colors as $colorItem) {
-                $colors = Color::firstOrCreate(['name' => $colorItem]);
-                ProductColor::create([
-                    'product_id' => $products->id,
-                    'color_id' => $colors->id,
+                    'product_id' => $product->id,
+                    'tag_id' => $tag->id,
                 ]);
             }
         }
 
-        return redirect()->route('admin.products.index')->with('ssmsg', 'Thêm thành công một sản phẩm mới');
+        foreach ($data['colors'] as $colorData) {
+            $color = Color::firstOrCreate(['name' => $colorData['name']]);
+            foreach ($colorData['sizes'] as $sizeData) {
+                $size = Size::firstOrCreate(['name' => $sizeData['size']]);
+                $productDetail = new ProductDetail();
+                $productDetail->product_id = $product->id;
+                $productDetail->color_id = $color->id;
+                $productDetail->size_id = $size->id;
+                $productDetail->quantity = $sizeData['quantity'];
+                $productDetail->price = $sizeData['price'];
+                $productDetail->sale_price = $sizeData['sale_price'];
+                $productDetail->save();
+            }
+        }
+
+        return redirect()->route('admin.products.index')->with('success', 'Thêm thành công một sản phẩm mới');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -152,7 +162,7 @@ class AdProductController extends Controller
             foreach ($request->file('imgdetail') as $imgdetail) {
                 $imgName = $imgdetail->getClientOriginalName();
                 $imgdetail->storeAs('public/products', $imgName);
-    
+
                 $gallery = new Gallery();
                 $gallery->name = Storage::url('public/products/' . $imgName);
                 $gallery->product_id = $product->id;
@@ -161,29 +171,29 @@ class AdProductController extends Controller
         }
 
         if (is_array($request->tags)) {
-            $product->tags()->detach(); 
+            $product->tags()->detach();
             foreach ($request->tags as $tagItem) {
                 $tag = Tag::firstOrCreate(['name' => $tagItem]);
                 $product->tags()->attach($tag->id);
             }
         }
-    
+
         if (is_array($request->sizes)) {
-            $product->sizes()->detach(); 
+            $product->sizes()->detach();
             foreach ($request->sizes as $sizeItem) {
                 $size = Size::firstOrCreate(['name' => $sizeItem]);
                 $product->sizes()->attach($size->id);
             }
         }
-    
+
         if (is_array($request->colors)) {
-            $product->colors()->detach(); 
+            $product->colors()->detach();
             foreach ($request->colors as $colorItem) {
                 $color = Color::firstOrCreate(['name' => $colorItem]);
                 $product->colors()->attach($color->id);
             }
         }
-    
+
         $product->save();
 
 

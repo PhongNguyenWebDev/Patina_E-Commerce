@@ -6,7 +6,7 @@
                 aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item fs-4"><a href="/" style="color: var(--primary-900-color);">Home</a></li>
-                    <li class="breadcrumb-item fs-4"><a href="/" style="color: var(--primary-900-color);">Shop</a></li>
+                    <li class="breadcrumb-item fs-4"><a href="{{route('client.shop-page')}}" style="color: var(--primary-900-color);">Shop</a></li>
                     <li class="breadcrumb-item active fs-4" aria-current="page">Detail: {{ $product->name }}</li>
                 </ol>
             </nav>

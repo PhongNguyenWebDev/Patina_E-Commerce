@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
+use App\Models\Favorite;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('*', function ($view) {
+            $cart = Cart::where('user_id', auth()->id())->get();
+            $favorite = Favorite::where('user_id', auth()->id())->get();
+            $view->with(compact('cart', 'favorite'));
+        });
+        Paginator::useBootstrap();
     }
 }
