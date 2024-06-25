@@ -6,6 +6,8 @@ use App\Models\Cart;
 use App\Models\Favorite;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use App\View\Components\navlink;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +30,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with(compact('cart', 'favorite'));
         });
         Paginator::useBootstrap();
+
+        // Blade::component('nav-link', navlink::class);
     }
 }

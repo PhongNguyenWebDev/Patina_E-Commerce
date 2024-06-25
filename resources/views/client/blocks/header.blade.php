@@ -18,24 +18,24 @@
             <div class="collapse navbar-collapse col-xl-10" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-evenly" style="width: 80%;">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ route('client.home-page') }}">Trang chủ</a>
+                        <x-nav-link href="{{ route('client.home-page') }}" :active="request()->routeIs('client.home-page')">Trang chủ</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ route('client.shop-page') }}">Cửa hàng</a>
+                        <x-nav-link href="{{ route('client.shop-page') }}" :active="request()->routeIs('client.shop-page')">Cửa hàng</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ route('client.blog-page') }}">Blog</a>
+                        <x-nav-link href="{{ route('client.blog-page') }}" :active="request()->routeIs('client.blog-page')">Blog</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ route('client.introduce-page') }}">Giới thiệu</a>
+                        <x-nav-link href="{{ route('client.introduce-page') }}" :active="request()->routeIs('client.introduce-page')">Giới thiệu</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ route('client.contact-page') }}">Liên hệ </a>
+                        <x-nav-link href="{{ route('client.contact-page') }}" :active="request()->routeIs('client.contact-page')">Liên hệ</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ route('client.series-shop-page') }}">Hệ thống cửa hàng</a>
+                        <x-nav-link href="{{ route('client.series-shop-page') }}" :active="request()->routeIs('client.series-shop-page')">Hệ thống cửa hàng</x-nav-link>
                     </li>
-                </ul>
+                </ul>                
                 <div class="user d-flex align-items-center">
                     <a href="{{ route('client.favorite.index') }}" class="position-relative">
                         <i class="fa-regular fa-heart fa-xl" style="color: #8D6440;"></i>

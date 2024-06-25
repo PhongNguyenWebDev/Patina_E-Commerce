@@ -1,23 +1,6 @@
 @extends('layouts.client')
 @section('content')
-    <main class="container-fluid">
-        <div class="container d-flex flex-column flex-xl-row align-items-center justify-content-between ">
-            <div class="col-12 col-xl-6">
-                <h1>Thông tin khách hàng</h1>
-                <p class="text-banner pt-3 pt-xl-5 pb-3">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
-                    velit.
-                    Aliquam vulputate velit imperdiet
-                    dolor tempor tristique.</p>
-                <div class="d-flex align-items-center">
-                    <a class="btn-home nav-link">Trang chủ</a>
-                    <a class="btn-explore nav-link">Khám phá</a>
-                </div>
-            </div>
-            <div class="col-12 col-xl-6 d-flex justify-content-xl-end justify-content-center">
-                <img class="w-75" src="./img/Image-banner.png" alt="">
-            </div>
-        </div>
-    </main>
+    @include('client.blocks.banner')
     <section class="container my-5 pb-5">
         <div class="d-flex row">
             <div class="col-lg-4 p-0">

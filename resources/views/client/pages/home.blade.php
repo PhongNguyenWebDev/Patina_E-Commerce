@@ -385,8 +385,8 @@
     <div class="container-fluid px-4 mt-5 logo-brand">
         <div class="row g-2 px-5 d-flex justify-content-between align-items-center">
             @foreach ($bannerbots as $bannerbot)
-                <span class="col-lg-2">
-                    <img class="w-100" src="{{ $bannerbot->image }}" alt="">
+                <span class="col-lg-2 text-center">
+                    <img class="w-75" src="{{ $bannerbot->image }}" alt="">
                 </span>
             @endforeach
         </div>

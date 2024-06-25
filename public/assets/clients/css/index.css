@@ -188,6 +188,10 @@ h6 {
 .header-menu a:hover {
     color: var(--primary-800-color);
 }
+.change {
+    color: var(--primary-800-color) !important;
+}
+
 
 .menu-catogory li {
     font-size: 18px;
