@@ -69,6 +69,9 @@
                                 <li>
                                     <a class="dropdown-item" href="{{ route('client.profile-page') }}">My Profile</a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.home') }}">Go To Admin</a>
+                                </li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                             </ul>
                         </div>

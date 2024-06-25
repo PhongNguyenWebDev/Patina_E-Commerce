@@ -14,7 +14,6 @@ use App\Models\ProductTag;
 use App\Models\Size;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AdProductController extends Controller
@@ -140,65 +139,73 @@ class AdProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(ProductRequest $request, string $slug)
-    {
-        $product = Product::where('slug', $slug)->firstOrFail();
-        if (!$product) {
-            return redirect()->route('admin.products.index')->with('ermsg', 'Không tìm thấy sản phẩm cần sửa');
-        }
-
-        $product->update($request->all());
-
-        if ($request->name !== $product->name) {
-            $product->slug = Str::slug($request->name, '-');
-        }
-
-        if ($request->hasFile('images')) {
-            $image = $request->file('images');
-            $imageName = $image->getClientOriginalName();
-            $image->storeAs('public/products', $imageName);
-            $product->images = Storage::url('public/products/' . $imageName);
-        }
-        if ($request->hasFile('imgdetail')) {
-            foreach ($request->file('imgdetail') as $imgdetail) {
-                $imgName = $imgdetail->getClientOriginalName();
-                $imgdetail->storeAs('public/products', $imgName);
-
-                $gallery = new Gallery();
-                $gallery->name = Storage::url('public/products/' . $imgName);
-                $gallery->product_id = $product->id;
-                $gallery->save();
-            }
-        }
-
-        if (is_array($request->tags)) {
-            $product->tags()->detach();
-            foreach ($request->tags as $tagItem) {
-                $tag = Tag::firstOrCreate(['name' => $tagItem]);
-                $product->tags()->attach($tag->id);
-            }
-        }
-
-        if (is_array($request->sizes)) {
-            $product->sizes()->detach();
-            foreach ($request->sizes as $sizeItem) {
-                $size = Size::firstOrCreate(['name' => $sizeItem]);
-                $product->sizes()->attach($size->id);
-            }
-        }
-
-        if (is_array($request->colors)) {
-            $product->colors()->detach();
-            foreach ($request->colors as $colorItem) {
-                $color = Color::firstOrCreate(['name' => $colorItem]);
-                $product->colors()->attach($color->id);
-            }
-        }
-
-        $product->save();
-
-
-        return redirect()->route('admin.products.index')->with('ssmsg', 'Sửa sản phẩm thành công');
+{
+    // dd($request->all());
+    $product = Product::where('slug', $slug)->firstOrFail();
+    if (!$product) {
+        return redirect()->route('admin.products.index')->with('ermsg', 'Không tìm thấy sản phẩm cần sửa');
     }
+
+    $product->update([
+        'name' => $request->name,
+        'summary' => $request->summary,
+        'description' => $request->description,
+        'category_id' => $request->category_id,
+        'brand_id' => $request->brand_id,
+        'price' => $request->price,
+        'sale_price' => $request->sale_price,
+        'hot' => $request->hot,
+        'status' => $request->status,
+    ]);
+
+    if ($request->name !== $product->name) {
+        $product->slug = Str::slug($request->name, '-');
+    }
+
+    if ($request->hasFile('images')) {
+        $image = $request->file('images');
+        $imageName = $image->getClientOriginalName();
+        $image->move(public_path('uploads/products'), $imageName);
+        $product->images = '/uploads/products/' . $imageName;
+    }
+
+    if ($request->hasFile('imgdetail')) {
+        foreach ($request->file('imgdetail') as $imgdetail) {
+            $imgName = $imgdetail->getClientOriginalName();
+            $imgdetail->move(public_path('uploads/products'), $imgName);
+
+            $gallery = new Gallery();
+            $gallery->name = '/uploads/products/' . $imgName;
+            $gallery->product_id = $product->id;
+            $gallery->save();
+        }
+    }
+
+    if (is_array($request->tags)) {
+        $product->tags()->detach();
+        foreach ($request->tags as $tagItem) {
+            $tag = Tag::firstOrCreate(['name' => $tagItem]);
+            $product->tags()->attach($tag->id);
+        }
+    }
+
+    if (is_array($request->color)) {
+        foreach ($product->productDetails as $key => $productDetail) {
+            $productDetail->update([
+                'color_id' => Color::firstOrCreate(['name' => $request->color[$key]])->id,
+                'size_id' => Size::firstOrCreate(['name' => $request->size[$key]])->id,
+                'quantity' => $request->quantity[$key],
+                'price' => $request->prices[$key],
+                'sale_price' => $request->sale_prices[$key],
+            ]);
+        }
+    }
+
+    $product->save();
+
+    return redirect()->route('admin.products.index')->with('ssmsg', 'Sửa sản phẩm thành công');
+}
+
 
     /**
      * Remove the specified resource from storage.

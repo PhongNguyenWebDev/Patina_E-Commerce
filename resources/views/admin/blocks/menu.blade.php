@@ -67,7 +67,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-home"></i>
+                    <a href="/"><i class="fa fa-home"></i>
                         <span> Về Trang Chủ</span></a>
                 </li>
             </ul>

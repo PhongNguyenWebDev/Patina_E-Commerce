@@ -39,18 +39,19 @@ use App\Http\Controllers\LogController;
 |
 */
 
-// View của Trang đăng nhập
-Route::get('/logIn-page', [LogController::class, 'logIn'])->name('logIn-page');
-// POST thông tin trong Trang đăng nhập
-Route::post('/logIn-page', [LogController::class, 'aclogin']);
-// View của Trang đăng kí
-Route::get('/signIn-page', [LogController::class, 'signIn'])->name('signIn-page');
-// POST thông tin trong Trang đăng kí
-Route::post('/signIn-page', [LogController::class, 'register']);
-Route::get('/verify-account/{email}', [LogController::class, 'verify'])->name('verify');
-
+Route::middleware('authlogin')->group(function () {
+    // View của Trang đăng nhập
+    Route::get('/logIn-page', [LogController::class, 'logIn'])->name('logIn-page');
+    // POST thông tin trong Trang đăng nhập
+    Route::post('/logIn-page', [LogController::class, 'aclogin']);
+    // View của Trang đăng kí
+    Route::get('/signIn-page', [LogController::class, 'signIn'])->name('signIn-page');
+    // POST thông tin trong Trang đăng kí
+    Route::post('/signIn-page', [LogController::class, 'register']);
+    Route::get('/verify-account/{email}', [LogController::class, 'verify'])->name('verify');
+});
 // View của trang admin
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdHomeController::class, 'admin'])->name('home');
     // Trang quản lý danh mục sản phẩm
     Route::resource('category', AdCategoryController::class);
@@ -113,22 +114,23 @@ Route::prefix('/')->name('client.')->group(function () {
     // Trang chuỗi cửa hàng
     Route::get('/series-shop-page', [ClSeriesShopController::class, 'seriesShop'])->name('series-shop-page');
     // Trang thông tin khách hàng
-    Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');  //thêm ngày 22/6 bởi ta
     // Route::get('/bill-page', [ClBillController::class, 'bill'])->name('bill-page');  //thêm ngày 22/6 bởi ta
     // Trang thanh toán
-    Route::get('/checkout-page', [ClCheckOutController::class, 'checkOut'])->name('checkout-page');
-    Route::prefix('cart-page')->name('cart-page.')->group(function () {
-        Route::get('/', [ClCartController::class, 'cart'])->name('index');
-        Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
-        Route::get('/update/{id}', [ClCartController::class, 'update'])->name('update');
-        Route::get('/delete/{product}', [ClCartController::class, 'delete'])->name('delete');
-        // Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
+    Route::middleware('cus')->group(function () {
+        Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');  //thêm ngày 22/6 bởi ta
+        Route::prefix('cart-page')->name('cart-page.')->group(function () {
+            Route::get('/', [ClCartController::class, 'cart'])->name('index');
+            Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
+            Route::get('/update/{id}', [ClCartController::class, 'update'])->name('update');
+            Route::get('/delete/{product}', [ClCartController::class, 'delete'])->name('delete');
+            // Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
+        });
+        Route::prefix('favorite-page')->name('favorite.')->group(function () {
+            Route::get('/', [ClFavoriteController::class, 'favorite'])->name('index');
+            Route::get('/add/{product}', [ClFavoriteController::class, 'add'])->name('add');
+            Route::get('/delete/{product}', [ClFavoriteController::class, 'delete'])->name('delete');
+        });
+        Route::get('/checkout-page', [ClCheckOutController::class, 'checkOut'])->name('checkout-page');
     });
-    Route::prefix('favorite-page')->name('favorite.')->group(function () {
-        Route::get('/', [ClFavoriteController::class, 'favorite'])->name('index');
-        Route::get('/add/{product}', [ClFavoriteController::class, 'add'])->name('add');
-        Route::get('/delete/{product}', [ClFavoriteController::class, 'delete'])->name('delete');
-    });
-    
 });
 Route::get('/logout', [LogController::class, 'logout'])->name('logout');

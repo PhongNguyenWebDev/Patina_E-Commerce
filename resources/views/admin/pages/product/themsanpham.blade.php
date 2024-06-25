@@ -79,7 +79,7 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="color">Color</label>
+                    <label for="color">Biến thể</label>
                     <div id="color-container"></div>
                     <button type="button" class="btn btn-primary btn-sm" id="add-color">Thêm màu</button>
                 </div>
