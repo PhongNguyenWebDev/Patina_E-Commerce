@@ -56,13 +56,23 @@ class ClCartController extends Controller
         $carts = Cart::find($id);
 
         if ($carts) {
+            // Cập nhật số lượng trong cơ sở dữ liệu
             $carts->update([
                 'quantity' => $quantity
             ]);
-            return redirect()->route('client.cart-page.index')->with('ssmsg', 'Cập nhật giỏ hàng thành công');
+
+            // Tính toán lại subtotal
+            $subTotal = $carts->quantity * $carts->price; // Ví dụ tính toán lại subtotal
+
+            return response()->json([
+                'quantity' => $carts->quantity,
+                'subTotal' => $subTotal
+            ]);
         }
-        return redirect()->route('client.cart-page.index')->with('ermsg', 'Cập nhật giỏ hàng thất bại');
+
+        return response()->json(['error' => 'Không tìm thấy sản phẩm trong giỏ hàng.'], 404);
     }
+
     public function delete($id)
     {
         $cart = Cart::find($id);

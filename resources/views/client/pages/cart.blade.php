@@ -30,7 +30,8 @@
                                                 <p class="p-0 m-0">${{ number_format($item->price) }}</p>
                                             </td>
                                             <td>
-                                                <form action="{{ route('client.cart-page.update', $item) }}" method="get">
+                                                <form id="updateQuantityForm"
+                                                    action="{{ route('client.cart-page.update', $item) }}" method="get">
                                                     <div class="quantity">
                                                         <input type="hidden" name="color" value="{{ $item->color }}">
                                                         <input type="hidden" name="size" value="{{ $item->size }}">
@@ -78,8 +79,10 @@
                                         <span class="text-black h5"><strong>Tổng</strong></span>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <strong class="fs-5"
-                                            id="total-amount">${{ number_format($item->subTotal) }}</strong>
+                                        <strong class="fs-5" id="total-amount" data-subtotal="{{ $item->subTotal }}">
+                                            ${{ number_format($item->subTotal) }}
+                                        </strong>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -96,24 +99,49 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.getElementById('quantityInput').addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
-        var proQty = $('.pro-qty-2');
-        proQty.on('click', '.qtybtn', function() {
-            var $this = $(this);
-            var $input = $this.siblings('input.quantity-input');
-            var quantity = parseInt($input.val());
-            var id = $this.closest('tr').data('id');
+        $(document).ready(function() {
+            $('#updateQuantityForm .qtybtn').on('click', function(e) {
+                e.preventDefault();
 
-            if ($this.hasClass('dec')) {
-                if (quantity > 1) quantity--;
-            } else if ($this.hasClass('inc')) {
-                quantity++;
-            }
+                var $button = $(this);
+                var oldValue = $button.parent().find('input.quantity-input').val();
+                var newValue = 0;
 
-            $input.val(quantity);
+                if ($button.hasClass('inc')) {
+                    newValue = parseFloat(oldValue) + 1;
+                } else {
+                    if (oldValue > 1) {
+                        newValue = parseFloat(oldValue) - 1;
+                    } else {
+                        newValue = 1;
+                    }
+                }
 
+                $button.parent().find('input.quantity-input').val(newValue);
+
+                // Sử dụng Ajax để gửi yêu cầu cập nhật số lượng
+                $.ajax({
+                    url: $('#updateQuantityForm').attr('action'),
+                    type: 'GET',
+                    data: $('#updateQuantityForm').serialize(),
+                    success: function(response) {
+                        // Cập nhật lại số lượng và giá trị subtotal từ response
+                        var newQuantity = response.quantity;
+                        var newSubtotal = response.subTotal;
+
+                        // Cập nhật số lượng trên giao diện
+                        $button.parent().find('input.quantity-input').val(newQuantity);
+
+                        // Cập nhật subtotal trên giao diện
+                        $('#total-amount').text('$' + newSubtotal);
+
+                        console.log('Số lượng đã được cập nhật thành công.');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Lỗi khi cập nhật số lượng:', error);
+                    }
+                });
+            });
         });
     </script>
 @endsection
