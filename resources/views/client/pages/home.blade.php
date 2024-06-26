@@ -209,20 +209,15 @@
     </div>
     <div class="container-fluid d-flex flex-column align-items-center mt-3">
         <div class="polular-product w-100 d-flex flex-column align-items-center justify-content-center">
-            <h2>Popular Products</h2>
+            <h2>Sản phẩm của chúng tôi</h2>
             <div class="w-75">
-                <p class="mt-2 text-center" style="color: #797b86;"> Bibendum quis facilisi aliquet massa in pharetra nisl
-                    etiam ornare.
-                    Tellus
-                    feugiat egestas nulla sem vel mi dictum nisi. Vivamus sem eget vestibulum enim enimBibendum quis
-                    facilisi aliquet massa in pharetra nisl etiam ornare. Tellus
-                    feugiat egestas nulla sem vel mi dictum nisi. Vivamus sem eget vestibulum enim enim
+                <p class="mt-2 text-center" style="color: #797b86;">
                 </p>
             </div>
         </div>
         <div class="my-xl-5 my-2 w-75 d-flex justify-content-center">
             <form class="d-flex search-popular-products w-75" method="GET" action="{{ route('client.shop-page') }}">
-                <input class="w-100 form-control" type="text" name="query" placeholder="Search...">
+                <input class="w-100 form-control" type="text" name="query" placeholder="Hãy nhập tên của một sản phẩm mà bạn đang tìm kiếm...">
                 <button class="border-0" type="submit">
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </button>
