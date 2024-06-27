@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class ProductEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,12 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required | unique:products,name',
+            'name' => 'required | unique:products,name,' . request()->id,
             'summary' => 'nullable',
             'tags' => 'required',
-            'images' => 'required',
             'price' => 'required | numeric|max:100000000',
             'sale_price' => 'nullable|numeric|max:100000000',
-            'colors' => 'required|array|min:1',
+
         ];
     }
     public function messages()
@@ -36,11 +35,10 @@ class ProductRequest extends FormRequest
         return [
             'name.required' => 'Tên sản phẩm bắt buộc phải nhập',
             'name.unique' => 'Tên sản phẩm đã tồn tại, vui lòng chọn tên khác',
-            'images.required' => 'Ảnh sản phẩm bắt buộc phải nhập',
+            
             'tags.required' => 'Vui lòng chọn ít nhất một thẻ cho sản phẩm',
             'price.required' => 'Giá sản phẩm bắt buộc phải nhập',
             'price.numeric' => 'Giá sản phẩm phải là một số',
-            'colors.required' => 'Biến thể màu sắc bắt buộc phải nhập',
         ];
     }
 }

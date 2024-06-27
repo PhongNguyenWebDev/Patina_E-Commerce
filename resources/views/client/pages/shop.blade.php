@@ -11,32 +11,32 @@
                     <h5 class="bg-filter p-2 mt-2">Lọc theo giá</h5>
                     <ul class="py-2 px-1">
                         <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '0-499'])) }}"
+                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '0-499', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">Dưới $500</a>
                             <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
                         </li>
                         <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '500-999'])) }}"
+                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '500-999', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">$500 - $999</a>
                             <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
                         </li>
                         <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '1000-1999'])) }}"
+                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '1000-1999', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">$1000 - $1999</a>
                             <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
                         </li>
                         <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '2000-3999'])) }}"
+                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '2000-3999', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">$2000 - $3999</a>
                             <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
                         </li>
                         <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '4000-4999'])) }}"
+                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '4000-4999', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">$4000 - $4999</a>
                             <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
                         </li>
                         <li class="d-flex align-items-center justify-content-between "><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '5000+'])) }}"
+                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '5000+', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">Over $5000</a>
                             <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
                         </li>
@@ -46,51 +46,45 @@
                 <div>
                     <h5 class="bg-filter p-2 mt-2">Lọc theo danh mục</h5>
                     <ul class="py-2 px-1">
-                        <li class="d-flex align-items-center justify-content-between"><a href="#"
-                                class="nav-link select-filter">Áo</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between"><a href="#"
-                                class="nav-link select-filter">Quần</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between"><a href="#"
-                                class="nav-link select-filter">Bộ quần áo</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between"><a href="#"
-                                class="nav-link select-filter">Giày</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
-                        </li>
-                        <li class="nav-link">
-                            <div class="accordion" id="accordionPanelsStayOpenExample">
-                                <div class="accordion-item border-0 show">
-                                    <div>
-                                        <a class="text-decoration-none p-0"
-                                            style="font-size: large; color: var(--secondary-1200-color);"
-                                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
-                                            aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                            Phụ kiện
-                                        </a>
-                                        <img src="" alt="">
-                                    </div>
-                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                                        <div class="accordion-body p-0">
-                                            <ul>
-                                                <li class="nav-link"><a style="font-size: large;" class="nav-link"
-                                                        href="">Ví</a></li>
-                                                <li class="nav-link"><a style="font-size: large;" class="nav-link"
-                                                        href="">Tất</a></li>
-                                                <li class="nav-link"><a style="font-size: large;" class="nav-link"
-                                                        href="">Mũ</a></li>
-                                            </ul>
+                        @foreach($categories as $category)
+                            @if($category->parent_id == 0)
+                                @if($category->parent()->count() > 0)
+                                    <li class="nav-link">
+                                        <div class="accordion" id="accordion-{{ $category->slug }}">
+                                            <div class="accordion-item border-0 show">
+                                                <div>
+                                                    <a class="text-decoration-none p-0"
+                                                        style="font-size: large; color: var(--secondary-1200-color);"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapse-{{ $category->slug }}"
+                                                        aria-expanded="true" aria-controls="collapse-{{ $category->slug }}">
+                                                        {{ $category->name }}
+                                                    </a>
+                                                    <img src="" alt="">
+                                                </div>
+                                                <div id="collapse-{{ $category->slug }}" class="accordion-collapse collapse show">
+                                                    <div class="accordion-body p-0">
+                                                        <ul>
+                                                            @foreach($category->parent as $child)
+                                                                <li class="nav-link"><a style="font-size: large;" class="nav-link"
+                                                                        href="">{{ $child->name }}</a></li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                                    </li>
+                                @else
+                                    <li class="d-flex align-items-center justify-content-between">
+                                        <a href="{{ route('client.shop-page', $category->slug) }}" class="nav-link select-filter">{{ $category->name }}</a>
+                                        <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
+                                    </li>
+                                @endif
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
+                
                 <!-- Filter by Brand -->
                 <div class="brand">
                     <h5 class="bg-filter p-2 mt-2">Lọc theo thương hiệu</h5>
@@ -99,7 +93,7 @@
                             @foreach ($brands as $brand)
                                 <div class="col-4 item-brand">
                                     <a
-                                        href="{{ route('client.shop-page', array_merge(request()->except('brand'), ['brand' => $brand->slug])) }}">
+                                        href="{{ route('client.shop-page', array_merge(request()->except('brand'), ['brand' => $brand->slug, 'category' => $categorySlug])) }}">
                                         <img class="object-fit-contain img-thumbnail w-100 h-100" src="{{ $brand->image }}"
                                             alt="">
                                     </a>
@@ -194,8 +188,8 @@
                             <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $product->category->name }}</p>
                             <div class="d-flex">
                                 <p style="font-size: var(--font-size); margin: 0;"
-                                    class="text-decoration-line-through text-danger mx-2">${{ $product->price }}</p>
-                                <p style="font-size: var(--font-size); margin: 0; color: black;">${{ $product->sale_price }}
+                                    class="text-decoration-line-through text-danger mx-2">${{ number_format($product->sale_price) ? number_format($product->price) : null }}</p>
+                                <p style="font-size: var(--font-size); margin: 0; color: black;">${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
                                 </p>
                             </div>
                         </div>

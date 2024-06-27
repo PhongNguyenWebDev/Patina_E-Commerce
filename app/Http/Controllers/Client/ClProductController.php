@@ -19,8 +19,8 @@ class ClProductController extends Controller
         $uniqueColors = $product->colors->unique('id');
         $colorsWithPrices = $product->colors->map(function ($color) use ($product) {
             $detail = $product->productDetails->firstWhere('color_id', $color->id);
-            $color->price = $detail->price;
-            $color->sale_price = $detail->sale_price;
+            $color->price = $detail->sale_price ? $detail->price : null;
+            $color->sale_price = $detail->sale_price ? $detail->sale_price : $detail->price;
             return $color;
         });
         $categoryId = $product->category_id;

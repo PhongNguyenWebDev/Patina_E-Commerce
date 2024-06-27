@@ -48,10 +48,12 @@
                     <!-- Price Products -->
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex flex-row">
-                            <p id="price" class="text-danger fs-3 pe-3">${{ $product->sale_price }}</p>
-                            <p id="sale_price" class="fs-3 text-decoration-line-through"
+                            <p id="sale_price" class="text-danger fs-3 pe-3">
+                                ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
+                            </p>
+                            <p id="price" class="fs-3 text-decoration-line-through"
                                 style="color: var(--primary-1000-color);">
-                                ${{ $product->price }}</p>
+                                ${{ number_format($product->sale_price) ? number_format($product->price) : null }}</p>
                         </div>
                         <p class="fs-3">SKU: PTN{{ $product->id }}</p>
                     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductEditRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
@@ -138,7 +139,7 @@ class AdProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request, string $slug)
+    public function update(ProductEditRequest $request, string $slug)
 {
     // dd($request->all());
     $product = Product::where('slug', $slug)->firstOrFail();
