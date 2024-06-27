@@ -6,7 +6,8 @@
                 aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item fs-4"><a href="/" style="color: var(--primary-900-color);">Home</a></li>
-                    <li class="breadcrumb-item fs-4"><a href="{{route('client.shop-page')}}" style="color: var(--primary-900-color);">Shop</a></li>
+                    <li class="breadcrumb-item fs-4"><a href="{{ route('client.shop-page') }}"
+                            style="color: var(--primary-900-color);">Shop</a></li>
                     <li class="breadcrumb-item active fs-4" aria-current="page">Detail: {{ $product->name }}</li>
                 </ol>
             </nav>
@@ -47,10 +48,12 @@
                     <!-- Price Products -->
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex flex-row">
-                            <p id="price" class="text-danger fs-3 pe-3">${{ $product->sale_price }}</p>
-                            <p id="sale_price" class="fs-3 text-decoration-line-through"
+                            <p id="sale_price" class="text-danger fs-3 pe-3">
+                                ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
+                            </p>
+                            <p id="price" class="fs-3 text-decoration-line-through"
                                 style="color: var(--primary-1000-color);">
-                                ${{ $product->price }}</p>
+                                ${{ number_format($product->sale_price) ? number_format($product->price) : null }}</p>
                         </div>
                         <p class="fs-3">SKU: PTN{{ $product->id }}</p>
                     </div>
@@ -104,7 +107,8 @@
                         <!-- Add to card -->
                         <div class="container">
                             <div class="row g-3">
-                                <input class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1" value="1">
+                                <input class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1"
+                                    value="1">
                                 <div class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
                                     <button style="background-color:#8D6440;"
                                         class="btn h-100 fs-5 d-flex align-items-center justify-content-center text-white"
@@ -124,7 +128,7 @@
                 <!-- Description -->
                 <div class="my-3">
                     <h5 style="font-weight: var(--Medium);">Summary: </h5>
-                    {!!$product->summary!!}
+                    {!! $product->summary !!}
                 </div>
                 <!-- share & Tags -->
                 <div class="d-flex flex-row w-100">

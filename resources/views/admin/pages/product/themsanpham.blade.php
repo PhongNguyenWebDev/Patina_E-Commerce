@@ -77,17 +77,10 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="color">Biến thể</label>
-                    <div id="color-container"></div>
-                    <button type="button" class="btn btn-primary btn-sm" id="add-color">Thêm màu</button>
-                </div>
-            </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="price">Giá Sản Phẩm</label>
-                    <input type="number" class="form-control" id="price" value="{{ old('price') }}" name="price"
+                    <label for="prices">Giá Sản Phẩm</label>
+                    <input type="number" class="form-control" id="prices" value="{{ old('price') }}" name="price"
                         placeholder="Nhập giá....">
                     @error('price')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
@@ -97,10 +90,21 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="price_sale">Giá Khuyến Mãi</label>
-                    <input type="number" class="form-control" id="price_sale" value="{{ old('sale_price') }}"
-                        name="sale_price">
+                    <label for="price_sales">Giá Khuyến Mãi</label>
+                    <input type="number" class="form-control" id="price_sales" value="{{ old('sale_price') }}"
+                        name="sale_price" placeholder="Nhập giá khuyến mãi....">
                     @error('sale_price')
+                        <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                            {{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="color">Biến thể</label>
+                    <div id="color-container"></div>
+                    <button type="button" class="btn btn-primary btn-sm" id="add-color">Thêm màu</button>
+                    @error('colors')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror
@@ -130,6 +134,10 @@
                     <label for="image">Hình ảnh sản phẩm</label>
                     <input type="file" class="form-control-file" id="image" name="images" accept="image/*">
                 </div>
+                @error('images')
+                    <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                        {{ $message }}</span>
+                @enderror
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -171,6 +179,8 @@
 
         function addColor() {
             colorIndex++;
+            var mainPrice = $('#prices').val();
+            var mainSalePrice = $('#price_sales').val();
             var html = `
             <div class="color-group" id="color-group-${colorIndex}">
                 <div>
@@ -184,13 +194,16 @@
         `;
             $('#color-container').append(html);
             // Add last sizes
-            lastSizes.forEach((size, index) => addSize(colorIndex, size.size, size.quantity, index));
+            lastSizes.forEach((size, index) => addSize(colorIndex, size.size, size.quantity, mainPrice, mainSalePrice,
+                index));
         }
 
-        function addSize(colorIndex, sizeName = '', quantity = 0, price = 0, sale_price = 0, sizeIndex = null) {
+        function addSize(colorIndex, sizeName = '', quantity = 0, price = 0, sale_price = null, sizeIndex = null) {
             if (sizeIndex === null) {
                 sizeIndex = $(`#size-container-${colorIndex} .size-group`).length;
             }
+            var mainPrice = $('#prices').val();
+            var mainSalePrice = $('#price_sales').val();
             var html = `
                 <div class="size-group" style="margin-left:10px">
                     <div>
@@ -203,11 +216,11 @@
                     </div>
                     <div>
                         <label for="price-${colorIndex}-${sizeIndex}">Giá</label>
-                        <input type="number" class="form-control" name="colors[${colorIndex}][sizes][${sizeIndex}][price]" value="${price}" id="price-${colorIndex}-${sizeIndex}" placeholder="Nhập giá">
+                        <input type="number" class="form-control" name="colors[${colorIndex}][sizes][${sizeIndex}][price]" value="${price || mainPrice}" id="price-${colorIndex}-${sizeIndex}" placeholder="Nhập giá">
                     </div>
                     <div>
                         <label for="sale_price-${colorIndex}-${sizeIndex}">Giá khuyến mãi</label>
-                        <input type="number" class="form-control" name="colors[${colorIndex}][sizes][${sizeIndex}][sale_price]" value="${sale_price}" id="sale_price-${colorIndex}-${sizeIndex}" placeholder="Nhập giá khuyến mãi">
+                        <input type="number" class="form-control" name="colors[${colorIndex}][sizes][${sizeIndex}][sale_price]" value="${sale_price || mainSalePrice}" id="sale_price-${colorIndex}-${sizeIndex}" placeholder="Nhập giá khuyến mãi">
                     </div>
                 </div>
             `;
@@ -242,6 +255,16 @@
             $(document).on('click', '.add-size', function() {
                 var colorIndex = $(this).data('color-index');
                 addSize(colorIndex);
+            });
+
+            $('#prices').on('input', function() {
+                var mainPrice = $(this).val();
+                $('input[name*="[price]"]').val(mainPrice);
+            });
+
+            $('#price_sales').on('input', function() {
+                var mainSalePrice = $(this).val();
+                $('input[name*="[sale_price]"]').val(mainSalePrice);
             });
         });
     </script>

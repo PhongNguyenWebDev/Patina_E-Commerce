@@ -593,6 +593,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Requests\\SliderRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SliderRequest.php',
         'App\\Http\\Requests\\SocialRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SocialRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
+        'App\\Livewire\\AdminSearchProduct' => __DIR__ . '/../..' . '/app/Livewire/AdminSearchProduct.php',
         'App\\Mail\\ContactEmail' => __DIR__ . '/../..' . '/app/Mail/ContactEmail.php',
         'App\\Mail\\ForgetAccount' => __DIR__ . '/../..' . '/app/Mail/ForgetAccount.php',
         'App\\Mail\\OrderMail' => __DIR__ . '/../..' . '/app/Mail/OrderMail.php',

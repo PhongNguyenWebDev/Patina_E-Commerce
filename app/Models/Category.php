@@ -18,4 +18,7 @@ class Category extends Model
     {
         return 'slug';
     }
+    public function parent(){
+        return $this->hasMany(Category::class,'parent_id');
+    }
 }

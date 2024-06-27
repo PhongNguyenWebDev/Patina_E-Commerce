@@ -100,7 +100,7 @@ Route::prefix('/')->name('client.')->group(function () {
     // Trang chủ
     Route::get('/', [ClHomeController::class, 'homePage'])->name('home-page');
     // Trang Sản phẩm
-    Route::get('/shop-page', [ClShopController::class, 'shop'])->name('shop-page');
+    Route::get('/shop-page/{category:slug?}', [ClShopController::class, 'shop'])->name('shop-page');
     // Trang chi tiết sản phẩm
     Route::get('shop/{product:slug}', [ClProductController::class, 'show'])->name('detail');
     // Trang bài viết
