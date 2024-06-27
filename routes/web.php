@@ -27,6 +27,7 @@ use App\Http\Controllers\Client\ClProfileController;
 use App\Http\Controllers\Client\ClSeriesShopController;
 use App\Http\Controllers\Client\ClShopController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\Client\ClReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +104,7 @@ Route::prefix('/')->name('client.')->group(function () {
     Route::get('/shop-page', [ClShopController::class, 'shop'])->name('shop-page');
     // Trang chi tiết sản phẩm
     Route::get('shop/{product:slug}', [ClProductController::class, 'show'])->name('detail');
+    Route::post('shop/{product:slug}', [ClProductController::class, 'review'])->name('review');
     // Trang bài viết
     Route::get('/blog-page', [ClBlogController::class, 'blog'])->name('blog-page');
     // Trang giới thiệu
@@ -121,7 +123,7 @@ Route::prefix('/')->name('client.')->group(function () {
         Route::prefix('cart-page')->name('cart-page.')->group(function () {
             Route::get('/', [ClCartController::class, 'cart'])->name('index');
             Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
-            Route::get('/update/{id}', [ClCartController::class, 'update'])->name('update');
+            Route::put('/update/{id}', [ClCartController::class, 'update'])->name('update');
             Route::get('/delete/{product}', [ClCartController::class, 'delete'])->name('delete');
             // Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
         });

@@ -2,9 +2,12 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <div class="header-left">
-                <a href="#" class="logo">
-                    <img src="{{ asset('assets/admin/img/logo1.png') }}" width="40" height="40" alt="">
-                    <span class="text-uppercase">Male Fashion</span>
+                <a href="{{ route('client.home-page') }}" class="d-flex align-items-center text-decoration-none">
+                    <img src="/assets/clients/img/Logo_bran/logoweb.jpg" alt=""
+                        style="border-radius: 50%; height: 85px; width: 85px;">
+                    <p class="web-name ms-5 m-0"
+                        style="color:#8d6440; font-family: 'Dancing Script', cursive; font-size: 22px;">PATINA
+                    </p>
                 </a>
             </div>
             <ul class="sidebar-ul">

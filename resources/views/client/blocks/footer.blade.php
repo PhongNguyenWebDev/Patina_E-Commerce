@@ -2,7 +2,8 @@
     <div class="row px-xl-5">
         <div class="col-lg-4 col-12">
             <div class="logoweb d-flex align-items-center m-xl-4 ps-xl-3 m-3 ">
-                <img src="/assets/clients/img/Logo_bran/logoweb.jpg" alt="" style="border-radius: 50%; height: 55px; width: 55px;">
+                <img src="/assets/clients/img/Logo_bran/logoweb.jpg" alt=""
+                    style="border-radius: 50%; height: 55px; width: 55px;">
                 <p class="web-name ms-3 m-0"
                     style="font-family: 'Dancing Script', cursive; font-size: 18px;  color: #4d3815;">
                     PATINA
@@ -75,10 +76,10 @@
             <p class="mb-0 ms-xl-3 ">© Copyright Patina 2024.</p>
         </div>
         <div class="col-xl-3 col-6 d-flex flex-row justify-content-end align-items-center">
-            <a href=""><img class="w-50" src="img/Icon/symbols.png" alt=""></a>
-            <a href=""><img class="w-50" src="img/Icon/american-express.png" alt=""></a>
-            <a href=""><img class="w-50" src="img/Icon/money.png" alt=""></a>
-            <a href=""><img class="w-50" src="img/Icon/card.png" alt=""></a>
+            <a href=""><img class="w-50" src="" alt=""></a>
+            <a href=""><img class="w-50" src="" alt=""></a>
+            <a href=""><img class="w-50" src="" alt=""></a>
+            <a href=""><img class="w-50" src="" alt=""></a>
         </div>
     </div>
 </footer>

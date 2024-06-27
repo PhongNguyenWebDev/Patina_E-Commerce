@@ -6,7 +6,8 @@
                 aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item fs-4"><a href="/" style="color: var(--primary-900-color);">Home</a></li>
-                    <li class="breadcrumb-item fs-4"><a href="{{route('client.shop-page')}}" style="color: var(--primary-900-color);">Shop</a></li>
+                    <li class="breadcrumb-item fs-4"><a href="{{ route('client.shop-page') }}"
+                            style="color: var(--primary-900-color);">Shop</a></li>
                     <li class="breadcrumb-item active fs-4" aria-current="page">Detail: {{ $product->name }}</li>
                 </ol>
             </nav>
@@ -104,7 +105,8 @@
                         <!-- Add to card -->
                         <div class="container">
                             <div class="row g-3">
-                                <input class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1" value="1">
+                                <input class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1"
+                                    value="1">
                                 <div class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
                                     <button style="background-color:#8D6440;"
                                         class="btn h-100 fs-5 d-flex align-items-center justify-content-center text-white"
@@ -124,7 +126,7 @@
                 <!-- Description -->
                 <div class="my-3">
                     <h5 style="font-weight: var(--Medium);">Summary: </h5>
-                    {!!$product->summary!!}
+                    {!! $product->summary !!}
                 </div>
                 <!-- share & Tags -->
                 <div class="d-flex flex-row w-100">
@@ -181,53 +183,63 @@
                             </div>
                             <div id="tab3" class="tab-pane">
                                 <div class="product-comment">
-                                    <!-- Reviews content here -->
-                                    <div class="mt-box">
-                                        <div class="d-flex">
-                                            <div class="rounded-circle border d-flex justify-content-center align-items-center mx-2"
-                                                style="width: 75px; height: 75px;">
-                                                <i class="fa-regular fa-user"></i>
-                                            </div>
-                                            <div class="column">
-                                                <span class="fs-4">Tuấn Anh</span>
-                                                <ul class="m-0 p-0 d-flex">
-                                                    <li class="nav-link"><i class="fa fa-star text-warning"></i></li>
-                                                    <li class="nav-link"><i class="fa fa-star text-warning"></i></li>
-                                                    <li class="nav-link"><i class="fa fa-star text-warning"></i></li>
-                                                    <li class="nav-link"><i class="fa fa-star text-warning"></i></li>
-                                                    <li class="nav-link"><i class="fa fa-star-o text-warning"></i></li>
-                                                </ul>
-                                                <time datetime="2016-01-01">09:10 Nov, 19 2016</time>
-                                                <p class="pt-3">Consectetur adipisicing elit, sed do eiusmod tempor
-                                                    incididunt ut labore et
-                                                    dolore magna aliqua...
-                                                </p>
+                                    @foreach ($reviews as $review)
+                                        <div class="mt-box">
+                                            <div class="d-flex">
+                                                <div class="rounded-circle border d-flex justify-content-center align-items-center mx-2"
+                                                    style="width: 75px; height: 75px;">
+                                                    <i class="fa-regular fa-user"></i>
+                                                </div>
+                                                <div class="column">
+                                                    <span class="fs-4">{{ $review->user->name }}</span>
+                                                    <ul class="m-0 p-0 d-flex">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            @if ($i <= $review->rating_point)
+                                                                <li class="nav-link"><i
+                                                                        class="fa fa-star text-warning"></i></li>
+                                                            @else
+                                                                <li class="nav-link"><i
+                                                                        class="fa fa-star-o text-warning"></i></li>
+                                                            @endif
+                                                        @endfor
+                                                    </ul>
+                                                    <time
+                                                        datetime="{{ $review->created_at }}">{{ $review->created_at->format('H:i M, d Y') }}</time>
+                                                    <p class="pt-3">{{ $review->reviews }}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <form action="#" class="p-commentform">
+                                    @endforeach
+
+                                    <form action="{{ route('client.review', $product->slug) }}" method="POST"
+                                        class="p-commentform" id="formRating">
+                                        @csrf
                                         <fieldset>
                                             <h2 class="fs-4 fw-semibold py-2">Bình luận</h2>
-                                            <div class="d-flex flex-row align-items-center">
-                                                <label class="fs-5">Đánh giá</label>
-                                                <ul class="d-flex align-items-center m-0">
-                                                    <li class="nav-link"><i class="fa fa-star text-warning"></i></li>
-                                                    <li class="nav-link"><i class="fa fa-star text-warning"></i></li>
-                                                    <li class="nav-link"><i class="fa fa-star text-warning"></i></li>
-                                                    <li class="nav-link"><i class="fa fa-star-o text-warning"></i></li>
-                                                    <li class="nav-link"><i class="fa fa-star-o text-warning"></i></li>
-                                                </ul>
-                                            </div>
+                                            <p class="stars">
+                                                <span>
+                                                    <a class="star-1" href="#" data-rating="1">1</a>
+                                                    <a class="star-2" href="#" data-rating="2">2</a>
+                                                    <a class="star-3" href="#" data-rating="3">3</a>
+                                                    <a class="star-4" href="#" data-rating="4">4</a>
+                                                    <a class="star-5" href="#" data-rating="5">5</a>
+                                                </span>
+                                            </p>
+                                            <input type="hidden" name="rating_point" id="rating_point" value="">
+                                            <input type="hidden" name="product_detail_id"
+                                                value="{{ $product->productDetails->first()->id }}">
                                             <div class="d-flex justify-content-between">
                                                 <label class="col-xl-1 col-12 fs-5">Bình luận</label>
-                                                <textarea class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
+                                                <textarea name="reviews" id="reviews" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
                                             </div>
                                             <div class="w-25 text-center pe-xl-2">
-                                                <button type="submit"
-                                                    class="btn border fs-5 my-2 me-xl-5 shadow-sm mb-5 rounded btn-comment">Gửi</button>
+                                                <button type="button"
+                                                    class="btn border fs-5 my-2 me-xl-5 shadow-sm mb-5 rounded btn-comment"
+                                                    id="submitReview">Gửi</button>
                                             </div>
                                         </fieldset>
                                     </form>
+
                                 </div>
                             </div>
                         </div>
@@ -310,6 +322,41 @@
             if (colorRadios.length > 0) {
                 colorRadios[0].dispatchEvent(new Event('change'));
             }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#submitReview').on('click', function(e) {
+                e.preventDefault();
+
+                var formData = $('#formRating').serialize();
+
+                $.ajax({
+                    url: "{{ route('client.review', $product->slug) }}",
+                    type: "POST",
+                    data: formData,
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response.message);
+                        // Xử lý phản hồi thành công ở đây nếu cần
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        // Xử lý lỗi ở đây nếu cần
+                    }
+                });
+            });
+
+            $('.stars a').on('click', function(e) {
+                e.preventDefault();
+                $('.stars span, .stars a').removeClass('active');
+
+                $(this).addClass('active').prevAll().addClass('active');
+                $(this).find('span').addClass('active');
+
+                $('#rating_point').val($(this).attr('data-rating'));
+            });
         });
     </script>
 @endsection

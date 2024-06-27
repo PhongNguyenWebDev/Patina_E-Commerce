@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th6 21, 2024 lúc 11:06 AM
+-- Thời gian đã tạo: Th6 25, 2024 lúc 06:23 AM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -124,6 +124,13 @@ CREATE TABLE `carts` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `carts`
+--
+
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `size`, `color`, `quantity`, `created_at`, `updated_at`) VALUES
+(5, 3, 1, 'XL', 'White', 1, '2024-06-24 08:45:32', '2024-06-24 23:07:50');
+
 -- --------------------------------------------------------
 
 --
@@ -166,7 +173,8 @@ CREATE TABLE `colors` (
 
 INSERT INTO `colors` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'White', NULL, NULL),
-(2, 'Green', NULL, NULL);
+(2, 'Green', NULL, NULL),
+(3, 'Yellow', '2024-06-24 12:57:51', '2024-06-24 12:57:51');
 
 -- --------------------------------------------------------
 
@@ -252,6 +260,13 @@ CREATE TABLE `favorites` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `favorites`
+--
+
+INSERT INTO `favorites` (`user_id`, `product_id`, `created_at`, `updated_at`) VALUES
+(3, 1, '2024-06-24 09:43:31', '2024-06-24 09:43:31');
 
 -- --------------------------------------------------------
 
@@ -354,7 +369,7 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `products` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `images` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `images` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
   `sale_price` decimal(10,2) DEFAULT NULL,
   `summary` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
@@ -528,6 +543,14 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `email_verified_at`, `password`, `role`, `active`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 'Dương Tuấn', 'along18901@gmail.com', NULL, NULL, '2024-06-21 05:04:23', '$2y$10$dG5qkUz/zLRLgHRy5CMBQeNIhbzP7hOgTA6CfG99lcfcyOccQIn36', 1, 1, NULL, '2024-06-21 04:35:58', '2024-06-21 05:04:23', NULL),
+(4, 'Dương Tuấn', 'along1891@gmail.com', NULL, NULL, NULL, '$2y$10$HxC5PIdLc0RF/eEt/0Z89Ovda9xSCwbz4Hg/4o/JV7OOE.D2oBChS', 1, 1, NULL, '2024-06-24 06:14:20', '2024-06-24 09:55:51', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -743,7 +766,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT cho bảng `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
@@ -755,7 +778,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `colors`
 --
 ALTER TABLE `colors`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `comments`
@@ -785,7 +808,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -815,13 +838,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `product_detail`
 --
 ALTER TABLE `product_detail`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `sizes`
@@ -851,7 +874,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

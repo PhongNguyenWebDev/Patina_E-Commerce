@@ -6,45 +6,45 @@
 body {
     font-size: 18px;
     margin: 0 auto;
-    font-family: 'Lora,sans-serif';
+    font-family: "Lora,sans-serif";
 }
 
 :root {
     --color-catogory-menu: #f4e9d8;
-    --background-color: #FCF9F4;
-    --primary-100-color: #F7F2EE;
-    --primary-200-color: #F4F3F2;
+    --background-color: #fcf9f4;
+    --primary-100-color: #f7f2ee;
+    --primary-200-color: #f4f3f2;
     /* Background color 100 - 200 */
-    --primary-300-color: #F4E7DC;
-    --primary-400-color: #F1DCCB;
-    --primary-500-color: #EDD1B9;
+    --primary-300-color: #f4e7dc;
+    --primary-400-color: #f1dccb;
+    --primary-500-color: #edd1b9;
     /* Interactive components color 300 - 500 */
-    --primary-600-color: #E4C4AA;
-    --primary-700-color: #D8B393;
-    --primary-800-color: #CA9A71;
+    --primary-600-color: #e4c4aa;
+    --primary-700-color: #d8b393;
+    --primary-800-color: #ca9a71;
     /* Borders and separators color 600 - 800 */
-    --primary-900-color: #8D6440;
-    --primary-1000-color: #7F5733;
+    --primary-900-color: #8d6440;
+    --primary-1000-color: #7f5733;
     /* Solid colors 900 - 1000 */
     --primary-1100-color: #805834;
     --primary-1200-color: #4d3815;
     /* Text color 1100 - 1200 */
-    --secondary-100-color: #F6F6F7;
-    --secondary-200-color: #F2F2F5;
+    --secondary-100-color: #f6f6f7;
+    --secondary-200-color: #f2f2f5;
     /* Background color 100 - 200 */
-    --secondary-300-color: #E8E9EC;
-    --secondary-400-color: #E0E1E5;
-    --secondary-500-color: #D8D9DF;
+    --secondary-300-color: #e8e9ec;
+    --secondary-400-color: #e0e1e5;
+    --secondary-500-color: #d8d9df;
     /* Interactive components color 300 - 500 */
-    --secondary-600-color: #D0D1D8;
-    --secondary-700-color: #C4C6CE;
-    --secondary-800-color: #B0B2BE;
+    --secondary-600-color: #d0d1d8;
+    --secondary-700-color: #c4c6ce;
+    --secondary-800-color: #b0b2be;
     /* Borders and separators color 600 - 800 */
     --secondary-900-color: #838590;
-    --secondary-1000-color: #787A85;
+    --secondary-1000-color: #787a85;
     /* Solid colors 900 - 1000 */
-    --secondary-1100-color: #5A5C65;
-    --secondary-1200-color: #1E1F24;
+    --secondary-1100-color: #5a5c65;
+    --secondary-1200-color: #1e1f24;
     /* Text color 1100 - 1200 */
     --font-size: 18px;
     --font-h1-size: 3.815rem;
@@ -67,7 +67,7 @@ body {
     --gutter-width: 20px;
     /* Khoảng cách giữa các cột */
     --margin: 0 70px;
-    --item-background-color: #8D6440;
+    --item-background-color: #8d6440;
     /* Màu nền của grid */
 }
 
@@ -111,16 +111,16 @@ h6 {
 
 /* start css patina home  */
 .main-content {
-    background-image: url('../img/Logo_bran/backgroud-login&register.png');
+    background-image: url("../img/Logo_bran/backgroud-login&register.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.main-content>.container>div>p {
+.main-content > .container > div > p {
     font-size: 16px;
 }
 
-.main-content>.container>div>h4 {
+.main-content > .container > div > h4 {
     font-size: 24px;
 }
 
@@ -140,7 +140,12 @@ h6 {
 }
 
 .img-category img {
-    background-image: linear-gradient(to top, rgb(229, 197, 148), rgba(202, 191, 171, 0.1), rgba(255, 255, 255, 0));
+    background-image: linear-gradient(
+        to top,
+        rgb(229, 197, 148),
+        rgba(202, 191, 171, 0.1),
+        rgba(255, 255, 255, 0)
+    );
 }
 
 .polular-product h2 {
@@ -149,12 +154,10 @@ h6 {
     margin-top: 18px;
 }
 
-
-.search-popular-products>input {
+.search-popular-products > input {
     border: 2px solid #e7cfa9;
     border-radius: 20px;
     padding-left: 25px;
-
 }
 
 .search-popular-products i {
@@ -163,7 +166,7 @@ h6 {
 }
 
 .logo-brand {
-    background-color: #F7F2EE;
+    background-color: #f7f2ee;
 }
 
 /* end css patina home */
@@ -175,7 +178,7 @@ h6 {
 
 .web-name,
 .menu-catogory {
-    color: #8D6440;
+    color: #8d6440;
 }
 
 .header-menu {
@@ -192,7 +195,6 @@ h6 {
     color: var(--primary-800-color) !important;
 }
 
-
 .menu-catogory li {
     font-size: 18px;
 }
@@ -202,7 +204,7 @@ h6 {
     width: 20px;
     height: 20px;
     position: absolute;
-    border: 2px solid #5F2D00C9;
+    border: 2px solid #5f2d00c9;
     border-radius: 50%;
     background-color: #ffffff;
     justify-content: center;
@@ -221,8 +223,8 @@ h6 {
     align-items: center;
     width: 2em;
     height: 2em;
-    color: #8D6440;
-    background-color: #AE49091A;
+    color: #8d6440;
+    background-color: #ae49091a;
     border-radius: 50px 50px 50px 50px;
 }
 
@@ -252,7 +254,7 @@ h6 {
 /* end register and login*/
 /* Start Shop CSS*/
 main {
-    background-color: #F7F2EE;
+    background-color: #f7f2ee;
 }
 
 .text-banner {
@@ -265,7 +267,7 @@ main {
     padding: 10px 40px;
     border-radius: 50px;
     font-size: var(--font-h6-size);
-    border: 1px solid #9F4900;
+    border: 1px solid #9f4900;
     background-color: var(--primary-200-color);
     margin-right: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -275,7 +277,6 @@ main {
 .btn-home:hover {
     border: 1px solid var(--primary-700-color);
     color: var(--primary-1200-color);
-
 }
 
 .btn-explore {
@@ -313,7 +314,7 @@ main {
 }
 
 /* Filter Brand */
-.item-brand>a>img {
+.item-brand > a > img {
     width: 6rem;
     height: 5.2rem;
 }
@@ -326,17 +327,17 @@ main {
 
 .popular p {
     font-weight: 700;
-    color: var(--primary-1200-color)
+    color: var(--primary-1200-color);
 }
 
 /* Flash Sales */
-.time-flash-sales>p {
+.time-flash-sales > p {
     font-size: 20px;
-    color: #5F2D00C9;
+    color: #5f2d00c9;
 }
 
-.time-flash-sales>h3 {
-    color: #5F2D00C9;
+.time-flash-sales > h3 {
+    color: #5f2d00c9;
     font-weight: var(--Medium);
 }
 
@@ -364,7 +365,7 @@ main {
     color: white;
     width: 55px;
     height: 55px;
-    background-color: #8D6440;
+    background-color: #8d6440;
     align-items: center;
     border-radius: 50%;
     border: 1px solid var(--primary-700-color);
@@ -380,7 +381,7 @@ main {
 }
 
 .item-detail.active {
-    color: #5F2D00C9;
+    color: #5f2d00c9;
 }
 
 .tab-content .tab-pane {
@@ -392,7 +393,7 @@ main {
 }
 
 .btn-comment {
-    background-color: #8D6440;
+    background-color: #8d6440;
     color: white;
 }
 
@@ -453,7 +454,7 @@ label {
 /* End Contact CSS */
 /* Gio hang */
 .btn-giohang {
-    background-color: #8D6440;
+    background-color: #8d6440;
     color: white;
     border: 0.5px solid #1e1f242d;
 }
@@ -538,7 +539,7 @@ label {
 /* Hoa don */
 .logo-hoadon {
     color: var(--primary-800-color);
-    font-family: 'Dancing Script';
+    font-family: "Dancing Script";
     font-weight: 500;
 }
 
@@ -579,7 +580,7 @@ label {
 .btn-readmore {
     background-color: white;
     border: 0.5px solid #0000002d;
-    font-family: 'Lora';
+    font-family: "Lora";
 }
 
 .btn-readmore:hover {
@@ -613,3 +614,40 @@ label {
 }
 
 /* End Blog chi tiet */
+.stars a {
+    display: inline-block;
+    padding-right: 4px;
+    text-decoration: none;
+    margin: 0;
+}
+
+.stars a:after {
+    position: relative;
+    font-size: 18px;
+    font-family: "FontAwesome", serif;
+    display: block;
+    content: "\f005";
+    color: #9e9e9e;
+}
+
+span {
+    font-size: 0;
+    /* trick to remove inline-element's margin */
+}
+
+.stars a:hover ~ a:after {
+    color: #9e9e9e !important;
+}
+
+span.active a.active ~ a:after {
+    color: #9e9e9e;
+}
+
+span:hover a:after {
+    color: gold !important;
+}
+
+span.active a:after,
+.stars a.active:after {
+    color: gold;
+}
