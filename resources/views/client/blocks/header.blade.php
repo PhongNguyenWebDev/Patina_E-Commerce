@@ -35,7 +35,7 @@
                     <li class="nav-item">
                         <x-nav-link href="{{ route('client.series-shop-page') }}" :active="request()->routeIs('client.series-shop-page')">Hệ thống cửa hàng</x-nav-link>
                     </li>
-                </ul>                
+                </ul>
                 <div class="user d-flex align-items-center">
                     <a href="{{ route('client.favorite.index') }}" class="position-relative">
                         <i class="fa-regular fa-heart fa-xl" style="color: #8D6440;"></i>
@@ -67,12 +67,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('client.profile-page') }}">My Profile</a>
+                                    <a class="dropdown-item" href="{{ route('client.profile-page') }}">Hồ sơ của tôi</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('admin.home') }}">Go To Admin</a>
+                                    <a class="dropdown-item" href="{{ route('admin.home') }}">Vào trang quản trị</a>
                                 </li>
-                                <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a></li>
                             </ul>
                         </div>
                     @else
