@@ -27,13 +27,15 @@
                         <x-nav-link href="{{ route('client.blog-page') }}" :active="request()->routeIs('client.blog-page')">Blog</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <x-nav-link href="{{ route('client.introduce-page') }}" :active="request()->routeIs('client.introduce-page')">Giới thiệu</x-nav-link>
+                        <x-nav-link href="{{ route('client.introduce-page') }}" :active="request()->routeIs('client.introduce-page')">Giới
+                            thiệu</x-nav-link>
                     </li>
                     <li class="nav-item">
                         <x-nav-link href="{{ route('client.contact-page') }}" :active="request()->routeIs('client.contact-page')">Liên hệ</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <x-nav-link href="{{ route('client.series-shop-page') }}" :active="request()->routeIs('client.series-shop-page')">Hệ thống cửa hàng</x-nav-link>
+                        <x-nav-link href="{{ route('client.series-shop-page') }}" :active="request()->routeIs('client.series-shop-page')">Hệ thống cửa
+                            hàng</x-nav-link>
                     </li>
                 </ul>
                 <div class="user d-flex align-items-center">
@@ -55,19 +57,17 @@
                         <div class="dropdown">
                             <a class="btn dropdown-toggle border-0" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="user-img"><img class="rounded-circle"
-                                        src="{{ asset('assets/admin/img/user-06.jpg') }}" width="35"
-                                        alt="Admin">
-                                    <span class="status online"></span></span>
-                                <span>
-                                    @if (Auth::check())
-                                        {{ Auth::user()->name }}
-                                    @endif
+                                <span class="user-img">
+                                    <img class="rounded-circle" src="{{ asset('assets/admin/img/user-06.jpg') }}"
+                                        width="35" alt="Admin">
+                                    <span class="status online"></span>
                                 </span>
+                                {{Auth::user()->name}}
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('client.profile-page') }}">Hồ sơ của tôi</a>
+                                    <a class="dropdown-item" href="{{ route('client.profile-page') }}">Hồ sơ của
+                                        tôi</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('admin.home') }}">Vào trang quản trị</a>

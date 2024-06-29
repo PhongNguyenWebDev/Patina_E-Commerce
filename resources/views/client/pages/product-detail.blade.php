@@ -92,12 +92,12 @@
                         <div>
                             <h5 style="font-weight: var(--Medium);">Select Size</h5>
                             <div class="py-3 d-flex justify-content-between" style="width: 16rem;">
-                                @foreach ($product->productDetails as $detail)
+                                @foreach ($product->productDetails as $index => $detail)
                                     <div class="form-check form-check-inline size-option"
                                         data-color-id="{{ $detail->color_id }}" data-quantity="{{ $detail->quantity }}">
                                         <input class="form-check-input size-radio" type="radio" name="size_id"
                                             id="size_{{ $detail->size_id }}" value="{{ $detail->size_id }}"
-                                            data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}">
+                                            data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}" {{ $index == 0 ? 'checked' : '' }}>
                                         <label class="form-check-label fs-5 fw-medium"
                                             for="size_{{ $detail->size_id }}">{{ $detail->size->name }}</label>
                                     </div>
