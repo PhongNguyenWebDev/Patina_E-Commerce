@@ -39,9 +39,8 @@ class AdSliderController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
-            $image->storeAs('public/sliders', $imageName);
-
-            $sliders->image = Storage::url('public/sliders/' . $imageName);
+            $image->move(public_path('uploads/sliders'), $imageName);
+            $sliders->image = '/uploads/sliders/' . $imageName;
         }
         $sliders->save();
         return redirect()->route('admin.sliders.index')->with('ssmsg', 'Thêm thành công một slider mới');
@@ -71,7 +70,7 @@ class AdSliderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(SliderRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         $slider = Slider::find($id);
         if (!$slider) {
@@ -80,9 +79,8 @@ class AdSliderController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
-            $image->storeAs('public/sliders', $imageName);
-
-            $slider->image = '/storage/sliders/' . $imageName;
+            $image->move(public_path('uploads/sliders'), $imageName);
+            $slider->image = '/uploads/sliders/' . $imageName;
         }
         $slider->update($request->except('image'));
         return redirect()->route('admin.sliders.index')->with('ssmsg', 'Sửa slider thành công');

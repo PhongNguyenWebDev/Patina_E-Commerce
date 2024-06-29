@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 
 class ClProductController extends Controller
 {
@@ -29,7 +30,7 @@ class ClProductController extends Controller
         $relatedProducts = $this->relatedProductsByCategory($categoryId, $product->id);
 
         // Get reviews for the product
-        $reviews = $this->showReview($product->id);
+        $reviews = $this->showReview();
         return view('client.pages.product-detail', compact('title', 'product', 'uniqueColors', 'colorsWithPrices', 'relatedProducts', 'reviews'));
     }
     public function relatedProductsByCategory($categoryId, $productId)
@@ -51,6 +52,25 @@ class ClProductController extends Controller
             'product_detail_id' => 'required|exists:product_detail,id',
         ]);
 
+        // Kiểm tra người dùng đã mua sản phẩm chưa
+        $hasPurchased = Order::where('user_id', Auth::id())
+            ->whereHas('orderDetails', function ($query) use ($request) {
+                $query->where('product_detail_id', $request->input('product_detail_id'));
+            })->exists();
+
+        if (!$hasPurchased) {
+            return response()->json(['message' => 'You need to purchase the product before reviewing.'], 403);
+        }
+
+        // Kiểm tra người dùng đã đánh giá sản phẩm này chưa
+        $hasReviewed = Review::where('user_id', Auth::id())
+            ->where('product_detail_id', $request->input('product_detail_id'))
+            ->exists();
+
+        if ($hasReviewed) {
+            return response()->json(['message' => 'You have already reviewed this product.'], 403);
+        }
+
         $review = new Review();
         $review->reviews = $request->input('reviews');
         $review->rating_point = $request->input('rating_point');
@@ -58,8 +78,10 @@ class ClProductController extends Controller
         $review->product_detail_id = $request->input('product_detail_id');
         $review->status = 0;
         $review->save();
+
         return response()->json(['message' => 'Review submitted successfully.']);
     }
+
 
     public function showReview()
     {

@@ -2,6 +2,9 @@
 @section('title')
     {{ $title }}
 @endsection
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endsection
 @section('content')
     <div class="page-header">
         <div class="row">
@@ -24,12 +27,23 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="tendanhmuc">Tên Danh Mục</label>
-                    <input type="text" class="form-control" name="name" value="{{ $category->name }}"
-                        placeholder="Nhập tên danh mục">
+                    <input type="text" class="form-control" id="tendanhmuc" name="name"
+                        placeholder="Nhập tên danh mục" value="{{$category->name}}">
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="danhmuccha">Chọn Danh Mục Cha</label>
+                    <select class="form-control choose_init" id="danhmuccha" name="parent_id">
+                        <option value="0">--- Chọn Danh Mục Cha ---</option>
+                        @foreach ($cateParent as $cateP)
+                            <option value="{{ $cateP->id }}" {{ $cateP->id == $category->parent_id ? 'selected' : '' }}>{{ $cateP->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-md-12">
@@ -38,4 +52,10 @@
             </div>
         </form>
     </div>
+@endsection
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(".choose_init").select2({});
+</script>
 @endsection

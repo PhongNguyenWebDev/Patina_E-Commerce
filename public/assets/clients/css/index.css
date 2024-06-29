@@ -630,7 +630,7 @@ label {
     color: #9e9e9e;
 }
 
-span {
+.stars > span {
     font-size: 0;
     /* trick to remove inline-element's margin */
 }

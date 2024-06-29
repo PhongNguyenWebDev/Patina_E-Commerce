@@ -10,63 +10,80 @@
                 <div>
                     <h5 class="bg-filter p-2 mt-2">Lọc theo giá</h5>
                     <ul class="py-2 px-1">
-                        <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '0-499', 'category' => $categorySlug])) }}"
+                        <li class="d-flex align-items-center justify-content-between">
+                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '0-499', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">Dưới $500</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
+                            <p style="font-size: var(--font-size); margin: 0;" class="amout">{{ $priceRanges['0-499'] }}</p>
                         </li>
-                        <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '500-999', 'category' => $categorySlug])) }}"
+                        <li class="d-flex align-items-center justify-content-between">
+                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '500-999', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">$500 - $999</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
+                            <p style="font-size: var(--font-size); margin: 0;" class="amout">{{ $priceRanges['500-999'] }}
+                            </p>
                         </li>
-                        <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '1000-1999', 'category' => $categorySlug])) }}"
+                        <li class="d-flex align-items-center justify-content-between">
+                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '1000-1999', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">$1000 - $1999</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
+                            <p style="font-size: var(--font-size); margin: 0;" class="amout">
+                                {{ $priceRanges['1000-1999'] }}</p>
                         </li>
-                        <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '2000-3999', 'category' => $categorySlug])) }}"
+                        <li class="d-flex align-items-center justify-content-between">
+                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '2000-3999', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">$2000 - $3999</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
+                            <p style="font-size: var(--font-size); margin: 0;" class="amout">
+                                {{ $priceRanges['2000-3999'] }}</p>
                         </li>
-                        <li class="d-flex align-items-center justify-content-between"><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '4000-4999', 'category' => $categorySlug])) }}"
+                        <li class="d-flex align-items-center justify-content-between">
+                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '4000-4999', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">$4000 - $4999</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
+                            <p style="font-size: var(--font-size); margin: 0;" class="amout">
+                                {{ $priceRanges['4000-4999'] }}</p>
                         </li>
-                        <li class="d-flex align-items-center justify-content-between "><a
-                                href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '5000+', 'category' => $categorySlug])) }}"
+                        <li class="d-flex align-items-center justify-content-between">
+                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '5000+', 'category' => $categorySlug])) }}"
                                 class="nav-link select-filter">Over $5000</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
+                            <p style="font-size: var(--font-size); margin: 0;" class="amout">{{ $priceRanges['5000+'] }}
+                            </p>
                         </li>
                     </ul>
+
                 </div>
                 <!-- Lọc theo danh mục -->
                 <div>
                     <h5 class="bg-filter p-2 mt-2">Lọc theo danh mục</h5>
                     <ul class="py-2 px-1">
-                        @foreach($categories as $category)
-                            @if($category->parent_id == 0)
-                                @if($category->parent()->count() > 0)
+                        @foreach ($categories as $category)
+                            @if ($category->parent_id == 0)
+                                @if ($category->parent()->count() > 0)
                                     <li class="nav-link">
                                         <div class="accordion" id="accordion-{{ $category->slug }}">
                                             <div class="accordion-item border-0 show">
                                                 <div>
                                                     <a class="text-decoration-none p-0"
                                                         style="font-size: large; color: var(--secondary-1200-color);"
-                                                        data-bs-toggle="collapse" data-bs-target="#collapse-{{ $category->slug }}"
-                                                        aria-expanded="true" aria-controls="collapse-{{ $category->slug }}">
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse-{{ $category->slug }}"
+                                                        aria-expanded="true"
+                                                        aria-controls="collapse-{{ $category->slug }}">
                                                         {{ $category->name }}
                                                     </a>
+                                                    <p style="font-size: var(--font-size); margin: 0;"
+                                                                        class="amout">
+                                                                        {{ $category->products_count }}</p>
                                                     <img src="" alt="">
                                                 </div>
-                                                <div id="collapse-{{ $category->slug }}" class="accordion-collapse collapse show">
+                                                <div id="collapse-{{ $category->slug }}"
+                                                    class="accordion-collapse collapse show">
                                                     <div class="accordion-body p-0">
                                                         <ul>
-                                                            @foreach($category->parent as $child)
-                                                                <li class="nav-link"><a style="font-size: large;" class="nav-link"
-                                                                        href="">{{ $child->name }}</a></li>
+                                                            @foreach ($category->parent as $child)
+                                                                <li class="nav-link"><a style="font-size: large;"
+                                                                        class="nav-link"
+                                                                        href="{{ route('client.shop-page', $child->slug) }}">{{ $child->name }}</a>
+                                                                    <p style="font-size: var(--font-size); margin: 0;"
+                                                                        class="amout">
+                                                                        {{ $child->products_count }}</p>
+                                                                </li>
                                                             @endforeach
                                                         </ul>
                                                     </div>
@@ -76,15 +93,17 @@
                                     </li>
                                 @else
                                     <li class="d-flex align-items-center justify-content-between">
-                                        <a href="{{ route('client.shop-page', $category->slug) }}" class="nav-link select-filter">{{ $category->name }}</a>
-                                        <p style="font-size: var(--font-size); margin: 0;" class="amout">24</p>
+                                        <a href="{{ route('client.shop-page', $category->slug) }}"
+                                            class="nav-link select-filter">{{ $category->name }}</a>
+                                        <p style="font-size: var(--font-size); margin: 0;" class="amout">
+                                            {{ $category->products_count }}</p>
                                     </li>
                                 @endif
                             @endif
                         @endforeach
                     </ul>
                 </div>
-                
+
                 <!-- Filter by Brand -->
                 <div class="brand">
                     <h5 class="bg-filter p-2 mt-2">Lọc theo thương hiệu</h5>
@@ -158,42 +177,46 @@
                 <div class="container-fluid p-0">
                     <div class="row g-2">
                         @foreach ($products as $product)
-                        <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                            <a href="{{ route('client.detail', $product->slug) }}">
-                                <img class="img-thumbnail" src="{{ $product->images }}" alt="">
-                            </a>
-                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <span class="badge text-bg-danger fs-6">- 20%</span>
-                                    @php
-                                        $isFavorite = false;
-                                        foreach ($favorite as $item) {
-                                            if ($item->product_id === $product->id) {
-                                                $isFavorite = true;
-                                                break;
+                            <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                                <a href="{{ route('client.detail', $product->slug) }}">
+                                    <img class="img-thumbnail" src="{{ $product->images }}" alt="">
+                                </a>
+                                <div class="position-absolute top-0 p-3 w-100 end-0">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="badge text-bg-danger fs-6">- 20%</span>
+                                        @php
+                                            $isFavorite = false;
+                                            foreach ($favorite as $item) {
+                                                if ($item->product_id === $product->id) {
+                                                    $isFavorite = true;
+                                                    break;
+                                                }
                                             }
-                                        }
-                                    @endphp
-                                    @if ($isFavorite)
-                                    <a href="{{ route('client.favorite.index') }}"><i style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
-                                            class="fas fa-heart rounded-5 p-2 fs-5"></i></a>
-                                    @else
-                                        <a href="{{ route('client.favorite.add', $product->id) }}"><i
-                                                style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                                class="fa-regular fa-heart rounded-5 p-2 fs-5"></i></a>
-                                    @endif
+                                        @endphp
+                                        @if ($isFavorite)
+                                            <a href="{{ route('client.favorite.index') }}"><i
+                                                    style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
+                                                    class="fas fa-heart rounded-5 p-2 fs-5"></i></a>
+                                        @else
+                                            <a href="{{ route('client.favorite.add', $product->id) }}"><i
+                                                    style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
+                                                    class="fa-regular fa-heart rounded-5 p-2 fs-5"></i></a>
+                                        @endif
+                                    </div>
+                                </div>
+                                <h4 class="pt-1 mt-1 fs-5">{{ $product->name }}</h4>
+                                <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $product->category->name }}</p>
+                                <div class="d-flex">
+                                    <p style="font-size: var(--font-size); margin: 0;"
+                                        class="text-decoration-line-through text-danger mx-2">
+                                        ${{ number_format($product->sale_price) ? number_format($product->price) : null }}
+                                    </p>
+                                    <p style="font-size: var(--font-size); margin: 0; color: black;">
+                                        ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
+                                    </p>
                                 </div>
                             </div>
-                            <h4 class="pt-1 mt-1 fs-5">{{ $product->name }}</h4>
-                            <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $product->category->name }}</p>
-                            <div class="d-flex">
-                                <p style="font-size: var(--font-size); margin: 0;"
-                                    class="text-decoration-line-through text-danger mx-2">${{ number_format($product->sale_price) ? number_format($product->price) : null }}</p>
-                                <p style="font-size: var(--font-size); margin: 0; color: black;">${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
                     </div>
                 </div>
                 <!-- Pagination -->

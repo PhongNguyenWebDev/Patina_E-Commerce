@@ -22,18 +22,14 @@ class SliderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'event' => 'required',
-            'title' => 'required',
-            'summary' => 'required',
+            'image' => 'required',
 
         ];
     }
     public function messages()
     {
         return [
-            'event.required' => 'Event bắt buộc phải nhập',
-            'title.required' => 'Tiêu đề bắt buộc phải nhập',
-            'summary.required' => 'Mô tả bắt buộc phải nhập',
+            'image.required' => 'Ảnh bắt buộc phải nhập',
         ];
     }
 }

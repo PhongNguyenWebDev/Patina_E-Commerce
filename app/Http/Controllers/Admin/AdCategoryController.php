@@ -29,7 +29,8 @@ class AdCategoryController extends Controller
     public function create()
     {
         $this->data['title'] = 'Thêm Danh Mục';
-        return view('admin.pages.category.themdanhmuc', $this->data);
+        $cateParent= Category::where('parent_id',0)->get();
+        return view('admin.pages.category.themdanhmuc', $this->data, compact('cateParent'));
     }
 
     /**
@@ -57,10 +58,11 @@ class AdCategoryController extends Controller
     {
         $this->data['title'] = 'Sửa Danh Mục';
         $category = Category::where('slug', $slug)->firstOrFail();
+        $cateParent= Category::where('parent_id',0)->get();
         if (!$category) {
             return redirect()->route('admin.category.index')->with('ermsg', 'Không tìm thấy danh mục cần sửa');
         }
-        return view('admin.pages.category.editdanhmuc', $this->data, compact('category'));
+        return view('admin.pages.category.editdanhmuc', $this->data, compact('category','cateParent'));
     }
 
     /**
