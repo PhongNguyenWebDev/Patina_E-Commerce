@@ -40,7 +40,7 @@
                                         <tr>
                                             <th>Tên Mạng Xã Hội</th>
                                             <th>Link</th>
-                                            <th>Class</th>
+                                            <th>Icon</th>
                                             <th>Ngày Tạo</th>
                                             <th>Ngày Cập Nhật</th>
                                             <th class="text-right">Chỉnh sửa</th>
@@ -53,7 +53,7 @@
                                             <tr>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->link }}</td>
-                                                <td>{{ $item->class }}</td>
+                                                <td>{{ $item->icon }}</td>
 
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>{{ $item->updated_at }}</td>

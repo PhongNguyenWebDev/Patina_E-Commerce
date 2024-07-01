@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="class">Class</label>
+                    <label for="class">Icon</label>
                     <input type="text" class="form-control" id="class" name="class" placeholder="Nhập Class">
                     @error('class')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>

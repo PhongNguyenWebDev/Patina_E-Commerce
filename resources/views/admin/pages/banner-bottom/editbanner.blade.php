@@ -32,32 +32,10 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="category">Danh Mục</label>
-                    <input type="text" class="form-control" id="category" value="{{ $banner->category }}"
-                        name="category" placeholder="Nhập Danh Mục">
-                    @error('category')
-                        <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
-                            {{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
                     <label for="name">Tên Banner</label>
                     <input type="text" class="form-control" id="name" value="{{ $banner->name }}" name="name"
                         placeholder="Nhập Tên Banner">
                     @error('name')
-                        <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
-                            {{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="sale">Giá Sale</label>
-                    <input type="text" class="form-control" value="{{ $banner->sale }}" id="sale" name="sale"
-                        placeholder="Nhập Giá Sale">
-                    @error('sale')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror
@@ -75,17 +53,6 @@
                         </div>
                     </div>
                     @error('image')
-                        <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
-                            {{ $message }}</span>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="link">Link</label>
-                    <input type="text" class="form-control" value="{{ $banner->link }}" id="link" name="link"
-                        placeholder="Nhập Link">
-                    @error('link')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror

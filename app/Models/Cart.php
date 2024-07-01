@@ -21,9 +21,24 @@ class Cart extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
+    public function getColorIdByName($colorName)
+    {
+        $color = Color::where('name', $colorName)->first();
+        return $color ? $color->id : null;
+    }
+
     public function getPriceAttribute()
     {
-        return $this->product->sale_price ? $this->product->sale_price : $this->product->price;
+        $colorId = $this->getColorIdByName($this->color);
+        if ($colorId === null) {
+            return 0; 
+        }
+
+        $productDetail = $this->product->productDetails()
+            ->where('color_id', $colorId)
+            ->first();
+
+        return $productDetail ? ($productDetail->sale_price ?: $productDetail->price) : 0;
     }
     public function getSubTotalAttribute()
     {

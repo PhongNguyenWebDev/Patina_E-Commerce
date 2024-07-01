@@ -38,10 +38,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>Ảnh</th>
-                                    <th>Danh Mục</th>
                                     <th>Tên Banner</th>
-                                    <th>Giá Sale</th>
-                                    <th>Link</th>
                                     <th>Ẩn/Hiện</th>
                                     <th>Ngày Tạo</th>
                                     <th>Ngày Cập Nhật</th>
@@ -54,10 +51,7 @@
                                     @foreach ($banners as $item)
                                         <tr>
                                             <td><img src="{{ $item->image }}" alt="" width="100px"></td>
-                                            <th>{{ $item->category }}</th>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->sale }}</td>
-                                            <td>{{ $item->link }}</td>
                                             <td>{{ $item->status == 0 ? 'Ẩn' : 'Hiện' }}</td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>{{ $item->updated_at ?? 'null' }}</td>

@@ -15,18 +15,11 @@
                 vitae nulla nec
             </p>
             <div class="d-flex ms-xl-4 px-xl-3 ms-3 justify-content-between" style="width: 50%;">
+                @foreach ($socialn as $social)
                 <div class="icon-footer">
-                    <i class="fa-brands fa-facebook-f "></i>
+                    <a style="color: #8d6440" href="{{$social->link}}">{!!$social->icon!!}</a>
                 </div>
-                <div class="icon-footer">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </div>
-                <div class="icon-footer">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-                <div class="icon-footer">
-                    <i class="fa-brands fa-youtube"></i>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="col-lg-8 mt-4 d-flex justify-content-end">

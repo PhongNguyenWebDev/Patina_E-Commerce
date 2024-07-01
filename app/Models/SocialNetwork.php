@@ -12,6 +12,6 @@ class SocialNetwork extends Model
     protected $fillable = [
         'name',
         'link',
-        'class',
+        'icon',
     ];
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BannerBotRequest extends FormRequest
+class BrandEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,20 +22,14 @@ class BannerBotRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'category' => 'required',
-            'sale' => 'required',
-            'link' => 'required',
-
+            'name' => 'required | unique:brands,name,'. request()->id,
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Tên bắt buộc phải nhập',
-            'category.required' => 'Danh mục bắt buộc phải nhập',
-            'sale.required' => 'Giá Sale bắt buộc phải nhập',
-            'link.required' => 'Link bắt buộc phải nhập',
+            'name.required' => 'Tên brand bắt buộc phải nhập',
+            'name.unique' => 'Tên brand đã tồn tại, vui lòng chọn tên khác',
         ];
     }
 }

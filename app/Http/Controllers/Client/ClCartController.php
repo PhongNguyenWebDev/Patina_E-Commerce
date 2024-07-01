@@ -62,11 +62,11 @@ class ClCartController extends Controller
             ]);
 
             // Tính toán lại subtotal
-            $subTotal = $carts->quantity * $carts->price; // Ví dụ tính toán lại subtotal
+            $subTotal = $carts->subTotal; // Ví dụ tính toán lại subtotal
 
             return response()->json([
                 'quantity' => $carts->quantity,
-                'subTotal' => $subTotal
+                'subTotal' => number_format($subTotal)
             ]);
         }
 

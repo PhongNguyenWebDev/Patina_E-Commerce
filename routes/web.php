@@ -123,7 +123,7 @@ Route::prefix('/')->name('client.')->group(function () {
         Route::prefix('cart-page')->name('cart-page.')->group(function () {
             Route::get('/', [ClCartController::class, 'cart'])->name('index');
             Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
-            Route::put('/update/{id}', [ClCartController::class, 'update'])->name('update');
+            Route::post('/update/{id}', [ClCartController::class, 'update'])->name('update');
             Route::get('/delete/{product}', [ClCartController::class, 'delete'])->name('delete');
             // Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
         });

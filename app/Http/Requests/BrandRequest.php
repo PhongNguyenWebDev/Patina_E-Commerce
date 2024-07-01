@@ -23,6 +23,7 @@ class BrandRequest extends FormRequest
     {
         return [
             'name' => 'required | unique:brands,name,'. request()->id,
+            'image' => 'required',
         ];
     }
     public function messages()
@@ -30,6 +31,7 @@ class BrandRequest extends FormRequest
         return [
             'name.required' => 'Tên brand bắt buộc phải nhập',
             'name.unique' => 'Tên brand đã tồn tại, vui lòng chọn tên khác',
+            'image.required' => 'Ảnh bắt buộc phải nhập',
         ];
     }
 }

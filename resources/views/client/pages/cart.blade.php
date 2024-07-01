@@ -30,8 +30,10 @@
                                                 <p class="p-0 m-0">${{ number_format($item->price) }}</p>
                                             </td>
                                             <td>
-                                                <form id="updateQuantityForm"
-                                                    action="{{ route('client.cart-page.update', $item) }}" method="get">
+                                                <form class="updateQuantityForm"
+                                                    action="{{ route('client.cart-page.update', $item) }}" method="post">
+                                                    @csrf
+                                                    @method('POST')
                                                     <div class="quantity">
                                                         <input type="hidden" name="color" value="{{ $item->color }}">
                                                         <input type="hidden" name="size" value="{{ $item->size }}">
@@ -41,8 +43,7 @@
                                                                 class="btn btn-outline-secondary btn-sm dec qtybtn">-</button>
                                                             <input type="text" name="quantity"
                                                                 class="form-control rounded quantity-input mx-2"
-                                                                id="quantityInput" value="{{ $item->quantity }}"
-                                                                min="1">
+                                                                value="{{ $item->quantity }}" min="1">
                                                             <button
                                                                 class="btn btn-outline-secondary btn-sm inc qtybtn">+</button>
                                                         </div>
@@ -82,7 +83,6 @@
                                         <strong class="fs-5" id="total-amount" data-subtotal="{{ $item->subTotal }}">
                                             ${{ number_format($item->subTotal) }}
                                         </strong>
-
                                     </div>
                                 </div>
                                 <div class="row">
@@ -100,11 +100,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#updateQuantityForm .qtybtn').on('click', function(e) {
+            $('.qtybtn').on('click', function(e) {
                 e.preventDefault();
 
                 var $button = $(this);
-                var oldValue = $button.parent().find('input.quantity-input').val();
+                var $form = $button.closest('form');
+                var oldValue = $form.find('input.quantity-input').val();
                 var newValue = 0;
 
                 if ($button.hasClass('inc')) {
@@ -117,20 +118,19 @@
                     }
                 }
 
-                $button.parent().find('input.quantity-input').val(newValue);
+                $form.find('input.quantity-input').val(newValue);
 
                 // Sử dụng Ajax để gửi yêu cầu cập nhật số lượng
                 $.ajax({
-                    url: $('#updateQuantityForm').attr('action'),
-                    type: 'GET',
-                    data: $('#updateQuantityForm').serialize(),
+                    url: $form.attr('action'),
+                    type: 'POST',
+                    data: $form.serialize(),
                     success: function(response) {
-                        // Cập nhật lại số lượng và giá trị subtotal từ response
                         var newQuantity = response.quantity;
                         var newSubtotal = response.subTotal;
 
                         // Cập nhật số lượng trên giao diện
-                        $button.parent().find('input.quantity-input').val(newQuantity);
+                        $form.find('input.quantity-input').val(newQuantity);
 
                         // Cập nhật subtotal trên giao diện
                         $('#total-amount').text('$' + newSubtotal);

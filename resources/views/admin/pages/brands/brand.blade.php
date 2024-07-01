@@ -36,8 +36,9 @@
                         <table class="table custom-table">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Mã Brand </th>
+                                    <th>Ảnh</th>
                                     <th>Tên Brand</th>
+                                    <th>Slug</th>
                                     <th>Ngày Tạo</th>
                                     <th>Ngày Cập Nhật</th>
                                     <th class="text-right">Chỉnh sửa</th>
@@ -48,8 +49,9 @@
                                 @if (!empty($brands))
                                     @foreach ($brands as $brand)
                                         <tr>
-                                            <td>{{ $brand->id }}</td>
+                                            <td><img src="{{ $brand->image }}" alt="" width="100px"></td>
                                             <td>{{ $brand->name }}</td>
+                                            <td>{{$brand->slug}}</td>
                                             <td>{{ $brand->created_at }}</td>
                                             <td>{{ $brand->updated_at ?? 'null' }}</td>
                                             <td class="text-right">

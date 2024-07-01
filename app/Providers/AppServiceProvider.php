@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Cart;
 use App\Models\Favorite;
+use App\Models\SocialNetwork;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use App\View\Components\navlink;
@@ -27,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $cart = Cart::where('user_id', auth()->id())->get();
             $favorite = Favorite::where('user_id', auth()->id())->get();
-            $view->with(compact('cart', 'favorite'));
+            $socialn = SocialNetwork::all();
+            $view->with(compact('cart', 'favorite', 'socialn'));
         });
         Paginator::useBootstrap();
 

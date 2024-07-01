@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BrandEditRequest;
 use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
@@ -36,9 +37,15 @@ class AdBrandController extends Controller
      */
     public function store(BrandRequest $request)
     {
-        $data = $request->all();
+        $data = Brand::create($request->all());
         $data['slug'] = Str::slug($request->name, '-');
-        Brand::create($data);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('uploads/brands'), $imageName);
+            $data->image = '/uploads/brands/' . $imageName;
+        }
+        $data->save();
         return redirect()->route('admin.brands.index')->with('ssmsg', 'Thêm thành công một brand mới');
     }
 
@@ -65,14 +72,19 @@ class AdBrandController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(BrandRequest $request, string $slug)
+    public function update(BrandEditRequest $request, string $slug)
     {
         $brand = Brand::where('slug', $slug)->firstOrFail();
         if (!$brand) {
             return redirect()->route('admin.brands.index')->with('ermsg', 'Không tìm thấy brand cần sửa');
         }
-        
-        $brand->update(array_merge($request->all(), ['slug' => Str::slug($request->name, '-')]));
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('uploads/brands'), $imageName);
+            $brand->image = '/uploads/brands/' . $imageName;
+        }
+        $brand->update(array_merge($request->except('image'), ['slug' => Str::slug($request->name, '-')]));
         return redirect()->route('admin.brands.index')->with('ssmsg', 'Sửa brand thành công');
     }
 

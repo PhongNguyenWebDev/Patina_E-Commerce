@@ -10,6 +10,7 @@ class BannerBottom extends Model
     use HasFactory;
     protected $table = 'banner_bottoms';
     protected $fillable = [
+        'name',
         'image',
         'status',
     ];

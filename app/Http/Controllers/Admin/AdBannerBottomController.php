@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BannerBotRequest;
 use App\Models\BannerBottom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -33,15 +32,14 @@ class AdBannerBottomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(BannerBotRequest $request)
+    public function store(Request $request)
     {
         $banner = BannerBottom::create($request->all());
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
-            $image->storeAs('public/banners', $imageName);
-
-            $banner->image = Storage::url('public/banners/' . $imageName);
+            $image->move(public_path('uploads/products'), $imageName);
+            $banner->image = '/uploads/products/' . $imageName;
         }
         $banner->save();
         return redirect()->route('admin.banner-bottom.index')->with('ssmsg', 'Thêm thành công một banner mới');
@@ -71,7 +69,7 @@ class AdBannerBottomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(BannerBotRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         $banner = BannerBottom::find($id);
         if (!$banner) {
@@ -80,9 +78,8 @@ class AdBannerBottomController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
-            $image->storeAs('public/banners', $imageName);
-
-            $banner->image = '/storage/banners/' . $imageName;
+            $image->move(public_path('uploads/products'), $imageName);
+            $banner->image = '/uploads/products/' . $imageName;
         }
         $banner->update($request->except('image'));
         return redirect()->route('admin.banner-bottom.index')->with('ssmsg', 'Sửa banner thành công');
