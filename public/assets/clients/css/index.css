@@ -669,3 +669,12 @@ span.active a:after,
 .stars a.active:after {
     color: gold;
 }
+
+.border-color-orange {
+    border: 0.5px solid rgb(195, 148, 62);
+    border-radius: 5px;
+}
+.border-color-dark {
+    border: 0.5px solid black;
+    border-radius: 5px;
+}

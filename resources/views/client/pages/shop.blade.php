@@ -10,76 +10,63 @@
                 <div>
                     <h5 class="bg-filter p-2 mt-2">Lọc theo giá</h5>
                     <ul class="py-2 px-1">
-                        <li class="d-flex align-items-center justify-content-between">
-                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '0-499', 'category' => $categorySlug])) }}"
-                                class="nav-link select-filter">Dưới $500</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">{{ $priceRanges['0-499'] }}</p>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '500-999', 'category' => $categorySlug])) }}"
-                                class="nav-link select-filter">$500 - $999</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">{{ $priceRanges['500-999'] }}
-                            </p>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '1000-1999', 'category' => $categorySlug])) }}"
-                                class="nav-link select-filter">$1000 - $1999</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">
-                                {{ $priceRanges['1000-1999'] }}</p>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '2000-3999', 'category' => $categorySlug])) }}"
-                                class="nav-link select-filter">$2000 - $3999</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">
-                                {{ $priceRanges['2000-3999'] }}</p>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '4000-4999', 'category' => $categorySlug])) }}"
-                                class="nav-link select-filter">$4000 - $4999</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">
-                                {{ $priceRanges['4000-4999'] }}</p>
-                        </li>
-                        <li class="d-flex align-items-center justify-content-between">
-                            <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => '5000+', 'category' => $categorySlug])) }}"
-                                class="nav-link select-filter">Over $5000</a>
-                            <p style="font-size: var(--font-size); margin: 0;" class="amout">{{ $priceRanges['5000+'] }}
-                            </p>
-                        </li>
+                        @php
+                            $priceRangesLabels = [
+                                '0-499' => 'Dưới $500',
+                                '500-999' => '$500 - $999',
+                                '1000-1999' => '$1000 - $1999',
+                                '2000-3999' => '$2000 - $3999',
+                                '4000-4999' => '$4000 - $4999',
+                                '5000+' => 'Over $5000',
+                            ];
+                        @endphp
+                        @foreach ($priceRangesLabels as $range => $label)
+                            <li class="d-flex align-items-center justify-content-between">
+                                <x-vertical-nav-link
+                                    href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => $range, 'category' => $categorySlug])) }}"
+                                    :active="request()->input('price_range') === $range">
+                                    {{ $label }}
+                                </x-vertical-nav-link>
+                                <p style="font-size: var(--font-size); margin: 0;" class="amout">
+                                    {{ $priceRanges[$range] ?? 0 }}</p>
+                            </li>
+                        @endforeach
                     </ul>
-
                 </div>
+
+
                 <!-- Lọc theo danh mục -->
                 <div>
                     <h5 class="bg-filter p-2 mt-2">Lọc theo danh mục</h5>
                     <ul class="py-2 px-1">
-                        @foreach ($categories as $category)
+                        @forelse ($categories as $category)
                             @if ($category->parent_id == 0)
                                 @if ($category->parent()->count() > 0)
                                     <li class="nav-link">
                                         <div class="accordion" id="accordion-{{ $category->slug }}">
                                             <div class="accordion-item border-0 show">
-                                                <div>
+                                                <div class="d-flex justify-content-between align-items-end">
                                                     <a class="text-decoration-none p-0"
                                                         style="font-size: large; color: var(--secondary-1200-color);"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#collapse-{{ $category->slug }}"
-                                                        aria-expanded="true"
-                                                        aria-controls="collapse-{{ $category->slug }}">
+                                                        aria-expanded="true" aria-controls="collapse-{{ $category->slug }}">
                                                         {{ $category->name }}
                                                     </a>
-                                                    <p style="font-size: var(--font-size); margin: 0;"
-                                                                        class="amout">
-                                                                        {{ $category->products_count }}</p>
-                                                    <img src="" alt="">
+                                                    <p style="font-size: var(--font-size); margin: 0;" class="amout">
+                                                        {{ $category->products_count }}</p>
                                                 </div>
                                                 <div id="collapse-{{ $category->slug }}"
                                                     class="accordion-collapse collapse show">
                                                     <div class="accordion-body p-0">
                                                         <ul>
                                                             @foreach ($category->parent as $child)
-                                                                <li class="nav-link"><a style="font-size: large;"
-                                                                        class="nav-link"
-                                                                        href="{{ route('client.shop-page', $child->slug) }}">{{ $child->name }}</a>
+                                                                <li class="nav-link d-flex justify-content-between">
+                                                                    <x-vertical-nav-link
+                                                                        href="{{ route('client.shop-page', $child->slug) }}"
+                                                                        :active="request('category') === $child->slug">
+                                                                        {{ $child->name }}
+                                                                    </x-vertical-nav-link>
                                                                     <p style="font-size: var(--font-size); margin: 0;"
                                                                         class="amout">
                                                                         {{ $child->products_count }}</p>
@@ -93,16 +80,23 @@
                                     </li>
                                 @else
                                     <li class="d-flex align-items-center justify-content-between">
-                                        <a href="{{ route('client.shop-page', $category->slug) }}"
-                                            class="nav-link select-filter">{{ $category->name }}</a>
+                                        <x-vertical-nav-link href="{{ route('client.shop-page', $category->slug) }}"
+                                            :active="request('category') === $category->slug">
+                                            {{ $category->name }}
+                                        </x-vertical-nav-link>
                                         <p style="font-size: var(--font-size); margin: 0;" class="amout">
-                                            {{ $category->products_count }}</p>
+                                            {{ $category->products_count }}
+                                        </p>
                                     </li>
                                 @endif
                             @endif
-                        @endforeach
+                        @empty
+                            <li>Không có danh mục nào được tìm thấy.</li>
+                        @endforelse
                     </ul>
                 </div>
+
+
 
                 <!-- Filter by Brand -->
                 <div class="brand">
@@ -111,11 +105,12 @@
                         <div class="row g-2">
                             @foreach ($brands as $brand)
                                 <div class="col-4 item-brand">
-                                    <a
-                                        href="{{ route('client.shop-page', array_merge(request()->except('brand'), ['brand' => $brand->slug, 'category' => $categorySlug])) }}">
-                                        <img class="object-fit-contain img-thumbnail w-100 h-100" src="{{ $brand->image }}"
-                                            alt="">
-                                    </a>
+                                    <x-vertical-nav-link
+                                        href="{{ route('client.shop-page', array_merge(request()->except('brand'), ['brand' => $brand->slug, 'category' => $categorySlug])) }}"
+                                        :slugBrand="request()->input('brand') === $brand->slug">
+                                        <img class="object-fit-contain img-thumbnail w-100 h-100 border-0"
+                                            src="{{ $brand->image }}" alt="">
+                                    </x-vertical-nav-link>
                                 </div>
                             @endforeach
                         </div>
