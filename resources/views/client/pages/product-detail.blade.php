@@ -32,14 +32,11 @@
                         <img class="w-100" id="mainImage" src="{{ $product->images }}" alt="">
                     </div>
                     <div class="d-flex flex-row justify-content-between p-0">
-                        <img class="img-thumbnail thumbnail w-25 h-75"
-                            src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt="">
-                        <img class="img-thumbnail thumbnail w-25 h-75"
-                            src="/assets/clients/img/img_thumbnail/footware_1_1.avif" alt="">
-                        <img class="img-thumbnail thumbnail w-25 h-75"
-                            src="/assets/clients/img/img_thumbnail/footware_1_2.avif" alt="">
-                        <img class="img-thumbnail thumbnail w-25 h-75"
-                            src="/assets/clients/img/img_thumbnail/footware_1_3.avif" alt="">
+                        @foreach ($product->gallery as $item)
+                            <img class="img-thumbnail thumbnail w-25 h-75"
+                            src="{{ $item->name }}" alt="">
+                        @endforeach
+                       
                     </div>
                 </div>
             </div>
