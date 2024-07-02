@@ -1,7 +1,7 @@
 <main class="container-fluid">
     <div class="container d-flex flex-column flex-xl-row align-items-center justify-content-between ">
         <div class="col-12 col-xl-6">
-            <h1>{{ $title }}</h1>
+            <h1 class="pt-3">{{ $title }}</h1>
             <p class="text-banner pt-3 pt-xl-5 pb-3">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
                 velit.
                 Aliquam vulputate velit imperdiet
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="col-12 col-xl-6 d-flex justify-content-xl-end justify-content-center">
-            <img class="w-75" src="/assets/clients/img/Image-banner.png" alt="">
+            <img class="img-slider w-75" src="/assets/clients/img/Image-banner.png" alt="">
         </div>
     </div>
 </main>

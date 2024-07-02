@@ -16,9 +16,9 @@
             </p>
             <div class="d-flex ms-xl-4 px-xl-3 ms-3 justify-content-between" style="width: 50%;">
                 @foreach ($socialn as $social)
-                <div class="icon-footer">
-                    <a style="color: #8d6440" href="{{$social->link}}">{!!$social->icon!!}</a>
-                </div>
+                    <div class="icon-footer">
+                        <a style="color: #8d6440" href="{{ $social->link }}">{!! $social->icon !!}</a>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -69,10 +69,14 @@
             <p class="mb-0 ms-xl-3 ">© Copyright Patina 2024.</p>
         </div>
         <div class="col-xl-3 col-6 d-flex flex-row justify-content-end align-items-center">
-            <a href=""><img class="w-50" src="" alt=""></a>
-            <a href=""><img class="w-50" src="" alt=""></a>
-            <a href=""><img class="w-50" src="" alt=""></a>
-            <a href=""><img class="w-50" src="" alt=""></a>
+            <a href=""><img class="w-50" src="{{ asset('assets/clients/img/Icon/american-express.png') }}"
+                    alt=""></a>
+            <a href=""><img class="w-50" src="{{ asset('assets/clients/img/Icon/symbols.png') }}"
+                    alt=""></a>
+            <a href=""><img class="w-50" src="{{ asset('assets/clients/img/Icon/money.png') }}"
+                    alt=""></a>
+            <a href=""><img class="w-50" src="{{ asset('assets/clients/img/Icon/card.png') }}"
+                    alt=""></a>
         </div>
     </div>
 </footer>
