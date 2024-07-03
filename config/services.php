@@ -31,4 +31,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    //có rất nhiều key ứng vs các mạng xã hội mà  bạn có thể sử dụng là facebook, twitter, linkedin, google, github, gitlab, bitbucket, ...
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT'),
+    ],
+
+
 ];

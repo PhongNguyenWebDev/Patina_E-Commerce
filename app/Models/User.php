@@ -27,12 +27,16 @@ class User extends Authenticatable
         'password',
         'active',
         'role',
-        
+        'social_id',
+        'social_provider'
+
     ];
-    public function carts(){
+    public function carts()
+    {
         return $this->hasMany(Cart::class, 'user_id', 'id');
     }
-    public function orders(){
+    public function orders()
+    {
         return $this->hasMany(Order::class, 'user_id', 'id');
     }
     /**

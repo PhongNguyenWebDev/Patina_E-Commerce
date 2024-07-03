@@ -62,7 +62,7 @@
                                         width="35" alt="Admin">
                                     <span class="status online"></span>
                                 </span>
-                                {{Auth::user()->name}}
+                                {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -76,7 +76,7 @@
                             </ul>
                         </div>
                     @else
-                        <a href="{{ route('logIn-page') }}"><i class="fa-regular fa-user fa-xl"
+                        <a href="{{ route('login') }}"><i class="fa-regular fa-user fa-xl"
                                 style="color: #8D6440;"></i></a>
                     @endif
 

@@ -46,7 +46,9 @@
                         </a>
                         <div class="position-relative">
                             <i class="fa-brands fa-google fa-lg position-absolute top-50 ms-5"></i>
-                            <input type="button" class="form-control mt-4 login-under-2" value="Đăng nhập với Google">
+                            <a class="nav-link" href="{{ route('social.google') }}">
+                                <input type="button" class="form-control mt-4 login-under-2" value="Đăng nhập với Google">
+                            </a>
                         </div>
                     </form>
                 </div>

@@ -28,7 +28,8 @@ use App\Http\Controllers\Client\ClSeriesShopController;
 use App\Http\Controllers\Client\ClShopController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\Client\ClReviewController;
-
+use App\Http\Controllers\Auth\LoginGoogleController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,11 +41,20 @@ use App\Http\Controllers\Client\ClReviewController;
 |
 */
 
+// Auth::routes();
+// Login with Google
+
+
+Route::controller(LoginGoogleController::class)->group(function () {
+    Route::get('social/google', 'redirectToGoogle')->name('social.google');
+    Route::get('social/google/callback', 'handleGoogleCallback');
+});
+
 Route::middleware('authlogin')->group(function () {
     // View của Trang đăng nhập
-    Route::get('/logIn-page', [LogController::class, 'logIn'])->name('logIn-page');
+    Route::get('/login', [LogController::class, 'logIn'])->name('login');
     // POST thông tin trong Trang đăng nhập
-    Route::post('/logIn-page', [LogController::class, 'aclogin']);
+    Route::post('/login', [LogController::class, 'aclogin']);
     // View của Trang đăng kí
     Route::get('/signIn-page', [LogController::class, 'signIn'])->name('signIn-page');
     // POST thông tin trong Trang đăng kí
@@ -136,3 +146,6 @@ Route::prefix('/')->name('client.')->group(function () {
     });
 });
 Route::get('/logout', [LogController::class, 'logout'])->name('logout');
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
