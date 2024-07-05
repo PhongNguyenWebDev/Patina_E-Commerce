@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th6 25, 2024 lúc 06:23 AM
+-- Thời gian đã tạo: Th7 05, 2024 lúc 11:13 PM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `banner_bottoms` (
   `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -39,12 +40,12 @@ CREATE TABLE `banner_bottoms` (
 -- Đang đổ dữ liệu cho bảng `banner_bottoms`
 --
 
-INSERT INTO `banner_bottoms` (`id`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, '/assets/clients/img/Logo_bran/adidas.png', '1', NULL, NULL),
-(2, '/assets/clients/img/Logo_bran/Hades.png', '1', NULL, NULL),
-(3, '/assets/clients/img/Logo_bran/SWE.png', '1', NULL, NULL),
-(4, '/assets/clients/img/Logo_bran/BAMA.png', '1', NULL, NULL),
-(5, '/assets/clients/img/Logo_bran/BOBUI.png', '1', NULL, NULL);
+INSERT INTO `banner_bottoms` (`id`, `name`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'ADIDAS', '/assets/clients/img/Logo_bran/adidas.png', '1', NULL, '2024-06-30 23:39:34'),
+(2, 'HADES', '/assets/clients/img/Logo_bran/Hades.png', '1', NULL, '2024-06-30 23:39:22'),
+(3, 'SWE', '/assets/clients/img/Logo_bran/SWE.png', '1', NULL, '2024-06-30 23:39:10'),
+(4, 'BAMA', '/assets/clients/img/Logo_bran/BAMA.png', '1', NULL, '2024-06-30 23:38:57'),
+(5, 'BOBUI', '/assets/clients/img/Logo_bran/BOBUI.png', '1', NULL, '2024-06-30 23:38:47');
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,7 @@ CREATE TABLE `blogs` (
 
 CREATE TABLE `brands` (
   `id` bigint UNSIGNED NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -103,7 +104,7 @@ CREATE TABLE `brands` (
 INSERT INTO `brands` (`id`, `image`, `name`, `slug`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, '/assets/clients/img/Logo_bran/SWE.png', 'SWE', 'swe', NULL, NULL, NULL),
 (2, '/assets/clients/img/Logo_bran/BAMA.png', 'BAMA', 'bama', NULL, NULL, NULL),
-(3, '/assets/clients/img/Logo_bran/Hades.png', 'HADES', 'hades', NULL, NULL, NULL),
+(3, '/assets/clients/img/Logo_bran/Hades.png', 'HADE', 'hade', NULL, '2024-07-01 00:01:07', NULL),
 (4, '/assets/clients/img/Logo_bran/BOBUI.png', 'BOBUI', 'bobui', NULL, NULL, NULL),
 (5, '/assets/clients/img/Logo_bran/adidas.png', 'ADIDAS', 'adidas', NULL, NULL, NULL);
 
@@ -129,7 +130,9 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `size`, `color`, `quantity`, `created_at`, `updated_at`) VALUES
-(5, 3, 1, 'XL', 'White', 1, '2024-06-24 08:45:32', '2024-06-24 23:07:50');
+(9, 5, 1, 'S', 'White', 4, '2024-06-27 05:55:05', '2024-06-27 05:57:08'),
+(10, 5, 1, 'L', 'Green', 2, '2024-06-27 05:56:57', '2024-06-27 05:57:09'),
+(14, 3, 1, 'XL', 'Green', 1, '2024-06-30 22:15:21', '2024-07-05 15:42:03');
 
 -- --------------------------------------------------------
 
@@ -141,7 +144,7 @@ CREATE TABLE `categories` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parent_id` bigint UNSIGNED DEFAULT NULL,
+  `parent_id` bigint UNSIGNED DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -152,7 +155,14 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `parent_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Áo', 'ao', NULL, NULL, NULL, NULL);
+(1, 'Áo', 'ao', 0, NULL, NULL, NULL),
+(2, 'Quần', 'quan', 0, '2024-06-29 06:35:37', '2024-06-29 06:37:41', NULL),
+(3, 'Bộ Quần Áo', 'bo-quan-ao', 0, '2024-06-29 06:48:51', '2024-06-29 07:01:41', NULL),
+(4, 'Giày', 'giay', 0, '2024-06-29 06:49:08', '2024-06-29 06:49:08', NULL),
+(5, 'Phụ Kiện', 'phu-kien', 0, '2024-06-29 06:49:24', '2024-06-29 06:49:24', NULL),
+(7, 'Ví', 'vi', 5, '2024-06-29 06:52:25', '2024-06-29 06:52:25', NULL),
+(8, 'Tất', 'tat', 5, '2024-06-29 06:53:23', '2024-06-29 06:53:23', NULL),
+(9, 'Mũ', 'mu', 5, '2024-06-29 06:53:44', '2024-06-29 06:53:44', NULL);
 
 -- --------------------------------------------------------
 
@@ -174,7 +184,10 @@ CREATE TABLE `colors` (
 INSERT INTO `colors` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'White', NULL, NULL),
 (2, 'Green', NULL, NULL),
-(3, 'Yellow', '2024-06-24 12:57:51', '2024-06-24 12:57:51');
+(3, 'Yellow', '2024-06-24 12:57:51', '2024-06-24 12:57:51'),
+(4, 'Nâu', '2024-06-26 02:30:51', '2024-06-26 02:30:51'),
+(5, 'Đen', '2024-06-26 02:30:51', '2024-06-26 02:30:51'),
+(6, 'Black', '2024-06-29 08:14:25', '2024-06-29 08:14:25');
 
 -- --------------------------------------------------------
 
@@ -186,7 +199,7 @@ CREATE TABLE `comments` (
   `id` bigint UNSIGNED NOT NULL,
   `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `product_id` bigint UNSIGNED NOT NULL,
+  `blog_id` bigint UNSIGNED NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -224,13 +237,26 @@ INSERT INTO `contacts` (`id`, `name`, `email`, `note`, `created_at`, `updated_at
 CREATE TABLE `coupons` (
   `id` bigint UNSIGNED NOT NULL,
   `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `discount_type` enum('percentage','fixed') COLLATE utf8mb4_unicode_ci NOT NULL,
   `discount` double(10,2) NOT NULL,
   `min_price` decimal(10,2) DEFAULT NULL,
+  `usage_limit` bigint NOT NULL,
+  `usage_count` bigint NOT NULL DEFAULT '0',
+  `user_specific` tinyint(1) NOT NULL DEFAULT '0',
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `code`, `description`, `discount_type`, `discount`, `min_price`, `usage_limit`, `usage_count`, `user_specific`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
+(1, 'man', 'Đàn ông', 'fixed', 10.00, 300.00, 100, 0, 0, '2024-07-05', '2024-07-31', NULL, NULL),
+(2, 'okman', 'ok', 'percentage', 10.00, 500.00, 100, 0, 0, '2024-07-05', '2024-07-31', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -281,6 +307,15 @@ CREATE TABLE `galleries` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `galleries`
+--
+
+INSERT INTO `galleries` (`id`, `name`, `product_id`, `created_at`, `updated_at`) VALUES
+(35, '/uploads/products/product-1.jpg', 11, '2024-06-29 08:14:25', '2024-06-29 08:14:25'),
+(36, '/uploads/products/product-7.jpg', 11, '2024-06-29 08:14:25', '2024-06-29 08:14:25'),
+(37, '/uploads/products/product-13.jpg', 11, '2024-06-29 08:14:25', '2024-06-29 08:14:25');
 
 -- --------------------------------------------------------
 
@@ -389,7 +424,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `images`, `price`, `sale_price`, `summary`, `description`, `status`, `hot`, `slug`, `brand_id`, `category_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Basic hooded sweatshirt in pink', '/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg', 200.00, 160.00, '<ul>\n                        <li>\n                            <p class=\"m-0\">Lorem Ipsum is simply dummy text of the printing and typesetting\n                                industry. Lorem\n                                Ipsum has been the industry\'s standard dummy text ever since the 1500s.</p>\n                        </li>\n                        <li>\n                            <p class=\"m-0\">When an unknown printer took a galley of type and scrambled it to make a\n                                type\n                                specimen book. It has survived not only five centuries, but also the leap into\n                                electronic typesetting, remaining essentially unchanged. It was popularised in.</p>\n                        </li>\n                        <li>\n                            <p class=\"m-0\">The 1960s with the release of Letraset sheets containing Lorem Ipsum\n                                passages, and\n                                more recently with desktop publishing software like Aldus PageMaker including\n                                versions of Lorem Ipsum.</p>\n                        </li>\n                    </ul>', NULL, 1, 0, 'basic-hooded-sweatshirt-in-pink', 1, 1, NULL, NULL, NULL);
+(1, 'Basic hooded sweatshirt in pink', '/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg', 200.00, 160.00, '<ul>\n                        <li>\n                            <p class=\"m-0\">Lorem Ipsum is simply dummy text of the printing and typesetting\n                                industry. Lorem\n                                Ipsum has been the industry\'s standard dummy text ever since the 1500s.</p>\n                        </li>\n                        <li>\n                            <p class=\"m-0\">When an unknown printer took a galley of type and scrambled it to make a\n                                type\n                                specimen book. It has survived not only five centuries, but also the leap into\n                                electronic typesetting, remaining essentially unchanged. It was popularised in.</p>\n                        </li>\n                        <li>\n                            <p class=\"m-0\">The 1960s with the release of Letraset sheets containing Lorem Ipsum\n                                passages, and\n                                more recently with desktop publishing software like Aldus PageMaker including\n                                versions of Lorem Ipsum.</p>\n                        </li>\n                    </ul>', NULL, 1, 0, 'basic-hooded-sweatshirt-in-pink', 1, 1, NULL, NULL, NULL),
+(11, 'Gia', '/uploads/products/product-7.jpg', 4900.00, 3999.00, '<p>non</p>', '<p>ok</p>', 1, 1, 'gia', 3, 7, '2024-06-29 08:14:25', '2024-06-29 08:14:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -419,7 +455,8 @@ INSERT INTO `product_detail` (`id`, `product_id`, `size_id`, `color_id`, `quanti
 (5, 1, 1, 2, 22, 220.00, 200.00),
 (6, 1, 2, 2, 0, 220.00, 200.00),
 (7, 1, 3, 2, 12, 220.00, 200.00),
-(8, 1, 4, 2, 11, 220.00, 200.00);
+(8, 1, 4, 2, 11, 220.00, 200.00),
+(23, 11, 5, 6, 10, 4900.00, 3999.00);
 
 -- --------------------------------------------------------
 
@@ -438,7 +475,34 @@ CREATE TABLE `product_tag` (
 
 INSERT INTO `product_tag` (`product_id`, `tag_id`) VALUES
 (1, 1),
-(1, 2);
+(1, 2),
+(11, 3),
+(11, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` bigint NOT NULL,
+  `reviews` text NOT NULL,
+  `rating_point` decimal(10,2) NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `product_detail_id` bigint NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `reviews`, `rating_point`, `user_id`, `product_detail_id`, `status`, `created_at`, `updated_at`) VALUES
+(2, 'ssssssssss', 5.00, 5, 1, 0, '2024-06-27 00:37:18', '2024-06-27 00:37:18'),
+(13, 'helo', 3.00, 3, 1, 0, '2024-06-29 04:03:40', '2024-06-29 04:03:40');
 
 -- --------------------------------------------------------
 
@@ -461,7 +525,8 @@ INSERT INTO `sizes` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'S', NULL, NULL),
 (2, 'M', NULL, NULL),
 (3, 'L', NULL, NULL),
-(4, 'XL', NULL, NULL);
+(4, 'XL', NULL, NULL),
+(5, 'Free Size', '2024-06-29 08:14:25', '2024-06-29 08:14:25');
 
 -- --------------------------------------------------------
 
@@ -482,9 +547,9 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, '/assets/clients/img/slide_show/slideshow_1.png', 1, NULL, NULL),
-(2, '/assets/clients/img/slide_show/slideshow_2.jpg', 1, NULL, NULL),
-(3, '/assets/clients/img/slide_show/slideshow_3.png', 1, NULL, NULL);
+(6, '/uploads/sliders/slideshow_1.png', 1, '2024-06-29 08:45:51', '2024-06-29 08:45:51'),
+(7, '/uploads/sliders/slideshow_2.jpg', 1, '2024-06-29 08:46:32', '2024-06-29 08:46:32'),
+(8, '/uploads/sliders/slideshow_3.png', 1, '2024-06-29 08:47:03', '2024-06-29 08:47:03');
 
 -- --------------------------------------------------------
 
@@ -496,10 +561,20 @@ CREATE TABLE `social_networks` (
   `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `class` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `social_networks`
+--
+
+INSERT INTO `social_networks` (`id`, `name`, `link`, `icon`, `created_at`, `updated_at`) VALUES
+(1, 'Facebook', 'https://www.facebook.com/', '<i class=\"fa-brands fa-facebook-f \"></i>', '2024-06-30 23:13:03', '2024-06-30 23:22:07'),
+(2, 'X', 'https://twitter.com/', '<i class=\"fa-brands fa-x-twitter\"></i>', '2024-06-30 23:13:49', '2024-06-30 23:13:49'),
+(3, 'Instagram', 'https://www.instagram.com/', '<i class=\"fa-brands fa-instagram\"></i>', '2024-06-30 23:14:17', '2024-06-30 23:14:17'),
+(4, 'Youtube', 'https://www.youtube.com/', '<i class=\"fa-brands fa-youtube\"></i>', '2024-06-30 23:14:40', '2024-06-30 23:14:40');
 
 -- --------------------------------------------------------
 
@@ -520,7 +595,28 @@ CREATE TABLE `tags` (
 
 INSERT INTO `tags` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Shirt', NULL, NULL),
-(2, 'Hades', NULL, NULL);
+(2, 'Hades', NULL, NULL),
+(3, 'ví đẹp', '2024-06-29 08:14:25', '2024-06-29 08:14:25'),
+(4, 'phụ kiện', '2024-06-29 08:14:25', '2024-06-29 08:14:25');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `transport_fee`
+--
+
+CREATE TABLE `transport_fee` (
+  `id` bigint NOT NULL,
+  `name` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `transport_fee`
+--
+
+INSERT INTO `transport_fee` (`id`, `name`) VALUES
+(1, 'Hồ Chí Minh'),
+(2, 'HCM');
 
 -- --------------------------------------------------------
 
@@ -539,6 +635,8 @@ CREATE TABLE `users` (
   `role` tinyint NOT NULL DEFAULT '1',
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `social_provider` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'google',
+  `social_id` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -548,9 +646,13 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `email_verified_at`, `password`, `role`, `active`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(3, 'Dương Tuấn', 'along18901@gmail.com', NULL, NULL, '2024-06-21 05:04:23', '$2y$10$dG5qkUz/zLRLgHRy5CMBQeNIhbzP7hOgTA6CfG99lcfcyOccQIn36', 1, 1, NULL, '2024-06-21 04:35:58', '2024-06-21 05:04:23', NULL),
-(4, 'Dương Tuấn', 'along1891@gmail.com', NULL, NULL, NULL, '$2y$10$HxC5PIdLc0RF/eEt/0Z89Ovda9xSCwbz4Hg/4o/JV7OOE.D2oBChS', 1, 1, NULL, '2024-06-24 06:14:20', '2024-06-24 09:55:51', NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `email_verified_at`, `password`, `role`, `active`, `remember_token`, `social_provider`, `social_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 'Nguyễn Dương Tuấn', 'along18901@gmail.com', NULL, 'Thái Sơn, Tp.HCM', '2024-06-21 05:04:23', '$2y$10$dG5qkUz/zLRLgHRy5CMBQeNIhbzP7hOgTA6CfG99lcfcyOccQIn36', 0, 1, NULL, 'google', NULL, '2024-06-21 04:35:58', '2024-06-21 05:04:23', NULL),
+(4, 'Dương Tuấn', 'along1891@gmail.com', NULL, NULL, NULL, '$2y$10$HxC5PIdLc0RF/eEt/0Z89Ovda9xSCwbz4Hg/4o/JV7OOE.D2oBChS', 1, 1, NULL, 'google', NULL, '2024-06-24 06:14:20', '2024-06-24 09:55:51', NULL),
+(5, 'Nguyễn Tuấn Phong', 'phong@gmail.com', NULL, NULL, NULL, '$2y$10$/J1erxa8q2ZXuGiCs5J4WejKykBoP27dehh6JUF7KLd1DJPzDnxZW', 0, 1, NULL, 'google', NULL, '2024-06-26 02:28:23', '2024-06-26 02:28:23', NULL),
+(6, 'Dương Tuấn', 'along181@gmail.com', NULL, NULL, NULL, '$2y$10$goioroRgXjvvHP2tJG8zB.69IG7iAnsf3W2RahZtiG518LqL9d6ta', 1, 0, NULL, 'google', NULL, '2024-06-29 04:09:04', '2024-06-29 04:09:04', NULL),
+(9, 'Nguyen Tuan Phong (FPL HCM)', 'phongntps27047@fpt.edu.vn', NULL, NULL, NULL, '$2y$10$lfMqiA2Z3/ob6iMWI643TuXkjim77byySQNAi6PFpRqiJFDmqGjYa', 1, 0, NULL, 'google', '116291922418443783268', '2024-07-03 00:10:07', '2024-07-03 00:10:07', NULL),
+(10, 'Nhi Tuyết', 'ptn3221@gmail.com', NULL, NULL, NULL, '$2y$10$5MdLOY6/x2sBvg2fzvw9TuleTi1WicLsp3kk0OdHf/fBg4y9yxsIG', 1, 0, NULL, 'google', '109581590602463538157', '2024-07-03 00:11:50', '2024-07-03 00:11:50', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -607,7 +709,7 @@ ALTER TABLE `colors`
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `comments_user_id_foreign` (`user_id`),
-  ADD KEY `comments_product_id_foreign` (`product_id`);
+  ADD KEY `comments_product_id_foreign` (`blog_id`);
 
 --
 -- Chỉ mục cho bảng `contacts`
@@ -704,6 +806,14 @@ ALTER TABLE `product_tag`
   ADD KEY `product_tag_tag_id_foreign` (`tag_id`);
 
 --
+-- Chỉ mục cho bảng `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_detail_id` (`product_detail_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Chỉ mục cho bảng `sizes`
 --
 ALTER TABLE `sizes`
@@ -728,6 +838,12 @@ ALTER TABLE `tags`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `transport_fee`
+--
+ALTER TABLE `transport_fee`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
@@ -742,7 +858,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `banner_bottoms`
 --
 ALTER TABLE `banner_bottoms`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `banner_tops`
@@ -760,25 +876,25 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT cho bảng `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `colors`
 --
 ALTER TABLE `colors`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `comments`
@@ -796,7 +912,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT cho bảng `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `failed_jobs`
@@ -808,7 +924,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -838,43 +954,55 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `product_detail`
 --
 ALTER TABLE `product_detail`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT cho bảng `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `social_networks`
 --
 ALTER TABLE `social_networks`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `transport_fee`
+--
+ALTER TABLE `transport_fee`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -888,16 +1016,10 @@ ALTER TABLE `carts`
   ADD CONSTRAINT `carts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `categories`
---
-ALTER TABLE `categories`
-  ADD CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
-
---
 -- Các ràng buộc cho bảng `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `comments_product_id_foreign` FOREIGN KEY (`blog_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
@@ -948,6 +1070,13 @@ ALTER TABLE `product_detail`
 ALTER TABLE `product_tag`
   ADD CONSTRAINT `product_tag_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `product_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`) ON DELETE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_product_detail_id_foreign` FOREIGN KEY (`product_detail_id`) REFERENCES `product_detail` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  ADD CONSTRAINT `reviews_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
