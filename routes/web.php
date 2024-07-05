@@ -142,7 +142,10 @@ Route::prefix('/')->name('client.')->group(function () {
             Route::get('/add/{product}', [ClFavoriteController::class, 'add'])->name('add');
             Route::get('/delete/{product}', [ClFavoriteController::class, 'delete'])->name('delete');
         });
-        Route::get('/checkout-page', [ClCheckOutController::class, 'checkOut'])->name('checkout-page');
+        Route::prefix('checkout-page')->name('checkout.')->group(function () {
+            Route::get('/', [ClCheckOutController::class, 'index'])->name('index');
+            Route::post('/apply-coupon', [ClCheckoutController::class, 'applyCoupon'])->name('apply_coupon');
+        });
     });
 });
 Route::get('/logout', [LogController::class, 'logout'])->name('logout');

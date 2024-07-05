@@ -25,4 +25,12 @@ class Category extends Model
     {
         return $this->hasMany(Product::class, 'category_id');
     }
+    public function totalChildProducts()
+{
+    $total = 0;
+    foreach ($this->parent as $childCategory) {
+        $total += $childCategory->products_count;
+    }
+    return $total;
+}
 }

@@ -17,7 +17,7 @@ class Customer
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect()->route('logIn-page')->with('ermsg', 'Vui lòng đăng nhập để tiếp tục truy vấn');
+            return redirect()->route('login')->with('ermsg', 'Vui lòng đăng nhập để tiếp tục truy vấn');
         }
         return $next($request);
     }

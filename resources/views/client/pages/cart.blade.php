@@ -86,7 +86,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <a href="{{ route('client.checkout-page') }}" class="col-md-12">
+                                    <a href="{{ route('client.checkout.index') }}" class="col-md-12">
                                         <button class="btn btn-giohang px-4 fs-5 border">Thanh toán</button>
                                     </a>
                                 </div>

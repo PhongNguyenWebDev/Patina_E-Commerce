@@ -1,14 +1,29 @@
 @extends('layouts.client')
+@section('css')
+@endsection
 @section('content')
     @include('client.blocks.banner')
     <section class="container">
-        <div class=" my-5 w-100 p-4" style="border: 1px solid var(--primary-700-color); background-color: #F8F7F6;">
-            <p class="m-0 fs-5" style="color: var(--secondary-1200-color); ">Phản hồi khách hàng? <a
-                    style="color: var(--secondary-1000-color);" href="">Click tại đây</a> để đăng nhập</p>
-        </div>
     </section>
     <!-- Checkout info & payment -->
     <section class="container my-5">
+        <!-- Coupon -->
+        <div class="col-xl-7 mb-5 voucher-container">
+            <form action="{{ route('client.checkout.apply_coupon') }}" method="POST">
+                @csrf
+                <h3 class="fs-2" style="font-weight: 600">Mã giảm giá</h3>
+                <hr style="border: 1px solid; color: var(--primary-1000-color);">
+                <div class="input-group mb-3 mt-3">
+                    <input type="text" class="form-control" name="coupon_code" placeholder="Nhập mã giảm giá">
+                    <button class="btn btn-outline-secondary" type="submit">Áp dụng</button>
+                </div>
+                <div class="alert alert-info" role="alert">
+                    Đã có mã giảm giá? <a href="" id="showVoucher" class="alert-link">Nhấp vào đây</a> để
+                    xem
+                    các ưu đãi đang có.
+                </div>
+            </form>
+        </div>
         <form class="checkout-form" action="">
             <div class="row g-xl-5">
                 <div class="col-12 col-xl-7">
@@ -16,13 +31,16 @@
                     <div>
                         <h3 class="fs-2">Thông tin khách hàng</h3>
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
-                        <input class="form-control" type="text" placeholder="Họ và tên">
+                        <input class="form-control" type="text" placeholder="Họ và tên" value="{{ $users->name }}"
+                            disabled>
                         <div class="row g-2 my-1 ">
                             <div class="col-6">
-                                <input class="form-control" type="Email" placeholder="Địa chỉ Email">
+                                <input class="form-control" type="Email" value="{{ $users->email }}" disabled
+                                    placeholder="Địa chỉ Email">
                             </div>
                             <div class="col-6">
-                                <input class="form-control" type="text" placeholder="Số điện thoại">
+                                <input class="form-control" type="text" value="{{ $users->phone }}" disabled
+                                    placeholder="Số điện thoại">
                             </div>
                         </div>
                     </div>
@@ -31,17 +49,13 @@
                         <h3 class="fs-2">Địa chỉ giao hàng</h3>
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
                         <div class="col-12">
-                            <input class="form-control " type="text" placeholder="Address">
+                            <input class="form-control " type="text" value="{{ $users->address }}" placeholder="Address"
+                                disabled>
                         </div>
                     </div>
-                    <!-- Coupon -->
-                    <div class="mb-5">
-                        <h3 class="fs-2">Mã giảm giá</h3>
-                        <hr style="border: 1px solid; color: var(--primary-1000-color);">
-                        <div>
-                            <input class="form-control " type="text" placeholder="Coupon Code">
-                        </div>
-                    </div>
+
+
+
                     <!-- Payment Methods -->
                     <div class="mb-5">
                         <h3 class="fs-2">Phương thức thanh toán</h3>
@@ -82,48 +96,83 @@
                 <div class="col-12 col-xl-5">
                     <h3 class="fs-2">Item</h3>
                     <hr style="border: 1px solid; color: var(--primary-1000-color);">
-                    <div>
-                        <div class="row g-2 align-items-center">
-                            <div class="col-3">
-                                <div class="position-relative">
-                                    <img class="img-thumbnail w-75 h-75"
-                                        src="img/Products/Footware/ADIDAS ORIGINALS X BAD BUNNY LAST CAMPUS.jpg"
-                                        alt="">
-                                    <span
-                                        class="w-25 position-absolute top-0 end-0 text-center rounded-circle translate-middle bg-white fw-bold"
-                                        style="border:2px solid var(--primary-1000-color); color: var(--primary-1000-color);">1</span>
+                    @foreach ($cart as $item)
+                        <div>
+                            <div class="row g-2 align-items-center">
+                                <div class="col-3">
+                                    <div class="position-relative">
+                                        <img class="img-thumbnail w-75 h-75" src="{{ $item->product->images }}"
+                                            alt="">
+                                        <span
+                                            class="w-25 position-absolute top-0 end-0 text-center rounded-circle translate-middle bg-white fw-bold"
+                                            style="border:2px solid var(--primary-1000-color); color: var(--primary-1000-color);">{{ $item->quantity }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-5 mx-1">
+                                    <h5 class="my-2">{{ $item->product->name }}</h5>
+                                    <small>Size: {{ $item->size }} | Color: {{ $item->color }}</small>
+                                </div>
+                                <div class="col-3">
+                                    <h5>${{ number_format($item->price) }}</h5>
                                 </div>
                             </div>
-                            <div class="col-5 mx-1">
-                                <h5 class="my-2">Adidas BH413</h5>
-                                <i class="fa-solid fs-3 fa-xmark"></i>
-                            </div>
-                            <div class="col-3">
-                                <h5>$1,220.00</h5>
-                            </div>
-                        </div>
-                    </div>
+                        </div> <br>
+                    @endforeach
+
                     <hr style="border: 1px solid; color: var(--primary-1000-color);">
                     <div class="row my-2 g-2">
                         <div class="col-6">
                             <h5 class="fs-4">Tính tạm</h5>
-                            <h5 class="my-2 fs-4">Giảm giá</h5>
-                            <h5 class="fs-4">Phí vận chuyển</h5>
+                            <h5 class="my-2 fs-4">Phí vận chuyển</h5>
+                            <h5 class="fs-4">Giảm giá</h5>
                         </div>
                         <div class="col-6 text-end">
-                            <h5 class="fs-4">$1,220.00</h5>
-                            <h5 class="my-2 fs-4">$0.00</h5>
-                            <h5 class="fs-4">$4.00</h5>
+                            <h5 class="fs-4">${{ number_format($item->subTotal) }}</h5>
+                            <h5 class="fs-4">
+                                @if ($transportFee == 0)
+                                    <a style="font-weight:600">Free</a>
+                                @else
+                                    ${{ number_format($transportFee) }}
+                                @endif
+                            </h5>
+                            <h5 class="my-2 fs-4">
+                                @if ($appliedCouponCode)
+                                    <span style="color: red">(voucher: {{ $appliedCouponCode }})</span>
+                                    @if ($couponCode && $couponCode->discount_type === 'percentage')
+                                        {{ $couponDiscount }}% 
+                                    @elseif ($couponCode && $couponCode->discount_type === 'fixed')
+                                        ${{ number_format($couponDiscount) }} 
+                                    @endif
+                                @else
+                                    ${{ number_format($couponDiscount) }}
+                                @endif
+                            </h5>
                         </div>
                     </div>
                     <hr style="border: 1px solid; color: var(--primary-1000-color);">
                     <div class="d-flex justify-content-between">
                         <h3 class="fs-3">Total</h3>
-                        <h3 class="fs-3">$1,224.00</h3>
+                        @if ($totalPrice > 500)
+                            @php
+                                $discountedPrice = $totalPrice * 0.9;
+                            @endphp
+                            <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500$)</small>
+                            <h3 class="fs-3">
+                                <del style="color: red">${{ number_format($totalPrice) }}</del>
+                                ${{ number_format($discountedPrice) }}
+
+                            </h3>
+                        @else
+                            <h3 class="fs-3">
+                                ${{ number_format($totalPrice) }}
+                            </h3>
+                        @endif
                     </div>
                     <button class="btn fs-3 my-2 rounded-1 w-50 float-end btn-thanhtoan">Checkout</button>
                 </div>
             </div>
         </form>
     </section>
+@endsection
+@section('script')
 @endsection

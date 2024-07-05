@@ -1,5 +1,5 @@
 <div class="my-xl-5 my-2 w-75 d-flex justify-content-center">
-    <form class="d-flex search-popular-products w-75" role="search">
+    <form class="d-flex search-popular-products w-75" method="GET" action="{{ route('client.shop-page') }}" role="search">
         <input wire:model.live="search" class="w-100 form-control" type="search" name="query" placeholder="Hãy nhập tên của một sản phẩm mà bạn đang tìm kiếm...">
         <button class="border-0" type="button">
             <i class="fa-solid fa-magnifying-glass fa-xl"></i>

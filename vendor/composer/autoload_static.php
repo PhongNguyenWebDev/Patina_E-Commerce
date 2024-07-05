@@ -612,7 +612,6 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Controllers\\Client\\ClSeriesShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClSeriesShopController.php',
         'App\\Http\\Controllers\\Client\\ClShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClShopController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LogController' => __DIR__ . '/../..' . '/app/Http/Controllers/LogController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AdminAuthenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminAuthenticate.php',

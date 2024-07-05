@@ -42,7 +42,7 @@
                         @forelse ($categories as $category)
                             @if ($category->parent_id == 0)
                                 @if ($category->parent()->count() > 0)
-                                    <li class="nav-link">
+                                    <li class="nav-link mt-1">
                                         <div class="accordion" id="accordion-{{ $category->slug }}">
                                             <div class="accordion-item border-0 show">
                                                 <div class="d-flex justify-content-between align-items-end">
@@ -54,14 +54,14 @@
                                                         {{ $category->name }}
                                                     </a>
                                                     <p style="font-size: var(--font-size); margin: 0;" class="amout">
-                                                        {{ $category->products_count }}</p>
+                                                        {{ $category->totalChildProducts() }}</p>
                                                 </div>
                                                 <div id="collapse-{{ $category->slug }}"
                                                     class="accordion-collapse collapse show">
                                                     <div class="accordion-body p-0">
                                                         <ul>
                                                             @foreach ($category->parent as $child)
-                                                                <li class="nav-link d-flex justify-content-between">
+                                                                <li class="nav-link d-flex justify-content-between mt-1">
                                                                     <x-vertical-nav-link
                                                                         href="{{ route('client.shop-page', $child->slug) }}"
                                                                         :active="request('category') === $child->slug">
@@ -79,7 +79,7 @@
                                         </div>
                                     </li>
                                 @else
-                                    <li class="d-flex align-items-center justify-content-between">
+                                    <li class="d-flex align-items-center justify-content-between mt-1">
                                         <x-vertical-nav-link href="{{ route('client.shop-page', $category->slug) }}"
                                             :active="request('category') === $category->slug">
                                             {{ $category->name }}

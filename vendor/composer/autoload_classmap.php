@@ -42,7 +42,6 @@ return array(
     'App\\Http\\Controllers\\Client\\ClSeriesShopController' => $baseDir . '/app/Http/Controllers/Client/ClSeriesShopController.php',
     'App\\Http\\Controllers\\Client\\ClShopController' => $baseDir . '/app/Http/Controllers/Client/ClShopController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
-    'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\LogController' => $baseDir . '/app/Http/Controllers/LogController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\AdminAuthenticate' => $baseDir . '/app/Http/Middleware/AdminAuthenticate.php',
