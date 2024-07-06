@@ -1,28 +1,120 @@
 @extends('layouts.client')
-@section('css')
-@endsection
 @section('content')
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .voucher {
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .voucherAll {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .voucher .code {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .voucher .discount {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ff5722;
+            margin-top: 10px;
+        }
+
+        .voucher .description {
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .voucher .expiration {
+            font-size: 14px;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        .butor {
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
     @include('client.blocks.banner')
-    <section class="container">
-    </section>
     <!-- Checkout info & payment -->
     <section class="container my-5">
         <!-- Coupon -->
-        <div class="col-xl-7 mb-5 voucher-container">
-            <form action="{{ route('client.checkout.apply_coupon') }}" method="POST">
-                @csrf
-                <h3 class="fs-2" style="font-weight: 600">Mã giảm giá</h3>
-                <hr style="border: 1px solid; color: var(--primary-1000-color);">
-                <div class="input-group mb-3 mt-3">
-                    <input type="text" class="form-control" name="coupon_code" placeholder="Nhập mã giảm giá">
-                    <button class="btn btn-outline-secondary" type="submit">Áp dụng</button>
-                </div>
+        <div class="row">
+            <div class="col-xl-7 mb-5 voucher-container">
+                <form action="{{ route('client.checkout.apply_coupon') }}" method="POST">
+                    @csrf
+                    <h3 class="fs-2" style="font-weight: 600">Mã giảm giá</h3>
+                    <hr style="border: 1px solid; color: var(--primary-1000-color);">
+                    <div class="input-group mb-3 mt-3">
+                        <input type="text" class="form-control" name="coupon_code" placeholder="Nhập mã giảm giá">
+                        <button class="btn btn-outline-secondary" type="submit">Áp dụng</button>
+                    </div>
+                </form>
                 <div class="alert alert-info" role="alert">
-                    Đã có mã giảm giá? <a href="" id="showVoucher" class="alert-link">Nhấp vào đây</a> để
+                    Đã có mã giảm giá? <a href="#" id="showVoucher" class="alert-link">Nhấp vào đây</a> để
                     xem
                     các ưu đãi đang có.
                 </div>
-            </form>
+                <div id="clickedMessage" class="hidden">
+                    <div class="voucherAll">
+                        @foreach ($allCoupons as $coupon)
+                            <div class="voucher" style="margin-right: 10px;">
+                                <div>
+                                    <div class="code">{{ $coupon->code }}</div>
+                                    <div class="discount">
+                                        @if ($coupon->discount_type === 'percentage')
+                                            Giảm giá {{ $coupon->discount }}%
+                                        @elseif ($coupon->discount_type === 'fixed')
+                                            Giảm giá {{ number_format($coupon->discount) }}$
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="description">{{ $coupon->description }}</div>
+                                <div class="expiration">Hết hạn vào ngày {{ date('d/m/Y', strtotime($coupon->end_date)) }}
+                                </div>
+                                <form action="{{ route('client.checkout.apply_coupon') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="coupon_code" value="{{ $coupon->code }}">
+                                    <button class="butor" type="submit">Áp dụng</button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 d-flex align-items-center">
+                <a href="{{ route('client.home-page') }}" class="d-flex align-items-center text-decoration-none">
+                    <img src="/assets/clients/img/Logo_bran/logoweb.jpg" alt=""
+                        style="border-radius: 50%; height: 260px; width: 260px;">
+                    <p class="web-name ms-3 m-0" style="font-family: 'Dancing Script', cursive; font-size: 47px;">PATINA
+                    </p>
+                </a>
+            </div>
         </div>
         <form class="checkout-form" action="">
             <div class="row g-xl-5">
@@ -139,9 +231,9 @@
                                 @if ($appliedCouponCode)
                                     <span style="color: red">(voucher: {{ $appliedCouponCode }})</span>
                                     @if ($couponCode && $couponCode->discount_type === 'percentage')
-                                        {{ $couponDiscount }}% 
+                                        {{ $couponDiscount }}%
                                     @elseif ($couponCode && $couponCode->discount_type === 'fixed')
-                                        ${{ number_format($couponDiscount) }} 
+                                        ${{ number_format($couponDiscount) }}
                                     @endif
                                 @else
                                     ${{ number_format($couponDiscount) }}
@@ -173,6 +265,12 @@
             </div>
         </form>
     </section>
-@endsection
-@section('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('showVoucher').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('clickedMessage').classList.remove('hidden');
+            });
+        });
+    </script>
 @endsection

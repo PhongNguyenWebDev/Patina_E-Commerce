@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost:3306
--- Thời gian đã tạo: Th7 05, 2024 lúc 11:13 PM
+-- Thời gian đã tạo: Th7 06, 2024 lúc 02:12 PM
 -- Phiên bản máy phục vụ: 8.0.30
 -- Phiên bản PHP: 8.1.10
 
@@ -132,7 +132,8 @@ CREATE TABLE `carts` (
 INSERT INTO `carts` (`id`, `user_id`, `product_id`, `size`, `color`, `quantity`, `created_at`, `updated_at`) VALUES
 (9, 5, 1, 'S', 'White', 4, '2024-06-27 05:55:05', '2024-06-27 05:57:08'),
 (10, 5, 1, 'L', 'Green', 2, '2024-06-27 05:56:57', '2024-06-27 05:57:09'),
-(14, 3, 1, 'XL', 'Green', 1, '2024-06-30 22:15:21', '2024-07-05 15:42:03');
+(14, 3, 1, 'XL', 'Green', 3, '2024-06-30 22:15:21', '2024-07-05 16:44:38'),
+(16, 4, 1, 'S', 'White', 4, '2024-07-05 16:43:49', '2024-07-05 16:43:49');
 
 -- --------------------------------------------------------
 
@@ -256,7 +257,7 @@ CREATE TABLE `coupons` (
 
 INSERT INTO `coupons` (`id`, `code`, `description`, `discount_type`, `discount`, `min_price`, `usage_limit`, `usage_count`, `user_specific`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
 (1, 'man', 'Đàn ông', 'fixed', 10.00, 300.00, 100, 0, 0, '2024-07-05', '2024-07-31', NULL, NULL),
-(2, 'okman', 'ok', 'percentage', 10.00, 500.00, 100, 0, 0, '2024-07-05', '2024-07-31', NULL, NULL);
+(2, 'okman', 'ok', 'percentage', 10.00, 500.00, 100, 0, 1, '2024-07-05', '2024-07-31', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -654,6 +655,27 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `address`, `email_verified_
 (9, 'Nguyen Tuan Phong (FPL HCM)', 'phongntps27047@fpt.edu.vn', NULL, NULL, NULL, '$2y$10$lfMqiA2Z3/ob6iMWI643TuXkjim77byySQNAi6PFpRqiJFDmqGjYa', 1, 0, NULL, 'google', '116291922418443783268', '2024-07-03 00:10:07', '2024-07-03 00:10:07', NULL),
 (10, 'Nhi Tuyết', 'ptn3221@gmail.com', NULL, NULL, NULL, '$2y$10$5MdLOY6/x2sBvg2fzvw9TuleTi1WicLsp3kk0OdHf/fBg4y9yxsIG', 1, 0, NULL, 'google', '109581590602463538157', '2024-07-03 00:11:50', '2024-07-03 00:11:50', NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user_coupons`
+--
+
+CREATE TABLE `user_coupons` (
+  `id` bigint NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `coupon_id` bigint UNSIGNED NOT NULL,
+  `saved_at` date NOT NULL,
+  `used_at` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_coupons`
+--
+
+INSERT INTO `user_coupons` (`id`, `user_id`, `coupon_id`, `saved_at`, `used_at`) VALUES
+(1, 3, 2, '2024-07-05', NULL);
+
 --
 -- Chỉ mục cho các bảng đã đổ
 --
@@ -851,6 +873,14 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Chỉ mục cho bảng `user_coupons`
+--
+ALTER TABLE `user_coupons`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cp_uscp` (`coupon_id`),
+  ADD KEY `us_uscp` (`user_id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -882,7 +912,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT cho bảng `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
@@ -1005,6 +1035,12 @@ ALTER TABLE `users`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT cho bảng `user_coupons`
+--
+ALTER TABLE `user_coupons`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Các ràng buộc cho các bảng đã đổ
 --
 
@@ -1077,6 +1113,13 @@ ALTER TABLE `product_tag`
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_product_detail_id_foreign` FOREIGN KEY (`product_detail_id`) REFERENCES `product_detail` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   ADD CONSTRAINT `reviews_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+--
+-- Các ràng buộc cho bảng `user_coupons`
+--
+ALTER TABLE `user_coupons`
+  ADD CONSTRAINT `cp_uscp` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `us_uscp` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

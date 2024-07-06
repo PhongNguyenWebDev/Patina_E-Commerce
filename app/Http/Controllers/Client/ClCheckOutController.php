@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\TransportFee;
+use App\Models\UserCoupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -42,7 +43,14 @@ class ClCheckOutController extends Controller
         $transportFee = $this->calculateTransportFee($users->address);
         $totalPrice = $this->calculateTotalPrice($cart, $couponDiscount, $transportFee);
 
-        return view('client.pages.checkout', compact('title','couponCode', 'couponDiscount', 'users', 'appliedCouponCode', 'transportFee', 'totalPrice'));
+        $savedCoupons = UserCoupon::where('user_id', auth()->id())->pluck('coupon_id')->toArray();
+
+        $allCoupons = Coupon::where(function ($query) use ($savedCoupons) {
+            $query->whereIn('id', $savedCoupons)
+                ->orWhere('user_specific', 0);
+        })->whereDate('end_date', '>=', now())->get();
+
+        return view('client.pages.checkout', compact('title', 'couponCode', 'couponDiscount','allCoupons', 'users', 'appliedCouponCode', 'transportFee', 'totalPrice'));
     }
     public function applyCoupon(Request $request)
     {
@@ -53,11 +61,14 @@ class ClCheckOutController extends Controller
             ->whereDate('end_date', '>=', now())
             ->first();
 
-        if ($coupon) {
+        if ($coupon && $this->canUseCoupon($coupon, auth()->id())) {
             $subTotal = $this->calculateSubTotal($cart);
             if ($subTotal < $coupon->min_price) {
                 return redirect()->back()->with('ermsg', 'Mã giảm giá không áp dụng với đơn hàng bé hơn ' . number_format($coupon->min_price));
             }
+            // UserCoupon::where('user_id', auth()->id())
+            //     ->where('coupon_id', $coupon->id)
+            //     ->update(['used_at' => now()]);
             Session::put('applied_coupon_id', $coupon->id);
             return redirect()->back()->with('ssmsg', 'Đã áp dụng mã giảm giá');
         } else {
@@ -88,19 +99,28 @@ class ClCheckOutController extends Controller
     }
 
     private function calculateTotalPrice($cart, $couponDiscount, $transportFee)
-{
-    $subTotal = $this->calculateSubTotal($cart);
-    $discountedAmount = 0;
-    $coupon = Session::get('applied_coupon_id') ? Coupon::find(Session::get('applied_coupon_id')) : null;
-    
-    if ($coupon && $coupon->discount_type === 'percentage') {
-        $discountedAmount = ($couponDiscount / 100) * $subTotal;
-    } elseif ($coupon && $coupon->discount_type === 'fixed') {
-        $discountedAmount = $couponDiscount;
+    {
+        $subTotal = $this->calculateSubTotal($cart);
+        $discountedAmount = 0;
+        $coupon = Session::get('applied_coupon_id') ? Coupon::find(Session::get('applied_coupon_id')) : null;
+
+        if ($coupon && $coupon->discount_type === 'percentage') {
+            $discountedAmount = ($couponDiscount / 100) * $subTotal;
+        } elseif ($coupon && $coupon->discount_type === 'fixed') {
+            $discountedAmount = $couponDiscount;
+        }
+
+        $totalPrice = $subTotal - $discountedAmount + $transportFee;
+        return $totalPrice;
     }
-
-    $totalPrice = $subTotal - $discountedAmount + $transportFee;
-    return $totalPrice;
-}
-
+    private function canUseCoupon($coupon, $userId)
+    {
+        if ($coupon->user_specific) {
+            return UserCoupon::where('user_id', $userId)
+                ->where('coupon_id', $coupon->id)
+                ->whereNull('used_at')
+                ->exists();
+        }
+        return true;
+    }
 }
