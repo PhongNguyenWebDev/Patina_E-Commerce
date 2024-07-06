@@ -678,3 +678,23 @@ span.active a:after,
     border: 0.5px solid black;
     border-radius: 5px;
 }
+
+/*  blog detail comment */
+.avatar {
+    width: 70px;
+    height: 70px;
+}
+.reply-box {
+    margin-left: 50px;
+    padding: 10px 0px;
+}
+.reply-btn {
+    color: #007bff;
+    cursor: pointer;
+}
+.reply-btn:hover {
+    text-decoration: underline;
+}
+.time {
+    color: #90949c;
+}

@@ -5,36 +5,21 @@
             display: none;
         }
 
-        .voucher {
-            background-color: #fff;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-        }
-
-        .voucherAll {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .voucher .code {
+        .code {
             font-size: 24px;
             font-weight: bold;
-            color: #333;
+            color: #8d6440;
         }
 
-        .voucher .discount {
+        .border-dashed {
+            border: 2px dashed #333;
+            border-radius: 5px;
+        }
+
+        .discount {
             font-size: 30px;
             font-weight: bold;
-            color: #ff5722;
-            margin-top: 10px;
+            color: #8d6440;
         }
 
         .voucher .description {
@@ -81,27 +66,37 @@
                     các ưu đãi đang có.
                 </div>
                 <div id="clickedMessage" class="hidden">
-                    <div class="voucherAll">
+                    <div class="container">
                         @foreach ($allCoupons as $coupon)
-                            <div class="voucher" style="margin-right: 10px;">
-                                <div>
-                                    <div class="code">{{ $coupon->code }}</div>
-                                    <div class="discount">
-                                        @if ($coupon->discount_type === 'percentage')
-                                            Giảm giá {{ $coupon->discount }}%
-                                        @elseif ($coupon->discount_type === 'fixed')
-                                            Giảm giá {{ number_format($coupon->discount) }}$
-                                        @endif
+                            <div class="rounded-2 row gx-4 justify-content-center">
+                                <div class="col-2 d-flex text-center justify-content-center align-items-center border-dashed shadow"
+                                    style="background-color:#FCF9F4; color:#8d6440;">
+                                    <h5><strong>Git <br> Voucher</strong></h5>
+                                </div>
+                                <div class="col-8 d-flex justify-content-between rounded-2 shadow">
+                                    <div class="col-9 rounded-1 p-1">
+                                        <div>
+                                            <div class="code text-uppercase fs-3 fw-bold">{{ $coupon->code }}</div>
+                                            <div class="discount text-uppercase fw-bold fs-3">
+                                                @if ($coupon->discount_type === 'percentage')
+                                                    Giảm giá {{ $coupon->discount }}%
+                                                @elseif ($coupon->discount_type === 'fixed')
+                                                    Giảm giá {{ number_format($coupon->discount) }}$
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="description">{{ $coupon->description }}</div>
+                                        <div class="expiration">Hết hạn vào ngày
+                                            {{ date('d/m/Y', strtotime($coupon->end_date)) }}
+                                        </div>
                                     </div>
+                                    <form class="d-flex align-items-center m-0"
+                                        action="{{ route('client.checkout.apply_coupon') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="coupon_code" value="{{ $coupon->code }}">
+                                        <button class="btn btn-giohang px-2 fs-6 border" type="submit">Áp dụng</button>
+                                    </form>
                                 </div>
-                                <div class="description">{{ $coupon->description }}</div>
-                                <div class="expiration">Hết hạn vào ngày {{ date('d/m/Y', strtotime($coupon->end_date)) }}
-                                </div>
-                                <form action="{{ route('client.checkout.apply_coupon') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="coupon_code" value="{{ $coupon->code }}">
-                                    <button class="butor" type="submit">Áp dụng</button>
-                                </form>
                             </div>
                         @endforeach
                     </div>

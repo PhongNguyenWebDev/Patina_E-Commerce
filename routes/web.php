@@ -117,6 +117,7 @@ Route::prefix('/')->name('client.')->group(function () {
     Route::post('shop/{product:slug}', [ClProductController::class, 'review'])->name('review');
     // Trang bài viết
     Route::get('/blog-page', [ClBlogController::class, 'blog'])->name('blog-page');
+    Route::get('/blog-page/{blog:slug}', [ClBlogController::class, 'blogDetail'])->name('blog-detail');
     // Trang giới thiệu
     Route::get('/introduce-page', [ClInTroController::class, 'introduce'])->name('introduce-page');
     // Trang liên hệ
