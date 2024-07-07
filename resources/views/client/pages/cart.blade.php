@@ -21,7 +21,7 @@
                                     @foreach ($cart as $item)
                                         <tr data-id="{{ $item->id }}">
                                             <td class="product-id d-none d-md-table-cell">{{ $loop->index + 1 }}</td>
-                                            <td class="product-name d-flex justify-content-center align-items-center">
+                                            <td class="product-name d-flex justify-content-flex-start align-items-center">
                                                 <img class="me-3 img-thumnail" src="{{ $item->product->images }}"
                                                     width="100" height="100" alt="Image">
                                                 <h2 class="h5 text-black m-0">{{ $item->product->name }}</h2>
