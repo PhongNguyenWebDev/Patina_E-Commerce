@@ -42,7 +42,7 @@ class LogController extends Controller
     {
         if ($acc = User::create($request->all())) {
             Mail::to($acc->email)->send(new VerifyAccount($acc));
-            return redirect()->route('logIn-page')->with('ssmsg', 'Vui lòng mở mail để kích hoạt tài khoản.');
+            return redirect()->route('login')->with('ssmsg', 'Vui lòng mở mail để kích hoạt tài khoản.');
         };
         return redirect()->back()->with('ermsg', 'Thất bại. Vui lòng kiểm tra lại.');
     }
@@ -50,7 +50,7 @@ class LogController extends Controller
     {
         $acc = User::where('email', $email)->whereNull('email_verified_at')->firstOrFail();
         $acc->update(['email_verified_at' => now(), 'active' => 1]);
-        return redirect()->route('logIn-page')->with('ssmsg', 'Hãy tiếp tục đăng nhập.');
+        return redirect()->route('login')->with('ssmsg', 'Hãy tiếp tục đăng nhập.');
     }
     public function logout()
     {
