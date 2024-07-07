@@ -3,13 +3,27 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClProfileController extends Controller
 {
     public function profile()
     {
-        $title = 'Thông Tin Cá Nhân';
-        return view('client.pages.accounts.profile', compact('title'));
+        if (Auth::check())
+        {
+            $title = 'Thông Tin Cá Nhân';
+            $user = Auth::user();
+            $username = $user->name;
+            $email = $user->email;
+            return view('client.pages.accounts.profile', compact('title', 'username', 'email'));
+        }
+        else
+        {
+            return redirect()->route('logIn');
+        }
     }
 }
+
+

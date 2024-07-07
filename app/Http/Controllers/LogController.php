@@ -26,7 +26,7 @@ class LogController extends Controller
         if (Auth::attempt($data)) {
             if (Auth::user()->active == 0) {
                 Auth::logout();
-                return redirect()->route('logIn-page')->with('ermsg', 'Tài khoản chưa kích hoạt. Xác nhận mail để đăng nhập.');
+                return redirect()->route('login')->with('ermsg', 'Tài khoản chưa kích hoạt. Xác nhận mail để đăng nhập.');
             }
             return redirect()->route('client.home-page')->with('ssmsg', 'Đăng nhập thành công.');
         } else {

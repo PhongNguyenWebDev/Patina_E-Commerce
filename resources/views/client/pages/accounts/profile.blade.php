@@ -49,13 +49,13 @@
                                                         <div
                                                             class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                                             <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith
+                                                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{$username}}
                                                                 </h4>
-                                                                <p class="mb-0">@johnny.s</p>
+                                                                <p class="mb-0">{{$email}}</p>
                                                                 <div class="mt-2">
                                                                     <button class="btn btn-primary" type="button">
                                                                         <i class="fa fa-fw fa-camera"></i>
-                                                                        <span>Change Photo</span>
+                                                                        <span>Thay đổi ảnh đại diện</span>
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -63,7 +63,7 @@
                                                     </div>
                                                     <ul class="nav nav-tabs">
                                                         <li class="nav-item"><a href=""
-                                                                class="active nav-link">Settings</a>
+                                                                class="active nav-link">Cài đặt</a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content pt-3">
@@ -74,20 +74,20 @@
                                                                         <div class="row">
                                                                             <div class="col">
                                                                                 <div class="form-group">
-                                                                                    <label>Full Name</label>
+                                                                                    <label>Họ và tên</label>
                                                                                     <input class="form-control"
                                                                                         type="text" name="name"
-                                                                                        placeholder="John Smith"
-                                                                                        value="John Smith">
+                                                                                        placeholder="{{$username}}"
+                                                                                        value="{{$username}}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col">
                                                                                 <div class="form-group">
-                                                                                    <label>Username</label>
+                                                                                    <label>Tên đăng nhập</label>
                                                                                     <input class="form-control"
                                                                                         type="text" name="username"
-                                                                                        placeholder="johnny.s"
-                                                                                        value="johnny.s">
+                                                                                        placeholder="{{$username}}"
+                                                                                        value="{{$username}}">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -97,20 +97,20 @@
                                                                                     <label>Email</label>
                                                                                     <input class="form-control"
                                                                                         type="text"
-                                                                                        placeholder="user@example.com">
+                                                                                        placeholder="{{$email}}">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="mb-2"><b>Change Password</b></div>
+                                                                <div class="mb-2"><b>Thay đổi mật khẩu</b></div>
                                                                 <div class="row">
                                                                     <div class="col">
                                                                         <div class="row">
                                                                             <div class="col">
                                                                                 <div class="col">
                                                                                     <div class="form-group">
-                                                                                        <label>Current Password</label>
+                                                                                        <label>Mật khẩu hiện tại</label>
                                                                                         <input class="form-control"
                                                                                             type="password"
                                                                                             placeholder="••••••">
@@ -119,7 +119,7 @@
                                                                             </div>
                                                                             <div class="col">
                                                                                 <div class="form-group">
-                                                                                    <label>New Password</label>
+                                                                                    <label>Mật khẩu mới</label>
                                                                                     <input class="form-control"
                                                                                         type="password"
                                                                                         placeholder="••••••">
