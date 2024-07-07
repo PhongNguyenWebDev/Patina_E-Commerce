@@ -33,10 +33,9 @@
                     </div>
                     <div class="d-flex flex-row justify-content-between p-0">
                         @foreach ($product->gallery as $item)
-                            <img class="img-thumbnail thumbnail w-25 h-75"
-                            src="{{ $item->name }}" alt="">
+                            <img class="img-thumbnail thumbnail w-25 h-75" src="{{ $item->name }}" alt="">
                         @endforeach
-                       
+
                     </div>
                 </div>
             </div>
@@ -94,7 +93,8 @@
                                         data-color-id="{{ $detail->color_id }}" data-quantity="{{ $detail->quantity }}">
                                         <input class="form-check-input size-radio" type="radio" name="size_id"
                                             id="size_{{ $detail->size_id }}" value="{{ $detail->size_id }}"
-                                            data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}" {{ $index == 0 ? 'checked' : '' }}>
+                                            data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}"
+                                            {{ $index == 0 ? 'checked' : '' }}>
                                         <label class="form-check-label fs-5 fw-medium"
                                             for="size_{{ $detail->size_id }}">{{ $detail->size->name }}</label>
                                     </div>
@@ -182,34 +182,9 @@
                             </div>
                             <div id="tab3" class="tab-pane">
                                 <div class="product-comment">
-                                    @foreach ($reviews as $review)
-                                        <div class="mt-box">
-                                            <div class="d-flex">
-                                                <div class="rounded-circle border d-flex justify-content-center align-items-center mx-2"
-                                                    style="width: 75px; height: 75px;">
-                                                    <i class="fa-regular fa-user"></i>
-                                                </div>
-                                                <div class="column">
-                                                    <span class="fs-4">{{ $review->user->name }}</span>
-                                                    <ul class="m-0 p-0 d-flex">
-                                                        @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($i <= $review->rating_point)
-                                                                <li class="nav-link"><i
-                                                                        class="fa fa-star text-warning"></i></li>
-                                                            @else
-                                                                <li class="nav-link"><i
-                                                                        class="fa fa-star-o text-warning"></i></li>
-                                                            @endif
-                                                        @endfor
-                                                    </ul>
-                                                    <time
-                                                        datetime="{{ $review->created_at }}">{{ $review->created_at->format('H:i M, d Y') }}</time>
-                                                    <p class="pt-3">{{ $review->reviews }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-
+                                    <div id="reviews">
+                                        @include('client.pages.partials.reviews')
+                                    </div>
                                     <form action="{{ route('client.review', $product->slug) }}" method="POST"
                                         class="p-commentform" id="formRating">
                                         @csrf
@@ -224,6 +199,7 @@
                                                     <a class="star-5" href="#" data-rating="5">5</a>
                                                 </span>
                                             </p>
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <input type="hidden" name="rating_point" id="rating_point" value="">
                                             <input type="hidden" name="product_detail_id"
                                                 value="{{ $product->productDetails->first()->id }}">
@@ -326,6 +302,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Xử lý sự kiện khi người dùng gửi đánh giá
             $('#submitReview').on('click', function(e) {
                 e.preventDefault();
 
@@ -338,15 +315,36 @@
                     dataType: "json",
                     success: function(response) {
                         console.log(response.message);
-                        // Xử lý phản hồi thành công ở đây nếu cần
+                        fetchReviews
+                            (); // Sau khi gửi thành công, cập nhật lại danh sách đánh giá
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
-                        // Xử lý lỗi ở đây nếu cần
+                        // Xử lý lỗi nếu cần
                     }
                 });
             });
 
+            // Hàm AJAX để lấy danh sách đánh giá
+            function fetchReviews() {
+                $.ajax({
+                    url: "{{ route('client.reviews', $product->slug) }}",
+                    type: "GET",
+                    dataType: "html",
+                    success: function(response) {
+                        $('#reviews').html(response); // Cập nhật nội dung danh sách đánh giá
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        // Xử lý lỗi nếu cần
+                    }
+                });
+            }
+
+            // Gọi hàm fetchReviews khi trang được tải
+            fetchReviews();
+
+            // Xử lý chọn số sao
             $('.stars a').on('click', function(e) {
                 e.preventDefault();
                 $('.stars span, .stars a').removeClass('active');

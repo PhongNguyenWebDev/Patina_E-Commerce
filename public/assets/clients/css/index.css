@@ -698,3 +698,6 @@ span.active a:after,
 .time {
     color: #90949c;
 }
+.breadcrumb-item + .breadcrumb-item::before {
+    float: none !important;
+}

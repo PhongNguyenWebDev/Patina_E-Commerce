@@ -30,6 +30,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\Client\ClReviewController;
 use App\Http\Controllers\Auth\LoginGoogleController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Client\ClCommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,9 +117,17 @@ Route::prefix('/')->name('client.')->group(function () {
     // Trang chi tiết sản phẩm
     Route::get('shop/{product:slug}', [ClProductController::class, 'show'])->name('detail');
     Route::post('shop/{product:slug}', [ClProductController::class, 'review'])->name('review');
+    Route::get('shop/{product:slug}/reviews', [ClProductController::class, 'fetchReviews'])->name('reviews');
     // Trang bài viết
-    Route::get('/blog-page', [ClBlogController::class, 'blog'])->name('blog-page');
-    Route::get('/blog-page/{blog:slug}', [ClBlogController::class, 'blogDetail'])->name('blog-detail');
+    Route::get('blog-page', [ClBlogController::class, 'blog'])->name('blog-page');
+    Route::get('blog-page/{blogSlug}', [ClBlogController::class, 'blogDetail'])->name('blog-detail');
+    Route::post('comments/store/{blogId}', [ClBlogController::class, 'storeComment'])->name('comments.store');
+    Route::post('comments/reply/{commentId}', [ClBlogController::class, 'replyComment'])->name('comments.reply');
+
+    Route::get('comments/{comment}/edit', [ClBlogController::class, 'editComment'])->name('comments.edit');
+    Route::put('comments/{comment}', [ClBlogController::class, 'updateComment'])->name('comments.update');
+    Route::delete('comments/{comment}', [ClBlogController::class, 'deleteComment'])->name('comments.delete');
+
     // Trang giới thiệu
     Route::get('/introduce-page', [ClInTroController::class, 'introduce'])->name('introduce-page');
     // Trang liên hệ

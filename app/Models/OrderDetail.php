@@ -21,5 +21,8 @@ class OrderDetail extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
-
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
