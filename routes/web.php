@@ -76,6 +76,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('products', AdProductController::class);
     // Trang quản lý mã giảm giá
     Route::resource('coupons', AdCouponController::class);
+    Route::get('/user-coupons', [AdCouponController::class, 'userCoupon'])->name('user-coupons');
     // Trang quản lý bình luận
     Route::resource('comments', AdCommentController::class);
     // Trang quản lý Slider hình ảnh trang chủ
@@ -136,7 +137,6 @@ Route::prefix('/')->name('client.')->group(function () {
             Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
             Route::post('/update/{id}', [ClCartController::class, 'update'])->name('update');
             Route::get('/delete/{product}', [ClCartController::class, 'delete'])->name('delete');
-            // Route::post('/apply-coupon', [CartController::class, 'applyCoupon'])->name('apply_coupon');
         });
         Route::prefix('favorite-page')->name('favorite.')->group(function () {
             Route::get('/', [ClFavoriteController::class, 'favorite'])->name('index');

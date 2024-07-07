@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CouponRequest;
 use App\Models\Coupon;
+use App\Models\UserCoupon;
 use Illuminate\Http\Request;
 
 class AdCouponController extends Controller
@@ -26,7 +27,8 @@ class AdCouponController extends Controller
     public function create()
     {
         $this->data['title'] = 'Thêm Coupon';
-        return view('admin.pages.coupon.themcoupon', $this->data);
+        $discount_type = ['percentage', 'fixed'];
+        return view('admin.pages.coupon.themcoupon', $this->data, compact('discount_type'));
     }
 
     /**
@@ -58,7 +60,8 @@ class AdCouponController extends Controller
         if (!$coupon) {
             return redirect()->route('admin.coupons.index')->with('ermsg', 'Không tìm thấy Coupon cần sửa');
         }
-        return view('admin.pages.coupon.editcoupon', $this->data, compact('coupon'));
+        $discount_type = ['percentage', 'fixed'];
+        return view('admin.pages.coupon.editcoupon', $this->data, compact('coupon', 'discount_type'));
     }
 
     /**
@@ -85,6 +88,11 @@ class AdCouponController extends Controller
         }
         Coupon::destroy($id);
         return redirect()->route('admin.coupons.index')->with('ssmsg', 'Xóa Coupon thành công');
+    }
+    public function userCoupon(){
+        $this->data['title'] = 'Coupon được lưu';
+        $userCoupons = UserCoupon::with(['user', 'coupon'])->paginate(6);
+        return view('admin.pages.coupon.user_coupons', $this->data, compact('userCoupons'));
     }
 }
 

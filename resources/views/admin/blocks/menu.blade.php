@@ -39,7 +39,14 @@
                             Phẩm</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.coupons.index') }}"><i class="fas fa-gift"></i><span> Voucher</span></a>
+                    <a href="#"><i class="fas fa-gift"></i><span>Voucher</span><span
+                            class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li><a href="{{ route('admin.coupons.index') }}"><i
+                                    class="fa-solid fa-ticket"></i><span>Coupon</span></a></li>
+                        <li><a href="{{ route('admin.user-coupons') }}"><i
+                                    class="fa-regular fa-floppy-disk"></i><span>Coupon được lưu</span></a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="{{ route('admin.blog.index') }}"><i class="far fa-newspaper"></i> <span> Bài

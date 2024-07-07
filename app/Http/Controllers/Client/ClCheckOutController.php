@@ -43,14 +43,17 @@ class ClCheckOutController extends Controller
         $transportFee = $this->calculateTransportFee($users->address);
         $totalPrice = $this->calculateTotalPrice($cart, $couponDiscount, $transportFee);
 
-        $savedCoupons = UserCoupon::where('user_id', auth()->id())->pluck('coupon_id')->toArray();
+        $savedCoupons = UserCoupon::where('user_id', auth()->id())
+            ->whereNull('used_at')
+            ->pluck('coupon_id')
+            ->toArray();
 
         $allCoupons = Coupon::where(function ($query) use ($savedCoupons) {
             $query->whereIn('id', $savedCoupons)
                 ->orWhere('user_specific', 0);
         })->whereDate('end_date', '>=', now())->get();
 
-        return view('client.pages.checkout', compact('title', 'couponCode', 'couponDiscount','allCoupons', 'users', 'appliedCouponCode', 'transportFee', 'totalPrice'));
+        return view('client.pages.checkout', compact('title', 'couponCode', 'couponDiscount', 'allCoupons', 'users', 'appliedCouponCode', 'transportFee', 'totalPrice'));
     }
     public function applyCoupon(Request $request)
     {

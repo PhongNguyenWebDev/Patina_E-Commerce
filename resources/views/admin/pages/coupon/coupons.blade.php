@@ -39,8 +39,12 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Code</th>
+                                            <th>Dạng coupon</th>
                                             <th>Giá Giảm</th>
                                             <th>Giá tối thiểu</th>
+                                            <th>Tồn kho</th>
+                                            <th>Đã dùng</th>
+                                            <th>Dành cho</th>
                                             <th>Ngày Tạo</th>
                                             <th>Ngày Kết Thúc</th>
                                             <th class="text-right">Chỉnh sửa</th>
@@ -51,10 +55,24 @@
 
                                         @foreach ($coupons as $item)
                                             <tr>
-                                                <td>{{ $item->code }}</td>
-                                                <td>{{ number_format($item->discount) }}</td>
-                                                <td>{{ number_format($item->min_price) }}</td>
-
+                                                <td class="text-uppercase">{{ $item->code }}</td>
+                                                <td>{{ $item->discount_type }}</td>
+                                                <td>
+                                                    @if ($item->discount_type == 'fixed')
+                                                        {{ number_format($item->discount) }}$
+                                                    @else
+                                                        {{ number_format($item->discount) }}%
+                                                    @endif
+                                                </td>
+                                                <td>{{ number_format($item->min_price) }}$</td>
+                                                <td>{{ number_format($item->usage_limit) }}</td>
+                                                <td>{{ number_format($item->usage_count) }}</td>
+                                                <td>@if ($item->user_specific == 0)
+                                                    Tất cả
+                                                @else
+                                                    Người dùng đã lưu
+                                                @endif
+                                                </td>
                                                 <td>{{ $item->start_date }}</td>
                                                 <td>{{ $item->end_date }}</td>
 

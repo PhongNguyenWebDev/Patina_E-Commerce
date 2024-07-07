@@ -23,4 +23,8 @@ class Coupon extends Model
         'start_date',
         'end_date',
     ];
+    public function userCoupons()
+    {
+        return $this->hasMany(UserCoupon::class);
+    }
 }

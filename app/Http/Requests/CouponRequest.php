@@ -22,9 +22,12 @@ class CouponRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required | unique:coupons,code,' . request()->id,
+            'code' => 'required | max:8 |unique:coupons,code,' . request()->id,
             'discount' => 'required',
             'min_price' => 'required',
+            'discount_type' => 'required',
+            'usage_limit' => 'required',
+            'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
 
@@ -35,8 +38,12 @@ class CouponRequest extends FormRequest
         return [
             'code.required' => 'Code bắt buộc phải nhập',
             'code.unique' => 'Code đã tồn tại, vui lòng chọn tên code khác',
+            'code.max' => 'Code không vượt quá 8 ký tự',
             'discount.required' => 'Discount bắt buộc phải nhập',
             'min_price.required' => 'Giá tối thiểu bắt buộc phải nhập',
+            'discount_type.required' => 'Loại giảm giá bắt buộc phải nhập',
+            'usage_limit.required' => 'Giới hạn coupon bắt buộc phải nhập',
+            'description.required' => 'Mô tả bắt buộc phải nhập',
             'start_date.required' => 'Ngày bắt đầu bắt buộc phải nhập',
             'end_date.required' => 'Ngày kết thúc bắt buộc phải nhập',
         ];
