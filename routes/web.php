@@ -121,13 +121,9 @@ Route::prefix('/')->name('client.')->group(function () {
     // Trang bài viết
     Route::get('blog-page', [ClBlogController::class, 'blog'])->name('blog-page');
     Route::get('blog-page/{blogSlug}', [ClBlogController::class, 'blogDetail'])->name('blog-detail');
-    Route::post('comments/store/{blogId}', [ClBlogController::class, 'storeComment'])->name('comments.store');
-    Route::post('comments/reply/{commentId}', [ClBlogController::class, 'replyComment'])->name('comments.reply');
-
-    Route::get('comments/{comment}/edit', [ClBlogController::class, 'editComment'])->name('comments.edit');
-    Route::put('comments/{comment}', [ClBlogController::class, 'updateComment'])->name('comments.update');
-    Route::delete('comments/{comment}', [ClBlogController::class, 'deleteComment'])->name('comments.delete');
-
+    Route::post('blog-page/{blog}/comments', [ClCommentController::class, 'store'])->name('comments.store');
+    Route::delete('comments/{comment}', [ClCommentController::class, 'destroy'])->name('comments.destroy');
+    Route::post('/comments/{parentComment}/reply', [ClCommentController::class, 'reply'])->name('comments.reply');
     // Trang giới thiệu
     Route::get('/introduce-page', [ClInTroController::class, 'introduce'])->name('introduce-page');
     // Trang liên hệ

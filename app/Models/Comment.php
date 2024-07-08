@@ -6,16 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable = ['parent_id', 'user_id', 'blog_id', 'content', 'left', 'right'];
+    protected $fillable = ['user_id', 'blog_id', 'parent_id', 'content', 'left', 'right'];
 
-    public function children()
+    public function blog()
     {
-        return $this->hasMany(Comment::class, 'parent_id')->orderBy('left');
-    }
-
-    public function parent()
-    {
-        return $this->belongsTo(Comment::class, 'parent_id');
+        return $this->belongsTo(Blog::class);
     }
 
     public function user()
@@ -23,28 +18,43 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function blog()
+    public function replies()
     {
-        return $this->belongsTo(Blog::class);
+        return $this->hasMany(Comment::class, 'parent_id')->orderBy('created_at', 'asc');
     }
 
-    // Phương thức để thêm bình luận mới vào cây
-    public static function addComment($data)
+    public function parent()
     {
-        $parent = self::find($data['parent_id']);
+        return $this->belongsTo(Comment::class, 'parent_id');
+    }
 
-        if (!$parent) {
-            return null; // Xử lý logic nếu không tìm thấy parent comment
-        }
+    public static function boot()
+    {
+        parent::boot();
 
-        $right = $parent->right;
+        static::creating(function ($model) {
+            if ($model->parent_id) {
+                $parent = static::find($model->parent_id);
+                $model->left = $parent->right;
+                $model->right = $parent->right + 1;
 
-        self::where('right', '>=', $right)->increment('right', 2);
-        self::where('left', '>', $right)->increment('left', 2);
+                static::where('blog_id', $model->blog_id)
+                    ->where('right', '>=', $parent->right)
+                    ->increment('right', 2);
 
-        $data['left'] = $right;
-        $data['right'] = $right + 1;
-
-        return self::create($data);
+                static::where('blog_id', $model->blog_id)
+                    ->where('left', '>', $parent->right)
+                    ->increment('left', 2);
+            } else {
+                $rightMost = static::where('blog_id', $model->blog_id)->orderBy('right', 'desc')->first();
+                if ($rightMost) {
+                    $model->left = $rightMost->right + 1;
+                    $model->right = $rightMost->right + 2;
+                } else {
+                    $model->left = 1;
+                    $model->right = 2;
+                }
+            }
+        });
     }
 }

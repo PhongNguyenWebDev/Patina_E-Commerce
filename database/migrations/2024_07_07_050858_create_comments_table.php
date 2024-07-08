@@ -14,8 +14,8 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('blog_id');
             $table->text('content');
-            $table->integer('left')->nullable();
-            $table->integer('right')->nullable();
+            $table->integer('left')->default(0);
+            $table->integer('right')->default(0);
             $table->timestamps();
 
             // Thiết lập khóa ngoại cho parent_id (mối quan hệ đệ quy)
