@@ -17,15 +17,15 @@
         </div>
     </div>
     <div class="page-header">
-        <form class="row" method="POST" action="{{ route('admin.banner-top.update', $banner) }}"
+        <form class="row" method="POST" action="{{ route('admin.info.update', $info) }}"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="name">Tên Banner</label>
-                    <input type="text" class="form-control" id="name" value="{{ $banner->name }}" name="name"
-                        placeholder="Nhập Tên Banner">
+                    <label for="name">Tên info</label>
+                    <input type="text" class="form-control" id="name" value="{{ $info->name }}" name="name"
+                        placeholder="Nhập Tên info">
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
@@ -34,10 +34,10 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="link">Link</label>
-                    <input type="text" class="form-control" value="{{ $banner->link }}" id="link" name="link"
-                        placeholder="Nhập Link">
-                    @error('link')
+                    <label for="detail">Chi tiết</label>
+                    <input type="text" class="form-control" value="{{ $info->detail }}" id="detail" name="detail"
+                        placeholder="Nhập chi tiết">
+                    @error('detail')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror
@@ -46,18 +46,14 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="image">Hình Ảnh</label>
-                    <input type="file" class="form-control-file" name="image">
+                    <input type="file" class="form-control-file" name="images">
                     <div class="col-md-12 mt-2">
                         <div class="row">
                             <div class="col-md-3">
-                                <img src="{{ $banner->image }}" alt="" class="img-fluid">
+                                <img src="{{ $info->images }}" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>
-                    @error('image')
-                        <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
-                            {{ $message }}</span>
-                    @enderror
                 </div>
             </div>
             <div class="col-md-12">

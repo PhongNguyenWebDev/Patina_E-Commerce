@@ -45,6 +45,7 @@ class ClShopController extends Controller
             $product->where('brand_id', $brand->id);
         }
         $products = $product->where('status', 1)->paginate(9);
-        return view('client.pages.shop', compact('title','brands','categories', 'categorySlug','priceRanges', 'products', 'query'));
+        $popularProducts = Product::popularProducts();
+        return view('client.pages.shop', compact('title','brands','categories', 'categorySlug','priceRanges', 'products', 'query','popularProducts'));
     }
 }

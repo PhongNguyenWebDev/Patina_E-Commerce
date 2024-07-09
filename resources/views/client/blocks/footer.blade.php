@@ -49,14 +49,15 @@
                         <div class="flex-xl-row">
                             <div class="my-ms-3">
                                 <h4 class="fs-3">Địa chỉ</h4>
-                                <span class="text-break">8911 Tanglewood Ave. Capitol
-                                    Heights,MD
-                                    20743</span>
+                                @foreach ($locations as $location)
+                                <span class="text-break"><i class="fa-solid fa-location-dot"></i> {{ $location->detail }}</span><br>
+                                @endforeach
                             </div>
                             <div class="mt-3">
                                 <h4 class="fs-3">Giờ mở cửa</h4>
-                                <span class="text-break">Thứ 2-Thứ 6 08:00AM - 08:00PM</span><br>
-                                <span class="text-break">Thứ 7-Chủ nhật 10:00AM - 06:00PM</span>
+                                @foreach ($business_hours as $business_hour)
+                                <span class="text-break">{{$business_hour->detail}}</span><br>
+                                @endforeach
                             </div>
                         </div>
                     </div>

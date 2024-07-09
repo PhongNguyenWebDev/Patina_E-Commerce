@@ -23,8 +23,11 @@
                     <div class="row align-items-center">
                         <div class="col-sm-6">
                             <div class="page-title">
-                                Danh Sách Banner Top
+                                Danh Sách thông tin
                             </div>
+                        </div>
+                        <div class="col-sm-6 text-sm-right">
+                            <a class="btn btn-danger" href="{{ route('admin.info.create') }}">+ Thêm thông tin</a>
                         </div>
                     </div>
                 </div>
@@ -34,33 +37,46 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>Ảnh</th>
-                                    <th>Tên Banner</th>
-                                    <th>Link</th>
+                                    <th>Tên</th>
+                                    <th>Chi tiết</th>
                                     <th>Ngày Tạo</th>
                                     <th>Ngày Cập Nhật</th>
                                     <th class="text-right">Chỉnh Sửa</th>
+                                    <th>Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (!empty($banners))
-                                    @foreach ($banners as $item)
+                                @if (!empty($infos))
+                                    @foreach ($infos as $item)
                                         <tr>
-                                            <td><img src="{{ $item->image }}" alt="" width="100px"></td>
+                                            <td><img src="{{ $item->images }}" alt="" width="100px"></td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->link }}</td>
+                                            <td>{{ $item->detail }}</td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>{{ $item->updated_at ?? 'null' }}</td>
                                             <td class="text-right">
-                                                <a href="{{ route('admin.banner-top.edit', $item) }}"
+                                                <a href="{{ route('admin.info.edit', $item) }}"
                                                     class="btn btn-primary btn-sm mb-1">
                                                     <i class="far fa-edit"></i>
                                                 </a>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.info.destroy', $item) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button
+                                                        onclick="return confirm('Bạn có chắc muốn xóa thông tin {{ $item->name }}?')"
+                                                        type="submit" class="btn btn-danger btn-sm mb-1">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td>Không có banner nào</td>
+                                        <td>Không có info nào</td>
                                     </tr>
                                 @endif
 
