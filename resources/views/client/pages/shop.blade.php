@@ -121,30 +121,22 @@
                     <h5 class="bg-filter p-2 mt-2">Sản phẩm phổ biến</h5>
                     <div class="container-fluid p-0">
                         <div class="row">
-                            <div class="d-flex my-1" style="height: 90px;">
-                                <img class="img-thumbnail w-25"
-                                    src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt="">
-                                <div class="mx-2">
-                                    <h6>Product</h6>
-                                    <p style="font-size: var(--font-size); margin: 0;">$60.</p>
-                                </div>
-                            </div>
-                            <div class="d-flex" style="height: 90px;">
-                                <img class="img-thumbnail w-25"
-                                    src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt="">
-                                <div class="mx-2">
-                                    <h6>Product</h6>
-                                    <p style="font-size: var(--font-size); margin: 0;">$60.</p>
-                                </div>
-                            </div>
-                            <div class="d-flex my-1" style="height: 90px;">
-                                <img class="img-thumbnail w-25"
-                                    src="/assets/clients/img/Products/Shirt/AoThunOverSizeRetro9AS.jpg" alt="">
-                                <div class="mx-2">
-                                    <h6>Product</h6>
-                                    <p style="font-size: var(--font-size); margin: 0;">$60.</p>
-                                </div>
-                            </div>
+                            @foreach ($popularProducts as $product)
+                                <a style="text-decoration: none" href="{{ route('client.detail', $product->slug) }}">
+                                    <div class="d-flex my-1" style="height: 90px;">
+                                        <img class="img-thumbnail w-25" src="{{ $product->images }}"
+                                            alt="{{ $product->name }}">
+                                        <div class="mx-2">
+                                            <h6 style="font-size: 18px; font-weight:550">{{ $product->name }}</h6>
+                                            <p style="font-size: 16px; margin: 0;">
+                                                <del
+                                                    style="color: red">${{ number_format($product->sale_price) ? number_format($product->price) : null }}</del>
+                                                ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
                         </div>
                     </div>
 

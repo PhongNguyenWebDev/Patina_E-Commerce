@@ -16,10 +16,10 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('admin.sliders.index') }}"><i
                                     class="far fa-images"></i><span>Slider</span></a></li>
-                        <li><a href="{{ route('admin.banner-top.index') }}"><i
-                                    class="fas fa-sort-amount-up-alt"></i><span>Banner-Top</span></a></li>
                         <li><a href="{{ route('admin.banner-bottom.index') }}"><i
                                     class="fas fa-sort-amount-down-alt"></i><span>Banner-Bottom</span></a></li>
+                        <li><a href="{{ route('admin.info.index') }}"><i
+                                    class="fa-solid fa-circle-info"></i><span>Thông tin shop</span></a></li>
                         <li><a href="{{ route('admin.social-network.index') }}"><i
                                     class="fas fa-share-alt"></i><span>Social Network</span></a></li>
                     </ul>

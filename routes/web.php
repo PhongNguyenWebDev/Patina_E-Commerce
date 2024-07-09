@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdBannerBottomController;
-use App\Http\Controllers\Admin\AdBannerTopController;
 use App\Http\Controllers\Admin\AdCategoryController;
 use App\Http\Controllers\Admin\AdHomeController;
 use App\Http\Controllers\Admin\AdProductController;
@@ -10,6 +9,7 @@ use App\Http\Controllers\Admin\AdBlogController;
 use App\Http\Controllers\Admin\AdBrandController;
 use App\Http\Controllers\Admin\AdCommentController;
 use App\Http\Controllers\Admin\AdCouponController;
+use App\Http\Controllers\Admin\AdInfoController;
 use App\Http\Controllers\Admin\AdOrderController;
 use App\Http\Controllers\Admin\AdSliderController;
 use App\Http\Controllers\Admin\AdSocialController;
@@ -83,7 +83,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     // Trang quản lý Slider hình ảnh trang chủ
     Route::resource('sliders', AdSliderController::class);
     // Trang quản lý banner
-    Route::resource('banner-top', AdBannerTopController::class);
+    Route::resource('info', AdInfoController::class);
     // Trang quản lý banner
     Route::resource('banner-bottom', AdBannerBottomController::class);
     // Trang quản lý mạng xã hội

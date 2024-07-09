@@ -62,7 +62,7 @@
                             <img src="/assets/clients/img/Icon/Star 1.png" alt="">
                             <img src="/assets/clients/img/Icon/Star 1.png" alt="">
                         </div>
-                        <p class="m-0 px-3" style="color: var(--secondary-1000-color);">(12 reviews)</p>
+                        <p class="m-0 px-3" style="color: var(--secondary-1000-color);">({{$reviewCount}} reviews)</p>
                     </div>
                     <!-- Color Products -->
                     <form action="{{ route('client.cart-page.add', $product->id) }}" method="POST">
@@ -169,7 +169,7 @@
                             <li class="nav-link px-xl-5 px-2"><a class="nav-link item-detail fs-5"
                                     href="#tab2">INFORMATION</a>
                             </li>
-                            <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab3">REVIEWS (12)</a>
+                            <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab3">REVIEWS ({{$reviewCount}})</a>
                             </li>
                         </ul>
                         <hr>
@@ -185,36 +185,42 @@
                                     <div id="reviews">
                                         @include('client.pages.partials.reviews')
                                     </div>
-                                    <form action="{{ route('client.review', $product->slug) }}" method="POST"
-                                        class="p-commentform" id="formRating">
-                                        @csrf
-                                        <fieldset>
-                                            <h2 class="fs-4 fw-semibold py-2">Bình luận</h2>
-                                            <p class="stars">
-                                                <span>
-                                                    <a class="star-1" href="#" data-rating="1">1</a>
-                                                    <a class="star-2" href="#" data-rating="2">2</a>
-                                                    <a class="star-3" href="#" data-rating="3">3</a>
-                                                    <a class="star-4" href="#" data-rating="4">4</a>
-                                                    <a class="star-5" href="#" data-rating="5">5</a>
-                                                </span>
-                                            </p>
-                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                            <input type="hidden" name="rating_point" id="rating_point" value="">
-                                            <input type="hidden" name="product_detail_id"
-                                                value="{{ $product->productDetails->first()->id }}">
-                                            <div class="d-flex justify-content-between">
-                                                <label class="col-xl-1 col-12 fs-5">Bình luận</label>
-                                                <textarea name="reviews" id="reviews" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
-                                            </div>
-                                            <div class="w-25 text-center pe-xl-2">
-                                                <button type="button"
-                                                    class="btn border fs-5 my-2 me-xl-5 shadow-sm mb-5 rounded btn-comment"
-                                                    id="submitReview">Gửi</button>
-                                            </div>
-                                        </fieldset>
-                                    </form>
-
+                                    @if (!$userReview)
+                                        <form action="{{ route('client.review', $product->slug) }}" method="POST"
+                                            class="p-commentform" id="formRating">
+                                            @csrf
+                                            <fieldset>
+                                                <h2 class="fs-4 fw-semibold py-2">Bình luận</h2>
+                                                <p class="stars">
+                                                    <span>
+                                                        <a class="star-1" href="#" data-rating="1">1</a>
+                                                        <a class="star-2" href="#" data-rating="2">2</a>
+                                                        <a class="star-3" href="#" data-rating="3">3</a>
+                                                        <a class="star-4" href="#" data-rating="4">4</a>
+                                                        <a class="star-5" href="#" data-rating="5">5</a>
+                                                    </span>
+                                                </p>
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="rating_point" id="rating_point"
+                                                    value="">
+                                                <input type="hidden" name="product_detail_id"
+                                                    value="{{ $product->productDetails->first()->id }}">
+                                                <div class="d-flex justify-content-between">
+                                                    <label class="col-xl-1 col-12 fs-5">Bình luận</label>
+                                                    <textarea name="reviews" id="reviews" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
+                                                </div>
+                                                <div class="w-25 text-center pe-xl-2">
+                                                    <button type="button"
+                                                        class="btn border fs-5 my-2 me-xl-5 shadow-sm mb-5 rounded btn-comment"
+                                                        id="submitReview">Gửi</button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    @else
+                                        <div class="alert alert-info" role="alert">
+                                            Bạn đã đánh giá sản phẩm này trước đó.
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -333,6 +339,7 @@
                     dataType: "html",
                     success: function(response) {
                         $('#reviews').html(response); // Cập nhật nội dung danh sách đánh giá
+                        $('#formRating')[0].reset(); // Xóa nội dung form sau khi gửi thành công
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);

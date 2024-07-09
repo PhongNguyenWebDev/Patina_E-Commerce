@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BannerTopRequest extends FormRequest
+class InfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class BannerTopRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'link' => 'required',
+            'detail' => 'required',
 
         ];
     }
@@ -31,7 +31,7 @@ class BannerTopRequest extends FormRequest
     {
         return [
             'name.required' => 'Tên bắt buộc phải nhập',
-            'link.required' => 'Link bắt buộc phải nhập',
+            'detail.required' => 'Chi tiết bắt buộc phải nhập',
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -46,7 +47,16 @@ class Product extends Model
         return $this->belongsToMany(Tag::class, 'product_tag');
     }
     public function productDetails()
-{
-    return $this->hasMany(ProductDetail::class);
-}
+    {
+        return $this->hasMany(ProductDetail::class);
+    }
+    public static function popularProducts($limit = 5)
+    {
+        return self::select('products.*', DB::raw('SUM(order_details.quantity) as total_sold'))
+            ->join('order_details', 'order_details.product_id', '=', 'products.id')
+            ->groupBy('products.id')
+            ->orderBy('total_sold', 'desc')
+            ->take($limit)
+            ->get();
+    }
 }

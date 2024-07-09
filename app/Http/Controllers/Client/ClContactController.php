@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactEmail;
 use App\Models\Contact;
+use App\Models\Info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,7 +14,10 @@ class ClContactController extends Controller
     public function contact()
     {
         $title = 'Liên Hệ';
-        return view('client.pages.contact', compact('title'));
+        $infoPhone= Info::where('name', 'số điện thoại')->get();
+        $infoEmail= Info::where('name', 'email')->get();
+        $infoLocation= Info::where('name', 'vị trí')->get();
+        return view('client.pages.contact', compact('title','infoPhone','infoEmail','infoLocation'));
     }
 
     public function contactDetail(Request $request)

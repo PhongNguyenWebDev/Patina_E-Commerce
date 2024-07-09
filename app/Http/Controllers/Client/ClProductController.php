@@ -35,7 +35,16 @@ class ClProductController extends Controller
 
         // Get reviews for the product
         $reviews = $this->showReview($productDetailId);
-        return view('client.pages.product-detail', compact('title', 'product', 'uniqueColors', 'colorsWithPrices', 'relatedProducts', 'reviews'));
+        $user = auth()->user();
+        $userReview = null;
+
+        if ($user) {
+            $userReview = Review::where('product_detail_id', $product->productDetails->first()->id)
+                ->where('user_id', $user->id)
+                ->first();
+        }
+        $reviewCount = Review::where('product_detail_id', $product->productDetails->first()->id)->count();
+        return view('client.pages.product-detail', compact('title', 'product', 'uniqueColors', 'colorsWithPrices', 'relatedProducts', 'reviews','userReview','reviewCount'));
     }
     public function relatedProductsByCategory($categoryId, $productId)
     {

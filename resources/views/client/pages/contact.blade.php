@@ -1,25 +1,38 @@
 @extends('layouts.client')
 @section('content')
     @include('client.blocks.banner')
-    <section class="container p-3 p-xl-5 my-5" style="max-width: 1000px;">
+    <section class="container p-3 p-xl-5 my-5">
         <div class="row justify-content-center">
-            <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                <div class="d-flex flex-xl-row flex-column my-4 justify-content-between w-100">
-                    <div class="col-xl-4 col-md-6 d-flex align-items-center mb-3 mb-xl-0">
-                        <img src="img/Icon/phone.png" alt="">
-                        <p class="ps-3 mb-0">+063 1231 456</p>
-                    </div>
-                    <div class="col-xl-4 col-md-6 d-flex align-items-center mb-3 mb-xl-0">
-                        <img src="img/Icon/address.png" alt="">
-                        <p class="ps-3 mb-0">
-                            43 Raymouth<br>Rd. Baltemoer, London 3910
-                        </p>
-                    </div>
-                    <div class="col-xl-4 col-md-6 d-flex align-items-center">
-                        <img src="img/Icon/email.png" alt="">
-                        <p class="ps-3 mb-0">infomation@email.com</p>
+            <div class="col-lg-4">
+                <div class="d-flex flex-column my-4">
+                    @foreach ($infoPhone as $phone)
+                        <div class="col-xl-12 d-flex align-items-center mb-3">
+                            <img src="{{ $phone->images }}" alt="">
+                            <p class="ps-3 mb-0">{{ $phone->detail }}</p>
+                        </div>
+                    @endforeach
+                    @foreach ($infoEmail as $email)
+                        <div class="col-xl-12 d-flex align-items-center mb-3">
+                            <img src="{{ $email->images }}" alt="">
+                            <p class="ps-3 mb-0">{{ $email->detail }}</p>
+                        </div>
+                    @endforeach
+                    @foreach ($infoLocation as $location)
+                        <div class="col-xl-12 d-flex align-items-center mb-3">
+                            <img src="{{ $location->images }}" alt="">
+                            <p class="ps-3 mb-0">{{ $location->detail }}</p>
+                        </div>
+                    @endforeach
+                    <div class="col-xl-12 d-flex align-items-center mb-3">
+                        @foreach ($socialn as $social)
+                            <div class="icon-footer m-2">
+                                <a style="color: #8d6440" href="{{ $social->link }}">{!! $social->icon !!}</a>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-8">
                 <form class="container-fluid p-0" method="POST" action="">
                     @csrf
                     <div class="row g-2">
