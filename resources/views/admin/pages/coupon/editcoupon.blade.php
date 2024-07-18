@@ -46,7 +46,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label for="discount">Discount</label>
                     <input type="text" class="form-control" id="discount" value="{{$coupon->discount}}" name="discount" placeholder="Nhập Discount">
@@ -56,11 +56,21 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label for="class">Giá tối thiểu</label>
                     <input type="text" class="form-control" id="class" value="{{$coupon->min_price}}" name="min_price" placeholder="Nhập giá tối thiểu để được sử dụng voucher">
                     @error('min_price')
+                        <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                            {{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="class">Giá giảm tối đa</label>
+                    <input type="text" class="form-control" id="class" value="{{$coupon->max_price}}" name="max_price" placeholder="Nhập giá giảm tối đa để được sử dụng voucher">
+                    @error('max_price')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror

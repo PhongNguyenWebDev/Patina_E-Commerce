@@ -72,22 +72,23 @@
                 </a>
             </div>
         </div>
-        <form class="checkout-form" action="">
+        <form class="checkout-form" method="POST">
+            @csrf
             <div class="row g-xl-5">
                 <div class="col-12 col-xl-7">
                     <!-- Personal Information -->
                     <div>
                         <h3 class="fs-2">Thông tin khách hàng</h3>
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
-                        <input class="form-control" type="text" placeholder="Họ và tên" value="{{ $users->name }}"
-                            disabled>
+                        <input class="form-control" name="name" type="text" placeholder="Họ và tên"
+                            value="{{ $users->name }}">
                         <div class="row g-2 my-1 ">
                             <div class="col-6">
-                                <input class="form-control" type="Email" value="{{ $users->email }}" disabled
+                                <input class="form-control" name="email" type="Email" value="{{ $users->email }}"
                                     placeholder="Địa chỉ Email">
                             </div>
                             <div class="col-6">
-                                <input class="form-control" type="text" value="{{ $users->phone }}" disabled
+                                <input class="form-control" name="phone" type="text" value="{{ $users->phone }}"
                                     placeholder="Số điện thoại">
                             </div>
                         </div>
@@ -97,8 +98,8 @@
                         <h3 class="fs-2">Địa chỉ giao hàng</h3>
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
                         <div class="col-12">
-                            <input class="form-control " type="text" value="{{ $users->address }}" placeholder="Address"
-                                disabled>
+                            <input class="form-control" name="address" type="text" value="{{ $users->address }}"
+                                placeholder="Address">
                         </div>
                     </div>
 
@@ -185,12 +186,8 @@
                             </h5>
                             <h5 class="my-2 fs-4">
                                 @if ($appliedCouponCode)
-                                    <span style="color: red">(voucher: {{ $appliedCouponCode }})</span>
-                                    @if ($couponCode && $couponCode->discount_type === 'percentage')
-                                        {{ $couponDiscount }}%
-                                    @elseif ($couponCode && $couponCode->discount_type === 'fixed')
-                                        ${{ number_format($couponDiscount) }}
-                                    @endif
+                                    ${{ number_format($couponDiscount) }}<br>
+                                    <span style="color: red">(Voucher: {{ $appliedCouponCode }})</span>
                                 @else
                                     ${{ number_format($couponDiscount) }}
                                 @endif
@@ -201,9 +198,6 @@
                     <div class="d-flex justify-content-between">
                         <h3 class="fs-3">Total</h3>
                         @if ($totalPrice > 500)
-                            @php
-                                $discountedPrice = $totalPrice * 0.9;
-                            @endphp
                             <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500$)</small>
                             <h3 class="fs-3">
                                 <del style="color: red">${{ number_format($totalPrice) }}</del>
@@ -216,7 +210,7 @@
                             </h3>
                         @endif
                     </div>
-                    <button class="btn fs-3 my-2 rounded-1 w-50 float-end btn-thanhtoan">Checkout</button>
+                    <button type="submit" class="btn fs-3 my-2 rounded-1 w-50 float-end btn-thanhtoan">Checkout</button>
                 </div>
             </div>
         </form>
@@ -229,7 +223,8 @@
                             <h5 class="modal-title" id="voucherModalLabel">Tất cả Vouchers của bạn</h5>
                         </div>
                         <div class="col-6 d-flex justify-content-end">
-                            <button style="border: none; background-color:#fff" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button style="border: none; background-color:#fff" type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
                                 <i class="fa-regular fa-circle-xmark"></i>
                             </button>
                         </div>

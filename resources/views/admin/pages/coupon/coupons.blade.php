@@ -42,6 +42,7 @@
                                             <th>Dạng coupon</th>
                                             <th>Giá Giảm</th>
                                             <th>Giá tối thiểu</th>
+                                            <th>Giá tối đa giảm</th>
                                             <th>Tồn kho</th>
                                             <th>Đã dùng</th>
                                             <th>Dành cho</th>
@@ -65,6 +66,7 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ number_format($item->min_price) }}$</td>
+                                                <td>{{ number_format($item->max_price) }}$</td>
                                                 <td>{{ number_format($item->usage_limit) }}</td>
                                                 <td>{{ number_format($item->usage_count) }}</td>
                                                 <td>@if ($item->user_specific == 0)
