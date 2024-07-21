@@ -335,13 +335,13 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         ),
         'Spatie\\LaravelIgnition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
-            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/laravel-ignition',
+            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/laravel-ignition',
+            1 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
         ),
         'Spatie\\Ignition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/ignition/src',
-            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
+            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
+            1 => __DIR__ . '/..' . '/spatie/ignition/src',
         ),
         'Spatie\\FlareClient\\' => 
         array (
@@ -602,6 +602,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Controllers\\Client\\ClBlogController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClBlogController.php',
         'App\\Http\\Controllers\\Client\\ClCartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClCartController.php',
         'App\\Http\\Controllers\\Client\\ClCheckOutController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClCheckOutController.php',
+        'App\\Http\\Controllers\\Client\\ClCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClCommentController.php',
         'App\\Http\\Controllers\\Client\\ClContactController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClContactController.php',
         'App\\Http\\Controllers\\Client\\ClFavoriteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClFavoriteController.php',
         'App\\Http\\Controllers\\Client\\ClHomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/ClHomeController.php',
@@ -644,6 +645,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Requests\\SocialRequest' => __DIR__ . '/../..' . '/app/Http/Requests/SocialRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\Livewire\\AdminSearchProduct' => __DIR__ . '/../..' . '/app/Livewire/AdminSearchProduct.php',
+        'App\\Livewire\\ClientSortProducts' => __DIR__ . '/../..' . '/app/Livewire/ClientSortProducts.php',
         'App\\Livewire\\UserSearchProduct' => __DIR__ . '/../..' . '/app/Livewire/UserSearchProduct.php',
         'App\\Mail\\ContactEmail' => __DIR__ . '/../..' . '/app/Mail/ContactEmail.php',
         'App\\Mail\\ForgetAccount' => __DIR__ . '/../..' . '/app/Mail/ForgetAccount.php',

@@ -64,7 +64,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <a class="btn btn-outline-dark btn-giohang fs-5" href="{{ route('client.shop-page') }}">
+                        <a class="btn btn-dark fs-5" href="{{ route('client.shop-page') }}">
                             Tiếp tục mua sắm</a>
                     </div>
                     <div class="col-md-6">
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="row">
                                     <a href="{{ route('client.checkout.index') }}" class="col-md-12">
-                                        <button class="btn btn-giohang px-4 fs-5 border">Thanh toán</button>
+                                        <button class="btn btn-dark fs-5">Thanh toán</button>
                                     </a>
                                 </div>
                             </div>

@@ -8,7 +8,7 @@
             <div class="col-xl-3">
                 <!-- Filter Price -->
                 <div>
-                    <h5 class="bg-filter p-2 mt-2">Lọc theo giá</h5>
+                    <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo giá</h6>
                     <ul class="py-2 px-1">
                         @php
                             $priceRangesLabels = [
@@ -22,7 +22,7 @@
                         @endphp
                         @foreach ($priceRangesLabels as $range => $label)
                             <li class="d-flex align-items-center justify-content-between">
-                                <x-vertical-nav-link
+                                <x-vertical-nav-link style="font-size:var(--font-size)"
                                     href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => $range, 'category' => $categorySlug])) }}"
                                     :active="request()->input('price_range') === $range">
                                     {{ $label }}
@@ -37,7 +37,7 @@
 
                 <!-- Lọc theo danh mục -->
                 <div>
-                    <h5 class="bg-filter p-2 mt-2">Lọc theo danh mục</h5>
+                    <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo danh mục</h6>
                     <ul class="py-2 px-1">
                         @forelse ($categories as $category)
                             @if ($category->parent_id == 0)
@@ -47,7 +47,7 @@
                                             <div class="accordion-item border-0 show">
                                                 <div class="d-flex justify-content-between align-items-end">
                                                     <a class="text-decoration-none p-0"
-                                                        style="font-size: large; color: var(--secondary-1200-color);"
+                                                        style="font-size: var(--font-size); color: var(--secondary-1200-color);"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#collapse-{{ $category->slug }}"
                                                         aria-expanded="true" aria-controls="collapse-{{ $category->slug }}">
@@ -63,6 +63,7 @@
                                                             @foreach ($category->parent as $child)
                                                                 <li class="nav-link d-flex justify-content-between mt-1">
                                                                     <x-vertical-nav-link
+                                                                        style="font-size: var(--font-size);"
                                                                         href="{{ route('client.shop-page', $child->slug) }}"
                                                                         :active="request('category') === $child->slug">
                                                                         {{ $child->name }}
@@ -80,8 +81,8 @@
                                     </li>
                                 @else
                                     <li class="d-flex align-items-center justify-content-between mt-1">
-                                        <x-vertical-nav-link href="{{ route('client.shop-page', $category->slug) }}"
-                                            :active="request('category') === $category->slug">
+                                        <x-vertical-nav-link style="font-size: var(--font-size);"
+                                            href="{{ route('client.shop-page', $category->slug) }}" :active="request('category') === $category->slug">
                                             {{ $category->name }}
                                         </x-vertical-nav-link>
                                         <p style="font-size: var(--font-size); margin: 0;" class="amout">
@@ -100,7 +101,7 @@
 
                 <!-- Filter by Brand -->
                 <div class="brand">
-                    <h5 class="bg-filter p-2 mt-2">Lọc theo thương hiệu</h5>
+                    <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo thương hiệu</h6>
                     <div class="container-fluid px-0 py-2">
                         <div class="row g-2">
                             @foreach ($brands as $brand)
@@ -118,28 +119,26 @@
                 </div>
                 <!-- Popular Product  -->
                 <div class="popular">
-                    <h5 class="bg-filter p-2 mt-2">Sản phẩm phổ biến</h5>
+                    <h6 class="bg-filter p-2 mt-2 text-black">Sản phẩm phổ biến</h6>
                     <div class="container-fluid p-0">
-                        <div class="row">
-                            @foreach ($popularProducts as $product)
-                                <a style="text-decoration: none" href="{{ route('client.detail', $product->slug) }}">
-                                    <div class="d-flex my-1" style="height: 90px;">
-                                        <img class="img-thumbnail w-25" src="{{ $product->images }}"
-                                            alt="{{ $product->name }}">
-                                        <div class="mx-2">
-                                            <h6 style="font-size: 18px; font-weight:550">{{ $product->name }}</h6>
-                                            <p style="font-size: 16px; margin: 0;">
-                                                <del
-                                                    style="color: red">${{ number_format($product->sale_price) ? number_format($product->price) : null }}</del>
-                                                ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
-                                            </p>
-                                        </div>
+                        @foreach ($popularProducts as $product)
+                            <a style="text-decoration: none" class="nav-link"
+                                href="{{ route('client.detail', $product->slug) }}">
+                                <div class="d-flex my-1" style="height: 90px;">
+                                    <img class="img-thumbnail w-25" src="{{ $product->images }}"
+                                        alt="{{ $product->name }}">
+                                    <div class="mx-2">
+                                        <h6 style="font-size: 18px; font-weight:550">{{ $product->name }}</h6>
+                                        <p style="font-size: 16px; margin: 0;">
+                                            <del
+                                                style="color: red">${{ number_format($product->sale_price) ? number_format($product->price) : null }}</del>
+                                            ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
+                                        </p>
                                     </div>
-                                </a>
-                            @endforeach
-                        </div>
+                                </div>
+                            </a>
+                        @endforeach
                     </div>
-
                 </div>
             </div>
             <!-- Right -->
@@ -182,13 +181,13 @@
                                             }
                                         @endphp
                                         @if ($isFavorite)
-                                            <a href="{{ route('client.favorite.index') }}"><i
-                                                    style="border: 0.5px solid var(--primary-800-color); background-color: var(--primary-800-color); color:white"
-                                                    class="fas fa-heart rounded-5 p-2 fs-5"></i></a>
+                                            <a class="nav-link" href="{{ route('client.favorite.add', $product->id) }}"><i
+                                                    style=" background-color: rgb(203, 51, 51); color:white;"
+                                                    class="fa-regular fa-heart rounded-5 p-2"></i></a>
                                         @else
-                                            <a href="{{ route('client.favorite.add', $product->id) }}"><i
-                                                    style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                                    class="fa-regular fa-heart rounded-5 p-2 fs-5"></i></a>
+                                            <a class="nav-link" href="{{ route('client.favorite.index') }}"><i
+                                                    style=" background-color:#fff; color:#d8d8d8"
+                                                    class="fas fa-heart rounded-5 p-2"></i></a>
                                         @endif
                                     </div>
                                 </div>
@@ -208,17 +207,8 @@
                     </div>
                 </div>
                 <!-- Pagination -->
-                <div class="d-flex justify-content-between align-items-center ps-xl-0 ps-5">
-                    <div style="width: 9%;"></div>
-                    <div>
-                        <button style="background-color:#5F2D00C9;" class="btn m-2"><span
-                                class="text-white">1</span></button>
-                        <button style="border: 3px solid #5F2D00C9;" class="btn"><span>2</span></button>
-                    </div>
-                    <div class="d-flex align-items-center p-1 rounded" style="border: 3px solid #5F2D00C9; height: 35px;">
-                        <button class="btn rounded" style="font-weight: var(--Bold); font-size: 18px;">Next</button><i
-                            class="fa-solid fa-angle-right me-2"></i>
-                    </div>
+                <div class="d-flex justify-content-center">
+                    {{ $products->links() }}
                 </div>
             </div>
 
