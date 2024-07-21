@@ -31,6 +31,8 @@ use App\Http\Controllers\Client\ClReviewController;
 use App\Http\Controllers\Auth\LoginGoogleController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Client\ClCommentController;
+use App\Http\Controllers\Client\ClCouponController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,6 +136,13 @@ Route::prefix('/')->name('client.')->group(function () {
     Route::get('/series-shop-page', [ClSeriesShopController::class, 'seriesShop'])->name('series-shop-page');
     // Trang thông tin khách hàng
     // Route::get('/bill-page', [ClBillController::class, 'bill'])->name('bill-page');  //thêm ngày 22/6 bởi ta
+
+    //Trang list coupon
+    Route::prefix('list-coupon-page')->name('list-coupon.')->group(function () {
+        Route::get('/', [ClCouponController::class, 'index'])->name('index');
+        Route::get('/add/{coupon}', [ClCouponController::class, 'add'])->name('add');
+        // Route::get('/delete/{product}', [ClCouponController::class, 'delete'])->name('delete');
+    });
     // Trang thanh toán
     Route::middleware('cus')->group(function () {
         Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');  //thêm ngày 22/6 bởi ta
@@ -150,6 +159,8 @@ Route::prefix('/')->name('client.')->group(function () {
         });
         Route::prefix('checkout-page')->name('checkout.')->group(function () {
             Route::get('/', [ClCheckOutController::class, 'index'])->name('index');
+            Route::post('/', [ClCheckoutController::class, 'checkout']);
+            Route::get('/verify/{token}', [ClCheckOutController::class, 'verify'])->name('verify');
             Route::post('/apply-coupon', [ClCheckoutController::class, 'applyCoupon'])->name('apply_coupon');
         });
     });

@@ -43,6 +43,6 @@
             @endif
         </p>
     </div>
-    <p><a href="{{ route('checkout.verify', $token) }}">Vui lòng click vào đây</a></p>
+    <p><a href="{{ route('client.checkout.verify', $token) }}">Vui lòng click vào đây</a></p>
 
 </div>

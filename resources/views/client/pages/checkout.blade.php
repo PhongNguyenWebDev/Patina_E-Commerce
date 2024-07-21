@@ -69,22 +69,23 @@
                 </a>
             </div>
         </div>
-        <form class="checkout-form" action="">
+        <form class="checkout-form" method="POST">
+            @csrf
             <div class="row g-xl-5">
                 <div class="col-12 col-xl-7">
                     <!-- Personal Information -->
                     <div>
                         <h5 class="fw-medium">Thông tin khách hàng</h5>
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
-                        <input class="form-control" type="text" placeholder="Họ và tên" value="{{ $users->name }}"
-                            disabled>
+                        <input class="form-control" name="name" type="text" placeholder="Họ và tên"
+                            value="{{ $users->name }}">
                         <div class="row g-2 my-1 ">
                             <div class="col-6">
-                                <input class="form-control" type="Email" value="{{ $users->email }}" disabled
+                                <input class="form-control" name="email" type="Email" value="{{ $users->email }}"
                                     placeholder="Địa chỉ Email">
                             </div>
                             <div class="col-6">
-                                <input class="form-control" type="text" value="{{ $users->phone }}" disabled
+                                <input class="form-control" name="phone" type="text" value="{{ $users->phone }}"
                                     placeholder="Số điện thoại">
                             </div>
                         </div>
@@ -94,8 +95,8 @@
                         <h5 class="fw-medium">Địa chỉ giao hàng</h5>
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
                         <div class="col-12">
-                            <input class="form-control " type="text" value="{{ $users->address }}" placeholder="Address"
-                                disabled>
+                            <input class="form-control" name="address" type="text" value="{{ $users->address }}"
+                                placeholder="Address">
                         </div>
                     </div>
 
@@ -156,12 +157,8 @@
                             <h6>${{ number_format($item->subTotal) }}</h6>
                             <h6 class="my-2">
                                 @if ($appliedCouponCode)
-                                    <span style="color: red">(voucher: {{ $appliedCouponCode }})</span>
-                                    @if ($couponCode && $couponCode->discount_type === 'percentage')
-                                        {{ $couponDiscount }}%
-                                    @elseif ($couponCode && $couponCode->discount_type === 'fixed')
-                                        ${{ number_format($couponDiscount) }}
-                                    @endif
+                                    ${{ number_format($couponDiscount) }}<br>
+                                    <span style="color: red">(Voucher: {{ $appliedCouponCode }})</span>
                                 @else
                                     ${{ number_format($couponDiscount) }}
                                 @endif
@@ -172,9 +169,6 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h3>Total</h3>
                         @if ($totalPrice > 500)
-                            @php
-                                $discountedPrice = $totalPrice * 0.9;
-                            @endphp
                             <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500$)</small>
                             <h3 class="fs-3">
                                 <del
@@ -188,7 +182,10 @@
                             </h4>
                         @endif
                     </div>
-                    <button class="btn btn-dark my-2" style="font-size:var(--font-h5-size)">Thanh toán</button>
+                    <<<<<<< HEAD <button class="btn btn-dark my-2" style="font-size:var(--font-h5-size)">Thanh
+                        toán</button>
+                        =======
+                        >>>>>>>
                 </div>
             </div>
         </form>
