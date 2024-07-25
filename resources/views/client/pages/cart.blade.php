@@ -139,7 +139,24 @@
                         console.log('Số lượng đã được cập nhật thành công.');
                     },
                     error: function(xhr, status, error) {
-                        console.error('Lỗi khi cập nhật số lượng:', error);
+                        var response = xhr.responseJSON;
+                        if (response && response.error) {
+                            $.toast({
+                                heading: 'Lỗi',
+                                text: response.error,
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-center',
+                            });
+
+                            // Nếu lỗi vượt quá số lượng tồn kho, đặt số lượng về số lớn nhất
+                            if (response.error.includes('vượt quá tồn kho')) {
+                                var maxQuantity = xhr.responseJSON.maxQuantity;
+                                $form.find('input.quantity-input').val(maxQuantity);
+                            }
+                        } else {
+                            console.error('Lỗi khi cập nhật số lượng:', error);
+                        }
                     }
                 });
             });

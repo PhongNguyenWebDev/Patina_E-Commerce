@@ -280,9 +280,4 @@
             </div>
         </div>
     </section>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            $('#voucherModal').on('show.bs.modal', function(event) {});
-        });
-    </script>
 @endsection

@@ -26,7 +26,7 @@ class ClCartController extends Controller
                 ->where('color_id', $colorId)
                 ->where('size_id', $sizeId)
                 ->first();
-    
+
             $item->max_quantity = $productDetail->quantity;
         }
         return view('client.pages.cart', compact('title', 'cart'));
@@ -64,32 +64,47 @@ class ClCartController extends Controller
     public function update($id, Request $request)
     {
         $quantity = $request->quantity;
-        $carts = Cart::find($id);
+        $cart = Cart::find($id);
 
-        if ($carts) {
-            $colorId = Color::where('name', $carts->color)->first()->id;
-            $sizeId = Size::where('name', $carts->size)->first()->id;
-            $productDetail = ProductDetail::where('product_id', $carts->product_id)
+        if ($cart) {
+            $colorId = Color::where('name', $cart->color)->first()->id;
+            $sizeId = Size::where('name', $cart->size)->first()->id;
+            $productDetail = ProductDetail::where('product_id', $cart->product_id)
                 ->where('color_id', $colorId)
                 ->where('size_id', $sizeId)
                 ->first();
 
-            if ($productDetail && $quantity <= $productDetail->quantity) {
-                // Cập nhật số lượng trong cơ sở dữ liệu
-                $carts->update([
+            if ($productDetail) {
+                $maxQuantity = $productDetail->quantity;
+
+                if ($quantity > $maxQuantity) {
+                    $quantity = $maxQuantity;
+                    $cart->update([
+                        'quantity' => $quantity
+                    ]);
+                    $subTotal = $cart->subTotal;
+
+                    return response()->json([
+                        'quantity' => $cart->quantity,
+                        'subTotal' => number_format($subTotal),
+                        'maxQuantity' => $maxQuantity,
+                        'error' => 'Số lượng sản phẩm vượt quá tồn kho.'
+                    ], 400);
+                }
+
+                $cart->update([
                     'quantity' => $quantity
                 ]);
 
-                // Tính toán lại subtotal
-                $subTotal = $carts->subTotal; // Ví dụ tính toán lại subtotal
+                $subTotal = $cart->subTotal;
 
                 return response()->json([
-                    'quantity' => $carts->quantity,
+                    'quantity' => $cart->quantity,
                     'subTotal' => number_format($subTotal)
                 ]);
             }
 
-            return response()->json(['error' => 'Số lượng sản phẩm vượt quá tồn kho.'], 400);
+            return response()->json(['error' => 'Không tìm thấy chi tiết sản phẩm.'], 404);
         }
 
         return response()->json(['error' => 'Không tìm thấy sản phẩm trong giỏ hàng.'], 404);
