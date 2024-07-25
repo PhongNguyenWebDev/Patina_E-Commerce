@@ -1,18 +1,9 @@
 <main class="container-fluid">
     <div class="container d-flex flex-column flex-xl-row align-items-center justify-content-between ">
-        <div class="col-12 col-xl-6">
-            <h1 class="pt-3">{{ $title }}</h1>
-            <p class="text-banner pt-3 pt-xl-5 pb-3">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
-                velit.
-                Aliquam vulputate velit imperdiet
-                dolor tempor tristique.</p>
+        <div class="col-12 col-xl-12">
+            <h2 class="pt-3 text-center w-100">{{ $title }}</h2>
             <div class="d-flex align-items-center">
-                <a class="btn-home nav-link" href="{{ route('client.home-page') }}">Trang chủ</a>
-                <a class="btn-explore nav-link" href="{{ route('client.shop-page') }}">Khám phá</a>
             </div>
-        </div>
-        <div class="col-12 col-xl-6 d-flex justify-content-xl-end justify-content-center">
-            <img class="img-slider w-75" src="/assets/clients/img/Image-banner.png" alt="">
         </div>
     </div>
 </main>

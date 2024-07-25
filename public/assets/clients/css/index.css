@@ -4,12 +4,14 @@
 }
 
 body {
-    font-size: 18px;
+    font-size: 16px;
     margin: 0 auto;
-    font-family: "Lora,sans-serif";
+    font-family: "Work Sans";
+    letter-spacing: -0.05em;
+    color: #222222;
 }
 
-@media (max-width: 575.98px) {
+/* @media (max-width: 575.98px) {
     h1 {
         font-size: 2.815rem !important;
     }
@@ -26,58 +28,25 @@ body {
     .img-slider {
         width: 50% !important;
     }
-}
+} */
 :root {
-    --color-catogory-menu: #f4e9d8;
-    --background-color: #fcf9f4;
-    --primary-100-color: #f7f2ee;
-    --primary-200-color: #f4f3f2;
-    /* Background color 100 - 200 */
-    --primary-300-color: #f4e7dc;
-    --primary-400-color: #f1dccb;
-    --primary-500-color: #edd1b9;
-    /* Interactive components color 300 - 500 */
-    --primary-600-color: #e4c4aa;
-    --primary-700-color: #d8b393;
-    --primary-800-color: #ca9a71;
-    /* Borders and separators color 600 - 800 */
-    --primary-900-color: #8d6440;
-    --primary-1000-color: #7f5733;
-    /* Solid colors 900 - 1000 */
-    --primary-1100-color: #805834;
-    --primary-1200-color: #4d3815;
     /* Text color 1100 - 1200 */
-    --secondary-100-color: #f6f6f7;
-    --secondary-200-color: #f2f2f5;
-    /* Background color 100 - 200 */
-    --secondary-300-color: #e8e9ec;
-    --secondary-400-color: #e0e1e5;
-    --secondary-500-color: #d8d9df;
-    /* Interactive components color 300 - 500 */
-    --secondary-600-color: #d0d1d8;
-    --secondary-700-color: #c4c6ce;
-    --secondary-800-color: #b0b2be;
-    /* Borders and separators color 600 - 800 */
-    --secondary-900-color: #838590;
-    --secondary-1000-color: #787a85;
-    /* Solid colors 900 - 1000 */
-    --secondary-1100-color: #5a5c65;
-    --secondary-1200-color: #1e1f24;
-    /* Text color 1100 - 1200 */
-    --font-size: 18px;
-    --font-h1-size: 3.815rem;
-    --font-h2-size: 3.052rem;
-    --font-h3-size: 2.441rem;
-    --font-h4-size: 1.953rem;
-    --font-h5-size: 1.563rem;
-    --font-h6-size: 1.25rem;
+    --font-size: 16px;
+    --font-p-size: 1rem !important;
+    --font-h1-size: 3.815rem !important;
+    --font-h2-size: 3.052rem !important;
+    --font-h3-size: 2.441rem !important;
+    --font-h4-size: 1.953rem !important;
+    --font-h5-size: 1.563rem !important;
+    --font-h6-size: 1.25rem !important;
+    --font-small-size: 0.8rem !important;
+    --font-little-size: 0.64rem !important;
     /* Hệ thống h1 - h6 */
     --Regular: 400;
-    --Medium: 600;
-    --Semi-bold: 700;
-    --Bold: 800;
-    --line-height: 120%;
-    --letter-spacing: -4%;
+    --Medium: 500;
+    --Semi-bold: 600;
+    --Bold: 700;
+    --line-height: 1.4;
     --max-width: 1920px;
     /* Chiều rộng tối đa của container */
     --column-count: 12;
@@ -85,61 +54,49 @@ body {
     --gutter-width: 20px;
     /* Khoảng cách giữa các cột */
     --margin: 0 70px;
-    --item-background-color: #8d6440;
     /* Màu nền của grid */
 }
 
 h1 {
     font-size: var(--font-h1-size);
     line-height: var(--line-height);
-    font-weight: bold;
+    font-weight: var(--Bold);
     margin: 0;
 }
 
 h2 {
     font-size: var(--font-h2-size);
     line-height: var(--line-height);
+    font-weight: var(--Semi-bold);
     margin: 0;
 }
 
 h3 {
     font-size: var(--font-h3-size);
     line-height: var(--line-height);
+    font-weight: var(--Medium);
     margin: 0;
 }
 
 h4 {
     font-size: var(--font-h4-size);
     line-height: var(--line-height);
+    font-weight: var(--Medium);
     margin: 0;
 }
 
 h5 {
     font-size: var(--font-h5-size);
     line-height: var(--line-height);
+    font-weight: var(--Regular);
     margin: 0;
 }
 
 h6 {
     font-size: var(--font-h6-size);
     line-height: var(--line-height);
-    font-weight: var(--Semi-bold);
+    font-weight: var(--Regular);
     margin: 0;
-}
-
-/* start css patina home  */
-.main-content {
-    background-image: url("../img/Logo_bran/backgroud-login&register.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.main-content > .container > div > p {
-    font-size: 16px;
-}
-
-.main-content > .container > div > h4 {
-    font-size: 24px;
 }
 
 .service {
@@ -149,21 +106,6 @@ h6 {
 
 .statistic {
     width: 80%;
-}
-
-.grid-catogory {
-    color: #503b19;
-    font-size: 18px;
-    margin-top: 5px;
-}
-
-.img-category img {
-    background-image: linear-gradient(
-        to top,
-        rgb(229, 197, 148),
-        rgba(202, 191, 171, 0.1),
-        rgba(255, 255, 255, 0)
-    );
 }
 
 .polular-product h2 {
@@ -184,7 +126,7 @@ h6 {
 }
 
 .logo-brand {
-    background-color: #f7f2ee;
+    background-color: #7675751a;
 }
 
 /* end css patina home */
@@ -192,11 +134,6 @@ h6 {
 .logoweb img {
     width: 75px;
     height: 75%;
-}
-
-.web-name,
-.menu-catogory {
-    color: #8d6440;
 }
 
 .header-menu {
@@ -222,7 +159,7 @@ h6 {
     width: 20px;
     height: 20px;
     position: absolute;
-    border: 2px solid #5f2d00c9;
+    border: 2px solid black;
     border-radius: 50%;
     background-color: #ffffff;
     justify-content: center;
@@ -241,8 +178,7 @@ h6 {
     align-items: center;
     width: 2em;
     height: 2em;
-    color: #8d6440;
-    background-color: #ae49091a;
+    background-color: #7675751a;
     border-radius: 50px 50px 50px 50px;
 }
 
@@ -268,11 +204,14 @@ h6 {
     border: 1px solid black;
     text-align: center;
 }
-
+.show {
+    left: -140% !important;
+}
 /* end register and login*/
 /* Start Shop CSS*/
 main {
-    background-color: #f7f2ee;
+    background-color: #f0eff5;
+    height: 200px;
 }
 
 .text-banner {
@@ -313,7 +252,7 @@ main {
 }
 
 .bg-filter {
-    background-color: var(--item-background-color);
+    background-color: #f0eff5;
     color: white;
 }
 
@@ -338,13 +277,9 @@ main {
 }
 
 /* Popular Product */
-.popular h6 {
-    font-weight: 600;
-    color: var(--secondary-1200-color);
-}
 
 .popular p {
-    font-weight: 700;
+    font-weight: 400;
     color: var(--primary-1200-color);
 }
 
@@ -440,11 +375,6 @@ main {
 /* Start Thanh toán CSS */
 .checkout-form h3 {
     font-weight: var(--Medium);
-}
-
-.checkout-form input,
-label {
-    font-size: 18px;
 }
 
 .btn-thanhtoan {
@@ -673,6 +603,7 @@ span.active a:after,
 .border-color-orange {
     border: 0.5px solid rgb(195, 148, 62);
     border-radius: 5px;
+    font-size: var(--font-little-size);
 }
 .border-color-dark {
     border: 0.5px solid black;

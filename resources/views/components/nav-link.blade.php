@@ -1,7 +1,7 @@
 @props(['active' => false, 'href'])
 
 @php
-    $classes = 'nav-link fs-5' . ($active ? ' change' : '');
+    $classes = 'nav-link fw-medium mx-2' . ($active ? ' change' : '');
 @endphp
 
 <a href="{{ $href }}" {{ $attributes->merge(['class' => $classes]) }}>
