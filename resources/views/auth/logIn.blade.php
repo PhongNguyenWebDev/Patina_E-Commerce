@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn mt-4"
-                            style="background-color: var(--primary-900-color); width: 100%; color:aliceblue;font-size: 20px;">Đăng
+                            style="background-color: #f0eff5; width: 100%;font-size: 20px;">Đăng
                             nhập
                         </button>
                         <a href="{{ route('signIn-page') }}" class="text-decoration-none">

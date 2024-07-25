@@ -4,14 +4,14 @@
         <div class="my-5">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
                 aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item fs-4"><a href="/" style="color: var(--primary-900-color);">Home</a></li>
-                    <li class="breadcrumb-item fs-4"><a href="{{ route('client.shop-page') }}"
+                <ol class="breadcrumb align-items-center d-flex">
+                    <li class="breadcrumb-item "><a href="/" style="color: var(--primary-900-color);">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('client.shop-page') }}"
                             style="color: var(--primary-900-color);">Shop</a></li>
-                    <li class="breadcrumb-item active fs-4" aria-current="page">Detail: {{ $product->name }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">Detail: {{ $product->name }}</li>
                 </ol>
             </nav>
-            <h1>{{ $product->name }}</h1>
+            <h3>{{ $product->name }}</h3>
             <hr style="color: orange;">
         </div>
     </section>
@@ -44,14 +44,14 @@
                     <!-- Price Products -->
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex flex-row">
-                            <p id="sale_price" class="text-danger fs-3 pe-3">
+                            <h5 id="sale_price" class="text-danger  pe-3">
                                 ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
-                            </p>
-                            <p id="price" class="fs-3 text-decoration-line-through"
+                            </h5>
+                            <h5 id="price" class=" text-decoration-line-through"
                                 style="color: var(--primary-1000-color);">
-                                ${{ number_format($product->sale_price) ? number_format($product->price) : null }}</p>
+                                ${{ number_format($product->sale_price) ? number_format($product->price) : null }}</h5>
                         </div>
-                        <p class="fs-3">SKU: PTN{{ $product->id }}</p>
+                        <h5 class="">SKU: PTN{{ $product->id }}</h5>
                     </div>
                     <!-- Reviews -->
                     <div class="d-flex flex-row align-items-center">
@@ -62,7 +62,7 @@
                             <img src="/assets/clients/img/Icon/Star 1.png" alt="">
                             <img src="/assets/clients/img/Icon/Star 1.png" alt="">
                         </div>
-                        <p class="m-0 px-3" style="color: var(--secondary-1000-color);">({{$reviewCount}} reviews)</p>
+                        <p class="m-0 px-3" style="color: var(--secondary-1000-color);">({{ $reviewCount }} reviews)</p>
                     </div>
                     <!-- Color Products -->
                     <form action="{{ route('client.cart-page.add', $product->id) }}" method="POST">
@@ -78,7 +78,7 @@
                                             id="color_{{ $color->id }}" value="{{ $color->id }}"
                                             data-price="{{ $color->price }}" data-sale-price="{{ $color->sale_price }}"
                                             {{ $index == 0 ? 'checked' : '' }}>
-                                        <label class="form-check-label fs-5 fw-medium"
+                                        <label class="form-check-label fs-5"
                                             for="color_{{ $color->id }}">{{ $color->name }}</label>
                                     </div>
                                 @endforeach
@@ -95,7 +95,7 @@
                                             id="size_{{ $detail->size_id }}" value="{{ $detail->size_id }}"
                                             data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}"
                                             {{ $index == 0 ? 'checked' : '' }}>
-                                        <label class="form-check-label fs-5 fw-medium"
+                                        <label class="form-check-label fs-5"
                                             for="size_{{ $detail->size_id }}">{{ $detail->size->name }}</label>
                                     </div>
                                 @endforeach
@@ -107,8 +107,8 @@
                                 <input class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1"
                                     value="1">
                                 <div class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
-                                    <button style="background-color:#8D6440;"
-                                        class="btn h-100 fs-5 d-flex align-items-center justify-content-center text-white"
+                                    <button
+                                        class="btn btn-dark bg-black h-100 fs-5 d-flex align-items-center justify-content-center text-white"
                                         type="submit"><i class="fa-solid fa-cart-shopping me-2 "></i>Thêm giỏ
                                         hàng</button>
                                 </div>
@@ -169,7 +169,8 @@
                             <li class="nav-link px-xl-5 px-2"><a class="nav-link item-detail fs-5"
                                     href="#tab2">INFORMATION</a>
                             </li>
-                            <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab3">REVIEWS ({{$reviewCount}})</a>
+                            <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab3">REVIEWS
+                                    ({{ $reviewCount }})</a>
                             </li>
                         </ul>
                         <hr>
