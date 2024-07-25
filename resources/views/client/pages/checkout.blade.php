@@ -167,7 +167,19 @@
                             </div>
                         </div> <br>
                     @endforeach
-
+                    @if (session('stockErrors'))
+                        <div class="alert alert-danger">
+                            <p>Số lượng mua hàng vượt quá tồn kho cho các sản phẩm sau:</p>
+                            <ul>
+                                @foreach (session('stockErrors') as $error)
+                                    <li>
+                                        {{ $error['product'] }} (Màu: {{ $error['color'] }}, Size: {{ $error['size'] }})
+                                        <br> Có sẵn: {{ $error['available'] }}, Yêu cầu: {{ $error['requested'] }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <hr style="border: 1px solid; color: var(--primary-1000-color);">
                     <div class="row my-2 g-2">
                         <div class="col-6">

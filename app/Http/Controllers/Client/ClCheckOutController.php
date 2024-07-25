@@ -27,14 +27,13 @@ class ClCheckOutController extends Controller
         $cart = Cart::where('user_id', auth()->id())->get();
         // Lấy thông tin mã giảm giá từ session
         $couponId = Session::get('applied_coupon_id');
-        $couponCode = Session::get('applied_coupon_id') ? Coupon::find(Session::get('applied_coupon_id')) : null;
         $couponDiscount = 0;
         $appliedCouponCode = null;
+        $subTotal = $this->calculateSubTotal($cart);
 
         if ($couponId) {
             $coupon = Coupon::find($couponId);
             if ($coupon) {
-                $subTotal = $this->calculateSubTotal($cart);
                 if ($subTotal >= $coupon->min_price) {
                     if ($coupon->discount_type === 'percentage') {
                         $couponDiscount = ($coupon->discount / 100) * $subTotal;
@@ -56,7 +55,7 @@ class ClCheckOutController extends Controller
         }
 
         $transportFee = $this->calculateTransportFee($users->address);
-        $totalPrice = $this->calculateTotalPrice($cart, $couponDiscount, $transportFee);
+        $totalPrice = $subTotal - $couponDiscount + $transportFee;
         $discountedPrice = $totalPrice * 0.9;
         $savedCoupons = UserCoupon::where('user_id', auth()->id())
             ->whereNull('used_at')
@@ -65,10 +64,10 @@ class ClCheckOutController extends Controller
 
         $allCoupons = Coupon::where(function ($query) use ($savedCoupons) {
             $query->whereIn('id', $savedCoupons)
-                ->orWhere('user_specific', 0);
+                ->orWhere('user_specific', 0)
+                ->where('usage_limit', '>', 0);
         })->whereDate('end_date', '>=', now())->get();
-
-        return view('client.pages.checkout', compact('title', 'couponCode', 'couponDiscount', 'allCoupons', 'users', 'appliedCouponCode', 'transportFee', 'totalPrice', 'discountedPrice'));
+        return view('client.pages.checkout', compact('title', 'couponDiscount', 'allCoupons', 'users', 'appliedCouponCode', 'transportFee', 'totalPrice', 'discountedPrice'));
     }
     public function applyCoupon(Request $request)
     {
@@ -78,11 +77,13 @@ class ClCheckOutController extends Controller
             ->whereDate('start_date', '<=', now())
             ->whereDate('end_date', '>=', now())
             ->first();
-
         if ($coupon && $this->canUseCoupon($coupon, auth()->id())) {
             $subTotal = $this->calculateSubTotal($cart);
             if ($subTotal < $coupon->min_price) {
                 return redirect()->back()->with('ermsg', 'Mã giảm giá không áp dụng với đơn hàng bé hơn ' . number_format($coupon->min_price));
+            }
+            if ($coupon->user_specific == 0 && $coupon->usage_limit <= 0) {
+                return redirect()->back()->with('ermsg', 'Mã giảm giá đã hết số lượt sử dụng');
             }
 
             Session::put('applied_coupon_id', $coupon->id);
@@ -114,27 +115,6 @@ class ClCheckOutController extends Controller
         return $transportFee;
     }
 
-    private function calculateTotalPrice($cart, $couponDiscount, $transportFee)
-    {
-        $subTotal = $this->calculateSubTotal($cart);
-        $discountedAmount = 0;
-        $coupon = Session::get('applied_coupon_id') ? Coupon::find(Session::get('applied_coupon_id')) : null;
-
-        if ($coupon) {
-            if ($coupon->discount_type === 'percentage') {
-                $discountedAmount = ($couponDiscount / 100) * $subTotal;
-            } elseif ($coupon->discount_type === 'fixed') {
-                $discountedAmount = $couponDiscount;
-            }
-
-            if ($coupon->max_price && $discountedAmount > $coupon->max_price) {
-                $discountedAmount = $coupon->max_price;
-            }
-        }
-
-        $totalPrice = $subTotal - $discountedAmount + $transportFee;
-        return $totalPrice;
-    }
     private function canUseCoupon($coupon, $userId)
     {
         if ($coupon->user_specific) {
@@ -154,6 +134,30 @@ class ClCheckOutController extends Controller
 
         $data['coupon_id'] = $couponId;
 
+        //So sánh tồn kho với cart
+        $insufficientStock = []; 
+        foreach ($user->carts as $cart) {
+            $colorId = Color::where('name', $cart->color)->first()->id;
+            $sizeId = Size::where('name', $cart->size)->first()->id;
+            $productDetail = ProductDetail::where('product_id', $cart->product_id)
+                ->where('color_id', $colorId)
+                ->where('size_id', $sizeId)
+                ->first();
+
+            if ($productDetail && $productDetail->quantity < $cart->quantity) {
+                $insufficientStock[] = [
+                    'product' => $cart->product->name,
+                    'color' => $cart->color,
+                    'size' => $cart->size,
+                    'available' => $productDetail->quantity,
+                    'requested' => $cart->quantity,
+                ];
+            }
+        }
+        if (!empty($insufficientStock)) {
+            return redirect()->back()->with('ermsg', 'Số lượng mua hàng vượt quá tồn kho cho các sản phẩm')->with('stockErrors', $insufficientStock);
+        }
+
         if ($order = Order::create($data)) {
             $token = Str::random(40);
             foreach ($user->carts as $cart) {
@@ -165,7 +169,7 @@ class ClCheckOutController extends Controller
                 ];
                 OrderDetail::create($orderDetailData);
 
-                // Update the product quantity based on color and size
+                // Cập nhật số lượng sản phẩm theo màu sắc và kích thước
                 $colorId = Color::where('name', $cart->color)->first()->id;
                 $sizeId = Size::where('name', $cart->size)->first()->id;
                 $productDetail = ProductDetail::where('product_id', $cart->product_id)
@@ -179,11 +183,27 @@ class ClCheckOutController extends Controller
                 }
             }
 
+            // Xóa giỏ hàng của người dùng
             Cart::where('user_id', $user->id)->delete();
+
+            // Cập nhật sử dụng mã giảm giá của người dùng
             UserCoupon::where('user_id', auth()->id())
                 ->where('coupon_id', $couponId)
                 ->update(['used_at' => now()]);
+
+            // Tăng số lượng sử dụng mã giảm giá
+            $coupon = Coupon::find($couponId);
+            $coupon->increment('usage_count');
+
+            // Nếu user_specific = 0 thì giảm usage_limit đi 1
+            if ($coupon->user_specific == 0) {
+                $coupon->decrement('usage_limit');
+            }
+
+            // Xóa mã giảm giá đã áp dụng khỏi phiên làm việc
             session()->forget('applied_coupon_id');
+
+            // Lưu token đơn hàng và gửi email xác nhận
             $order->token = $token;
             $order->save();
             Mail::to($user->email)->send(new OrderMail($order, $token));

@@ -43,7 +43,8 @@
                                                                 class="btn btn-outline-secondary btn-sm dec qtybtn">-</button>
                                                             <input type="text" name="quantity"
                                                                 class="form-control rounded quantity-input mx-2"
-                                                                value="{{ $item->quantity }}" min="1">
+                                                                value="{{ $item->quantity }}" min="1"
+                                                                max="{{ $item->max_quantity }}">
                                                             <button
                                                                 class="btn btn-outline-secondary btn-sm inc qtybtn">+</button>
                                                         </div>
