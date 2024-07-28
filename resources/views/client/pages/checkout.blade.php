@@ -1,46 +1,5 @@
 @extends('layouts.client')
 @section('content')
-    <style>
-        .code {
-            font-size: 24px;
-            font-weight: bold;
-            color: #8d6440;
-        }
-
-        .border-dashed {
-            border: 2px dashed #333;
-            border-radius: 5px;
-        }
-
-        .discount {
-            font-size: 30px;
-            font-weight: bold;
-            color: #8d6440;
-        }
-
-        .voucher .description {
-            font-size: 16px;
-            color: #666;
-            margin-top: 10px;
-        }
-
-        .voucher .expiration {
-            font-size: 14px;
-            color: #888;
-            margin-top: 10px;
-        }
-
-        .butor {
-            background-color: #ff5722;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-    </style>
     @include('client.blocks.banner')
     <!-- Checkout info & payment -->
     <section class="container my-5">
@@ -182,10 +141,8 @@
                             </h4>
                         @endif
                     </div>
-                    <<<<<<< HEAD <button class="btn btn-dark my-2" style="font-size:var(--font-h5-size)">Thanh
+                    <button class="btn btn-dark my-2" style="font-size:var(--font-h5-size)">Thanh
                         toán</button>
-                        =======
-                        >>>>>>>
                 </div>
             </div>
         </form>
