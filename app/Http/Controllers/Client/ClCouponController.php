@@ -32,6 +32,7 @@ class ClCouponController extends Controller
                 'saved_at' => now()
             ];
             if (UserCoupon::create($data)) {
+                $coupon->decrement('usage_limit');
                 return redirect()->route('client.list-coupon.index')->with('ssmsg', 'Bạn đã lưu voucher thành công');
             }
         }

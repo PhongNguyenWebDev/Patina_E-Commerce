@@ -104,7 +104,7 @@
                         <!-- Add to card -->
                         <div class="container">
                             <div class="row g-3">
-                                <input class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1"
+                                <input id="quantityInput" class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1"
                                     value="1">
                                 <div class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
                                     <button
@@ -121,6 +121,11 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="my-3">
+                    <p style="font-weight: var(--Medium);color:rgba(255, 0, 0, 0.453)">Tồn kho: <span
+                            id="stockQuantity"></span></p>
+
                 </div>
                 <!-- Description -->
                 <div class="my-3">
@@ -264,13 +269,14 @@
             const salePriceElement = document.getElementById('sale_price');
             const colorRadios = document.querySelectorAll('.color-radio');
             const sizeOptions = document.querySelectorAll('.size-option');
+            const stockQuantityElement = document.getElementById('stockQuantity');
 
-            // Show all sizes initially
+            // Hiển thị tất cả các kích cỡ ban đầu
             sizeOptions.forEach(option => {
                 option.style.display = 'inline-block';
             });
 
-            // Function to handle color change
+            // Hàm xử lý thay đổi màu sắc
             const handleColorChange = function() {
                 const selectedColorPrice = this.getAttribute('data-price');
                 const selectedColorSalePrice = this.getAttribute('data-sale-price');
@@ -279,6 +285,7 @@
                 priceElement.textContent = `$${selectedColorPrice}`;
                 salePriceElement.textContent = `$${selectedColorSalePrice}`;
 
+                // Xử lý hiển thị các tùy chọn kích cỡ tương ứng với màu sắc được chọn
                 sizeOptions.forEach(option => {
                     const colorId = option.getAttribute('data-color-id');
                     const quantity = option.getAttribute('data-quantity');
@@ -293,19 +300,62 @@
                         option.style.display = 'none';
                     }
                 });
+
+                // Tự động kích hoạt sự kiện thay đổi trên tùy chọn kích cỡ đầu tiên hiển thị
+                const firstVisibleSizeOption = document.querySelector(
+                    '.size-option[style="display: inline-block;"] input.size-radio');
+                if (firstVisibleSizeOption) {
+                    firstVisibleSizeOption.checked = true;
+                    firstVisibleSizeOption.dispatchEvent(new Event('change'));
+                }
             };
 
-            // Attach change event listeners to color radios
+            // Hàm xử lý thay đổi kích cỡ
+            const handleSizeChange = function() {
+                const selectedSizeQuantity = this.closest('.size-option').getAttribute('data-quantity');
+                stockQuantityElement.textContent = selectedSizeQuantity;
+            };
+
+            // Đính kèm các trình nghe sự kiện thay đổi cho nút radio màu sắc
             colorRadios.forEach(radio => {
                 radio.addEventListener('change', handleColorChange);
             });
 
-            // Automatically trigger change event on the first color radio
+            // Đính kèm các trình nghe sự kiện thay đổi cho nút radio kích cỡ
+            const sizeRadios = document.querySelectorAll('.size-radio');
+            sizeRadios.forEach(radio => {
+                radio.addEventListener('change', handleSizeChange);
+            });
+
+            // Tự động kích hoạt sự kiện thay đổi trên nút radio màu sắc đầu tiên
             if (colorRadios.length > 0) {
                 colorRadios[0].dispatchEvent(new Event('change'));
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sizeRadios = document.querySelectorAll('.size-radio');
+            const quantityInput = document.getElementById('quantityInput');
+    
+            // Function to handle size change
+            const handleSizeChange = function() {
+                const selectedSizeQuantity = parseInt(this.closest('.size-option').getAttribute('data-quantity'));
+                quantityInput.max = selectedSizeQuantity; // Update max attribute of quantity input
+            };
+    
+            // Attach event listener to size radios
+            sizeRadios.forEach(radio => {
+                radio.addEventListener('change', handleSizeChange);
+            });
+    
+            // Trigger change event on page load to set initial max value
+            if (sizeRadios.length > 0) {
+                sizeRadios[0].dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {

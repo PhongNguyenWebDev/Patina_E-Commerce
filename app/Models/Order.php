@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $appends = ['totalPrice'];
     protected $table = 'orders';
     protected $fillable = [
         'name',
@@ -36,18 +35,5 @@ class Order extends Model
     public function coupon()
     {
         return $this->hasOne(Coupon::class, 'id', 'coupon_id');
-    }
-    public function getTotalPriceAttribute()
-    {
-        $total = 0;
-
-        foreach ($this->details as $item) {
-            $total += $item->price * $item->quantity;
-        }
-
-        $couponDiscount = $this->coupon->discount ?? 0;
-        $total -= $couponDiscount;
-
-        return $total;
     }
 }

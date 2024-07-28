@@ -43,7 +43,8 @@
                                                                 class="btn btn-outline-secondary btn-sm dec qtybtn">-</button>
                                                             <input type="text" name="quantity"
                                                                 class="form-control rounded quantity-input mx-2"
-                                                                value="{{ $item->quantity }}" min="1">
+                                                                value="{{ $item->quantity }}" min="1"
+                                                                max="{{ $item->max_quantity }}">
                                                             <button
                                                                 class="btn btn-outline-secondary btn-sm inc qtybtn">+</button>
                                                         </div>
@@ -138,7 +139,24 @@
                         console.log('Số lượng đã được cập nhật thành công.');
                     },
                     error: function(xhr, status, error) {
-                        console.error('Lỗi khi cập nhật số lượng:', error);
+                        var response = xhr.responseJSON;
+                        if (response && response.error) {
+                            $.toast({
+                                heading: 'Lỗi',
+                                text: response.error,
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-center',
+                            });
+
+                            // Nếu lỗi vượt quá số lượng tồn kho, đặt số lượng về số lớn nhất
+                            if (response.error.includes('vượt quá tồn kho')) {
+                                var maxQuantity = xhr.responseJSON.maxQuantity;
+                                $form.find('input.quantity-input').val(maxQuantity);
+                            }
+                        } else {
+                            console.error('Lỗi khi cập nhật số lượng:', error);
+                        }
                     }
                 });
             });
