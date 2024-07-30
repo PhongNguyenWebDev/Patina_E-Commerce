@@ -1,6 +1,6 @@
 @extends('layouts.client')
 @section('content')
-    <main class="container-fluid p-0">
+    <main class="container-fluid p-0" style="height: 30rem;">
         <img class="img-fluid" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
     </main>
     <section class="container my-5">
@@ -9,7 +9,8 @@
         </div>
         <nav aria-label="breadcrumb mb-5">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Trang chủ</a>
+                </li>
                 <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Blog</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Ideas for living room</li>
             </ol>

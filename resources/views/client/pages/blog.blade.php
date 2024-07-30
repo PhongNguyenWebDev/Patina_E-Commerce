@@ -11,10 +11,10 @@
         <div class="container-fluid">
             <img class="img-fluid" src="img/blogimage.png" alt="">
             <div class="d-flex flex-row">
-                <div class="col-xl-1 col-2 border p-0 align-items-center d-flex justify-content-center me-2"
-                    style="background-color: var(--primary-900-color); width: 5rem; height: 5rem;">
-                    <p class="text-break text-center fs-5 text-white m-0 fw-bold">25 <br> Tháng 4</p>
-                </div>
+                {{-- <div class="col-xl-1 col-2 border p-0 align-items-center d-flex justify-content-center me-2"
+                    style="width: 5rem; height: 5rem;">
+                    <p class="text-break text-center fs-5 m-0">25 <br> Tháng 4</p>
+                </div> --}}
                 <div class="col-xl-11 col-10">
                     @foreach ($blogs as $blog)
                         <h3 class="fs-3 fw-bold"><a class="nav-link" href="{{ route('client.blog-detail', $blog->slug) }}">

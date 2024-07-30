@@ -1,6 +1,6 @@
 <header class="mx-xl-5 my-xl-2">
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
+        <div class="container-fluid p-0">
             <div class="w-25">
                 <a class="navbar-brand" href="{{ route('client.home-page') }}"
                     class="nav-link d-flex align-items-center text-decoration-none">

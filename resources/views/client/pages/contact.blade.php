@@ -7,26 +7,26 @@
                 <div class="d-flex flex-column my-4">
                     @foreach ($infoPhone as $phone)
                         <div class="col-xl-12 d-flex align-items-center mb-3">
-                            <img src="{{ $phone->images }}" alt="">
+                            <img style="object-fit: cover; width:35px" src="{{ $phone->images }}" alt="">
                             <p class="ps-3 mb-0">{{ $phone->detail }}</p>
                         </div>
                     @endforeach
                     @foreach ($infoEmail as $email)
                         <div class="col-xl-12 d-flex align-items-center mb-3">
-                            <img src="{{ $email->images }}" alt="">
+                            <img style="object-fit: cover; width:35px" src="{{ $email->images }}" alt="">
                             <p class="ps-3 mb-0">{{ $email->detail }}</p>
                         </div>
                     @endforeach
                     @foreach ($infoLocation as $location)
                         <div class="col-xl-12 d-flex align-items-center mb-3">
-                            <img src="{{ $location->images }}" alt="">
+                            <img style="object-fit: cover; width:35px" src="{{ $location->images }}" alt="">
                             <p class="ps-3 mb-0">{{ $location->detail }}</p>
                         </div>
                     @endforeach
                     <div class="col-xl-12 d-flex align-items-center mb-3">
                         @foreach ($socialn as $social)
                             <div class="icon-footer m-2">
-                                <a style="color: #8d6440" href="{{ $social->link }}">{!! $social->icon !!}</a>
+                                <a class="text-dark" href="{{ $social->link }}">{!! $social->icon !!}</a>
                             </div>
                         @endforeach
                     </div>
@@ -52,7 +52,7 @@
                             style="height: 300px"></textarea>
                         <label class="fs-5" for="floatingTextarea2">Phản hồi</label>
                     </div>
-                    <button class="btn mt-4 rounded-1 px-4 py-2 btn-contact fs-4">Gửi phản hồi</button>
+                    <button class="btn btn-dark p-2 fw-medium" style="font-size: 18px">Gửi phản hồi</button>
                 </form>
             </div>
         </div>

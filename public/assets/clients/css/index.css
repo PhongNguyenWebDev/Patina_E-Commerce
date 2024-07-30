@@ -11,24 +11,11 @@ body {
     color: #222222;
 }
 
-/* @media (max-width: 575.98px) {
-    h1 {
-        font-size: 2.815rem !important;
+@media (max-width: 575.98px) {
+    .frame-login {
+        width: 0px;
     }
-    h2 {
-        font-size: 2.052rem !important;
-    }
-    h3 {
-        font-size: 1.441rem !important;
-    }
-    .btn-home,
-    .btn-explore {
-        padding: 5px 20px !important;
-    }
-    .img-slider {
-        width: 50% !important;
-    }
-} */
+}
 :root {
     /* Text color 1100 - 1200 */
     --font-size: 16px;
@@ -99,6 +86,10 @@ h6 {
     margin: 0;
 }
 
+.frame-login {
+    width: 23rem;
+    padding: 5px;
+}
 .service {
     height: 170px;
     width: 286px;
@@ -185,28 +176,9 @@ h6 {
 /* end footer */
 /* start register and login*/
 
-.form-label-register,
-.form-label-login {
-    font-weight: var(--Medium);
-    font-size: 18px;
-}
-
-.form-control-register,
-.form-control-login {
-    border: 1px solid #6f717b;
-    color: #6f717b;
-    margin-top: -7px;
-}
-
-.login-under-1,
-.login-under-2 {
-    font-size: 20px;
-    border: 1px solid black;
-    text-align: center;
-}
-/* .show {
+.dropdown > .show {
     left: -140% !important;
-} */
+}
 /* end register and login*/
 /* Start Shop CSS*/
 main {
@@ -632,3 +604,50 @@ span.active a:after,
 .breadcrumb-item + .breadcrumb-item::before {
     float: none !important;
 }
+
+/* Panigation */
+.pagination {
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    font-size: 1.15385em;
+}
+
+.pagination ul {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.pagination li {
+    display: inline-block;
+}
+
+.pagination li.active a {
+    border: 2px solid #636871;
+    color: #555;
+}
+
+.pagination li a {
+    font-size: 12px;
+    color: #a2a2a2;
+    height: 30px;
+    width: 30px;
+    line-height: 28px;
+    display: inline-block;
+    border: 2px solid #e8e9eb;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.pagination li a i {
+    line-height: 28px;
+    vertical-align: middle;
+}
+
+.pagination li.disabled a {
+    color: #ccc;
+    pointer-events: none;
+    cursor: default;
+}
+/* Chữ chạy */

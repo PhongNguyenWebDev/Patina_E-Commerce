@@ -67,127 +67,140 @@
             </div>
         </div>
     </div>
-    <section class="container-fluid my-5" style="width: 85%">
-        <div class="py-xl-5 py-2 d-flex flex-column align-items-center text-center">
-            <h1>Phân loại</h1>
+    {{-- Danh mục sản phẩm --}}
+    <section class="container-fluid my-xl-5 py-xl-5" style="width: 85%">
+        <div class="py-xl-3 py-2 d-flex flex-column align-items-center text-center">
+            <h2>Sản phẩm bạn có thể thích</h2>
             <p style="color: #000516A4;">Cửa hàng chuyên cung cấp các sản phẩm thời trang hiện đại
                 <br> của các hãng Local Brand nổi tiếng tại Việt Nam
             </p>
         </div>
-        <div class="container-fluid p-0">
-            <div class="row g-2">
-                <div class="col-xl-3 position-relative" style="height: 31.7em;">
-                    <img class="object-fit-contain border rounded w-100 h-100" style="background:#F0EFF5;"
-                        src="/assets/clients/img/Cate_img/pants.png" alt="">
-                    <div class="container-fluid position-absolute" style="top: 88%;">
-                        <div class="row">
-                            <div class="col-6">
-                                <h6 class="">Quần
-                                </h6>
-                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                            </div>
-                            <div class="col-6 text-end">
-                                <a class="nav-link" href="#">
-                                    <img src="{{ asset('assets/clients/img/Icon/arrow.png') }}" class="img-fluid"
-                                        style="width: 25%" alt="" srcset="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-9">
-                    <div class="row g-2">
-                        <div class="col-xl-8 position-relative" style="height: 15.625em;">
-                            <img class="object-fit-contain border rounded w-100 h-100" style="background:#F0EFF5;"
-                                src="/assets/clients/img/Cate_img/setofclothes.png" alt="">
-                            <div class="container-fluid position-absolute" style="top: 78%;">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h6 class="">Bộ
-                                            quần áo
-                                        </h6>
-                                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <a class="nav-link" href="#">
-                                            <img src="{{ asset('assets/clients/img/Icon/arrow.png') }}" class="img-fluid"
-                                                style="width: 12%" alt="" srcset="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 position-relative" style="height: 15.625em;">
-                            <img class="object-fit-contain border rounded w-100 h-100" style="background:#F0EFF5;"
-                                src="/assets/clients/img/Cate_img/assor.png" alt="">
-                            <div class="container-fluid position-absolute" style="top: 78%;">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h6 class="">Phụ kiện
-                                        </h6>
-                                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <a class="nav-link" href="#">
-                                            <img src="{{ asset('assets/clients/img/Icon/arrow.png') }}" class="img-fluid"
-                                                style="width: 25%" alt="" srcset="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-2 pt-2">
-                        <div class="col-xl-4 position-relative" style="height: 15.625em;">
-                            <img class="object-fit-contain border rounded w-100 h-100" style="background:#F0EFF5;"
-                                src="/assets/clients/img/Cate_img/footware.png" alt="">
-                            <div class="container-fluid position-absolute" style="top: 78%;">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h6 class="">Giày
-                                        </h6>
-                                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <a class="nav-link" href="#">
-                                            <img src="{{ asset('assets/clients/img/Icon/arrow.png') }}" class="img-fluid"
-                                                style="width: 25%" alt="" srcset="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-xl-8 position-relative" style="height: 15.625em;">
-                            <img class="object-fit-contain border rounded w-100 h-100" style="background:#F0EFF5;"
-                                src="/assets/clients/img/Cate_img/shirt.png" alt="">
-                            <div class="container-fluid position-absolute" style="top: 78%;">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h6 class="">Áo
-                                        </h6>
-                                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <a class="nav-link" href="#">
-                                            <img src="{{ asset('assets/clients/img/Icon/arrow.png') }}" class="img-fluid"
-                                                style="width:12%" alt="" srcset="">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="container-fluid p-0 d-flex justify-content-center">
+            <ul class="row g-2 pb-5">
+                <li class="rounded-5 text-center me-5 nav-link" style="width: 7rem; height: 7rem;">
+                    <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link d-block h-100">
+                        <img class="object-fit-contain w-100 h-100" style="background:#F0EFF5; border-radius:50%;"
+                            src="/assets/clients/img/Cate_img/pants.png" alt="Quần">
+                        <span class="d-block mt-2">Quần</span>
+                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                    </a>
+                </li>
+                <li class="rounded-5 text-center me-5 nav-link" style="width: 7rem; height: 7rem;">
+                    <a href="http://127.0.0.1:8000/shop-page/ao" class="nav-link d-block h-100">
+                        <img class="object-fit-contain w-100 h-100" style="background:#F0EFF5; border-radius:50%;"
+                            src="{{ asset('assets/clients/img/Cate_img/shirt.png') }}" alt="Áo">
+                        <span class="d-block mt-2">Áo</span>
+                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                    </a>
+                </li>
+                <li class="rounded-5 text-center me-5 nav-link" style="width: 7rem; height: 7rem;">
+                    <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link d-block h-100">
+                        <img class="object-fit-contain w-100 h-100" style="background:#F0EFF5; border-radius:50%;"
+                            src="{{ asset('assets/clients/img/Cate_img/footware.png') }}" alt="Giày">
+                        <span class="d-block mt-2">Giày</span>
+                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                    </a>
+                </li>
+                <li class="rounded-5 text-center me-5 nav-link" style="width: 7rem; height: 7rem;">
+                    <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link d-block h-100">
+                        <img class="object-fit-contain w-100 h-100" style="background:#F0EFF5; border-radius:50%;"
+                            src="{{ asset('assets/clients/img/Cate_img/setofclothes.png') }}" alt="Bộ quần áo">
+                        <span class="d-block mt-2">Bộ quần áo</span>
+                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                    </a>
+                </li>
+                <li class="rounded-5 text-center me-5 nav-link" style="width: 7rem; height: 7rem;">
+                    <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link d-block h-100">
+                        <img class="object-fit-contain w-100 h-100" style="background:#F0EFF5; border-radius:50%;"
+                            src="{{ asset('assets/clients/img/Cate_img/assor.png') }}" alt="Phụ kiện">
+                        <span class="d-block mt-2">Phụ kiện</span>
+                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </section>
-    </div>
+    {{-- Sản phẩm bán chạy --}}
+    <section class="container-fluid mb-xl-5 pb-xl-5">
+        <div>
+            <h2 class="text-center my-xl-5">Sản phẩm bán chạy</h2>
+        </div>
+        <div id="carouselProducts" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach ($products->chunk(4) as $chunkIndex => $chunk)
+                    <div class="carousel-item {{ $chunkIndex === 0 ? 'active' : '' }}">
+                        <div class="container-fluid" style="width: 90%;">
+                            <div class="row g-2">
+                                @foreach ($chunk as $product)
+                                    @if ($product->hot === 1)
+                                        <div
+                                            class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                                            <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                                                <img class="img-thumbnail" src="{{ $product->images }}" alt="">
+                                            </a>
+                                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    @if ($product->hot === 1)
+                                                        <span class="badge text-bg-danger fs-6">hot</span>
+                                                    @endif
+                                                    @php
+                                                        $isFavorite = false;
+                                                        foreach ($favorite as $item) {
+                                                            if ($item->product_id === $product->id) {
+                                                                $isFavorite = true;
+                                                                break;
+                                                            }
+                                                        }
+                                                    @endphp
+                                                    @if ($isFavorite)
+                                                        <a class="nav-link"
+                                                            href="{{ route('client.favorite.add', $product->id) }}"><i
+                                                                style=" background-color: rgb(203, 51, 51); color:white;"
+                                                                class="fa-regular fa-heart rounded-5 p-2"></i></a>
+                                                    @else
+                                                        <a class="nav-link"
+                                                            href="{{ route('client.favorite.index') }}"><i
+                                                                style=" background-color:#fff; color:#d8d8d8"
+                                                                class="fas fa-heart rounded-5 p-2"></i></a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <h6 class="text-center my-2">{{ $product->name }}</h6>
+                                                {{-- <p style="font-size: var(--font-size); margin:0">{{ $product->category->name }}</p> --}}
+                                                <div class="d-flex justify-content-center text-center">
+                                                    <p style="font-size: var(--font-size); margin: 0;"
+                                                        class="text-decoration-line-through text-danger mx-2">
+                                                        ${{ $product->price }}</p>
+                                                    <p style="font-size: var(--font-size); margin: 0; color: black;">
+                                                        ${{ $product->sale_price }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducts"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProducts"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
     <div class="container-fluid" style="background:#F0EFF5;">
-        <div class="row g-2">
-            <div class="col-xl-3 col-6 p-xl-4 p-1">
+        <div class="d-flex justify-content-center">
+            <div class="col-xl-2 col-6 p-xl-4 p-1">
                 <div class="d-flex flex-column justify-content-between align-items-center my-2">
                     <img src="{{ asset('assets/clients/img/Icon/user.png') }}" class="img-fluid" style="width: 15%"
                         alt="" srcset="">
@@ -195,7 +208,7 @@
                     <span class="" style="color: #797b86;">Khách hàng</span>
                 </div>
             </div>
-            <div class="col-xl-3 col-6 p-xl-4 p-1">
+            <div class="col-xl-2 col-6 p-xl-4 p-1">
                 <div class="d-flex flex-column justify-content-between align-items-center my-2">
                     <img src="{{ asset('assets/clients/img/Icon/box.png') }}" class="img-fluid" style="width: 15%"
                         alt="" srcset="">
@@ -203,7 +216,7 @@
                     <span style="color: #797b86;">Sản phẩm</span>
                 </div>
             </div>
-            <div class="col-xl-3 col-6 p-xl-4 p-1">
+            <div class="col-xl-2 col-6 p-xl-4 p-1">
                 <div class="d-flex flex-column justify-content-between align-items-center my-2">
                     <img src="{{ asset('assets/clients/img/Icon/briefcase.png') }}" class="img-fluid" style="width: 15%"
                         alt="" srcset="">
@@ -211,7 +224,7 @@
                     <span style="color: #797b86;">Số năm kinh nghiệm</span>
                 </div>
             </div>
-            <div class="col-xl-3 col-6 p-xl-4 p-1">
+            <div class="col-xl-2 col-6 p-xl-4 p-1">
                 <div class="d-flex flex-column justify-content-between align-items-center my-2">
                     <img src="{{ asset('assets/clients/img/Icon/heart.png') }}" class="img-fluid" style="width: 15%"
                         alt="" srcset="">
@@ -288,3 +301,22 @@
         </div>
     </div>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var carouselElement = document.querySelector('#carouselProducts');
+        var carousel = new bootstrap.Carousel(carouselElement, {
+            interval: 3000, // Thời gian giữa các slide (3000ms = 3s)
+            ride: 'carousel'
+        });
+
+        carouselElement.addEventListener('mouseover', function() {
+            carousel.pause();
+        });
+
+        carouselElement.addEventListener('mouseout', function() {
+            carousel.cycle();
+        });
+    });
+</script>
