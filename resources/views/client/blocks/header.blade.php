@@ -24,7 +24,7 @@
                             hàng</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <x-nav-link href="{{ route('client.blog-page') }}" :active="request()->routeIs('client.blog-page')">Blog</x-nav-link>
+                        <x-nav-link href="{{ route('client.blog-page') }}" :active="request()->routeIs('client.blog-page')">Bài viết</x-nav-link>
                     </li>
                     <li class="nav-item">
                         <x-nav-link href="{{ route('client.introduce-page') }}" :active="request()->routeIs('client.introduce-page')">Giới

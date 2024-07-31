@@ -220,7 +220,7 @@
         </div>
     </section>
     <!-- Flash Sales -->
-    <section class="container my-5">
+    {{-- <section class="container my-5">
         <div class="p-xl-5 p-3" style="background-color:#F7F2EE; ">
             <div class="d-flex flex-column flex-xl-row p-0 p-xl-5 bg-white w-100">
                 <!-- Left -->
@@ -263,5 +263,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection

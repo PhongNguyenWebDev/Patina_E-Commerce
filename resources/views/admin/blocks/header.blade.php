@@ -2,7 +2,7 @@
     <div class="header">
         <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fas fa-bars" aria-hidden="true"></i></a>
         <a id="toggle_btn" class="float-left" href="javascript:void(0);">
-            <img src="{{ asset('assets/admin/img/sidebar/icon-21.png') }}" alt="">
+            <i class="fa-solid fa-bars"></i>
         </a>
         <ul class="nav float-left">
             <li>

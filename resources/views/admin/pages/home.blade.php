@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
             <div class="dash-widget dash-widget5">
-                <span class="float-left"><i class="fas fa-shopping-cart" style="font-size: 80px; color:green"></i>
+                <span class="float-left"><i class="fas fa-shopping-cart" style="font-size: 40px; color:green"></i>
                 </span>
                 <div class="dash-widget-info text-right">
                     <span>Tổng số đơn hàng</span>

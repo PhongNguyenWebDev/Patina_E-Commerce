@@ -7,6 +7,8 @@
     <link rel="shortcut icon" href="https://laravel.com/img/favicon/favicon-16x16.png')}}" type='image/x-icon'>
     <title>@yield('title') | Male-Fashion</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/img/favicon.png') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     {{-- <link href="../../../../css?family=Roboto:300,400,500,700,900" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome/css/all.min.css') }}">

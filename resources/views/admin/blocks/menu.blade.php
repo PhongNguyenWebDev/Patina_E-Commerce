@@ -2,11 +2,9 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <div class="header-left">
-                <a href="{{ route('client.home-page') }}" class="d-flex align-items-center text-decoration-none">
-                    <img src="/assets/clients/img/Logo_bran/logoweb.jpg" alt=""
-                        style="border-radius: 50%; height: 85px; width: 85px;">
-                    <p class="web-name ms-5 m-0"
-                        style="color:#8d6440; font-family: 'Dancing Script', cursive; font-size: 22px;">PATINA
+                <a href="{{ route('client.home-page') }}"
+                    class="d-flex align-items-center text-decoration-none h-100 justify-content-center">
+                    <p class="ms-5 m-0" style="font-size: 28px; color:black;">PATINA
                     </p>
                 </a>
             </div>
@@ -18,8 +16,8 @@
                                     class="far fa-images"></i><span>Slider</span></a></li>
                         <li><a href="{{ route('admin.banner-bottom.index') }}"><i
                                     class="fas fa-sort-amount-down-alt"></i><span>Banner-Bottom</span></a></li>
-                        <li><a href="{{ route('admin.info.index') }}"><i
-                                    class="fa-solid fa-circle-info"></i><span>Thông tin shop</span></a></li>
+                        <li><a href="{{ route('admin.info.index') }}"><i class="fa-solid fa-circle-info"></i><span>Thông
+                                    tin shop</span></a></li>
                         <li><a href="{{ route('admin.social-network.index') }}"><i
                                     class="fas fa-share-alt"></i><span>Social Network</span></a></li>
                     </ul>
