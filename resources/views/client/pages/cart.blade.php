@@ -30,7 +30,7 @@
                                                 <p class="p-0 m-0">${{ number_format($item->price) }}</p>
                                             </td>
                                             <td>
-                                                <form class="updateQuantityForm"
+                                                <form class="updateQuantityForm m-0"
                                                     action="{{ route('client.cart-page.update', $item) }}" method="post">
                                                     @csrf
                                                     @method('POST')
@@ -52,7 +52,7 @@
                                                 </form>
                                             </td>
                                             <td class="cart_delete">
-                                                <a class="btn btn-danger btn-sm cart_delete"
+                                                <a class="btn btn-danger btn-sm cart_delete p-1" style="font-size:10px;"
                                                     onclick="return confirm('Bạn có chắc muốn xóa {{ $item->product->name }} {{ $item->color }} {{ $item->size }} khỏi giỏ hàng?')"
                                                     href="{{ route('client.cart-page.delete', $item) }}"><i
                                                         class="fa-solid fa-x"></i></a>

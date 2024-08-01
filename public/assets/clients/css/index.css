@@ -94,10 +94,12 @@ body {
         height: 2rem !important;
     }
 }
-
+.main-content {
+    height: 40rem;
+}
 .cate-frame > li {
-    width: 7rem;
-    height: 7rem;
+    width: 4rem;
+    height: 4rem;
 }
 .cate-frame > li > a > img {
     width: 100%;

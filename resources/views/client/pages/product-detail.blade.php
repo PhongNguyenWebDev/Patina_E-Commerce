@@ -13,7 +13,7 @@
                 </ol>
             </nav>
             <h3>{{ $product->name }}</h3>
-            <hr style="color: orange;">
+            <hr style="color:black;">
         </div>
     </section>
     <!-- Item Detail -->
@@ -190,7 +190,7 @@
                                             class="p-commentform" id="formRating">
                                             @csrf
                                             <fieldset>
-                                                <h2 class="fs-4 fw-semibold py-2">Bình luận</h2>
+                                                <h2 class="fs-4 fw-semibold py-2">Đánh giá</h2>
                                                 <p class="stars">
                                                     <span>
                                                         <a class="star-1" href="#" data-rating="1">1</a>
@@ -206,12 +206,12 @@
                                                 <input type="hidden" name="product_detail_id"
                                                     value="{{ $product->productDetails->first()->id }}">
                                                 <div class="d-flex justify-content-between">
-                                                    <label class="col-xl-1 col-12 fs-5">Bình luận</label>
+                                                    <label class="col-xl-1 col-12 fs-5">Đánh giá</label>
                                                     <textarea name="reviews" id="reviews" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
                                                 </div>
                                                 <div class="w-25 text-center pe-xl-2">
                                                     <button type="button"
-                                                        class="btn border fs-5 my-2 me-xl-5 shadow-sm mb-5 rounded btn-comment"
+                                                        class="btn border my-2 me-xl-5 shadow-sm mb-5 rounded btn-dark"
                                                         id="submitReview">Gửi</button>
                                                 </div>
                                             </fieldset>

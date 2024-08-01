@@ -1,7 +1,7 @@
 @extends('layouts.client')
 @section('content')
-    <main class="container-fluid p-0" style="height: 30rem;">
-        <img class="img-fluid" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
+    <main class="container-fluid p-0" style="height: 35rem;">
+        <img class="img-fluid w-100 h-100" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
     </main>
     <section class="container my-5">
         <div class="container my-3">

@@ -12,7 +12,13 @@
             <div class="carousel-inner">
                 @foreach ($sliders as $key => $slider)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <img src="{{ $slider->image }}" class="d-block w-100" alt="Slide {{ $key + 1 }}">
+                        <img src="{{ $slider->image }}" class="object-cover d-block w-100 h-100"
+                            alt="Slide {{ $key + 1 }}">
+                        {{-- <div style="z-index: 99;">
+                            <h3 class="carousel-caption d-none d-md-block">{{ $slider->title }}</h3>
+                            <p class="carousel-caption d-none d-md-block">{{ $slider->description }}</p>
+                            <a href="" class="btn btn-primary">Xem thêm</a>
+                        </div> --}}
                     </div>
                 @endforeach
             </div>
@@ -29,56 +35,60 @@
         </div>
     </div>
     {{-- Danh mục sản phẩm --}}
-    <section class="container-fluid my-xl-5 py-xl-5">
-        <div class="py-xl-3 py-2 d-flex flex-column align-items-center text-center">
-            <h2>Sản phẩm bạn có thể thích</h2>
-            <p style="color: #000516A4; font-size:14px;">Cửa hàng chuyên cung cấp các sản phẩm thời trang hiện đại
-                <br> của các hãng Local Brand nổi tiếng tại Việt Nam
-            </p>
-        </div>
-        <div class="container-fluid p-0 d-flex justify-content-center">
-            <ul class="row g-2 pb-5 cate-frame">
-                <li class="rounded-5 text-center me-xl-5 nav-link">
-                    <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
-                        <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                            src="/assets/clients/img/Cate_img/pants.png" alt="Quần">
-                        <span class="d-block mt-2">Quần</span>
-                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                    </a>
-                </li>
-                <li class="rounded-5 text-center me-xl-5 nav-link">
-                    <a href="http://127.0.0.1:8000/shop-page/ao" class="nav-link categories d-block">
-                        <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                            src="{{ asset('assets/clients/img/Cate_img/shirt.png') }}" alt="Áo">
-                        <span class="d-block mt-2">Áo</span>
-                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                    </a>
-                </li>
-                <li class="rounded-5 text-center me-xl-5 nav-link">
-                    <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
-                        <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                            src="{{ asset('assets/clients/img/Cate_img/footware.png') }}" alt="Giày">
-                        <span class="d-block mt-2">Giày</span>
-                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                    </a>
-                </li>
-                <li class="rounded-5 text-center me-xl-5 nav-link">
-                    <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
-                        <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                            src="{{ asset('assets/clients/img/Cate_img/setofclothes.png') }}" alt="Bộ quần áo">
-                        <span class="d-block mt-2">Bộ quần áo</span>
-                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                    </a>
-                </li>
-                <li class="rounded-5 text-center me-xl-5 nav-link">
-                    <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
-                        <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                            src="{{ asset('assets/clients/img/Cate_img/assor.png') }}" alt="Phụ kiện">
-                        <span class="d-block mt-2">Phụ kiện</span>
-                        <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                    </a>
-                </li>
-            </ul>
+    <section class="container-fluid py-xl-5 my-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-sm-12 ">
+                    <h2>Sản phẩm bạn có thể thích</h2>
+                    <p style="color: #000516A4; font-size:14px;">Cửa hàng chuyên cung cấp các sản phẩm thời trang hiện đại
+                        <br> của các hãng Local Brand nổi tiếng tại Việt Nam
+                    </p>
+                </div>
+                <div class="col-xl-6 col-sm-12">
+                    <ul class="row g-2 pb-5 px-0 cate-frame">
+                        <li class="rounded-5 text-center me-xl-5 nav-link">
+                            <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
+                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
+                                    src="/assets/clients/img/Cate_img/pants.png" alt="Quần">
+                                <span class="d-block mt-2">Quần</span>
+                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="rounded-5 text-center me-xl-5 nav-link">
+                            <a href="http://127.0.0.1:8000/shop-page/ao" class="nav-link categories d-block">
+                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
+                                    src="{{ asset('assets/clients/img/Cate_img/shirt.png') }}" alt="Áo">
+                                <span class="d-block mt-2">Áo</span>
+                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="rounded-5 text-center me-xl-5 nav-link">
+                            <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
+                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
+                                    src="{{ asset('assets/clients/img/Cate_img/footware.png') }}" alt="Giày">
+                                <span class="d-block mt-2">Giày</span>
+                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="rounded-5 text-center me-xl-5 nav-link">
+                            <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
+                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
+                                    src="{{ asset('assets/clients/img/Cate_img/setofclothes.png') }}" alt="Bộ quần áo">
+                                <span class="d-block mt-2">Bộ quần áo</span>
+                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="rounded-5 text-center me-xl-5 nav-link">
+                            <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
+                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
+                                    src="{{ asset('assets/clients/img/Cate_img/assor.png') }}" alt="Phụ kiện">
+                                <span class="d-block mt-2">Phụ kiện</span>
+                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
     {{-- Dịch vụ --}}

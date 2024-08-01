@@ -39,18 +39,18 @@
                         <div class="col-md-12 form-floating mb-3">
                             <input type="text" class="form-control" id="floatingFirstName" name="name"
                                 placeholder="Name">
-                            <label class="fs-5" for="floatingFirstName">Họ và tên</label>
+                            <label style="font-size: 18px;" for="floatingFirstName">Họ và tên</label>
                         </div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="floatingEmail" name="email"
                             placeholder="Email address">
-                        <label class="fs-5" for="floatingEmail">Địa chỉ email</label>
+                        <label style="font-size: 18px;" for="floatingEmail">Địa chỉ email</label>
                     </div>
                     <div class="form-floating mb-3">
                         <textarea class="form-control" name="note" placeholder="Leave a comment here" id="floatingTextarea2"
                             style="height: 300px"></textarea>
-                        <label class="fs-5" for="floatingTextarea2">Phản hồi</label>
+                        <label style="font-size: 18px;" for="floatingTextarea2">Phản hồi</label>
                     </div>
                     <button class="btn btn-dark p-2 fw-medium" style="font-size: 18px">Gửi phản hồi</button>
                 </form>
