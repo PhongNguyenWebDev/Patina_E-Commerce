@@ -146,6 +146,9 @@ Route::prefix('/')->name('client.')->group(function () {
     // Trang thanh toán
     Route::middleware('cus')->group(function () {
         Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');  //thêm ngày 22/6 bởi ta
+        // Trang Hóa đơn trong hồ sơ cá nhân.
+        Route::get('/profile-page/bill', [ClBillController::class, 'index']);
+
         Route::prefix('cart-page')->name('cart-page.')->group(function () {
             Route::get('/', [ClCartController::class, 'cart'])->name('index');
             Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');
@@ -163,6 +166,7 @@ Route::prefix('/')->name('client.')->group(function () {
             Route::get('/verify/{token}', [ClCheckOutController::class, 'verify'])->name('verify');
             Route::post('/apply-coupon', [ClCheckoutController::class, 'applyCoupon'])->name('apply_coupon');
         });
+
     });
 });
 Route::get('/logout', [LogController::class, 'logout'])->name('logout');

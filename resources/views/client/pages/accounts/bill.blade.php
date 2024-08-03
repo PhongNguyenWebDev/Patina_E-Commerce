@@ -1,14 +1,11 @@
 @extends('layouts.client')
 @section('content')
     @include('client.blocks.banner')
+
     <main class="container-fluid">
         <div class="container d-flex flex-column flex-xl-row align-items-center justify-content-between ">
             <div class="col-12 col-xl-6">
                 <h1>Hoá đơn</h1>
-                <p class="text-banner pt-3 pt-xl-5 pb-3">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
-                    velit.
-                    Aliquam vulputate velit imperdiet
-                    dolor tempor tristique.</p>
                 <div class="d-flex align-items-center">
                     <a class="btn-home nav-link">Trang chủ</a>
                     <a class="btn-explore nav-link">Khám phá</a>

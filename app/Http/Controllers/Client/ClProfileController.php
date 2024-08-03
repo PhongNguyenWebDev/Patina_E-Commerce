@@ -17,7 +17,8 @@ class ClProfileController extends Controller
             $user = Auth::user();
             $username = $user->name;
             $email = $user->email;
-            return view('client.pages.accounts.profile', compact('title', 'username', 'email'));
+            $address = $user->address;
+            return view('client.pages.accounts.profile', compact('title', 'username', 'email', 'address' ));
         }
         else
         {
