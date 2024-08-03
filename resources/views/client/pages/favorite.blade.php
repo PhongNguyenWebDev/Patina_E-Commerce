@@ -19,24 +19,27 @@
                                     </thead>
                                     @foreach ($favorite as $item)
                                         <tr data-id="{{ $item->id }}">
-                                        <td class="product-name d-flex justify-content-center align-items-center">
-                                            <img class="d-none d-lg-block me-3 product-thumbnail" width="100" height="100"
-                                                src="{{ $item->product->images }}" alt="Image">
-                                        </td>
-                                        <td>
-                                            <h2 class="h5 text-black m-0">{{ $item->product->name }}</h2>
-                                        </td>
-                                        <td>
-                                            <p class="p-0 m-0">${{ number_format($item->price) }}</p>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-spyt" href="{{ route('client.detail', $item->product->slug) }}">Xem</a>
-                                        </td>
-                                        <td class="cart_delete">
-                                            <a class="btn btn-danger btn-sm cart_delete" onclick="return confirm('Bạn có chắc muốn xóa {{ $item->product->name }} khỏi yêu thích?')"
-                                                    href="{{ route('client.favorite.delete', $item->product_id) }}">Delete</a>
-                                        </td>
-                                    </tr>
+                                            <td class="product-name d-flex justify-content-center align-items-center">
+                                                <img class="d-none d-lg-block img-thumbnail" width="100" height="100"
+                                                    src="{{ $item->product->images }}" alt="Image">
+                                            </td>
+                                            <td>
+                                                <h2 class="h5 text-black m-0">{{ $item->product->name }}</h2>
+                                            </td>
+                                            <td>
+                                                <p class="p-0 m-0">${{ number_format($item->price) }}</p>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-spyt"
+                                                    href="{{ route('client.detail', $item->product->slug) }}">Xem</a>
+                                            </td>
+                                            <td class="cart_delete">
+                                                <a class="btn btn-danger btn-sm cart_delete p-1" style="font-size:10px;"
+                                                    onclick="return confirm('Bạn có chắc muốn xóa {{ $item->product->name }} khỏi yêu thích?')"
+                                                    href="{{ route('client.favorite.delete', $item->product_id) }}"><i
+                                                        class="fa-solid fa-x"></i></a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

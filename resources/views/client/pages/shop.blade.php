@@ -2,7 +2,7 @@
 @section('content')
     <!-- Products -->
     @include('client.blocks.banner')
-    <section class="container pt-5">
+    <section class="container py-5">
         <div class="row">
             <!-- Left -->
             <div class="col-xl-3">
@@ -124,7 +124,7 @@
                         @foreach ($popularProducts as $product)
                             <a style="text-decoration: none" class="nav-link"
                                 href="{{ route('client.detail', $product->slug) }}">
-                                <div class="d-flex my-1" style="height: 90px;">
+                                <div class="d-flex my-3" style="height: 90px;">
                                     <img class="img-thumbnail w-25" src="{{ $product->images }}"
                                         alt="{{ $product->name }}">
                                     <div class="mx-2">
@@ -147,10 +147,9 @@
                     <div class="col-9">
                         <p style="margin: 0; font-size: 18px;">Showing 1-12 of 14 results</p>
                     </div>
-                    <div class="col-3 dropdown d-flex justify-content-start justify-content-xl-end">
+                    {{-- <div class="col-3 dropdown d-flex justify-content-start justify-content-xl-end">
                         <button class="btn rounded dropdown-toggle p-0 p-xl-2" style="font-size: 18px;" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            {{--                            Sắp xếp theo --}}
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" wire:click="sortByPriceAsc">Giá từ thấp đến cao</a></li>
@@ -158,10 +157,10 @@
                             <li><a class="dropdown-item" wire:click="sortByNameAsc">Tên sản phẩm từ A-Z</a></li>
                             <li><a class="dropdown-item" wire:click="sortByNameDesc">Tên sản phẩm từ Z-A</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
                 {{--                <!-- Products --> --}}
-                <div class="container-fluid p-0">
+                <div class="container-fluid p-0 my-3">
                     <div class="row g-2">
                         @foreach ($products as $product)
                             <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
@@ -208,7 +207,7 @@
                 </div>
                 <!-- Pagination -->
                 <div class="d-flex justify-content-center">
-                    {{ $products->links() }}
+                    {{ $products->links('pagination::default') }}
                 </div>
             </div>
 
@@ -220,7 +219,7 @@
         </div>
     </section>
     <!-- Flash Sales -->
-    <section class="container my-5">
+    {{-- <section class="container my-5">
         <div class="p-xl-5 p-3" style="background-color:#F7F2EE; ">
             <div class="d-flex flex-column flex-xl-row p-0 p-xl-5 bg-white w-100">
                 <!-- Left -->
@@ -263,5 +262,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection

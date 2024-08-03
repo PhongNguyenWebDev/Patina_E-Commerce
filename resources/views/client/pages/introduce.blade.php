@@ -4,13 +4,18 @@
     <section class="container my-5">
         <div class="d-flex flex-xl-row flex-column">
             <div class="col-xl-5 col-12">
-                <h2 class="fw-bold fs-1">
+                <h2>
                     Chào mừng bạn đến với Patina!
                 </h2>
             </div>
             <div class="col-xl-7 col-12 pt-3 pt-xl-0">
-                <p class="m-0 ps-2" style="color: var(--secondary-900-color);font-size: 18px;">
-                    Patina Fashion Store là điểm đến lý tưởng cho những ai yêu thích phong cách thanh lịch và sự độc đáo. Với không gian trưng bày tinh tế, từng món đồ tại Patina đều mang đậm dấu ấn của sự sang trọng và sự cầu kỳ trong từng chi tiết. Từ những bộ cánh dành cho công sở đến những trang phục dạo phố, mỗi sản phẩm tại cửa hàng đều được chọn lọc kỹ càng, đáp ứng được mọi sở thích và nhu cầu của các tín đồ thời trang. Patina không chỉ là nơi mua sắm mà còn là điểm hẹn lý tưởng để khám phá và thể hiện phong cách cá nhân một cách hoàn hảo.
+                <p>
+                    Patina Fashion Store là điểm đến lý tưởng cho những ai yêu thích phong cách thanh lịch và sự độc đáo.
+                    Với không gian trưng bày tinh tế, từng món đồ tại Patina đều mang đậm dấu ấn của sự sang trọng và sự cầu
+                    kỳ trong từng chi tiết. Từ những bộ cánh dành cho công sở đến những trang phục dạo phố, mỗi sản phẩm tại
+                    cửa hàng đều được chọn lọc kỹ càng, đáp ứng được mọi sở thích và nhu cầu của các tín đồ thời trang.
+                    Patina không chỉ là nơi mua sắm mà còn là điểm hẹn lý tưởng để khám phá và thể hiện phong cách cá nhân
+                    một cách hoàn hảo.
                 </p>
             </div>
         </div>
@@ -26,12 +31,10 @@
     <!-- Our Team -->
     <section class="container our-team mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center">
-            <p class="fs-1 fw-semibold">Our Team</p>
-            <p class="w-75 text-center fs-5" style="color: #00051654;"> Bibendum quis facilisi aliquet massa in
+            <h2>Our Team</h2>
+            <p style="color: #00051654;"> Bibendum quis facilisi aliquet massa in
                 pharetra nisl etiam ornare. Tellus feugiat egestas nulla sem vel
-                mi dictum nisi. Vivamus sem eget vestibulum enim enim.Bibendum quis facilisi aliquet massa in pharetra
-                nisl etiam ornare. Tellus feugiat egestas nulla sem vel
-                mi dictum nisi. Vivamus sem eget vestibulum enim enim</p>
+                mi dictum nisi.</p>
         </div>
         <div class="row g-2 my-5">
             <div class="col-12 col-xl-3 text-center">
@@ -102,11 +105,12 @@
     </section>
     <!-- Comment show -->
     <section class="container my-5">
-        <div class="p-xl-5 p-4 row justify-content-center" style="background-color: #ae48091c; ">
+        <div class="p-xl-5 p-4 row justify-content-center" style="background-color:#f0eff5; ">
             <div
                 class="d-flex p-xl-5 p-2 bg-white  text-center align-items-center flex-column justify-content-center position-relative ">
                 <div class="position-absolute top-0 start-50  translate-middle mt-xl-2">
-                    <img style="width: 5em; height: 5em; border-radius: 50%;" src="img/ourteam.jpg" alt="">
+                    <img style="width: 5em; height: 5em; border-radius: 50%;"
+                        src="{{ asset('assets/clients/img/ourteam.jpg') }}" alt="">
                 </div>
                 <div class="pt-xl-0 pt-5">
                     <p style="font-size: 20px;">Jesse Donovan</p>

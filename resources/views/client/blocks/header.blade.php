@@ -1,6 +1,6 @@
 <header class="mx-xl-5 my-xl-2">
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
+        <div class="container-fluid p-0">
             <div class="w-25">
                 <a class="navbar-brand" href="{{ route('client.home-page') }}"
                     class="nav-link d-flex align-items-center text-decoration-none">
@@ -24,7 +24,7 @@
                             hàng</x-nav-link>
                     </li>
                     <li class="nav-item">
-                        <x-nav-link href="{{ route('client.blog-page') }}" :active="request()->routeIs('client.blog-page')">Blog</x-nav-link>
+                        <x-nav-link href="{{ route('client.blog-page') }}" :active="request()->routeIs('client.blog-page')">Bài viết</x-nav-link>
                     </li>
                     <li class="nav-item">
                         <x-nav-link href="{{ route('client.introduce-page') }}" :active="request()->routeIs('client.introduce-page')">Giới

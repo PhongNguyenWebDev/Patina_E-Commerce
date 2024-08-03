@@ -1,7 +1,7 @@
 // Set the date we're counting down to
 document.addEventListener("DOMContentLoaded", function () {
     // Set the date we're counting down to
-    var countDownDate = new Date("June 30, 2024 23:59:59").getTime();
+    var countDownDate = new Date("December 30, 2024 23:59:59").getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function () {
@@ -49,6 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var prevButton = document.getElementById("prevButton");
     var nextButton = document.getElementById("nextButton");
 
+    // Kiểm tra xem phần tử chính có tồn tại hay không
+    if (!mainImage || !prevButton || !nextButton || thumbnails.length === 0) {
+        console.error("Một hoặc nhiều phần tử cần thiết không tồn tại.");
+        return;
+    }
+
     var images = Array.from(thumbnails).map((thumbnail) => thumbnail.src);
     var currentIndex = 0;
 
@@ -65,9 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     prevButton.addEventListener("click", function () {
         var newIndex =
-            currentIndex - 1 + images.length === 0
-                ? images.length - 1
-                : (currentIndex - 1) % images.length;
+            currentIndex === 0 ? images.length - 1 : currentIndex - 1;
         updateMainImage(newIndex);
     });
 

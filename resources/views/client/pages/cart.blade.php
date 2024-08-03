@@ -30,7 +30,7 @@
                                                 <p class="p-0 m-0">${{ number_format($item->price) }}</p>
                                             </td>
                                             <td>
-                                                <form class="updateQuantityForm"
+                                                <form class="updateQuantityForm m-0"
                                                     action="{{ route('client.cart-page.update', $item) }}" method="post">
                                                     @csrf
                                                     @method('POST')
@@ -52,9 +52,10 @@
                                                 </form>
                                             </td>
                                             <td class="cart_delete">
-                                                <a class="btn btn-danger btn-sm cart_delete"
+                                                <a class="btn btn-danger btn-sm cart_delete p-1" style="font-size:10px;"
                                                     onclick="return confirm('Bạn có chắc muốn xóa {{ $item->product->name }} {{ $item->color }} {{ $item->size }} khỏi giỏ hàng?')"
-                                                    href="{{ route('client.cart-page.delete', $item) }}">Delete</a>
+                                                    href="{{ route('client.cart-page.delete', $item) }}"><i
+                                                        class="fa-solid fa-x"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -65,7 +66,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <a class="btn btn-dark fs-5" href="{{ route('client.shop-page') }}">
+                        <a class="btn btn-dark" style="font-size:18px " href="{{ route('client.shop-page') }}">
                             Tiếp tục mua sắm</a>
                     </div>
                     <div class="col-md-6">
@@ -88,7 +89,7 @@
                                 </div>
                                 <div class="row">
                                     <a href="{{ route('client.checkout.index') }}" class="col-md-12">
-                                        <button class="btn btn-dark fs-5">Thanh toán</button>
+                                        <button class="btn btn-dark" style="font-size:18px ">Thanh toán</button>
                                     </a>
                                 </div>
                             </div>

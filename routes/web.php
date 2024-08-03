@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdBannerBottomController;
 use App\Http\Controllers\Admin\AdCategoryController;
 use App\Http\Controllers\Admin\AdHomeController;
 use App\Http\Controllers\Admin\AdProductController;
@@ -12,7 +11,8 @@ use App\Http\Controllers\Admin\AdCouponController;
 use App\Http\Controllers\Admin\AdInfoController;
 use App\Http\Controllers\Admin\AdOrderController;
 use App\Http\Controllers\Admin\AdSliderController;
-use App\Http\Controllers\Admin\AdSocialController;
+use App\Http\Controllers\Admin\AdSocialsController;
+use App\Http\Controllers\Admin\AdTimeController;
 use App\Http\Controllers\Admin\AdUserController;
 use App\Http\Controllers\Client\ClBillController;
 use App\Http\Controllers\Client\ClBlogController;
@@ -84,12 +84,12 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('comments', AdCommentController::class);
     // Trang quản lý Slider hình ảnh trang chủ
     Route::resource('sliders', AdSliderController::class);
-    // Trang quản lý banner
+    // Trang quản lý thông tin shop
     Route::resource('info', AdInfoController::class);
-    // Trang quản lý banner
-    Route::resource('banner-bottom', AdBannerBottomController::class);
     // Trang quản lý mạng xã hội
-    Route::resource('social-network', AdSocialController::class);
+    Route::resource('social-network', AdSocialsController::class);
+    // Trang quản lý giờ mở cửa
+    Route::resource('gio-mo-cua', AdTimeController::class);
     // Trang quản lý hóa đơn chưa xác nhận
     Route::get('/orders/chua-xac-nhan', [AdOrderController::class, 'index'])->name('orders.index');
     // Trang quản lý hóa đơn đã xác nhận

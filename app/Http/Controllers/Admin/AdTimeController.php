@@ -7,7 +7,7 @@ use App\Http\Requests\InfoRequest;
 use App\Models\Info;
 use Illuminate\Http\Request;
 
-class AdInfoController extends Controller
+class AdTimeController extends Controller
 {
     public $data = [];
     /**
@@ -15,9 +15,9 @@ class AdInfoController extends Controller
      */
     public function index()
     {
-        $this->data['title'] = 'Thông tin shop';
-        $infos = Info::whereIn('name', ['Số điện thoại', 'Email','Vị trí'])->paginate(6);
-        return view('admin.pages.infos.info', $this->data, compact('infos'));
+        $this->data['title'] = 'Giờ mở cửa';
+        $infos = Info::where('name', 'Giờ mở cửa')->paginate(6);
+        return view('admin.pages.giomocua.info', $this->data, compact('infos'));
     }
 
     /**
@@ -25,8 +25,8 @@ class AdInfoController extends Controller
      */
     public function create()
     {
-        $this->data['title'] = 'Thêm thông tin shop';
-        return view('admin.pages.infos.theminfo', $this->data);
+        $this->data['title'] = 'Thêm giờ mở cửa';
+        return view('admin.pages.giomocua.theminfo', $this->data);
     }
 
     /**
@@ -42,7 +42,7 @@ class AdInfoController extends Controller
             $info->images = '/uploads/infos/' . $imageName;
         }
         $info->save();
-        return redirect()->route('admin.info.index')->with('ssmsg', 'Thêm thành công một thông tin mới');
+        return redirect()->route('admin.gio-mo-cua.index')->with('ssmsg', 'Thêm thành công một thông tin mới');
         // dd($request->all());
     }
 
@@ -59,12 +59,12 @@ class AdInfoController extends Controller
      */
     public function edit(string $id)
     {
-        $this->data['title'] = 'Sửa thông tin shop';
+        $this->data['title'] = 'Sửa giờ mở cửa';
         $info = Info::find($id);
         if (!$info) {
-            return redirect()->route('admin.info.index')->with('ermsg', 'Không tìm thấy info cần sửa');
+            return redirect()->route('admin.gio-mo-cua.index')->with('ermsg', 'Không tìm thấy info cần sửa');
         }
-        return view('admin.pages.infos.editinfo', $this->data, compact('info'));
+        return view('admin.pages.giomocua.editinfo', $this->data, compact('info'));
     }
 
     /**
@@ -74,7 +74,7 @@ class AdInfoController extends Controller
     {
         $info = Info::find($id);
         if (!$info) {
-            return redirect()->route('admin.info.index')->with('ermsg', 'Không tìm thấy info cần sửa');
+            return redirect()->route('admin.gio-mo-cua.index')->with('ermsg', 'Không tìm thấy info cần sửa');
         }
         if ($request->hasFile('images')) {
             $image = $request->file('images');
@@ -83,7 +83,7 @@ class AdInfoController extends Controller
             $info->images = '/uploads/infos/' . $imageName;
         }
         $info->update($request->except('images'));
-        return redirect()->route('admin.info.index')->with('ssmsg', 'Sửa info thành công');
+        return redirect()->route('admin.gio-mo-cua.index')->with('ssmsg', 'Sửa info thành công');
     }
 
     /**
@@ -93,9 +93,9 @@ class AdInfoController extends Controller
     {
         $info = Info::find($id);
         if (!$info) {
-            return redirect()->route('admin.info.index')->with('ermsg', 'Không tìm thấy info cần xóa');
+            return redirect()->route('admin.gio-mo-cua.index')->with('ermsg', 'Không tìm thấy info cần xóa');
         }
         Info::destroy($id);
-        return redirect()->route('admin.info.index')->with('ssmsg', 'Xóa info thành công');
+        return redirect()->route('admin.gio-mo-cua.index')->with('ssmsg', 'Xóa info thành công');
     }
 }

@@ -1,5 +1,6 @@
 @extends('layouts.client')
 @section('content')
+    @include('client.blocks.banner')
     <section class="container">
         <div class="my-5">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
@@ -12,7 +13,7 @@
                 </ol>
             </nav>
             <h3>{{ $product->name }}</h3>
-            <hr style="color: orange;">
+            <hr style="color:black;">
         </div>
     </section>
     <!-- Item Detail -->
@@ -104,18 +105,17 @@
                         <!-- Add to card -->
                         <div class="container">
                             <div class="row g-3">
-                                <input id="quantityInput" class="px-xl-2 col-2 col-xl-1" type="number" name="quantity" min="1"
-                                    value="1">
+                                <input id="quantityInput" class="px-xl-2 col-2 col-xl-1" type="number" name="quantity"
+                                    min="1" value="1">
                                 <div class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
-                                    <button
-                                        class="btn btn-dark bg-black h-100 fs-5 d-flex align-items-center justify-content-center text-white"
-                                        type="submit"><i class="fa-solid fa-cart-shopping me-2 "></i>Thêm giỏ
+                                    <button class="btn btn-dark" type="submit"><i
+                                            class="fa-solid fa-cart-shopping me-2 "></i>Thêm giỏ
                                         hàng</button>
                                 </div>
                                 <div class="col-xl-3 col-4">
-                                    <a class="btn favourite d-flex align-items-center justify-content-center w-100 h-100">
+                                    <a class="btn btn-light d-flex align-items-center justify-content-center">
                                         <i class="fa-regular fs-5 fa-heart"></i>
-                                        <p class="m-0 px-1 fs-5">Yêu thích</p>
+                                        <p class="m-0 px-1" style="font-size:18px">Yêu thích</p>
                                     </a>
                                 </div>
                             </div>
@@ -169,11 +169,8 @@
                 <div class="row">
                     <div class="col-xl-12 py-5">
                         <ul class="mt-tabs p-0 text-center text-uppercase d-flex justify-content-center">
-                            <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab1"
+                            <li class="nav-link me-3"><a class="nav-link item-detail fs-5" href="#tab1"
                                     class="active">DESCRIPTION</a></li>
-                            <li class="nav-link px-xl-5 px-2"><a class="nav-link item-detail fs-5"
-                                    href="#tab2">INFORMATION</a>
-                            </li>
                             <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab3">REVIEWS
                                     ({{ $reviewCount }})</a>
                             </li>
@@ -182,9 +179,6 @@
                         <div class="tab-content">
                             <div id="tab1" class="tab-pane active">
                                 <p>Koila is a chair designed for restaurants and food lovers in general...</p>
-                            </div>
-                            <div id="tab2" class="tab-pane">
-                                <p>Koila is a seat designed for restaurants and gastronomic places in general...</p>
                             </div>
                             <div id="tab3" class="tab-pane">
                                 <div class="product-comment">
@@ -196,7 +190,7 @@
                                             class="p-commentform" id="formRating">
                                             @csrf
                                             <fieldset>
-                                                <h2 class="fs-4 fw-semibold py-2">Bình luận</h2>
+                                                <h2 class="fs-4 fw-semibold py-2">Đánh giá</h2>
                                                 <p class="stars">
                                                     <span>
                                                         <a class="star-1" href="#" data-rating="1">1</a>
@@ -212,12 +206,12 @@
                                                 <input type="hidden" name="product_detail_id"
                                                     value="{{ $product->productDetails->first()->id }}">
                                                 <div class="d-flex justify-content-between">
-                                                    <label class="col-xl-1 col-12 fs-5">Bình luận</label>
+                                                    <label class="col-xl-1 col-12 fs-5">Đánh giá</label>
                                                     <textarea name="reviews" id="reviews" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
                                                 </div>
                                                 <div class="w-25 text-center pe-xl-2">
                                                     <button type="button"
-                                                        class="btn border fs-5 my-2 me-xl-5 shadow-sm mb-5 rounded btn-comment"
+                                                        class="btn border my-2 me-xl-5 shadow-sm mb-5 rounded btn-dark"
                                                         id="submitReview">Gửi</button>
                                                 </div>
                                             </fieldset>
@@ -337,25 +331,26 @@
         document.addEventListener('DOMContentLoaded', function() {
             const sizeRadios = document.querySelectorAll('.size-radio');
             const quantityInput = document.getElementById('quantityInput');
-    
+
             // Function to handle size change
             const handleSizeChange = function() {
-                const selectedSizeQuantity = parseInt(this.closest('.size-option').getAttribute('data-quantity'));
+                const selectedSizeQuantity = parseInt(this.closest('.size-option').getAttribute(
+                    'data-quantity'));
                 quantityInput.max = selectedSizeQuantity; // Update max attribute of quantity input
             };
-    
+
             // Attach event listener to size radios
             sizeRadios.forEach(radio => {
                 radio.addEventListener('change', handleSizeChange);
             });
-    
+
             // Trigger change event on page load to set initial max value
             if (sizeRadios.length > 0) {
                 sizeRadios[0].dispatchEvent(new Event('change'));
             }
         });
     </script>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {

@@ -16,7 +16,12 @@ class ClProductController extends Controller
 {
     public function show($productSlug)
     {
-        $title = 'Sản Phẩm';
+        if (isset($productSlug)) {
+            $slug = $productSlug;
+            $title = 'Chi tiết  ' . $slug;
+        } else {
+            $title = 'Sản phẩm';
+        }
         $product = Product::with(['colors', 'sizes', 'tags', 'productDetails'])
             ->where('slug', $productSlug)
             ->firstOrFail();
@@ -44,7 +49,7 @@ class ClProductController extends Controller
                 ->first();
         }
         $reviewCount = Review::where('product_detail_id', $product->productDetails->first()->id)->count();
-        return view('client.pages.product-detail', compact('title', 'product', 'uniqueColors', 'colorsWithPrices', 'relatedProducts', 'reviews','userReview','reviewCount'));
+        return view('client.pages.product-detail', compact('title', 'product', 'uniqueColors', 'colorsWithPrices', 'relatedProducts', 'reviews', 'userReview', 'reviewCount', 'slug'));
     }
     public function relatedProductsByCategory($categoryId, $productId)
     {

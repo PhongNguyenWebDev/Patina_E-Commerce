@@ -17,14 +17,17 @@
         </div>
     </div>
     <div class="page-header">
-        <form class="row" method="POST" action="{{ route('admin.info.store') }}"
-            enctype="multipart/form-data">
+        <form class="row" method="POST" action="{{ route('admin.info.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Tên info</label>
-                    <input type="text" class="form-control" id="name" name="name"
-                        placeholder="Nhập Tên info">
+                    <select class="form-control" id="name" name="name">
+                        <option value="" disabled selected>Chọn Tên info</option>
+                        <option value="Email">Email</option>
+                        <option value="Số điện thoại">Số điện thoại</option>
+                        <option value="Vị trí">Vị trí</option>
+                    </select>
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
@@ -34,8 +37,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="detail">Chi tiết</label>
-                    <input type="text" class="form-control" id="detail" name="detail"
-                        placeholder="Nhập chi tiết">
+                    <input type="text" class="form-control" id="detail" name="detail" placeholder="Nhập chi tiết">
                     @error('detail')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>

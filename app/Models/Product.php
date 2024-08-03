@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $fillable = [
         'name', 'images', 'summary', 'price', 'sale_price', 'description', 'status', 'hot', 'slug',
-        'brand_id', 'category_id'
+        'brand_id', 'category_id', 'total_buy'
     ];
 
     public function getRouteKey()

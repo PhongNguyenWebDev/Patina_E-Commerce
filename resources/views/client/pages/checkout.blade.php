@@ -1,46 +1,5 @@
 @extends('layouts.client')
 @section('content')
-    <style>
-        .code {
-            font-size: 24px;
-            font-weight: bold;
-            color: #8d6440;
-        }
-
-        .border-dashed {
-            border: 2px dashed #333;
-            border-radius: 5px;
-        }
-
-        .discount {
-            font-size: 30px;
-            font-weight: bold;
-            color: #8d6440;
-        }
-
-        .voucher .description {
-            font-size: 16px;
-            color: #666;
-            margin-top: 10px;
-        }
-
-        .voucher .expiration {
-            font-size: 14px;
-            color: #888;
-            margin-top: 10px;
-        }
-
-        .butor {
-            background-color: #ff5722;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-    </style>
     @include('client.blocks.banner')
     <!-- Checkout info & payment -->
     <section class="container my-5">
@@ -108,14 +67,16 @@
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
                         <div>
                             <div class="form-check form-check-inline my-3">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                    value="option1">
-                                <label class="form-check-label" for="inlineRadio1">Trả tiền mặt</label>
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" checked
+                                    id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1" style="font-size: 18px">Trả tiền
+                                    mặt</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
                                     value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Thanh toán bằng thẻ</label>
+                                <label class="form-check-label" for="inlineRadio2" style="font-size: 18px">Thanh toán bằng
+                                    thẻ</label>
                             </div>
                         </div>
                     </div>
@@ -179,22 +140,24 @@
                     </div>
                     <hr style="border: 1px solid; color: var(--primary-1000-color);">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h3>Total</h3>
+                        <h4>Total</h4>
                         @if ($totalPrice > 500)
                             <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500$)</small>
-                            <h3 class="fs-3">
+                            <h4>
                                 <del
                                     style="color: red; font-size:var(--font-h4-size)">${{ number_format($totalPrice) }}</del>
                                 ${{ number_format($discountedPrice) }}
 
-                            </h3>
+                            </h4>
                         @else
                             <h4>
                                 ${{ number_format($totalPrice) }}
                             </h4>
                         @endif
                     </div>
-                    <button class="btn btn-dark my-2" style="font-size:var(--font-h5-size)">Thanh toán</button>
+                    <button class="btn btn-dark my-2 fw-medium" style="font-size:22px">Thanh
+                        toán</button>
+
                 </div>
             </div>
         </form>
@@ -217,7 +180,7 @@
                         @foreach ($allCoupons as $coupon)
                             <div class="rounded-2 row gx-4 justify-content-center mt-3 mb-3">
                                 <div class="col-2 d-flex text-center justify-content-center align-items-center border-dashed shadow"
-                                    style="background-color:#FCF9F4; color:#8d6440;">
+                                    style="background-color:#FCF9F4;">
                                     <h6><strong class="mb-2">Voucher</strong><br class="m-6"><strong
                                             class="text-uppercase" style="color: red">{{ $coupon->code }}</strong></h6>
                                 </div>
@@ -242,7 +205,7 @@
                                         action="{{ route('client.checkout.apply_coupon') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="coupon_code" value="{{ $coupon->code }}">
-                                        <button class="btn btn-giohang px-2 fs-6 border" type="submit">Áp dụng</button>
+                                        <button class="btn btn-secondary" type="submit">Áp dụng</button>
                                     </form>
                                 </div>
                             </div>
