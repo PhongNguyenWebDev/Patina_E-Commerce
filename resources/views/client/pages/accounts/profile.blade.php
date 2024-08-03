@@ -9,7 +9,7 @@
                         <h1 class="m-0 fs-1">Thông tin khách hàng</h1>
                     </li>
                     <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#update-info">Cập
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#update-info" href="/profile-page/update">Cập
                             nhật</a>
                     </li>
                     <li class="list-group-item">
@@ -245,3 +245,4 @@
             </div>
     </section>
 @endsection
+

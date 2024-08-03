@@ -16,7 +16,7 @@
                         <h4>Đổi Mật Khẩu</h4>
                         <div class="breadcrumb__links">
                             <a href="/">Home</a>
-                            <a href="{{ route('account.profile') }}">Tài Khoản</a>
+                            <a href="{{ route('client.profile-page') }}">Tài Khoản</a>
                             <span>Cập Nhật Tài Khoản</span>
                         </div>
                     </div>
@@ -31,12 +31,12 @@
                     <div class="col-lg-3 col-md-4 col-12">
                         <div class="nav nav-pills flex-column" role="tablist">
                             <div class="card">
-                                <a href="{{ route('account.profile') }}"
+                                <a href="{{ route('client.profile-page') }}"
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt"
                                     style="font-size: 17px; color:black;">THÔNG
                                     TIN TÀI KHOẢN
                                 </a>
-                                <a href="{{ route('account.hoadon') }}"
+                                <a href="{{ route('client.bill') }}"
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt"
                                     style="font-size: 17px; color:black;">HÓA ĐƠN
                                 </a>
@@ -46,7 +46,7 @@
                                     style="font-size: 17px; background-color:black;">THAY ĐỔI
                                     THÔNG TIN
                                 </button>
-                                <a href="{{ route('account.updatePass') }}"
+                                <a href=""
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt"
                                     style="font-size: 17px; color:black;">ĐỔI MẬT
                                     KHẨU
@@ -69,7 +69,7 @@
                                             <div class="row g-3">
                                                 <div class="col-lg-6 col-12 mb-3">
                                                     <label class="p-2">Mã tài khoản</label>
-                                                    <input name="id" disabled value="{{ $users->id }}"
+                                                    <input name="id" disabled value=""
                                                         type="text" class="form-control">
                                                 </div>
                                                 <div class="col-lg-6 col-12 mb-3">
@@ -125,7 +125,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

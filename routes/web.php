@@ -146,8 +146,11 @@ Route::prefix('/')->name('client.')->group(function () {
     // Trang thanh toán
     Route::middleware('cus')->group(function () {
         Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');  //thêm ngày 22/6 bởi ta
+        // Trang thay đổi mật khẩu mới
+        Route::get('/profile-page/update', [ClProfileController::class, 'UpdateSite']);
         // Trang Hóa đơn trong hồ sơ cá nhân.
-        Route::get('/profile-page/bill', [ClBillController::class, 'index']);
+        Route::get('/profile-page/bill', [ClBillController::class, 'index'])->name('bill');
+
 
         Route::prefix('cart-page')->name('cart-page.')->group(function () {
             Route::get('/', [ClCartController::class, 'cart'])->name('index');

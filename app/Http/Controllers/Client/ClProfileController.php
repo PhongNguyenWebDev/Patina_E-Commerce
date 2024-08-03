@@ -18,7 +18,21 @@ class ClProfileController extends Controller
             $username = $user->name;
             $email = $user->email;
             $address = $user->address;
-            return view('client.pages.accounts.profile', compact('title', 'username', 'email', 'address' ));
+            $password = $user->password;
+            return view('client.pages.accounts.profile', compact('title', 'username', 'email', 'address', 'password' ));
+        }
+        else
+        {
+            return redirect()->route('logIn');
+        }
+    }
+    public function UpdateSite()
+    {
+        if (Auth::check())
+        {
+            $title = 'Cập nhật thông tin';
+            $users = Auth::user();
+            return view('client.pages.accounts.update', compact('title', 'users'));
         }
         else
         {
