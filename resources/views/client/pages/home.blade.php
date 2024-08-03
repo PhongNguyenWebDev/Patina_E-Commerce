@@ -1,24 +1,49 @@
 @extends('layouts.client')
 @section('content')
+    <div class="modal fade custom-modal-dialog" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content text-start rounded-2">
+                <div class="coupon rounded-2 w-100">
+                    <div class="content">
+                        <h2 class="pt-xl-2 lh-1"> PATINA </h2>
+                        <h6>ADIDAS</h6>
+                        <h4 class="lh-sm pt-3">50%</h4>
+                        <h4>GIẢM SỐC</h4>
+                        <div class="pb-2">
+                            <button class="btn btn-warning rounded-2">Sao chép mã</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="main-content">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 @foreach ($sliders as $key => $slider)
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}"
-                        class="{{ $key == 0 ? 'active' : '' }}" aria-current="true"
+                    <button type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="true"
                         aria-label="Slide {{ $key + 1 }}"></button>
                 @endforeach
             </div>
-            <div class="carousel-inner">
+            <div class="carousel-inner position-relative">
                 @foreach ($sliders as $key => $slider)
-                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                    <div class="carousel-item w-100 h-100 {{ $key == 0 ? 'active' : '' }}">
                         <img src="{{ $slider->image }}" class="object-cover d-block w-100 h-100"
                             alt="Slide {{ $key + 1 }}">
-                        {{-- <div style="z-index: 99;">
-                            <h3 class="carousel-caption d-none d-md-block">{{ $slider->title }}</h3>
-                            <p class="carousel-caption d-none d-md-block">{{ $slider->description }}</p>
-                            <a href="" class="btn btn-primary">Xem thêm</a>
-                        </div> --}}
+                        <div class="overlay"></div>
+                        <div class="carousel-caption text-white" style="font-family:'Josefin Sans', sans-serif">
+                            <h4>Sản phẩm mới</h4>
+                            <h1 class="mb-3">Bộ quần áo player</h1>
+                            <h4 class="w-50 mb-xl-4">Siêu ưu đãi giảm giá lên đến <span class="text-danger fs-1">70%</span>
+                                khi
+                                mua sản
+                                phẩm. </h4>
+                            <a href="" class="btn btn-white rounded-0 border px-xl-4 py-xl-2 animated-link"
+                                style="font-size:20px;">Mua ngay</a>
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -96,8 +121,8 @@
         <div class="container">
             <div class="row g-3 py-xl-4 py-4">
                 <div class="col-xl-4 col-4">
-                    <img src="{{ asset('assets/clients/img/Icon/credit-card.png') }}" class="img-fluid" style="width: 10%"
-                        alt="" srcset="">
+                    <img src="{{ asset('assets/clients/img/Icon/credit-card.png') }}" class="img-fluid"
+                        style="width: 10%" alt="" srcset="">
                     <h5 class="my-1 fw-medium">Thanh toán an toàn</h5>
                     <p>Miễn phí giao hàng</p>
                 </div>
@@ -175,52 +200,51 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     @foreach ($chunk as $product)
-                                            <div
-                                                class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                                                <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
-                                                    <img class="img-thumbnail" src="{{ $product->images }}"
-                                                        alt="">
-                                                </a>
-                                                <div class="position-absolute top-0 p-3 w-100 end-0">
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        @if ($product->hot === 1)
-                                                            <span class="badge text-bg-danger">hot</span>
-                                                        @endif
-                                                        @php
-                                                            $isFavorite = false;
-                                                            foreach ($favorite as $item) {
-                                                                if ($item->product_id === $product->id) {
-                                                                    $isFavorite = true;
-                                                                    break;
-                                                                }
+                                        <div
+                                            class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
+                                            <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                                                <img class="img-thumbnail" src="{{ $product->images }}" alt="">
+                                            </a>
+                                            <div class="position-absolute top-0 p-3 w-100 end-0">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    @if ($product->hot === 1)
+                                                        <span class="badge text-bg-danger">hot</span>
+                                                    @endif
+                                                    @php
+                                                        $isFavorite = false;
+                                                        foreach ($favorite as $item) {
+                                                            if ($item->product_id === $product->id) {
+                                                                $isFavorite = true;
+                                                                break;
                                                             }
-                                                        @endphp
-                                                        @if ($isFavorite)
-                                                            <a class="nav-link"
-                                                                href="{{ route('client.favorite.add', $product->id) }}"><i
-                                                                    style=" background-color: rgb(203, 51, 51); color:white;"
-                                                                    class="fas fa-heart rounded-5 p-2"></i></a>
-                                                        @else
-                                                            <a class="nav-link"
-                                                                href="{{ route('client.favorite.index') }}"><i
-                                                                    style=" background-color:#fff; color:#d8d8d8"
-                                                                    class="fas fa-heart rounded-5 p-2"></i></a>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="text-center my-3">
-                                                    <h6 class="text-center">{{ $product->name }}</h6>
-                                                    {{-- <p style="font-size: var(--font-size); margin:0">{{ $product->category->name }}</p> --}}
-                                                    <div class="d-flex justify-content-center text-center">
-                                                        <p style="font-size: var(--font-size); margin: 0;"
-                                                            class="text-decoration-line-through text-danger mx-2">
-                                                            ${{ $product->price }}</p>
-                                                        <p style="font-size: var(--font-size); margin: 0; color: black;">
-                                                            ${{ $product->sale_price }}
-                                                        </p>
-                                                    </div>
+                                                        }
+                                                    @endphp
+                                                    @if ($isFavorite)
+                                                        <a class="nav-link"
+                                                            href="{{ route('client.favorite.add', $product->id) }}"><i
+                                                                style=" background-color: rgb(203, 51, 51); color:white;"
+                                                                class="fas fa-heart rounded-5 p-2"></i></a>
+                                                    @else
+                                                        <a class="nav-link"
+                                                            href="{{ route('client.favorite.index') }}"><i
+                                                                style=" background-color:#fff; color:#d8d8d8"
+                                                                class="fas fa-heart rounded-5 p-2"></i></a>
+                                                    @endif
                                                 </div>
                                             </div>
+                                            <div class="text-center my-3">
+                                                <h6 class="text-center">{{ $product->name }}</h6>
+                                                {{-- <p style="font-size: var(--font-size); margin:0">{{ $product->category->name }}</p> --}}
+                                                <div class="d-flex justify-content-center text-center">
+                                                    <p style="font-size: var(--font-size); margin: 0;"
+                                                        class="text-decoration-line-through text-danger mx-2">
+                                                        ${{ $product->price }}</p>
+                                                    <p style="font-size: var(--font-size); margin: 0; color: black;">
+                                                        ${{ $product->sale_price }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </div>
                             </div>
@@ -440,5 +464,18 @@
                 $(this).find('.test-xct').css('opacity', '0');
             }
         );
+    });
+    $(document).ready(function() {
+        // Kiểm tra xem popup đã được hiển thị trước đó chưa
+        if (!localStorage.getItem('voucherPopupShown')) {
+            // Nếu chưa, hiển thị popup
+            $('#voucherModal').modal('show');
+
+            // Lắng nghe sự kiện đóng popup
+            $('#voucherModal').on('hidden.bs.modal', function() {
+                // Khi popup bị đóng, lưu trạng thái vào localStorage
+                localStorage.setItem('voucherPopupShown', 'true');
+            });
+        }
     });
 </script>
