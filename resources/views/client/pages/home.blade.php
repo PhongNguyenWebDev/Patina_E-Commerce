@@ -170,12 +170,11 @@
             <h2 class="text-center my-xl-5">Sản phẩm bán chạy</h2>
             <div id="carouselProducts" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    @foreach ($products->chunk(4) as $chunkIndex => $chunk)
+                    @foreach ($proMuaNhieu->chunk(4) as $chunkIndex => $chunk)
                         <div class="carousel-item {{ $chunkIndex === 0 ? 'active' : '' }}">
                             <div class="container-fluid">
                                 <div class="row">
                                     @foreach ($chunk as $product)
-                                        @if ($product->hot === 1)
                                             <div
                                                 class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
                                                 <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
@@ -222,7 +221,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
                                     @endforeach
                                 </div>
                             </div>

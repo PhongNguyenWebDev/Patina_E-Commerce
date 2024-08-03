@@ -17,21 +17,14 @@
         </div>
     </div>
     <div class="page-header">
-        <form class="row" method="POST" action="{{ route('admin.banner-bottom.store') }}" enctype="multipart/form-data">
+        <form class="row" method="POST" action="{{ route('admin.gio-mo-cua.store') }}"
+            enctype="multipart/form-data">
             @csrf
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="active">Ẩn/Hiện</label>
-                    <select class="form-control" id="active" name="status">
-                        <option value="0">Ẩn</option>
-                        <option value="1">Hiện</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="name">Tên Banner</label>
-                    <input type="text" class="form-control" id="name" value="{{old('name')}}" name="name" placeholder="Nhập Tên Banner">
+                    <label for="name">Tên giờ</label>
+                    <input type="text" class="form-control" id="name" name="name" value="Giờ mở cửa"
+                        placeholder="Nhập Tên giờ">
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
@@ -40,12 +33,19 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="image">Hình Ảnh</label>
-                    <input type="file" class="form-control-file" name="image">
-                    @error('image')
+                    <label for="detail">Chi tiết</label>
+                    <input type="text" class="form-control" id="detail" name="detail"
+                        placeholder="Nhập chi tiết">
+                    @error('detail')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="image">Hình Ảnh</label>
+                    <input type="file" class="form-control-file" id="image" name="images" accept="image/*">
                 </div>
             </div>
             <div class="col-md-12">

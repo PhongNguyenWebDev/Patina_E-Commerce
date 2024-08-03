@@ -23,8 +23,8 @@ class SocialRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'class' => 'required',
-            'link' => 'required',
+            'images' => 'required',
+            'detail' => 'required',
 
         ];
     }
@@ -32,8 +32,8 @@ class SocialRequest extends FormRequest
     {
         return [
             'name.required' => 'Tên bắt buộc phải nhập',
-            'class.required' => 'Class bắt buộc phải nhập',
-            'link.required' => 'Link bắt buộc phải nhập',
+            'images.required' => 'Icon bắt buộc phải nhập',
+            'detail.required' => 'Link bắt buộc phải nhập',
         ];
     }
 }

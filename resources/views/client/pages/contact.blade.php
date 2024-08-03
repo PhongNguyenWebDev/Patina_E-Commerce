@@ -26,7 +26,7 @@
                     <div class="col-xl-12 d-flex align-items-center mb-3">
                         @foreach ($socialn as $social)
                             <div class="icon-footer m-2">
-                                <a class="text-dark" href="{{ $social->link }}">{!! $social->icon !!}</a>
+                                <a class="text-dark" href="{{ $social->detail }}">{!! $social->images !!}</a>
                             </div>
                         @endforeach
                     </div>

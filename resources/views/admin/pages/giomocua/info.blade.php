@@ -23,12 +23,11 @@
                     <div class="row align-items-center">
                         <div class="col-sm-6">
                             <div class="page-title">
-                                Danh Sách Banner Bottom
+                                Danh Sách Giờ Mở Cửa
                             </div>
                         </div>
                         <div class="col-sm-6 text-sm-right">
-                            <a class="btn btn-danger" href="{{ route('admin.banner-bottom.create') }}">+ Thêm banner
-                                bottom</a>
+                            <a class="btn btn-danger" href="{{ route('admin.gio-mo-cua.create') }}">+ Thêm giờ</a>
                         </div>
                     </div>
                 </div>
@@ -37,9 +36,8 @@
                         <table class="table custom-table">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Ảnh</th>
-                                    <th>Tên Banner</th>
-                                    <th>Ẩn/Hiện</th>
+                                    <th>Tên</th>
+                                    <th>Chi tiết</th>
                                     <th>Ngày Tạo</th>
                                     <th>Ngày Cập Nhật</th>
                                     <th class="text-right">Chỉnh Sửa</th>
@@ -47,27 +45,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (!empty($banners))
-                                    @foreach ($banners as $item)
+                                @if (!empty($infos))
+                                    @foreach ($infos as $item)
                                         <tr>
-                                            <td><img src="{{ $item->image }}" alt="" width="100px"></td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->status == 0 ? 'Ẩn' : 'Hiện' }}</td>
+                                            <td>{{ $item->detail }}</td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>{{ $item->updated_at ?? 'null' }}</td>
                                             <td class="text-right">
-                                                <a href="{{ route('admin.banner-bottom.edit', $item) }}"
+                                                <a href="{{ route('admin.gio-mo-cua.edit', $item) }}"
                                                     class="btn btn-primary btn-sm mb-1">
                                                     <i class="far fa-edit"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <form action="{{ route('admin.banner-bottom.destroy', $item) }}"
+                                                <form action="{{ route('admin.gio-mo-cua.destroy', $item) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button
-                                                        onclick="return confirm('Bạn có chắc muốn xóa banner {{ $item->name }}?')"
+                                                        onclick="return confirm('Bạn có chắc muốn xóa {{ $item->name }}?')"
                                                         type="submit" class="btn btn-danger btn-sm mb-1">
                                                         <i class="far fa-trash-alt"></i>
                                                     </button>
@@ -77,7 +74,7 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td>Không có banner nào</td>
+                                        <td>Không có info nào</td>
                                     </tr>
                                 @endif
 

@@ -27,7 +27,6 @@
                             </div>
                         </div>
                         <div class="col-sm-6 text-sm-right">
-                            <a class="btn btn-danger" href="{{ route('admin.social-network.create') }}">+ Thêm Mạng Xã Hội</a>
                         </div>
                     </div>
                 </div>
@@ -52,8 +51,8 @@
                                         @foreach ($socials as $item)
                                             <tr>
                                                 <td>{{ $item->name }}</td>
-                                                <td>{{ $item->link }}</td>
-                                                <td>{{ $item->icon }}</td>
+                                                <td>{{ $item->detail }}</td>
+                                                <td>{{ $item->images }}</td>
 
                                                 <td>{{ $item->created_at }}</td>
                                                 <td>{{ $item->updated_at }}</td>

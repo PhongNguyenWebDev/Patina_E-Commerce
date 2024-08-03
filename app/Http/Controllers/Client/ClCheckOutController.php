@@ -9,9 +9,9 @@ use App\Models\Color;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Size;
-use App\Models\TransportFee;
 use App\Models\UserCoupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -54,8 +54,7 @@ class ClCheckOutController extends Controller
             }
         }
 
-        $transportFee = $this->calculateTransportFee($users->address);
-        $totalPrice = $subTotal - $couponDiscount + $transportFee;
+        $totalPrice = $subTotal - $couponDiscount;
         $discountedPrice = $totalPrice * 0.9;
         $savedCoupons = UserCoupon::where('user_id', auth()->id())
             ->whereNull('used_at')
@@ -67,7 +66,7 @@ class ClCheckOutController extends Controller
                 ->orWhere('user_specific', 0)
                 ->where('usage_limit', '>', 0);
         })->whereDate('end_date', '>=', now())->get();
-        return view('client.pages.checkout', compact('title', 'couponDiscount', 'allCoupons', 'users', 'appliedCouponCode', 'transportFee', 'totalPrice', 'discountedPrice'));
+        return view('client.pages.checkout', compact('title', 'couponDiscount', 'allCoupons', 'users', 'appliedCouponCode', 'totalPrice', 'discountedPrice'));
     }
     public function applyCoupon(Request $request)
     {
@@ -102,19 +101,6 @@ class ClCheckOutController extends Controller
         return $subTotal;
     }
 
-    private function calculateTransportFee($userAddress)
-    {
-        $transportFee = 2;
-        $freeTransportLocations = TransportFee::pluck('name')->toArray();
-        foreach ($freeTransportLocations as $location) {
-            if (stripos($userAddress, $location) !== false) {
-                $transportFee = 0;
-                break;
-            }
-        }
-        return $transportFee;
-    }
-
     private function canUseCoupon($coupon, $userId)
     {
         if ($coupon->user_specific) {
@@ -135,7 +121,7 @@ class ClCheckOutController extends Controller
         $data['coupon_id'] = $couponId;
 
         //So sánh tồn kho với cart
-        $insufficientStock = []; 
+        $insufficientStock = [];
         foreach ($user->carts as $cart) {
             $colorId = Color::where('name', $cart->color)->first()->id;
             $sizeId = Size::where('name', $cart->size)->first()->id;
@@ -178,8 +164,13 @@ class ClCheckOutController extends Controller
                     ->first();
 
                 if ($productDetail) {
+                    // Trừ tồn kho
                     $productDetail->quantity -= $cart->quantity;
                     $productDetail->save();
+                    // Cộng số lượng đã mua của sản phẩm
+                    $product = Product::find($cart->product_id);
+                    $product->total_buy += $cart->quantity;
+                    $product->save();
                 }
             }
 
@@ -193,12 +184,14 @@ class ClCheckOutController extends Controller
 
             // Tăng số lượng sử dụng mã giảm giá
             $coupon = Coupon::find($couponId);
-            $coupon->increment('usage_count');
-
-            // Nếu user_specific = 0 thì giảm usage_limit đi 1
-            if ($coupon->user_specific == 0) {
-                $coupon->decrement('usage_limit');
+            if ($coupon) {
+                $coupon->increment('usage_count');
+                // Nếu user_specific = 0 thì giảm usage_limit đi 1
+                if ($coupon->user_specific == 0) {
+                    $coupon->decrement('usage_limit');
+                }
             }
+
 
             // Xóa mã giảm giá đã áp dụng khỏi phiên làm việc
             session()->forget('applied_coupon_id');

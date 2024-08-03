@@ -15,7 +15,7 @@
                 <div class="d-flex ms-xl-4 ms-3 justify-content-between" style="width: 50%;">
                     @foreach ($socialn as $social)
                         <div class="icon-footer">
-                            <a class="nav-link" href="{{ $social->link }}">{!! $social->icon !!}</a>
+                            <a class="nav-link" href="{{ $social->detail }}">{!! $social->images !!}</a>
                         </div>
                     @endforeach
                 </div>

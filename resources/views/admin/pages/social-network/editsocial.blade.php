@@ -34,9 +34,9 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="link">Link</label>
-                    <input type="text" class="form-control" id="link" name="link" value="{{ $social->link }}"
+                    <input type="text" class="form-control" id="link" name="detail" value="{{ $social->detail }}"
                         placeholder="Nhập Link">
-                    @error('link')
+                    @error('detail')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror
@@ -45,9 +45,9 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="class">Icon</label>
-                    <input type="text" class="form-control" id="class" value="{{ $social->icon }}" name="class"
+                    <input type="text" class="form-control" id="class" value="{{ $social->images }}" name="images"
                         placeholder="Nhập Class">
-                    @error('class')
+                    @error('images')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
                     @enderror

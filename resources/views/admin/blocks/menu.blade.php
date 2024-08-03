@@ -14,12 +14,19 @@
                     <ul style="display: none;">
                         <li><a href="{{ route('admin.sliders.index') }}"><i
                                     class="far fa-images"></i><span>Slider</span></a></li>
-                        <li><a href="{{ route('admin.banner-bottom.index') }}"><i
-                                    class="fas fa-sort-amount-down-alt"></i><span>Banner-Bottom</span></a></li>
-                        <li><a href="{{ route('admin.info.index') }}"><i class="fa-solid fa-circle-info"></i><span>Thông
-                                    tin shop</span></a></li>
-                        <li><a href="{{ route('admin.social-network.index') }}"><i
-                                    class="fas fa-share-alt"></i><span>Social Network</span></a></li>
+                        <li>
+                            <a href="#"><i class="fa-solid fa-circle-info"></i><span>Thông tin shop</span><span
+                                    class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="{{ route('admin.info.index') }}"><i
+                                            class="fa-solid fa-circle-info"></i><span>Thông
+                                            tin</span></a></li>
+                                <li><a href="{{ route('admin.gio-mo-cua.index') }}"><i
+                                            class="fa fa-clock"></i><span>Giờ mở cửa</span></a></li>
+                                <li><a href="{{ route('admin.social-network.index') }}"><i
+                                            class="fas fa-share-alt"></i><span>Social Network</span></a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>

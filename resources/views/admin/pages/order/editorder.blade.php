@@ -23,7 +23,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <a href="{{ route('home') }}"><img style="width: 100%; max-width: 300px"
+                                <a href="{{ route('client.home-page') }}"><img style="width: 100%; max-width: 300px"
                                         src="{{ asset('img/logo.png') }}" alt=""></a>
                             </td>
 
