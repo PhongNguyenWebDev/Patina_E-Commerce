@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row w-100">
             <div class="col-lg-4 col-12">
-                <div class="logoweb d-flex align-items-center m-xl-4 m-3 ">
+                <div class="logoweb d-flex align-items-center m-xl-4 my-2 ">
                     <h3 class="web-name">
                         PATINA
                     </h3>
@@ -12,7 +12,7 @@
                     Blandit sit consectetur placerat sapien amet. A pharetra sem massa bibendum at aliquam. Rhoncus et
                     vitae nulla nec
                 </p>
-                <div class="d-flex ms-xl-4 ms-3 justify-content-between" style="width: 50%;">
+                <div class="d-flex ms-xl-4 ms-xl-3 justify-content-between" style="width: 50%;">
                     @foreach ($socialn as $social)
                         <div class="icon-footer">
                             <a class="nav-link" href="{{ $social->detail }}">{!! $social->images !!}</a>

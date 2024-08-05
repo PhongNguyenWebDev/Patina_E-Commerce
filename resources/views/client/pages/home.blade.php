@@ -3,15 +3,15 @@
     <div class="modal fade custom-modal-dialog" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content text-start rounded-2">
-                <div class="coupon rounded-2 w-100">
-                    <div class="content">
-                        <h2 class="pt-xl-2 lh-1"> PATINA </h2>
-                        <h6>ADIDAS</h6>
-                        <h4 class="lh-sm pt-3">50%</h4>
-                        <h4>GIẢM SỐC</h4>
-                        <div class="pb-2">
-                            <button class="btn btn-warning rounded-2">Sao chép mã</button>
+            <div class="modal-content coupon h-50 text-center d-flex align-items-center rounded-0" style="width: 60%;">
+                <div class="rounded-2 w-100 h-100 pt-5">
+                    <div class="content h-100">
+                        <p class="text-secondary m-0">Giảm giá lên đến</p>
+                        <h1 style="font-size:5rem; font-weight:400;">50%</h1>
+                        <p class="text-secondary m-0">Để sử dụng, vui lòng sao chép <br> mã giảm giá và đăng ký tại</p>
+                        <div class="pt-4">
+                            <button class="btn btn-warning rounded-0">Sao chép mã</button>
+                            <button class="btn btn-secondary rounded-0" id="closeModalButton">Đóng</button>
                         </div>
                     </div>
                 </div>
@@ -31,17 +31,17 @@
             <div class="carousel-inner position-relative">
                 @foreach ($sliders as $key => $slider)
                     <div class="carousel-item w-100 h-100 {{ $key == 0 ? 'active' : '' }}">
-                        <img src="{{ $slider->image }}" class="object-cover d-block w-100 h-100"
-                            alt="Slide {{ $key + 1 }}">
+                        <img src="{{ $slider->image }}" class="h-100 w-100 d-block" alt="Slide {{ $key + 1 }}">
                         <div class="overlay"></div>
                         <div class="carousel-caption text-white" style="font-family:'Josefin Sans', sans-serif">
                             <h4>Sản phẩm mới</h4>
                             <h1 class="mb-3">Bộ quần áo player</h1>
-                            <h4 class="w-50 mb-xl-4">Siêu ưu đãi giảm giá lên đến <span class="text-danger fs-1">70%</span>
+                            <h4 class="mb-xl-4">Siêu ưu đãi giảm giá lên đến <span class="text-danger fs-1">70%</span> <br>
                                 khi
                                 mua sản
                                 phẩm. </h4>
-                            <a href="" class="btn btn-white rounded-0 border px-xl-4 py-xl-2 animated-link"
+                            <a href=""
+                                class="btn btn-white rounded-0 border px-xl-4 py-xl-2 text-white animated-link"
                                 style="font-size:20px;">Mua ngay</a>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
         </div>
     </div>
     {{-- Danh mục sản phẩm --}}
-    <section class="container-fluid py-xl-5 my-3">
+    <section class="DMSP container-fluid py-xl-5 my-3">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-sm-12 ">
@@ -70,7 +70,7 @@
                     </p>
                 </div>
                 <div class="col-xl-6 col-sm-12">
-                    <ul class="row g-2 pb-5 px-0 cate-frame">
+                    <ul class="cate-frame d-flex justify-content-between px-0 pb-5">
                         <li class="rounded-5 text-center me-xl-5 nav-link">
                             <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
                                 <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
@@ -117,7 +117,7 @@
         </div>
     </section>
     {{-- Dịch vụ --}}
-    <div class="container-fluid m-0 text-center" style="background:#F0EFF5;">
+    <div class="DV container-fluid m-0 text-center" style="background:#F0EFF5;">
         <div class="container">
             <div class="row g-3 py-xl-4 py-4">
                 <div class="col-xl-4 col-4">
@@ -307,7 +307,7 @@
     {{-- Sản phẩm chung --}}
     <div class="container-fluid d-flex flex-column align-items-center mt-3">
         <div class="polular-product w-100 d-flex flex-column align-items-center justify-content-center">
-            <h2 class="text-center">Sản phẩm của chúng tôi</h2>
+            <h2 class="text-center py-2">Sản phẩm của chúng tôi</h2>
         </div>
 
         @livewire('user-search-product')
@@ -363,19 +363,21 @@
         </div>
     </div>
     {{-- Thương hiệu của hàng --}}
-    <div class="container-fluid px-4 mt-5 logo-brand">
+    <div class="container-fluid px-4 my-5 logo-brand">
         <div class="container">
             <div class="row align-items-center py-2" style="background:#F0EFF5;">
                 @foreach ($brands as $brand)
-                    <span class="col-lg-2 text-center">
-                        <img class="w-75" src="{{ $brand->image }}" alt="">
-                    </span>
+                    <div class="col-xl-2 col-6 text-center">
+                        <span class="w-100">
+                            <img class="w-75" src="{{ $brand->image }}" alt="">
+                        </span>
+                    </div>
                 @endforeach
             </div>
         </div>
     </div>
     {{-- Blog --}}
-    <section class="my-xl-5 py-xl-5">
+    <section class="my-xl-5 py-xl-5 py-4">
         <div class="container px-4">
             <h2 class="text-center mb-4">Bài viết nổi bật</h2>
             <div class="row g-4">
@@ -470,12 +472,18 @@
         if (!localStorage.getItem('voucherPopupShown')) {
             // Nếu chưa, hiển thị popup
             $('#voucherModal').modal('show');
+        }
 
-            // Lắng nghe sự kiện đóng popup
-            $('#voucherModal').on('hidden.bs.modal', function() {
+        // Lắng nghe sự kiện đóng popup
+        $('#closeModalButton').click(function(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định
+            var confirmClose = confirm(
+                "Bạn có thật sự muốn đóng không?\nKhuyến mãi sẽ không hiển thị sau khi đóng.");
+            if (confirmClose) {
+                $('#voucherModal').modal('hide'); // Đóng modal nếu người dùng chọn "OK"
                 // Khi popup bị đóng, lưu trạng thái vào localStorage
                 localStorage.setItem('voucherPopupShown', 'true');
-            });
-        }
+            }
+        });
     });
 </script>

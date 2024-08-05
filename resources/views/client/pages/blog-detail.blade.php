@@ -1,7 +1,7 @@
 @extends('layouts.client')
 @section('content')
     <main class="container-fluid p-0" style="height: 35rem;">
-        <img class="img-fluid w-100 h-100" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
+        <img class="img-fluid w-100 h-100" src="{{ asset($blog->image) }}" alt="Bài viết {{ $blog->slug }}">
     </main>
     <section class="container my-5">
         <div class="container my-3">
@@ -21,7 +21,8 @@
                 </div>
                 <div class="d-flex align-items-center">
                     <i class="fa-regular fa-comment"></i>
-                    <p class="m-0 mx-1 fs-6" style="color: var(--secondary-1100-color);">2 Bình luận</p>
+                    <p class="m-0 mx-1 fs-6" style="color: var(--secondary-1100-color);">{{ $countComment }} Bình
+                        luận</p>
                 </div>
             </div>
         </nav>
@@ -59,9 +60,9 @@
                 </p>
             </div>
             <div class="col-xl-5 col-12">
-                <h3 class="fs-3 fw-bold my-3">Bài viết phổ biến</h3>
+                <h3 class="fs-3 fw-bold mb-3">Bài viết phổ biến</h3>
                 <div class="row g-2">
-                    <img class="img-thumbnail col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
+                    <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
                     <div class="col-9">
                         <h4 class="fs-5 fw-semibold">IDEAS FOR LIVING ROOM</h4>
                         <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">Vestibulum sit amet metus
@@ -72,7 +73,7 @@
                 </div>
                 <!-- item 2 -->
                 <div class="row g-2 my-2">
-                    <img class="img-thumbnail col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
+                    <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
                     <div class="col-9">
                         <h4 class="fs-5 fw-semibold">IDEAS FOR LIVING ROOM</h4>
                         <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">Vestibulum sit amet metus
@@ -83,7 +84,7 @@
                 </div>
                 <!-- Item 3 -->
                 <div class="row g-2">
-                    <img class="img-thumbnail col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
+                    <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
                     <div class="col-9">
                         <h4 class="fs-5 fw-semibold">IDEAS FOR LIVING ROOM</h4>
                         <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">Vestibulum sit amet metus
@@ -109,7 +110,7 @@
                     placeholder="Viết bình luận của bạn..."></textarea>
             </div>
             <div class="w-25 text-xl-center pe-xl-5">
-                <button type="submit" class="btn border fs-5 my-2 me-xl-5 shadow-sm mb-5 rounded btn-comment">Gửi</button>
+                <button type="submit" class="btn border fs-5 my-2 me-xl-5 shadow-sm mb-5 rounded btn-dark">Gửi</button>
             </div>
         </form>
     </section>

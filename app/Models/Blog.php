@@ -28,4 +28,8 @@ class Blog extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    public function countComments()
+    {
+        return $this->comments()->count();
+    }
 }

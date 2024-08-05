@@ -24,14 +24,14 @@
     <section class="container">
         <div class="position-relative">
             <video id="myVideo" class="w-100" style="border: 1px solid var(--primary-900-color)" controls>
-                <source src="intro.mp4" type="video/mp4">
+                <source src="{{ asset('assets/clients/intro.mp4') }}" type="video/mp4">
             </video>
         </div>
     </section>
     <!-- Our Team -->
     <section class="container our-team mt-5">
         <div class="d-flex flex-column align-items-center justify-content-center">
-            <h2>Our Team</h2>
+            <h2>Đội ngũ của chúng tôi</h2>
             <p style="color: #00051654;"> Bibendum quis facilisi aliquet massa in
                 pharetra nisl etiam ornare. Tellus feugiat egestas nulla sem vel
                 mi dictum nisi.</p>

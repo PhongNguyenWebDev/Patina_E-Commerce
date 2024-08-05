@@ -1,6 +1,6 @@
 <header class="mx-xl-5 my-xl-2">
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid p-0">
+        <div class="container-fluid p-xl-0 p-2">
             <div class="w-25">
                 <a class="navbar-brand" href="{{ route('client.home-page') }}"
                     class="nav-link d-flex align-items-center text-decoration-none">
@@ -39,8 +39,8 @@
                             hàng</x-nav-link>
                     </li> --}}
                 </ul>
-                <nav class="col-xl-3 d-flex justify-content-xl-end align-items-center">
-                    <ul class="navbar-nav">
+                <div class="py-xl-0 py-3 col-xl-4 d-flex justify-content-xl-end align-items-center">
+                    <ul class="navbar-nav py-2">
                         <li class="nav-item d-flex align-items-center">
                             <a href="{{ route('client.favorite.index') }}" class="position-relative text-white">
                                 <i class="fa-regular fa-heart fa-xl" style="color: rgb(56, 56, 56)"></i>
@@ -54,42 +54,43 @@
                                     <span style="font-size: x-small; color: black">{{ $cart->sum('quantity') }}</span>
                                 </div>
                             </a>
-
-                            @if (Auth::check())
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="btn nav-link dropdown-toggle border-0" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="user-img">
-                                        <img class="rounded-circle" src="{{ asset('assets/admin/img/user-06.jpg') }}"
-                                            width="35" alt="Admin">
-                                        <span class="status online"></span>
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('client.profile-page') }}">Hồ
-                                            sơ
-                                            của
-                                            tôi</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('admin.home') }}">Vào trang
-                                            quản
-                                            trị</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-                    @else
-                        <a class="" href="{{ route('login') }}"><i class="fa-regular fa-user fa-xl"
-                                style="color: rgb(56, 56, 56)"></i></a>
+                        @if (Auth::check())
+                            <li class="nav-item">
+                                <div class="dropdown">
+                                    <a class="btn nav-link dropdown-toggle border-0 p-0" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span class="user-img">
+                                            <img class="rounded-circle"
+                                                src="{{ asset('assets/admin/img/user-06.jpg') }}" width="35"
+                                                alt="Admin">
+                                            <span class="status online"></span>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('client.profile-page') }}">Hồ
+                                                sơ
+                                                của
+                                                tôi</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('admin.home') }}">Vào trang
+                                                quản
+                                                trị</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @else
+                            <a class="" href="{{ route('login') }}"><i class="fa-regular fa-user fa-xl"
+                                    style="color: rgb(56, 56, 56)"></i></a>
                         @endif
                         </li>
                     </ul>
-                </nav>
+                </div>
             </div>
         </div>
     </nav>
