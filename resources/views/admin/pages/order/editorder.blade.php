@@ -105,12 +105,12 @@
             <tr class="total">
                 <td>
                 </td>
-                <td>Tổng: {{ number_format($order->totalPrice < 0 ? 0 : $order->totalPrice) }} VNĐ</td>
+                <td>Tổng tiền hàng: {{ number_format($order->totalPrice < 0 ? 0 : $order->totalPrice) }} VNĐ</td>
             </tr>
             @if ($order->coupon_id)
                 <tr class="total">
                     <td></td>
-                    <td>(Đã áp dụng mã giảm giá)</td>
+                    <td>(Đã áp dụng mã {{$order->coupon->code}})</td>
                 </tr>
             @endif
 

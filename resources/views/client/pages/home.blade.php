@@ -46,47 +46,28 @@
                 </div>
                 <div class="col-xl-6 col-sm-12">
                     <ul class="row g-2 pb-5 px-0 cate-frame">
-                        <li class="rounded-5 text-center me-xl-5 nav-link">
-                            <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
-                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                                    src="/assets/clients/img/Cate_img/pants.png" alt="Quần">
-                                <span class="d-block mt-2">Quần</span>
-                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                            </a>
-                        </li>
-                        <li class="rounded-5 text-center me-xl-5 nav-link">
-                            <a href="http://127.0.0.1:8000/shop-page/ao" class="nav-link categories d-block">
-                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                                    src="{{ asset('assets/clients/img/Cate_img/shirt.png') }}" alt="Áo">
-                                <span class="d-block mt-2">Áo</span>
-                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                            </a>
-                        </li>
-                        <li class="rounded-5 text-center me-xl-5 nav-link">
-                            <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
-                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                                    src="{{ asset('assets/clients/img/Cate_img/footware.png') }}" alt="Giày">
-                                <span class="d-block mt-2">Giày</span>
-                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                            </a>
-                        </li>
-                        <li class="rounded-5 text-center me-xl-5 nav-link">
-                            <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
-                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                                    src="{{ asset('assets/clients/img/Cate_img/setofclothes.png') }}" alt="Bộ quần áo">
-                                <span class="d-block mt-2">Bộ quần áo</span>
-                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                            </a>
-                        </li>
-                        <li class="rounded-5 text-center me-xl-5 nav-link">
-                            <a href="http://127.0.0.1:8000/shop-page/quan" class="nav-link categories d-block">
-                                <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                                    src="{{ asset('assets/clients/img/Cate_img/assor.png') }}" alt="Phụ kiện">
-                                <span class="d-block mt-2">Phụ kiện</span>
-                                <span style="font-size:var(--font-small-size)">28 Sản phẩm</span>
-                            </a>
-                        </li>
-                    </ul>
+                        @foreach ($categories as $category)
+                        @if ($category->parent()->count() > 0)
+                            <li class="rounded-5 text-center me-xl-5 nav-link">
+                                <a href="{{ route('client.shop-page', $category->slug) }}" class="nav-link categories d-block">
+                                    <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
+                                        src="{{ asset('assets/clients/img/Cate_img/' . $category->slug . '.png') }}" alt="{{ $category->name }}">
+                                    <span class="d-block mt-2">{{ $category->name }}</span>
+                                    <span style="font-size:var(--font-small-size)">{{ $category->totalChildProducts() }} Sản phẩm</span>
+                                </a>
+                            </li>
+                            @else
+                            <li class="rounded-5 text-center me-xl-5 nav-link">
+                                <a href="{{ route('client.shop-page', $category->slug) }}" class="nav-link categories d-block">
+                                    <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
+                                        src="{{ asset('assets/clients/img/Cate_img/' . $category->slug . '.png') }}" alt="{{ $category->name }}">
+                                    <span class="d-block mt-2">{{ $category->name }}</span>
+                                    <span style="font-size:var(--font-small-size)">{{ $category->products_count }} Sản phẩm</span>
+                                </a>
+                            </li>
+                            @endif
+                        @endforeach
+                    </ul>                    
                 </div>
             </div>
         </div>
