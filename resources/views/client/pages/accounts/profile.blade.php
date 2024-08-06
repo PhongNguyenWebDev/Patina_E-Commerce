@@ -9,11 +9,11 @@
                         <h1 class="m-0 fs-1">Thông tin khách hàng</h1>
                     </li>
                     <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#update-info">Cập
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#update-info" href="/profile-page/update">Cập
                             nhật</a>
                     </li>
                     <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#invoice-info">Hóa
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#invoice-info" href="/profile-page/bill">Hóa
                             đơn</a>
                     </li>
                     <li class="list-group-item">
@@ -101,6 +101,16 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <div class="form-group">
+                                                                                    <label>Địa chỉ</label>
+                                                                                    <input class="form-control"
+                                                                                           type="text"
+                                                                                           placeholder="{{$address}}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-2"><b>Thay đổi mật khẩu</b></div>
@@ -144,8 +154,7 @@
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-primary" type="submit">Save
-                                                                Changes</button>
+                                                            <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -236,3 +245,4 @@
             </div>
     </section>
 @endsection
+

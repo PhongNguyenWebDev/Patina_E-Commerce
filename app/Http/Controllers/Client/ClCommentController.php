@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ClCommentController extends Controller
@@ -18,14 +19,17 @@ class ClCommentController extends Controller
         ]);
 
         $blog = Blog::findOrFail($blogId);
+        if (Auth::check()) {
+            $comment = $blog->comments()->create([
+                'user_id' => auth()->id(),
+                'content' => $request->content,
+                'parent_id' => $request->parent_id,
+            ]);
 
-        $comment = $blog->comments()->create([
-            'user_id' => auth()->id(),
-            'content' => $request->content,
-            'parent_id' => $request->parent_id,
-        ]);
-
-        return back();
+            return back()->with('success', 'Comment added successfully');
+        } else {
+            return back()->with('error', 'Vui lòng đăng nhập để bình luận');
+        }
     }
 
     public function reply(Request $request, Comment $parentComment)

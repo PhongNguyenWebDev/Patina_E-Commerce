@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -20,7 +23,9 @@
 
 
 <body>
-
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
     @include('client.blocks.header')
     @yield('content')
     @include('client.blocks.footer')
@@ -61,6 +66,36 @@
             })
         </script>
     @endif
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function fetchData() {
+            showLoading(); // Hiển thị loading khi bắt đầu gửi yêu cầu
+
+            // Thực hiện yêu cầu AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'your-api-endpoint', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Xử lý dữ liệu từ server
+                    console.log(xhr.responseText);
+                }
+                hideLoading(); // Ẩn loading khi nhận được phản hồi
+            };
+            xhr.send();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchData(); // Gửi yêu cầu AJAX khi trang đã tải xong
+        });
+    </script>
+
 </body>
 
 </html>

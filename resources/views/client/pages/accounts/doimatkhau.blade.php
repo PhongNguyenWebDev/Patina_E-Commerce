@@ -16,7 +16,7 @@
                         <h4>Đổi Mật Khẩu</h4>
                         <div class="breadcrumb__links">
                             <a href="/">Home</a>
-                            <a href="{{ route('account.profile') }}">Tài Khoản</a>
+                            <a href="">Tài Khoản</a>
                             <span>Đổi Mật Khẩu</span>
                         </div>
                     </div>
@@ -97,7 +97,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

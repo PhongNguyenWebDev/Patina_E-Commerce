@@ -46,6 +46,7 @@ class Order extends Model
         }
 
         $coupon = $this->coupon;
+        $couponDiscount = 0;
         if ($coupon) {
             if ($total >= $coupon->min_price) {
                 if ($coupon->discount_type === 'percentage') {
