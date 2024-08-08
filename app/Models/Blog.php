@@ -17,7 +17,8 @@ class Blog extends Model
         'image',
         'quote',
         'author',
-        'status'
+        'status',
+        'created_at'
     ];
     public function getRouteKey()
     {
@@ -28,8 +29,15 @@ class Blog extends Model
     {
         return $this->hasMany(Comment::class);
     }
-    public function countComments()
+    public function commentsCount()
     {
-        return $this->comments()->count();
+        return $this->comments()
+            ->selectRaw('count(*) as total')
+            ->groupBy('blog_id');
+    }
+
+    public function getCommentsCountAttribute()
+    {
+        return $this->commentsCount()->pluck('total')->first() ?? 0;
     }
 }

@@ -23,9 +23,6 @@
 
 
 <body>
-    <div id="loading" class="loading-overlay">
-        <div class="spinner"></div>
-    </div>
     @include('client.blocks.header')
     @yield('content')
     @include('client.blocks.footer')
@@ -66,35 +63,6 @@
             })
         </script>
     @endif
-    <script>
-        function showLoading() {
-            document.getElementById('loading').style.display = 'flex';
-        }
-
-        function hideLoading() {
-            document.getElementById('loading').style.display = 'none';
-        }
-
-        function fetchData() {
-            showLoading(); // Hiển thị loading khi bắt đầu gửi yêu cầu
-
-            // Thực hiện yêu cầu AJAX
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'your-api-endpoint', true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Xử lý dữ liệu từ server
-                    console.log(xhr.responseText);
-                }
-                hideLoading(); // Ẩn loading khi nhận được phản hồi
-            };
-            xhr.send();
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchData(); // Gửi yêu cầu AJAX khi trang đã tải xong
-        });
-    </script>
 
 </body>
 

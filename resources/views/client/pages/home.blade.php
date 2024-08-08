@@ -32,7 +32,7 @@
                 @foreach ($sliders as $key => $slider)
                     <div class="carousel-item w-100 h-100 {{ $key == 0 ? 'active' : '' }}">
                         <img src="{{ $slider->image }}" class="h-100 w-100 d-block" alt="Slide {{ $key + 1 }}">
-                        <div class="overlay"></div>
+                        {{-- <div class="overlay"></div> --}}
                         <div class="carousel-caption text-white" style="font-family:'Josefin Sans', sans-serif">
                             <h4>Sản phẩm mới</h4>
                             <h1 class="mb-3">Bộ quần áo player</h1>
@@ -381,58 +381,23 @@
         <div class="container px-4">
             <h2 class="text-center mb-4">Bài viết nổi bật</h2>
             <div class="row g-4">
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card border-0 shadow-sm">
-                        <img src="{{ asset('assets/clients/img/blogimage.png') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tin tức 1</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel justo ac
-                                neque
-                                convallis
-                                semper.</p>
-                            <a href="#" class="stretched-link nav-link">Xem thêm</a>
+                @foreach ($blogs as $blog)
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card border-0 shadow-sm">
+                            <img src="{{ $blog->image }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title fw-medium">{{ $blog->name }}</h5>
+                                <p class="card-text mb-2">
+                                    {!! substr($blog->content, 40, 80) !!}
+                                    <span>...</span>
+                                </p>
+
+                                <a class="text-secondary" href="{{ route('client.blog-detail', $blog->slug) }}"
+                                    class="stretched-link nav-link">Xem thêm</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card border-0 shadow-sm">
-                        <img src="{{ asset('assets/clients/img/blogimage.png') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tin tức 1</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel justo ac
-                                neque
-                                convallis
-                                semper.</p>
-                            <a href="#" class="stretched-link nav-link">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card border-0 shadow-sm">
-                        <img src="{{ asset('assets/clients/img/blogimage.png') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tin tức 1</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel justo ac
-                                neque
-                                convallis
-                                semper.</p>
-                            <a href="#" class="stretched-link nav-link">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="card border-0 shadow-sm">
-                        <img src="{{ asset('assets/clients/img/blogimage.png') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tin tức 1</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel justo ac
-                                neque
-                                convallis
-                                semper.</p>
-                            <a href="#" class="stretched-link nav-link">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 

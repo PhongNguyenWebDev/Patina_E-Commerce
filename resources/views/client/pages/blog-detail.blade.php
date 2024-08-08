@@ -1,78 +1,52 @@
 @extends('layouts.client')
 @section('content')
     <main class="container-fluid p-0" style="height: 35rem;">
-        <img class="img-fluid w-100 h-100" src="{{ asset($blog->image) }}" alt="Bài viết {{ $blog->slug }}">
+        <img class="img-fluid object-fit-cover w-100 h-100" src="{{ asset($blog->image) }}" alt="Bài viết {{ $blog->slug }}">
     </main>
     <section class="container my-5">
         <div class="container my-3">
-            <h1 class="fs-1 fw-bold text-center">IDEAS FOR LIVING ROOM</h1>
+            <h1 class="text-center">{{ $blog->name }}</h1>
         </div>
         <nav aria-label="breadcrumb mb-5">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Blog</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Ideas for living room</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $blog->name }}</li>
             </ol>
             <div class="d-flex mb-5 mt-2">
                 <div class="d-flex align-items-center me-2">
                     <i class="fa-regular fa-clock"></i>
-                    <p class="m-0 mx-1 fs-6" style="color: var(--secondary-1100-color);">20/4/2024</p>
+                    <p class="m-0 mx-1 fs-6" style="color: var(--secondary-1100-color);">
+                        {{ $blog->created_at->format('d/m/Y') }}
+                    </p>
                 </div>
                 <div class="d-flex align-items-center">
                     <i class="fa-regular fa-comment"></i>
-                    <p class="m-0 mx-1 fs-6" style="color: var(--secondary-1100-color);">{{ $countComment }} Bình
+                    <p class="m-0 mx-1 fs-6" style="color: var(--secondary-1100-color);">{{ $blog->commentsCount }} Bình
                         luận</p>
                 </div>
             </div>
         </nav>
         <div class="row">
-            <div class="col-xl-7 col-12">
-                <p class="fs-5 text-start text-break">Fusce mattis nunc lacus, vulputate facilisis dui efficitur ut.
-                    Vestibulum sit amet metus euismod,
-                    condimentum lectus id, ultrices sem. Morbi in erat malesuada, sollicitudin massa at, tristique nisl.
-                    Maecenas id eros scelerisque, vulputate tortor quis, efficitur arcu. Aenean lacus mi, porttitor quis
-                    dapibus a, tincidunt vitae arcu. Etiam dolor sem, luctus id risus vel, ultricies dignissim lacus.
-                    Fusce mattis nunc lacus, vulputate facilisis dui efficitur ut. Vestibulum sit amet metus euismod,
-                    condimentum lectus id, ultrices sem. Morbi in erat malesuada, sollicitudin massa at, tristique nisl.
-                    Maecenas id eros scelerisque, vulputate tortor quis, efficitur arcu. Aenean lacus mi, porttitor quis
-                    dapibus a, tincidunt vitae arcu. Etiam dolor sem, luctus id risus vel, ultricies dignissim lacus.
-                </p>
-                <p class="fs-5 text-start text-break">Fusce mattis nunc lacus, vulputate facilisis dui efficitur ut.
-                    Vestibulum sit amet metus euismod,
-                    condimentum lectus id, ultrices sem. Morbi in erat malesuada, sollicitudin massa at, tristique nisl.
-                    Maecenas id eros scelerisque, vulputate tortor quis, efficitur arcu. Aenean lacus mi, porttitor quis
-                    dapibus a, tincidunt vitae arcu. Etiam dolor sem, luctus id risus vel, ultricies dignissim lacus.
-                    Fusce mattis nunc lacus, vulputate facilisis dui efficitur ut. Vestibulum sit amet metus euismod,
-                    condimentum lectus id, ultrices sem. Morbi in erat malesuada, sollicitudin massa at, tristique nisl.
-                    Maecenas id eros scelerisque, vulputate tortor quis, efficitur arcu. Aenean lacus mi, porttitor quis
-                    dapibus a, tincidunt vitae arcu. Etiam dolor sem, luctus id risus vel, ultricies dignissim lacus.
-                </p>
-                <p class="fs-5 text-start text-break">Fusce mattis nunc lacus, vulputate facilisis dui efficitur ut.
-                    Vestibulum sit amet metus euismod,
-                    condimentum lectus id, ultrices sem. Morbi in erat malesuada, sollicitudin massa at, tristique nisl.
-                    Maecenas id eros scelerisque, vulputate tortor quis, efficitur arcu. Aenean lacus mi, porttitor quis
-                    dapibus a, tincidunt vitae arcu. Etiam dolor sem, luctus id risus vel, ultricies dignissim lacus.
-                    Fusce mattis nunc lacus, vulputate facilisis dui efficitur ut. Vestibulum sit amet metus euismod,
-                    condimentum lectus id, ultrices sem. Morbi in erat malesuada, sollicitudin massa at, tristique nisl.
-                    Maecenas id eros scelerisque, vulputate tortor quis, efficitur arcu. Aenean lacus mi, porttitor quis
-                    dapibus a, tincidunt vitae arcu. Etiam dolor sem, luctus id risus vel, ultricies dignissim lacus.
-                </p>
+            <div class="col-xl-8 col-12">
+                {!! $blog->content !!}
             </div>
-            <div class="col-xl-5 col-12">
-                <h3 class="fs-3 fw-bold mb-3">Bài viết phổ biến</h3>
-                <div class="row g-2">
+            <div class="col-xl-4 col-12">
+                <h4 class="fw-bold mb-3">Bài viết phổ biến</h4>
+                <div class="row g-2 mb-2">
                     <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
                     <div class="col-9">
-                        <h4 class="fs-5 fw-semibold">IDEAS FOR LIVING ROOM</h4>
-                        <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">Vestibulum sit amet metus
+                        <h6 class="fw-semibold">IDEAS FOR LIVING ROOM</h6>
+                        <p class="m-0 fs-6 text-secondary">Vestibulum sit amet
+                            metus
                             euismod,
                             condimentum lectus id, ultrices in erat ...</p>
-                        <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">20/04/2024</p>
+                        <p class="m-0">{{ $blog->created_at->format('d/m/Y') }}</p>
                     </div>
                 </div>
                 <!-- item 2 -->
-                <div class="row g-2 my-2">
+                <div class="row g-2 mb-2">
                     <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
                     <div class="col-9">
                         <h4 class="fs-5 fw-semibold">IDEAS FOR LIVING ROOM</h4>
@@ -83,7 +57,7 @@
                     </div>
                 </div>
                 <!-- Item 3 -->
-                <div class="row g-2">
+                <div class="row g-2 mb-2">
                     <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
                     <div class="col-9">
                         <h4 class="fs-5 fw-semibold">IDEAS FOR LIVING ROOM</h4>
@@ -98,6 +72,7 @@
     </section>
     <!-- Binh luan -->
     <section class="container mb-5">
+        <h3>Bình luận</h3>
         @include('client.pages.partials.comments')
         <form action="{{ route('client.comments.store', $blog->id) }}" method="POST" class="p-commentform">
             @csrf

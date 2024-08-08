@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 
 class ClBlogController extends Controller
 {
     public function blog()
     {
         $title = 'Bài viết';
-        $blogs = Blog::all();
+        $blogs = Blog::with('comments')->get();
         return view('client.pages.blog', compact('title', 'blogs'));
     }
 
@@ -21,7 +22,6 @@ class ClBlogController extends Controller
         $title = 'Bài viết chi tiết';
         $blog = Blog::where('slug', $blogSlug)->firstOrFail();
         $comments = $blog->comments()->orderBy('left')->get();
-        $countComment = $blog->countComments();
-        return view('client.pages.blog-detail', compact('title', 'blog', 'comments', 'countComment'));
+        return view('client.pages.blog-detail', compact('title', 'blog', 'comments'));
     }
 }

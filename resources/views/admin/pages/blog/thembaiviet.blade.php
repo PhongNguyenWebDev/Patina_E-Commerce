@@ -61,6 +61,17 @@
                     @enderror
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="name">Slug</label>
+                    <input type="text" class="form-control" id="input-field" name="slug"
+                        placeholder="Nhập slug cho bài viết" value="{{ old('slug') }}">
+                    @error('author')
+                        <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                            {{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="name">Quote</label>
@@ -99,5 +110,20 @@
     </script>
     <script>
         CKEDITOR.replace('ckeditor', options);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('input-field').addEventListener('input', function() {
+            let inputValue = this.value;
+            // Chuyển tất cả thành chữ hoa, thay thế khoảng trắng và các ký tự không hợp lệ bằng dấu gạch ngang
+            let formattedValue = inputValue
+                .toUpperCase() // Chuyển thành chữ hoa
+                .replace(/\s+/g, '-') // Thay thế khoảng trắng bằng dấu gạch ngang
+                .replace(/[^A-Z0-9-]+/g, ''); // Loại bỏ ký tự không hợp lệ
+            // Cập nhật giá trị của trường nhập liệu
+            this.value = formattedValue;
+        });
     </script>
 @endsection

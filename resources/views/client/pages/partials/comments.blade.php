@@ -11,9 +11,10 @@
                     <p class="mb-1 px-3">{{ $comment->content }}</p>
                     <div class="d-flex align-items-center">
                         <span class="toggle-replies text-secondary" style="cursor: pointer;" data-bs-toggle="collapse"
-                            data-bs-target="#replies" aria-expanded="false" aria-controls="replies">Xem thêm</span>
-                        <span class="text-secondary mx-2" style="cursor: pointer" data-toggle="collapse"
-                            data-target="#reply{{ $comment->id }}" aria-expanded="false"
+                            data-bs-target="#replies{{ $comment->id }}" aria-expanded="false"
+                            aria-controls="replies{{ $comment->id }}">Xem thêm</span>
+                        <span class="text-secondary mx-2" style="cursor: pointer" data-bs-toggle="collapse"
+                            data-bs-target="#reply{{ $comment->id }}" aria-expanded="false"
                             aria-controls="reply{{ $comment->id }}">Phản hồi</span>
 
                         {{-- Display edit and delete buttons --}}
@@ -40,13 +41,13 @@
                         <form action="{{ route('client.comments.reply', $comment->id) }}" method="POST">
                             @csrf
                             <textarea name="content" class="form-control" rows="2" placeholder="Viết phản hồi..."></textarea>
-                            <button type="submit" class="btn btn-primary btn-sm mt-2">Gửi</button>
+                            <button type="submit" class="btn btn-dark btn-sm mt-2">Gửi</button>
                         </form>
                     </div>
                 </div>
             </div>
             {{-- Display replies --}}
-            <div class="replies collapse" id="replies">
+            <div class="replies collapse" id="replies{{ $comment->id }}">
                 @foreach ($comment->replies as $reply)
                     <div class="d-flex py-2 ms-5">
                         <div

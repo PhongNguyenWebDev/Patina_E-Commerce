@@ -84,9 +84,8 @@ class AdBlogController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = $image->getClientOriginalName();
-            $image->storeAs('public/blogs', $imageName);
-
-            $blog->image = '/storage/blogs/' . $imageName;
+            $image->move(public_path('uploads/blogs'), $imageName);
+            $blog->image = '/uploads/blogs/' . $imageName;
         }
 
         $blog->update($request->except('image'));

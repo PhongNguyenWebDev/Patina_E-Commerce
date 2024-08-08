@@ -1,7 +1,7 @@
 <div class="flex-column">
     <form class="d-flex search-popular-products" method="GET" action="{{ route('client.shop-page') }}" role="search">
         <input wire:model.live="search" class="w-100 form-control py-2" style="letter-spacing: -0.044em" type="search"
-            name="query" placeholder="Hãy nhập tên của một sản phẩm mà bạn đang tìm kiếm...">
+            name="query" placeholder="...">
         <button class="border-0" type="button">
             <i class="fa-solid fa-magnifying-glass fa-xl"></i>
         </button>

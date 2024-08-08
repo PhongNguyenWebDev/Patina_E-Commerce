@@ -170,6 +170,9 @@ body {
     .search-popular-products {
         width: 22rem !important;
     }
+    .DV p {
+        font-size: 14px !important;
+    }
 }
 .carousel-inner {
     width: 100%;

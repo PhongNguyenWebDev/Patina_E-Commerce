@@ -20,7 +20,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-lg-8 mt-4 d-flex justify-content-end">
+            <div class="col-lg-8 mt-4 d-flex justify-content-end p-0">
                 <div class="container-fluid">
                     <div class="row d-flex justify-content-xl-end">
                         <div class="col-xl-3 col-6">
