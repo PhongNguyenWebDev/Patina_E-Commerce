@@ -3,14 +3,14 @@
     <div class="modal fade custom-modal-dialog" id="voucherModal" tabindex="-1" aria-labelledby="voucherModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content coupon h-50 text-center d-flex align-items-center rounded-0" style="width: 60%;">
-                <div class="rounded-2 w-100 h-100 pt-5">
-                    <div class="content h-100">
+            <div class="modal-content coupon text-center d-flex align-items-center rounded-0" style="width: 60%;">
+                <div class="rounded-2 w-100 pt-5">
+                    <div class="content mb-5">
                         <p class="text-secondary m-0">Giảm giá lên đến</p>
                         <h1 style="font-size:5rem; font-weight:400;">50%</h1>
                         <p class="text-secondary m-0">Để sử dụng, vui lòng sao chép <br> mã giảm giá và đăng ký tại</p>
                         <div class="pt-4">
-                            <button class="btn btn-warning rounded-0">Sao chép mã</button>
+                            <a href="http://127.0.0.1:8000/list-coupon-page" class="btn btn-warning rounded-0">Săn ngay</a>
                             <button class="btn btn-secondary rounded-0" id="closeModalButton">Đóng</button>
                         </div>
                     </div>
@@ -36,10 +36,12 @@
                         <div class="carousel-caption text-white" style="font-family:'Josefin Sans', sans-serif">
                             <h4>Sản phẩm mới</h4>
                             <h1 class="mb-3">Bộ quần áo player</h1>
-                            <h4 class="mb-xl-4">Siêu ưu đãi giảm giá lên đến <span class="text-danger fs-1">70%</span> <br>
+                            <h4 class="mb-xl-4 mb-2">Siêu ưu đãi giảm giá lên đến <span class="text-danger fs-1">70%</span>
+                                <br>
                                 khi
                                 mua sản
-                                phẩm. </h4>
+                                phẩm.
+                            </h4>
                             <a href=""
                                 class="btn btn-white rounded-0 border px-xl-4 py-xl-2 text-white animated-link"
                                 style="font-size:20px;">Mua ngay</a>
@@ -60,39 +62,33 @@
         </div>
     </div>
     {{-- Danh mục sản phẩm --}}
-    <section class="DMSP container-fluid py-xl-5 my-3">
+    <section class="DMSP container-fluid py-xl-5 my-5">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-sm-12 ">
-                    <h2>Sản phẩm bạn có thể thích</h2>
-                    <p style="color: #000516A4; font-size:14px;">Cửa hàng chuyên cung cấp các sản phẩm thời trang hiện đại
+                    <h2 class="my-xl-2 my-3">Sản phẩm bạn có thể thích</h2>
+                    <p class="d-xl-block d-none" style="color: #000516A4; font-size:14px;">Cửa hàng chuyên cung cấp các sản
+                        phẩm thời trang hiện đại
                         <br> của các hãng Local Brand nổi tiếng tại Việt Nam
                     </p>
                 </div>
                 <div class="col-xl-6 col-sm-12">
-                    <ul class="row g-2 pb-5 px-0 cate-frame">
+                    <ul class="d-flex cate-frame list-unstyled justify-content-between my-xl-2 my-3 ">
                         @foreach ($categories as $category)
-                        @if ($category->parent()->count() > 0)
-                            <li class="rounded-5 text-center me-xl-5 nav-link">
-                                <a href="{{ route('client.shop-page', $category->slug) }}" class="nav-link categories d-block">
-                                    <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                                        src="{{ asset('assets/clients/img/Cate_img/' . $category->slug . '.png') }}" alt="{{ $category->name }}">
-                                    <span class="d-block mt-2">{{ $category->name }}</span>
-                                    <span style="font-size:var(--font-small-size)">{{ $category->totalChildProducts() }} Sản phẩm</span>
+                            <li class="col-auto text-center">
+                                <a href="{{ route('client.shop-page', $category->slug) }}"
+                                    class="nav-link categories d-block p-2">
+                                    <img class="img-fluid rounded-circle bg-light object-fit-contain"
+                                        src="{{ asset('assets/clients/img/Cate_img/' . $category->slug . '.png') }}"
+                                        alt="{{ $category->name }}">
+                                    <span class="d-xl-block d-none mt-2">{{ $category->name }}</span>
+                                    <span
+                                        class="d-xl-block d-none small">{{ $category->parent()->count() > 0 ? $category->totalChildProducts() : $category->products_count }}
+                                        Sản phẩm</span>
                                 </a>
                             </li>
-                            @else
-                            <li class="rounded-5 text-center me-xl-5 nav-link">
-                                <a href="{{ route('client.shop-page', $category->slug) }}" class="nav-link categories d-block">
-                                    <img class="object-fit-contain" style="background:#F0EFF5; border-radius:50%;"
-                                        src="{{ asset('assets/clients/img/Cate_img/' . $category->slug . '.png') }}" alt="{{ $category->name }}">
-                                    <span class="d-block mt-2">{{ $category->name }}</span>
-                                    <span style="font-size:var(--font-small-size)">{{ $category->products_count }} Sản phẩm</span>
-                                </a>
-                            </li>
-                            @endif
                         @endforeach
-                    </ul>                    
+                    </ul>
                 </div>
             </div>
         </div>
@@ -102,8 +98,8 @@
         <div class="container">
             <div class="row g-3 py-xl-4 py-4">
                 <div class="col-xl-4 col-4">
-                    <img src="{{ asset('assets/clients/img/Icon/credit-card.png') }}" class="img-fluid"
-                        style="width: 10%" alt="" srcset="">
+                    <img src="{{ asset('assets/clients/img/Icon/credit-card.png') }}" class="img-fluid" style="width: 10%"
+                        alt="" srcset="">
                     <h5 class="my-1 fw-medium">Thanh toán an toàn</h5>
                     <p>Miễn phí giao hàng</p>
                 </div>
@@ -164,8 +160,10 @@
                 </div>
                 <!-- Right -->
                 <div class="col-12 col-xl-6 d-flex justify-xl-content-end justify-content-center">
-                    <img class="w-75" src="{{ asset('assets/clients/img/Products/Shirt/24POLO-CREAM.webp') }}"
-                        alt="">
+                    <a class="text-center" href="">
+                        <img class="w-75" src="{{ asset('assets/clients/img/Products/Shirt/24POLO-CREAM.webp') }}"
+                            alt="">
+                    </a>
                 </div>
             </div>
         </div>
@@ -174,77 +172,69 @@
     <section class="container-fluid mb-xl-5 pb-xl-5">
         <div class="container p-0">
             <h2 class="text-center my-xl-5">Sản phẩm bán chạy</h2>
-            <div id="carouselProducts" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    @foreach ($proMuaNhieu->chunk(4) as $chunkIndex => $chunk)
-                        <div class="carousel-item {{ $chunkIndex === 0 ? 'active' : '' }}">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    @foreach ($chunk as $product)
-                                        <div
-                                            class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                                            <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
-                                                <img class="img-thumbnail" src="{{ $product->images }}" alt="">
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row position-relative">
+                        @foreach ($proMuaNhieu as $product)
+                            <div
+                                class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center change my-2">
+                                <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                                    <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
+                                </a>
+                                <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi tiết</a>
+                                <div class="position-absolute top-0 p-3 w-100 end-0">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        @php
+                                            $isFavorite = $favorite->contains('product_id', $product->id);
+                                        @endphp
+                                        @if (!$isFavorite)
+                                            <a class="nav-link mx-3"
+                                                href="{{ route('client.favorite.add', $product->id) }}">
+                                                <i style="background-color:#fff; color:#d8d8d8"
+                                                    class="fas fa-heart rounded-5 p-2"></i>
                                             </a>
-                                            <div class="position-absolute top-0 p-3 w-100 end-0">
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    @if ($product->hot === 1)
-                                                        <span class="badge text-bg-danger">hot</span>
-                                                    @endif
-                                                    @php
-                                                        $isFavorite = false;
-                                                        foreach ($favorite as $item) {
-                                                            if ($item->product_id === $product->id) {
-                                                                $isFavorite = true;
-                                                                break;
-                                                            }
-                                                        }
-                                                    @endphp
-                                                    @if ($isFavorite)
-                                                        <a class="nav-link"
-                                                            href="{{ route('client.favorite.add', $product->id) }}"><i
-                                                                style=" background-color: rgb(203, 51, 51); color:white;"
-                                                                class="fas fa-heart rounded-5 p-2"></i></a>
-                                                    @else
-                                                        <a class="nav-link"
-                                                            href="{{ route('client.favorite.index') }}"><i
-                                                                style=" background-color:#fff; color:#d8d8d8"
-                                                                class="fas fa-heart rounded-5 p-2"></i></a>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="text-center my-3">
-                                                <h6 class="text-center">{{ $product->name }}</h6>
-                                                {{-- <p style="font-size: var(--font-size); margin:0">{{ $product->category->name }}</p> --}}
-                                                <div class="d-flex justify-content-center text-center">
-                                                    <p style="font-size: var(--font-size); margin: 0;"
-                                                        class="text-decoration-line-through text-danger mx-2">
-                                                        ${{ $product->price }}</p>
-                                                    <p style="font-size: var(--font-size); margin: 0; color: black;">
-                                                        ${{ $product->sale_price }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                        @else
+                                            <a class="nav-link mx-3" href="{{ route('client.favorite.index') }}">
+                                                <i style="background-color: rgb(203, 51, 51); color:white;"
+                                                    class="fas fa-heart rounded-5 p-2"></i>
+                                            </a>
+                                        @endif
+                                        @php
+                                            $percent =
+                                                (($product->price - $product->sale_price) / $product->price) * 100;
+                                        @endphp
+                                        @if ($percent > 0 && $percent < 90)
+                                            <span class="badge text-bg-danger mx-3">-
+                                                {{ number_format($percent, 2) }}%</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <h6 class="text-center my-2 fw-medium">{{ $product->name }}</h6>
+                                    <div class="d-flex justify-content-center text-center">
+                                        @if ($product->sale_price > 0)
+                                            <p style="font-size: var(--font-size); margin: 0;"
+                                                class="text-decoration-line-through text-danger mx-2">
+                                                {{ number_format($product->price, 0, ',', ',') }} VND
+                                            </p>
+                                            <p style="font-size: var(--font-size); margin: 0; color: black;">
+                                                {{ number_format($product->sale_price, 0, ',', ',') }} VND
+                                            </p>
+                                        @else
+                                            <p style="font-size: var(--font-size); margin: 0;">
+                                                {{ number_format($product->price, 0, ',', ',') }} VND
+                                            </p>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducts"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselProducts"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
     </section>
+
     {{-- Giới thiệu dịch vụ --}}
     <div class="container-fluid" style="background:#F0EFF5;">
         <div class="container">
@@ -298,14 +288,13 @@
                 <div class="row position-relative">
                     @foreach ($products as $product)
                         <div
-                            class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center change">
+                            class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center my-2 change">
                             <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
                                 <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
                             </a>
-                            <a class="test-xct" href="">Xem chi tiết</a>
+                            <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi tiết</a>
                             <div class="position-absolute top-0 p-3 w-100 end-0">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <span class="badge text-bg-danger">- 20%</span>
                                     @php
                                         $isFavorite = false;
                                         foreach ($favorite as $item) {
@@ -315,26 +304,38 @@
                                             }
                                         }
                                     @endphp
-                                    @if ($isFavorite)
-                                        <a class="nav-link" href="{{ route('client.favorite.add', $product->id) }}"><i
-                                                style=" background-color: rgb(203, 51, 51); color:white;"
-                                                class="fas fa-heart rounded-5 p-2"></i></a>
-                                    @else
-                                        <a class="nav-link" href="{{ route('client.favorite.index') }}"><i
+                                    @if (!$isFavorite)
+                                        <a class="nav-link mx-3"
+                                            href="{{ route('client.favorite.add', $product->id) }}"><i
                                                 style=" background-color:#fff; color:#d8d8d8"
                                                 class="fas fa-heart rounded-5 p-2"></i></a>
+                                    @else
+                                        <a class="nav-link mx-3" href="{{ route('client.favorite.index') }}"><i
+                                                style=" background-color: rgb(203, 51, 51); color:white;"
+                                                class="fas fa-heart rounded-5 p-2"></i></a>
+                                    @endif
+                                    @php
+                                        $percent = (($product->price - $product->sale_price) / $product->price) * 100;
+                                    @endphp
+                                    @if ($percent > 0 && $percent < 90)
+                                        <span class="badge text-bg-danger mx-3">- {{ number_format($percent, 2) }}%</span>
                                     @endif
                                 </div>
                             </div>
                             <div class="text-center">
                                 <h6 class="text-center my-2 fw-medium">{{ $product->name }}</h6>
                                 <div class="d-flex justify-content-center text-center">
-                                    <p style="font-size: var(--font-size); margin: 0;"
-                                        class="text-decoration-line-through text-danger mx-2">
-                                        {{ number_format($product->price, 0, ',', ',') }} VND</p>
-                                    <p style="font-size: var(--font-size); margin: 0; color: black;">
-                                        {{ number_format($product->sale_price, 0, ',', ',') }} VND
-                                    </p>
+                                    @if ($product->sale_price > 0)
+                                        <p style="font-size: var(--font-size); margin: 0;"
+                                            class="text-decoration-line-through text-danger mx-2">
+                                            {{ number_format($product->price, 0, ',', ',') }} VND</p>
+                                        <p style="font-size: var(--font-size); margin: 0; color: black;">
+                                            {{ number_format($product->sale_price, 0, ',', ',') }} VND
+                                        </p>
+                                    @else
+                                        <p style="font-size: var(--font-size); margin: 0;">
+                                            {{ number_format($product->price, 0, ',', ',') }} VND</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -348,7 +349,7 @@
         <div class="container">
             <div class="row align-items-center py-2" style="background:#F0EFF5;">
                 @foreach ($brands as $brand)
-                    <div class="col-xl-2 col-6 text-center">
+                    <div class="col-xl col-6 text-center">
                         <span class="w-100">
                             <img class="w-75" src="{{ $brand->image }}" alt="">
                         </span>
@@ -414,21 +415,20 @@
         );
     });
     $(document).ready(function() {
-        // Kiểm tra xem popup đã được hiển thị trước đó chưa
-        if (!localStorage.getItem('voucherPopupShown')) {
-            // Nếu chưa, hiển thị popup
+        var lastCloseTime = localStorage.getItem('voucherPopupClosedTime');
+        var currentTime = new Date().getTime();
+
+        if (!lastCloseTime || currentTime - lastCloseTime >= 5 * 60 * 1000) {
             $('#voucherModal').modal('show');
         }
 
-        // Lắng nghe sự kiện đóng popup
         $('#closeModalButton').click(function(event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định
+            event.preventDefault();
             var confirmClose = confirm(
                 "Bạn có thật sự muốn đóng không?\nKhuyến mãi sẽ không hiển thị sau khi đóng.");
             if (confirmClose) {
-                $('#voucherModal').modal('hide'); // Đóng modal nếu người dùng chọn "OK"
-                // Khi popup bị đóng, lưu trạng thái vào localStorage
-                localStorage.setItem('voucherPopupShown', 'true');
+                $('#voucherModal').modal('hide');
+                localStorage.setItem('voucherPopupClosedTime', new Date().getTime());
             }
         });
     });

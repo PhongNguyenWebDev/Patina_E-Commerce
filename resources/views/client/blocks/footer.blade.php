@@ -72,16 +72,17 @@
             <div class="col-xl-9 col-6">
                 <p class="mb-0 ms-xl-3 ">© Copyright Patina 2024.</p>
             </div>
-            <div class="col-xl-3 col-6 d-flex flex-row justify-content-end align-items-center">
-                <a href=""><img class="w-50" src="{{ asset('assets/clients/img/Icon/american-express.png') }}"
-                        alt=""></a>
-                <a href=""><img class="w-50" src="{{ asset('assets/clients/img/Icon/symbols.png') }}"
-                        alt=""></a>
-                <a href=""><img class="w-50" src="{{ asset('assets/clients/img/Icon/money.png') }}"
-                        alt=""></a>
-                <a href=""><img class="w-50" src="{{ asset('assets/clients/img/Icon/card.png') }}"
-                        alt=""></a>
+            <div class="col-xl-3 col-6 d-flex justify-content-end align-items-center ms-auto">
+                <a href="" class="d-flex justify-content-end"><img class="w-50"
+                        src="{{ asset('assets/clients/img/Icon/american-express.png') }}" alt=""></a>
+                <a href="" class="d-flex justify-content-end"><img class="w-50"
+                        src="{{ asset('assets/clients/img/Icon/symbols.png') }}" alt=""></a>
+                <a href="" class="d-flex justify-content-end"><img class="w-50"
+                        src="{{ asset('assets/clients/img/Icon/money.png') }}" alt=""></a>
+                <a href="" class="d-flex justify-content-end"><img class="w-50"
+                        src="{{ asset('assets/clients/img/Icon/card.png') }}" alt=""></a>
             </div>
+
         </div>
     </div>
 

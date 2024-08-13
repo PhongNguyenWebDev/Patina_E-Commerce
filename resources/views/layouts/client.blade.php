@@ -35,6 +35,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('.change').hover(
+                function() {
+                    $(this).find('.test-xct').css('opacity', '1');
+                },
+                function() {
+                    $(this).find('.test-xct').css('opacity', '0');
+                }
+            );
+        });
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

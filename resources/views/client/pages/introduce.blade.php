@@ -30,17 +30,19 @@
     </section>
     <!-- Our Team -->
     <section class="container our-team mt-5">
-        <div class="d-flex flex-column align-items-center justify-content-center">
-            <h2>Đội ngũ của chúng tôi</h2>
-            <p style="color: #00051654;"> Bibendum quis facilisi aliquet massa in
-                pharetra nisl etiam ornare. Tellus feugiat egestas nulla sem vel
-                mi dictum nisi.</p>
+        <div class="d-flex flex-column align-items-center text-center justify-content-center">
+            <h2>Đội Ngũ Của Chúng Tôi</h2>
+            <p style="color: #00051654;">Đội ngũ của chúng tôi luôn sẵn sàng phục vụ bạn với sự chuyên nghiệp và tận
+                tâm.<br>
+                Chúng tôi không ngừng nỗ lực để mang lại giá trị tốt nhất cho khách hàng.</p>
+
         </div>
         <div class="row g-2 my-5">
             <div class="col-12 col-xl-3 text-center">
-                <img class="img-thumbnail img-our-team" src="img/ourteam.jpg" alt="">
-                <h6>a</h6>
-                <p class="m-0" style="color: #00051654;">District Creative Producer</p>
+                <img class="object-fit-cover img-fluid w-100 h-75"
+                    src="{{ asset('assets/clients/img/img-intro/khoa.png') }}" alt="">
+                <h6 class="mt-xl-3">Đinh Minh Khoa</h6>
+                <p class="m-1" style="color: #00051654;">Giám Đốc Nhóm Nội Bộ</p>
                 <div class="d-flex justify-content-center">
                     <div class="icon-footer">
                         <i class="fa-brands fa-facebook-f "></i>
@@ -54,9 +56,10 @@
                 </div>
             </div>
             <div class="col-12 col-xl-3 text-center">
-                <img class="img-thumbnail img-our-team" src="img/ourteam.jpg" alt="">
-                <h6>b</h6>
-                <p class="m-0" style="color: #00051654;">District Creative Producer</p>
+                <img class="object-fit-cover img-fluid w-100 h-75"
+                    src="{{ asset('assets/clients/img/img-intro/phong.png') }}" alt="">
+                <h6 class="mt-xl-3">Nguyễn Tuấn Phong</h6>
+                <p class="m-1" style="color: #00051654;">Nhân viên</p>
                 <div class="d-flex justify-content-center">
                     <div class="icon-footer">
                         <i class="fa-brands fa-facebook-f "></i>
@@ -70,9 +73,10 @@
                 </div>
             </div>
             <div class="col-12 col-xl-3 text-center">
-                <img class="img-thumbnail img-our-team" src="img/ourteam.jpg" alt="">
-                <h6>c</h6>
-                <p class="m-0" style="color: #00051654;">District Creative Producer</p>
+                <img class="object-fit-cover img-fluid w-100 h-75"
+                    src="{{ asset('assets/clients/img/img-intro/tuananh.png') }}" alt="">
+                <h6 class="mt-xl-3">Bùi Tuấn Anh</h6>
+                <p class="m-1" style="color: #00051654;">Nhân viên</p>
                 <div class="d-flex justify-content-center">
                     <div class="icon-footer">
                         <i class="fa-brands fa-facebook-f "></i>
@@ -86,9 +90,10 @@
                 </div>
             </div>
             <div class="col-12 col-xl-3 text-center">
-                <img class="img-thumbnail img-our-team" src="img/ourteam.jpg" alt="">
-                <h6>d</h6>
-                <p class="m-0" style="color: #00051654;">District Creative Producer</p>
+                <img class="object-fit-cover img-fluid w-100 h-75"
+                    src="{{ asset('assets/clients/img/img-intro/tuan.png') }}" alt="">
+                <h6 class="mt-xl-3">Nguyễn Dương Tuấn</h6>
+                <p class="m-1" style="color: #00051654;">Nhân viên</p>
                 <div class="d-flex justify-content-center">
                     <div class="icon-footer">
                         <i class="fa-brands fa-facebook-f "></i>
@@ -109,22 +114,20 @@
             <div
                 class="d-flex p-xl-5 p-2 bg-white  text-center align-items-center flex-column justify-content-center position-relative ">
                 <div class="position-absolute top-0 start-50  translate-middle mt-xl-2">
-                    <img style="width: 5em; height: 5em; border-radius: 50%;"
-                        src="{{ asset('assets/clients/img/ourteam.jpg') }}" alt="">
+                    <img class="object-fit-cover"
+                        style="width: 5em; height: 5em; border-radius: 50%; border:0.5px solid rgb(210, 207, 207)"
+                        src="{{ asset('assets/clients/img/img-intro/khoa.png') }}" alt="">
                 </div>
                 <div class="pt-xl-0 pt-5">
-                    <p style="font-size: 20px;">Jesse Donovan</p>
-                    <p style="color: #00051654;">Internal Group Director, IG Company</p>
-                    <h3 style="font-weight: var(--Bold);" class="fs-2">Pretium donec magnis
-                        bibendum neque </h3>
+                    <p style="font-size: 20px;">Đinh Minh Khoa</p>
+                    <p style="color: #00051654;">Giám Đốc Nhóm Nội Bộ, Công Ty PATINA</p>
+                    <h3 style="font-weight: var(--Bold);" class="fs-2">Giá trị lớn lao của sự bền vững</h3>
                     <div class="d-flex justify-content-center">
-                        <p class="w-75 fs-5">Purus sed sagittis senectus mattis. Fringilla mi risus dui nunc sit.
-                            Imperdiet mauris sed auctor
-                            libero hac. Sed ipsum pulvinar pellentesque quis potenti amet congue commodo egestas. Vitae
-                            ipsum semper sit curabitur. Dignissim eleifend interdum placerat interdum posuere sagittis.
-                            Pretium viverra eu et in. Pharetra sagittis faucibus tincidunt gravida dignissim orci sed.
-                            Elit
-                            risus placerat ut lacus sagittis neque urna amet viverra.</p>
+                        <p class="w-75 fs-5">Luôn tiến về phía trước mặc dù con đường đôi khi khó khăn. Đối mặt với thử
+                            thách bằng tinh thần dũng cảm. Từng bước chinh phục và vượt qua mọi rào cản. Dù là nhỏ hay lớn,
+                            tất cả đều cần sự kiên nhẫn và quyết tâm. Mỗi một trải nghiệm đều là một bài học quý giá. Và với
+                            lòng quyết tâm, chúng ta sẽ đạt được sự hoàn thiện, mang đến giá trị tốt đẹp cho bản thân và cho
+                            cộng đồng.</p>
                     </div>
                 </div>
                 <!-- Rate -->

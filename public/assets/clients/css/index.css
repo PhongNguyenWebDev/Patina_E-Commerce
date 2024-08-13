@@ -12,18 +12,6 @@ body {
 }
 /* Loading */
 /* Định dạng overlay để phủ lên toàn bộ trang */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(0 0 0 / 71%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999; /* Đảm bảo overlay nằm trên cùng */
-}
 
 /* Định dạng spinner */
 .spinner {
@@ -131,12 +119,12 @@ body {
     }
 
     .cate-frame > li {
-        width: 2rem;
-        height: 2rem;
+        width: 4rem !important;
+        height: 2.75rem !important;
     }
     .cate-frame > li > a > img {
-        width: 2rem !important;
-        height: 2rem !important;
+        width: 4rem !important;
+        height: 2.75rem !important;
     }
     #carouselExampleIndicators {
         height: 400px !important;
@@ -173,6 +161,10 @@ body {
     .DV p {
         font-size: 14px !important;
     }
+    .custom-modal-dialog {
+        margin-top: 9rem !important; /* Adjust vertical position of the modal */
+        margin-left: 5rem !important;
+    }
 }
 .carousel-inner {
     width: 100%;
@@ -191,6 +183,7 @@ body {
     font-family: "Josefin Sans";
     padding: 10px;
     position: relative;
+    height: max-content;
 }
 
 .custom-modal-dialog {
@@ -242,11 +235,11 @@ body {
     left: 0;
 }
 .main-content {
-    height: 42rem;
+    height: 40rem;
 }
 .cate-frame > li {
-    width: 4rem;
-    height: 4rem;
+    width: 8rem;
+    height: 6.5rem;
 }
 .cate-frame > li > a > img {
     width: 100%;
@@ -308,7 +301,30 @@ h6 {
 .statistic {
     width: 80%;
 }
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
 
+.size-label {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.size-radio:checked + .size-label {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
 .polular-product h2 {
     font-size: 48px;
     font-weight: var(--Semi-bold);
@@ -707,6 +723,16 @@ main {
 
 /* End 404 */
 /* Blog */
+.card {
+    max-width: 100%;
+    height: 15rem;
+    margin: 10px auto;
+}
+.img-blog {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .btn-readmore {
     background-color: white;
     border: 0.5px solid #0000002d;
@@ -882,9 +908,9 @@ span {
 .test-xct {
     position: absolute;
     opacity: 0;
-    bottom: 12.5%;
+    bottom: 16.5%;
     font-weight: 500;
-    left: 4;
+    left: 7px;
     width: 93%;
     text-align: center;
     /* min-height: 3em; */
@@ -894,5 +920,5 @@ span {
     text-align: center;
     padding: 12px 0px;
     transition: opacity 0.5s ease;
-    margin: 7px;
+    margin: 5px;
 }

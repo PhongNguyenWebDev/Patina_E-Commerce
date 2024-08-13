@@ -160,63 +160,77 @@
                     </div> --}}
                 </div>
                 {{--                <!-- Products --> --}}
-                <div class="container-fluid p-0 my-3">
-                    <div class="row g-2">
-                        @foreach ($products as $product)
-                            <div class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                                <a href="{{ route('client.detail', $product->slug) }}">
-                                    <img class="img-thumbnail" src="{{ $product->images }}" alt="">
-                                </a>
-                                <div class="position-absolute top-0 p-3 w-100 end-0">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <span class="badge text-bg-danger fs-6">- 20%</span>
-                                        @php
-                                            $isFavorite = false;
-                                            foreach ($favorite as $item) {
-                                                if ($item->product_id === $product->id) {
-                                                    $isFavorite = true;
-                                                    break;
-                                                }
-                                            }
-                                        @endphp
-                                        @if ($isFavorite)
-                                            <a class="nav-link" href="{{ route('client.favorite.add', $product->id) }}"><i
-                                                    style=" background-color: rgb(203, 51, 51); color:white;"
-                                                    class="fa-regular fa-heart rounded-5 p-2"></i></a>
-                                        @else
-                                            <a class="nav-link" href="{{ route('client.favorite.index') }}"><i
-                                                    style=" background-color:#fff; color:#d8d8d8"
-                                                    class="fas fa-heart rounded-5 p-2"></i></a>
-                                        @endif
+                <div class="container p-0 my-2">
+                    <div class="container">
+                        <div class="row position-relative">
+                            @foreach ($products as $product)
+                                <div
+                                    class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center change my-2">
+                                    <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                                        <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
+                                    </a>
+                                    <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi
+                                        tiết</a>
+                                    <div class="position-absolute top-0 p-3 w-100 end-0">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            @php
+                                                $isFavorite = $favorite->contains('product_id', $product->id);
+                                            @endphp
+                                            @if (!$isFavorite)
+                                                <a class="nav-link mx-3"
+                                                    href="{{ route('client.favorite.add', $product->id) }}">
+                                                    <i style="background-color:#fff; color:#d8d8d8"
+                                                        class="fas fa-heart rounded-5 p-2"></i>
+                                                </a>
+                                            @else
+                                                <a class="nav-link mx-3" href="{{ route('client.favorite.index') }}">
+                                                    <i style="background-color: rgb(203, 51, 51); color:white;"
+                                                        class="fas fa-heart rounded-5 p-2"></i>
+                                                </a>
+                                            @endif
+                                            @php
+                                                $percent =
+                                                    (($product->price - $product->sale_price) / $product->price) * 100;
+                                            @endphp
+                                            @if ($percent > 0 && $percent < 90)
+                                                <span class="badge text-bg-danger mx-3">-
+                                                    {{ number_format($percent, 2) }}%</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <h6 class="text-center my-2 fw-medium">{{ $product->name }}</h6>
+                                        <div class="d-flex justify-content-center text-center">
+                                            @if ($product->sale_price > 0)
+                                                <p style="font-size: var(--font-size); margin: 0;"
+                                                    class="text-decoration-line-through text-danger mx-2">
+                                                    {{ number_format($product->price, 0, ',', ',') }} VND
+                                                </p>
+                                                <p style="font-size: var(--font-size); margin: 0; color: black;">
+                                                    {{ number_format($product->sale_price, 0, ',', ',') }} VND
+                                                </p>
+                                            @else
+                                                <p style="font-size: var(--font-size); margin: 0;">
+                                                    {{ number_format($product->price, 0, ',', ',') }} VND
+                                                </p>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                                <h4 class="pt-1 mt-1 fs-5">{{ $product->name }}</h4>
-                                <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $product->category->name }}</p>
-                                <div class="d-flex">
-                                    <p style="font-size: var(--font-size); margin: 0;"
-                                        class="text-decoration-line-through text-danger mx-2">
-                                        ${{ number_format($product->sale_price) ? number_format($product->price) : null }}
-                                    </p>
-                                    <p style="font-size: var(--font-size); margin: 0; color: black;">
-                                        ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
-                                    </p>
-                                </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-                <!-- Pagination -->
-                <div class="d-flex justify-content-center">
-                    {{ $products->links('pagination::default') }}
-                </div>
             </div>
-
-
-            {{--            Show sản phẩm và sắp xếp sản phẩm bằng livewire  --}}
-            {{-- @livewire('client-sort-products') --}}
-
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center">
+                {{ $products->links('pagination::default') }}
+            </div>
         </div>
-        </div>
+
+
+        {{--            Show sản phẩm và sắp xếp sản phẩm bằng livewire  --}}
+        {{-- @livewire('client-sort-products') --}}
     </section>
     <!-- Flash Sales -->
     {{-- <section class="container my-5">

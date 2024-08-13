@@ -34,13 +34,9 @@
                         <x-nav-link href="{{ route('client.contact-page') }}" :active="request()->routeIs('client.contact-page')">Liên
                             hệ</x-nav-link>
                     </li>
-                    {{-- <li class="nav-item">
-                        <x-nav-link href="{{ route('client.series-shop-page') }}" :active="request()->routeIs('client.series-shop-page')">Hệ thống cửa
-                            hàng</x-nav-link>
-                    </li> --}}
                 </ul>
-                <div class="py-xl-0 py-3 col-xl-4 d-flex justify-content-xl-end align-items-center">
-                    <ul class="navbar-nav py-2">
+                <div class="container d-xl-flex justify-content-xl-end w-50 mx-0">
+                    <ul class="d-flex p-0 m-xl-0 list-unstyled">
                         <li class="nav-item d-flex align-items-center">
                             <a href="{{ route('client.favorite.index') }}" class="position-relative text-white">
                                 <i class="fa-regular fa-heart fa-xl" style="color: rgb(56, 56, 56)"></i>
@@ -85,8 +81,10 @@
                                 </div>
                             </li>
                         @else
-                            <a class="" href="{{ route('login') }}"><i class="fa-regular fa-user fa-xl"
-                                    style="color: rgb(56, 56, 56)"></i></a>
+                            <li class="nav-item">
+                                <a class="" href="{{ route('login') }}"><i class="fa-regular fa-user fa-xl"
+                                        style="color: rgb(56, 56, 56)"></i></a>
+                            </li>
                         @endif
                         </li>
                     </ul>

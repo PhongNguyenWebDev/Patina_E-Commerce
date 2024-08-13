@@ -169,7 +169,6 @@ Route::prefix('/')->name('client.')->group(function () {
             Route::get('/verify/{token}', [ClCheckOutController::class, 'verify'])->name('verify');
             Route::post('/apply-coupon', [ClCheckoutController::class, 'applyCoupon'])->name('apply_coupon');
         });
-
     });
 });
 Route::get('/logout', [LogController::class, 'logout'])->name('logout');

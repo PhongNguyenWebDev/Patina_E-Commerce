@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
             <div class="dash-widget dash-widget5">
-                <span class="float-left"><i class="fas fa-shopping-cart" style="font-size: 40px; color:green"></i>
+                <span class="float-left"><i class="fas fa-shopping-cart" style="font-size: 60px;"></i>
                 </span>
                 <div class="dash-widget-info text-right">
                     <span>Tổng số đơn hàng</span>
@@ -33,13 +33,12 @@
                     <span>Tổng số người dùng</span>
                     <h3>{{ number_format($users->count()) }}</h3>
                 </div>
-                <span class="float-right"><i class="fas fa-users"
-                        style="font-size: 80px; color:rgb(115, 88, 235)"></i></span>
+                <span class="float-right"><i class="fas fa-users" style="font-size: 60px;"></i></span>
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
             <div class="dash-widget dash-widget5">
-                <span class="float-left"><i class="fas fa-tshirt" style="font-size: 80px; color:green"></i></span>
+                <span class="float-left"><i class="fas fa-tshirt" style="font-size: 60px;"></i></span>
                 <div class="dash-widget-info text-right">
                     <span>Tổng số sản phẩm</span>
                     <h3>{{ number_format($products->count()) }}</h3>
@@ -52,8 +51,7 @@
                     <span>Tổng số đánh giá</span>
                     <h3>{{ number_format($comments->count()) }}</h3>
                 </div>
-                <span class="float-right"><i class="fas fa-star-half-alt"
-                        style="font-size: 80px; color:rgb(115, 88, 235)"></i></span>
+                <span class="float-right"><i class="fas fa-star-half-alt" style="font-size: 60px;"></i></span>
             </div>
         </div>
     </div>

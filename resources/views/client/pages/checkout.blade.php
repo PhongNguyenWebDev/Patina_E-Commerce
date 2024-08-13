@@ -90,8 +90,8 @@
                             <div class="row g-2 align-items-center">
                                 <div class="col-3">
                                     <div class="position-relative">
-                                        <img class="img-thumbnail w-75 h-75" src="{{ $item->product->images }}"
-                                            alt="">
+                                        <img class="object-fit-cover" width="90" height="100"
+                                            src="{{ $item->product->images }}" alt="">
                                         <span
                                             class="w-25 position-absolute top-0 end-0 text-center rounded-circle translate-middle fw-medium"
                                             style="border:2px solid var(--primary-1000-color); background:#f0eff5;">{{ $item->quantity }}</span>
@@ -102,7 +102,7 @@
                                     <small>Size: {{ $item->size }} | Color: {{ $item->color }}</small>
                                 </div>
                                 <div class="col-3">
-                                    <p>${{ number_format($item->price) }}</p>
+                                    <p>{{ number_format($item->price) }} VND</p>
                                 </div>
                             </div>
                         </div> <br>
@@ -127,13 +127,13 @@
                             <h6>Giảm giá</h6>
                         </div>
                         <div class="col-6 text-end">
-                            <h6>${{ number_format($item->subTotal) }}</h6>
+                            <h6>{{ number_format($item->subTotal) }} VND</h6>
                             <h6 class="my-2">
                                 @if ($appliedCouponCode)
-                                    ${{ number_format($couponDiscount) }}<br>
+                                    {{ number_format($couponDiscount) }} VND<br>
                                     <span style="color: red">(Voucher: {{ $appliedCouponCode }})</span>
                                 @else
-                                    ${{ number_format($couponDiscount) }}
+                                    {{ number_format($couponDiscount) }} VND
                                 @endif
                             </h6>
                         </div>
@@ -142,20 +142,20 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h4>Total</h4>
                         @if ($totalPrice > 500)
-                            <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500$)</small>
-                            <h4>
-                                <del
-                                    style="color: red; font-size:var(--font-h4-size)">${{ number_format($totalPrice) }}</del>
-                                ${{ number_format($discountedPrice) }}
+                            <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500,000)</small>
+                            <h6>
+                                <del style="color: red;">{{ number_format($totalPrice) }}
+                                    VND</del> <br>
+                                {{ number_format($discountedPrice) }} VND
 
-                            </h4>
+                            </h6>
                         @else
-                            <h4>
-                                ${{ number_format($totalPrice) }}
-                            </h4>
+                            <h6>
+                                {{ number_format($totalPrice) }} VND
+                            </h6>
                         @endif
                     </div>
-                    <button class="btn btn-dark my-2 fw-medium" style="font-size:22px">Thanh
+                    <button class="btn btn-dark my-2 fw-medium" style="font-size:18px">Thanh
                         toán</button>
 
                 </div>
@@ -194,7 +194,7 @@
                                                 @if ($coupon->discount_type === 'percentage')
                                                     Giảm {{ $coupon->discount }}%
                                                 @elseif ($coupon->discount_type === 'fixed')
-                                                    Giảm {{ number_format($coupon->discount) }}$
+                                                    Giảm {{ number_format($coupon->discount) }} VND
                                                 @endif
                                             </div>
                                         </div>

@@ -32,28 +32,38 @@
                         </div>
                         <img class="w-100" id="mainImage" src="{{ $product->images }}" alt="">
                     </div>
-                    <div class="d-flex flex-row justify-content-between p-0">
-                        @foreach ($product->gallery as $item)
-                            <img class="img-thumbnail thumbnail w-25 h-75" src="{{ $item->name }}" alt="">
-                        @endforeach
-
+                    <div class="container-fluid p-0">
+                        <div class="row h-50">
+                            @foreach ($product->gallery as $item)
+                                <div class="col h-75">
+                                    <img class="img-fluid thumbnail h-100" src="{{ $item->name }}" alt="">
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-7">
+            <div class="col-12 col-xl-7 my-5">
                 <div class="column w-100">
                     <!-- Price Products -->
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex flex-row">
-                            <h5 id="sale_price" class="text-danger  pe-3">
-                                ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
-                            </h5>
-                            <h5 id="price" class=" text-decoration-line-through"
-                                style="color: var(--primary-1000-color);">
-                                ${{ number_format($product->sale_price) ? number_format($product->price) : null }}</h5>
+                            @if ($product->sale_price > 0)
+                                <h5 id="sale_price" class="text-danger pe-3">
+                                    {{ number_format($product->sale_price, 0, ',', ',') }} VND
+                                </h5>
+                                <h5 class="text-secondary text-decoration-line-through" id="price">
+                                    {{ number_format($product->price, 0, ',', ',') }} VND
+                                </h5>
+                            @else
+                                <h5 id="price">
+                                    {{ number_format($product->price, 0, ',', ',') }} VND
+                                </h5>
+                            @endif
                         </div>
-                        <h5 class="">SKU: PTN{{ $product->id }}</h5>
+                        <h5>SKU: PTN{{ $product->id }}</h5>
                     </div>
+
                     <!-- Reviews -->
                     <div class="d-flex flex-row align-items-center">
                         <div class="row ps-2 reviews-detail">
@@ -88,32 +98,33 @@
                         <!-- Size Products -->
                         <div>
                             <h5 style="font-weight: var(--Medium);">Select Size</h5>
-                            <div class="py-3 d-flex justify-content-between" style="width: 16rem;">
+                            <div class="py-3 d-flex justify-content-between" style="width: fit-content;">
                                 @foreach ($product->productDetails as $index => $detail)
-                                    <div class="form-check form-check-inline size-option"
+                                    <div class="form-check form-check-inline size-option p-0"
                                         data-color-id="{{ $detail->color_id }}" data-quantity="{{ $detail->quantity }}">
-                                        <input class="form-check-input size-radio" type="radio" name="size_id"
-                                            id="size_{{ $detail->size_id }}" value="{{ $detail->size_id }}"
+                                        <input class="form-check-input size-radio visually-hidden" type="radio"
+                                            name="size_id" id="size_{{ $detail->size_id }}" value="{{ $detail->size_id }}"
                                             data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}"
                                             {{ $index == 0 ? 'checked' : '' }}>
-                                        <label class="form-check-label fs-5"
+                                        <label class="form-check-label fs-5 size-label"
                                             for="size_{{ $detail->size_id }}">{{ $detail->size->name }}</label>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
+
                         <!-- Add to card -->
                         <div class="container">
                             <div class="row g-3">
                                 <input id="quantityInput" class="px-xl-2 col-2 col-xl-1" type="number" name="quantity"
                                     min="1" value="1">
                                 <div class=" col-6 col-xl-4 d-flex align-items-center justify-content-center">
-                                    <button class="btn btn-dark" type="submit"><i
+                                    <button class="btn btn-dark p-2" type="submit"><i
                                             class="fa-solid fa-cart-shopping me-2 "></i>Thêm giỏ
                                         hàng</button>
                                 </div>
                                 <div class="col-xl-3 col-4">
-                                    <a class="btn btn-light d-flex align-items-center justify-content-center">
+                                    <a class="btn btn-danger p-2 d-flex align-items-center justify-content-center">
                                         <i class="fa-regular fs-5 fa-heart"></i>
                                         <p class="m-0 px-1" style="font-size:18px">Yêu thích</p>
                                     </a>
@@ -206,7 +217,7 @@
                                                 <input type="hidden" name="product_detail_id"
                                                     value="{{ $product->productDetails->first()->id }}">
                                                 <div class="d-flex justify-content-between">
-                                                    <label class="col-xl-1 col-12 fs-5">Đánh giá</label>
+                                                    <label class="col-xl-1 col-12 fs-5"></label>
                                                     <textarea name="reviews" id="reviews" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
                                                 </div>
                                                 <div class="w-25 text-center pe-xl-2">
@@ -232,31 +243,65 @@
     <!-- Related Product  -->
     <section class="container">
         <h2 style="font-weight: var(--Medium);" class="text-center my-5 fs-1">Sản phẩm liên quan</h2>
-        <div class="row g-2">
-            @foreach ($relatedProducts as $relatedProduct)
-                <a href="{{ route('client.detail', $relatedProduct->slug) }}"
-                    class="text-decoration-none text-black col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center">
-                    <img class="img-thumbnail" src="{{ $relatedProduct->images }}" alt="">
-                    <div class="position-absolute top-0 p-3 w-100 end-0">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <span class="badge text-bg-danger fs-6">- 20%</span>
-                            <i style="border: 0.5px solid var(--primary-800-color); background-color: white; color:var(--primary-800-color)"
-                                class="fa-regular fa-heart rounded-5 p-2 fs-5"></i>
+        <div class="container mb-5">
+            <div class="row position-relative">
+                @foreach ($relatedProducts as $product)
+                    <div
+                        class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center my-2 change">
+                        <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                            <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
+                        </a>
+                        <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi tiết</a>
+                        <div class="position-absolute top-0 p-3 w-100 end-0">
+                            <div class="d-flex align-items-center justify-content-between">
+                                @php
+                                    $isFavorite = false;
+                                    foreach ($favorite as $item) {
+                                        if ($item->product_id === $product->id) {
+                                            $isFavorite = true;
+                                            break;
+                                        }
+                                    }
+                                @endphp
+                                @if (!$isFavorite)
+                                    <a class="nav-link mx-3" href="{{ route('client.favorite.add', $product->id) }}"><i
+                                            style=" background-color:#fff; color:#d8d8d8"
+                                            class="fas fa-heart rounded-5 p-2"></i></a>
+                                @else
+                                    <a class="nav-link mx-3" href="{{ route('client.favorite.index') }}"><i
+                                            style=" background-color: rgb(203, 51, 51); color:white;"
+                                            class="fas fa-heart rounded-5 p-2"></i></a>
+                                @endif
+                                @php
+                                    $percent = (($product->price - $product->sale_price) / $product->price) * 100;
+                                @endphp
+                                @if ($percent > 0 && $percent < 90)
+                                    <span class="badge text-bg-danger mx-3">- {{ number_format($percent, 2) }}%</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h6 class="text-center my-2 fw-medium">{{ $product->name }}</h6>
+                            <div class="d-flex justify-content-center text-center">
+                                @if ($product->sale_price > 0)
+                                    <p style="font-size: var(--font-size); margin: 0;"
+                                        class="text-decoration-line-through text-danger mx-2">
+                                        {{ number_format($product->price, 0, ',', ',') }} VND</p>
+                                    <p style="font-size: var(--font-size); margin: 0; color: black;">
+                                        {{ number_format($product->sale_price, 0, ',', ',') }} VND
+                                    </p>
+                                @else
+                                    <p style="font-size: var(--font-size); margin: 0;">
+                                        {{ number_format($product->price, 0, ',', ',') }} VND</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                    <h4 class="pt-1 mt-1 fs-5">{{ $relatedProduct->name }}</h4>
-                    <p style="font-size: 16px; color:#000516A4; margin: 0;">{{ $relatedProduct->category->name }}</p>
-                    <div class="d-flex">
-                        <p style="font-size: var(--font-size); margin: 0;"
-                            class="text-decoration-line-through text-danger mx-2">${{ $relatedProduct->price }}</p>
-                        <p style="font-size: var(--font-size); margin: 0; color: black;">
-                            ${{ $relatedProduct->sale_price }}
-                        </p>
-                    </div>
-                </a>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const priceElement = document.getElementById('price');
@@ -264,94 +309,87 @@
             const colorRadios = document.querySelectorAll('.color-radio');
             const sizeOptions = document.querySelectorAll('.size-option');
             const stockQuantityElement = document.getElementById('stockQuantity');
+            const quantityInput = document.getElementById('quantityInput');
 
-            // Hiển thị tất cả các kích cỡ ban đầu
-            sizeOptions.forEach(option => {
-                option.style.display = 'inline-block';
-            });
+            // Hàm cập nhật giá và hiển thị các kích cỡ tương ứng với màu sắc chọn
+            const updatePricesAndSizes = (colorId) => {
+                const selectedColorRadio = document.querySelector(`.color-radio[value="${colorId}"]`);
+                const selectedColorPrice = selectedColorRadio.getAttribute('data-price');
+                const selectedColorSalePrice = selectedColorRadio.getAttribute('data-sale-price');
 
-            // Hàm xử lý thay đổi màu sắc
-            const handleColorChange = function() {
-                const selectedColorPrice = this.getAttribute('data-price');
-                const selectedColorSalePrice = this.getAttribute('data-sale-price');
-                const selectedColorId = this.value;
+                // Định dạng giá thành VND với dấu phân cách hàng nghìn
+                const formattedPrice = Number(selectedColorPrice).toLocaleString('vi-VN') + ' VND';
+                const formattedSalePrice = selectedColorSalePrice ? Number(selectedColorSalePrice)
+                    .toLocaleString('vi-VN') + ' VND' : '';
 
-                priceElement.textContent = `$${selectedColorPrice}`;
-                salePriceElement.textContent = `$${selectedColorSalePrice}`;
+                // Cập nhật nội dung phần tử HTML
+                priceElement.textContent = formattedPrice;
+                salePriceElement.textContent = formattedSalePrice;
 
-                // Xử lý hiển thị các tùy chọn kích cỡ tương ứng với màu sắc được chọn
+
+                let hasVisibleSize = false;
+
                 sizeOptions.forEach(option => {
-                    const colorId = option.getAttribute('data-color-id');
+                    const optionColorId = option.getAttribute('data-color-id');
                     const quantity = option.getAttribute('data-quantity');
 
-                    if (colorId === selectedColorId || colorId === "all") {
+                    if (optionColorId === colorId || optionColorId === "all") {
+                        option.style.display = quantity > 0 ? 'inline-block' : 'none';
                         if (quantity > 0) {
-                            option.style.display = 'inline-block';
-                        } else {
-                            option.style.display = 'none';
+                            hasVisibleSize = true;
                         }
                     } else {
                         option.style.display = 'none';
                     }
                 });
 
-                // Tự động kích hoạt sự kiện thay đổi trên tùy chọn kích cỡ đầu tiên hiển thị
-                const firstVisibleSizeOption = document.querySelector(
-                    '.size-option[style="display: inline-block;"] input.size-radio');
-                if (firstVisibleSizeOption) {
-                    firstVisibleSizeOption.checked = true;
-                    firstVisibleSizeOption.dispatchEvent(new Event('change'));
+                if (!hasVisibleSize) {
+                    stockQuantityElement.textContent = '0';
+                    quantityInput.max = 0;
                 }
             };
 
-            // Hàm xử lý thay đổi kích cỡ
-            const handleSizeChange = function() {
-                const selectedSizeQuantity = this.closest('.size-option').getAttribute('data-quantity');
-                stockQuantityElement.textContent = selectedSizeQuantity;
+            // Hàm cập nhật số lượng tồn kho khi thay đổi kích cỡ
+            const updateStockQuantity = (quantity) => {
+                stockQuantityElement.textContent = quantity;
+                quantityInput.max = quantity; // Cập nhật thuộc tính max của input số lượng
             };
 
-            // Đính kèm các trình nghe sự kiện thay đổi cho nút radio màu sắc
+            // Xử lý sự thay đổi của màu sắc
             colorRadios.forEach(radio => {
-                radio.addEventListener('change', handleColorChange);
+                radio.addEventListener('change', function() {
+                    const selectedColorId = this.value;
+                    updatePricesAndSizes(selectedColorId);
+
+                    // Đặt trạng thái kích cỡ đầu tiên hiển thị (nếu có)
+                    const firstVisibleSizeOption = document.querySelector(
+                        '.size-option[style="display: inline-block;"] input.size-radio');
+                    if (firstVisibleSizeOption) {
+                        firstVisibleSizeOption.checked = true;
+                        firstVisibleSizeOption.dispatchEvent(new Event('change'));
+                    } else {
+                        // Không có kích cỡ hiển thị, đặt số lượng tồn kho về 0
+                        stockQuantityElement.textContent = '0';
+                        quantityInput.max = 0;
+                    }
+                });
             });
 
-            // Đính kèm các trình nghe sự kiện thay đổi cho nút radio kích cỡ
-            const sizeRadios = document.querySelectorAll('.size-radio');
-            sizeRadios.forEach(radio => {
-                radio.addEventListener('change', handleSizeChange);
+            // Xử lý sự thay đổi của kích cỡ
+            sizeOptions.forEach(option => {
+                option.querySelector('input.size-radio').addEventListener('change', function() {
+                    const selectedSizeQuantity = this.closest('.size-option').getAttribute(
+                        'data-quantity');
+                    updateStockQuantity(selectedSizeQuantity);
+                });
             });
 
-            // Tự động kích hoạt sự kiện thay đổi trên nút radio màu sắc đầu tiên
+            // Kích hoạt sự kiện thay đổi trên màu sắc đầu tiên khi trang tải
             if (colorRadios.length > 0) {
                 colorRadios[0].dispatchEvent(new Event('change'));
             }
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sizeRadios = document.querySelectorAll('.size-radio');
-            const quantityInput = document.getElementById('quantityInput');
-
-            // Function to handle size change
-            const handleSizeChange = function() {
-                const selectedSizeQuantity = parseInt(this.closest('.size-option').getAttribute(
-                    'data-quantity'));
-                quantityInput.max = selectedSizeQuantity; // Update max attribute of quantity input
-            };
-
-            // Attach event listener to size radios
-            sizeRadios.forEach(radio => {
-                radio.addEventListener('change', handleSizeChange);
-            });
-
-            // Trigger change event on page load to set initial max value
-            if (sizeRadios.length > 0) {
-                sizeRadios[0].dispatchEvent(new Event('change'));
-            }
-        });
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             // Xử lý sự kiện khi người dùng gửi đánh giá

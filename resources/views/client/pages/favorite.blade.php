@@ -20,8 +20,8 @@
                                     @foreach ($favorite as $item)
                                         <tr data-id="{{ $item->id }}">
                                             <td class="product-name d-flex justify-content-center align-items-center">
-                                                <img class="d-none d-lg-block img-thumbnail" width="100" height="100"
-                                                    src="{{ $item->product->images }}" alt="Image">
+                                                <img class="d-none d-lg-block object-fit-cover" width="100"
+                                                    height="100" src="{{ $item->product->images }}" alt="Image">
                                             </td>
                                             <td>
                                                 <h2 class="h5 text-black m-0">{{ $item->product->name }}</h2>
@@ -30,7 +30,7 @@
                                                 <p class="p-0 m-0">${{ number_format($item->price) }}</p>
                                             </td>
                                             <td>
-                                                <a class="btn btn-spyt"
+                                                <a class="btn btn-dark"
                                                     href="{{ route('client.detail', $item->product->slug) }}">Xem</a>
                                             </td>
                                             <td class="cart_delete">
