@@ -37,6 +37,8 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>Ảnh</th>
+                                    <th>Tên Slider</th>
+                                    <th>Event</th>
                                     <th>Ngày Tạo</th>
                                     <th>Ngày Cập Nhật</th>
                                     <th>Ẩn/Hiện</th>
@@ -49,6 +51,8 @@
                                     @foreach ($sliders as $item)
                                         <tr>
                                             <td><img src="{{ $item->image }}" alt="" width="100px"></td>
+                                            <td>{{ $item->title }}</td>
+                                            <td>{{ $item->event }}</td>
                                             <td>{{ $item->created_at }}</td>
                                             <td>{{ $item->updated_at ?? 'null' }}</td>
                                             <td>{{ $item->status == 0 ? 'Ẩn' : 'Hiện' }}</td>
@@ -59,8 +63,7 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <form action="{{ route('admin.sliders.destroy', $item) }}"
-                                                    method="POST">
+                                                <form action="{{ route('admin.sliders.destroy', $item) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button
