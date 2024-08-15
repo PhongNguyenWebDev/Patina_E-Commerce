@@ -10,7 +10,8 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i> Home</a>
+                    </li>
                     <li class="breadcrumb-item"><span>{{ $title }}</span></li>
                 </ul>
             </div>
@@ -51,7 +52,7 @@
                                         <tr>
                                             <td><img src="{{ $brand->image }}" alt="" width="100px"></td>
                                             <td>{{ $brand->name }}</td>
-                                            <td>{{$brand->slug}}</td>
+                                            <td>{{ $brand->slug }}</td>
                                             <td>{{ $brand->created_at }}</td>
                                             <td>{{ $brand->updated_at ?? 'null' }}</td>
                                             <td class="text-right">

@@ -189,7 +189,7 @@
                         <hr>
                         <div class="tab-content">
                             <div id="tab1" class="tab-pane active">
-                                <p>Koila is a chair designed for restaurants and food lovers in general...</p>
+                                <p>{!! $product->description !!}</p>
                             </div>
                             <div id="tab3" class="tab-pane">
                                 <div class="product-comment">
@@ -248,10 +248,12 @@
                 @foreach ($relatedProducts as $product)
                     <div
                         class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center my-2 change">
-                        <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
-                            <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
-                        </a>
-                        <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi tiết</a>
+                        <div class="position-relative">
+                            <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                                <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
+                            </a>
+                            <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi tiết</a>
+                        </div>
                         <div class="position-absolute top-0 p-3 w-100 end-0">
                             <div class="d-flex align-items-center justify-content-between">
                                 @php

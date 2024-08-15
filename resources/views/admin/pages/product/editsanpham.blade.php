@@ -13,7 +13,8 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i> Home</a>
+                    </li>
                     <li class="breadcrumb-item"><span>{{ $title }}</span></li>
                 </ul>
             </div>
@@ -74,12 +75,12 @@
                         <div class="row justify-content-center">
                             <div class="col-md-2" style="margin-bottom: 10px">
                                 <label for="color">Màu</label>
-                                <input type="text" class="form-control" id="color" name="color[]" 
+                                <input type="text" class="form-control" id="color" name="color[]"
                                     value="{{ $productDetail->color->name }}" placeholder="Nhập màu....">
                             </div>
                             <div class="col-md-2">
                                 <label for="size">Size</label>
-                                <input type="text" class="form-control" id="size" name="size[]" 
+                                <input type="text" class="form-control" id="size" name="size[]"
                                     value="{{ $productDetail->size->name }}" placeholder="Nhập size....">
                             </div>
                             <div class="col-md-2">
@@ -204,7 +205,6 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-
         $(".select2_choose").select2({
             tags: true,
             tokenSeparators: [',']

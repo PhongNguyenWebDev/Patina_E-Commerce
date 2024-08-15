@@ -13,7 +13,8 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i> Home</a>
+                    </li>
                     <li class="breadcrumb-item"><span>{{ $title }}</span></li>
                 </ul>
             </div>
@@ -23,12 +24,12 @@
         <form class="row" method="POST" action="{{ route('admin.category.update', $category->slug) }}">
             @method('PUT')
             @csrf
-            <input type="hidden" name="id" value="{{$category->id}}">
+            <input type="hidden" name="id" value="{{ $category->id }}">
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="tendanhmuc">Tên Danh Mục</label>
                     <input type="text" class="form-control" id="tendanhmuc" name="name"
-                        placeholder="Nhập tên danh mục" value="{{$category->name}}">
+                        placeholder="Nhập tên danh mục" value="{{ $category->name }}">
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
@@ -41,7 +42,8 @@
                     <select class="form-control choose_init" id="danhmuccha" name="parent_id">
                         <option value="0">--- Chọn Danh Mục Cha ---</option>
                         @foreach ($cateParent as $cateP)
-                            <option value="{{ $cateP->id }}" {{ $cateP->id == $category->parent_id ? 'selected' : '' }}>{{ $cateP->name }}</option>
+                            <option value="{{ $cateP->id }}" {{ $cateP->id == $category->parent_id ? 'selected' : '' }}>
+                                {{ $cateP->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -54,8 +56,8 @@
     </div>
 @endsection
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(".choose_init").select2({});
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(".choose_init").select2({});
+    </script>
 @endsection

@@ -10,7 +10,8 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i> Home</a>
+                    </li>
                     <li class="breadcrumb-item"><span>{{ $title }}</span></li>
                 </ul>
             </div>
@@ -74,7 +75,8 @@
                         <form class="row" method="POST" action="{{ route('admin.orders.update', $order) }}">
                             @csrf
                             @method('PUT')
-                            <select class="form-control" id="active" name="status" onchange="toggleReasonInput(this.value)">
+                            <select class="form-control" id="active" name="status"
+                                onchange="toggleReasonInput(this.value)">
                                 <option value="0" {{ $order->status == 0 ? 'selected' : '' }}>Chưa xác nhận</option>
                                 <option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Đã xác nhận</option>
                                 <option value="2" {{ $order->status == 2 ? 'selected' : '' }}>Đang giao hàng</option>
@@ -110,7 +112,7 @@
             @if ($order->coupon_id)
                 <tr class="total">
                     <td></td>
-                    <td>(Đã áp dụng mã {{$order->coupon->code}})</td>
+                    <td>(Đã áp dụng mã {{ $order->coupon->code }})</td>
                 </tr>
             @endif
 
@@ -118,14 +120,14 @@
     </div>
 @endsection
 @section('script')
-<script>
-    function toggleReasonInput(status) {
-        var reasonInput = document.getElementById('reason');
-        if (status === '4') { // '4' corresponds to Đã hủy (Canceled)
-            reasonInput.style.display = 'block'; // Show reason input field
-        } else {
-            reasonInput.style.display = 'none'; // Hide reason input field
+    <script>
+        function toggleReasonInput(status) {
+            var reasonInput = document.getElementById('reason');
+            if (status === '4') { // '4' corresponds to Đã hủy (Canceled)
+                reasonInput.style.display = 'block'; // Show reason input field
+            } else {
+                reasonInput.style.display = 'none'; // Hide reason input field
+            }
         }
-    }
-</script>
+    </script>
 @endsection

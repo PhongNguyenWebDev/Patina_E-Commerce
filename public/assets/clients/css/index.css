@@ -908,10 +908,10 @@ span {
 .test-xct {
     position: absolute;
     opacity: 0;
-    bottom: 16.5%;
+    bottom: -1.5%;
     font-weight: 500;
-    left: 7px;
-    width: 93%;
+    left: -5px;
+    width: 100%;
     text-align: center;
     /* min-height: 3em; */
     background: rgba(0, 0, 0, 0.7);

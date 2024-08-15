@@ -129,11 +129,16 @@
                                         alt="{{ $product->name }}">
                                     <div class="mx-2">
                                         <h6 style="font-size: 18px; font-weight:550">{{ $product->name }}</h6>
-                                        <p style="font-size: 16px; margin: 0;">
-                                            <del
-                                                style="color: red">${{ number_format($product->sale_price) ? number_format($product->price) : null }}</del>
-                                            ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
-                                        </p>
+                                        @if ($product->sale_price > 0)
+                                            <p style="font-size: 16px; margin: 0;">
+                                                <del style="color: red">{{ number_format($product->price) }} VND</del>
+                                                {{ number_format($product->sale_price) }} VND
+                                            </p>
+                                        @else
+                                            <p style="font-size: 16px; margin: 0;">
+                                                {{ number_format($product->price) }} VND
+                                            </p>
+                                        @endif
                                     </div>
                                 </div>
                             </a>
@@ -166,11 +171,14 @@
                             @foreach ($products as $product)
                                 <div
                                     class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center change my-2">
-                                    <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
-                                        <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
-                                    </a>
-                                    <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi
-                                        tiết</a>
+                                    <div class="position-relative">
+                                        <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                                            <img class="object-fit-cover w-100" src="{{ $product->images }}"
+                                                alt="">
+                                        </a>
+                                        <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi
+                                            tiết</a>
+                                    </div>
                                     <div class="position-absolute top-0 p-3 w-100 end-0">
                                         <div class="d-flex align-items-center justify-content-between">
                                             @php
@@ -220,12 +228,12 @@
                             @endforeach
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center my-2">
+                        {{ $products->links('pagination::default') }}
+                    </div>
                 </div>
             </div>
             <!-- Pagination -->
-            <div class="d-flex justify-content-center">
-                {{ $products->links('pagination::default') }}
-            </div>
         </div>
 
 

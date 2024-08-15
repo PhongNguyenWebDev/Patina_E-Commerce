@@ -10,8 +10,9 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
-                    <li class="breadcrumb-item"><span>{{ $title }}</span></li>
+                    <li class="breadcrumb-item  d-flex align-items-center"><a href="{{ route('admin.home') }}"><i
+                                class="fas fa-home p-1"></i> Home</a></li>
+                    <li class="breadcrumb-item  d-flex align-items-center"><span>{{ $title }}</span></li>
                 </ul>
             </div>
         </div>
@@ -19,10 +20,11 @@
     <div class="row">
         <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
             <div class="dash-widget dash-widget5">
-                <span class="float-left"><i class="fas fa-shopping-cart" style="font-size: 60px;"></i>
+                <span class="float-left">
+                    <i class="fas fa-shopping-cart" style="font-size: 60px; color:rgba(255, 200, 0, 0.704);"></i>
                 </span>
                 <div class="dash-widget-info text-right">
-                    <span>Tổng số đơn hàng</span>
+                    <h4>Tổng số đơn hàng</h4>
                     <h3>{{ number_format($orders->count()) }}</h3>
                 </div>
             </div>
@@ -30,17 +32,19 @@
         <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
             <div class="dash-widget dash-widget5">
                 <div class="dash-widget-info text-left d-inline-block">
-                    <span>Tổng số người dùng</span>
+                    <h4>Tổng số người dùng</h4>
                     <h3>{{ number_format($users->count()) }}</h3>
                 </div>
-                <span class="float-right"><i class="fas fa-users" style="font-size: 60px;"></i></span>
+                <span class="float-right"><i class="fas fa-users"
+                        style="font-size: 60px; color:rgba(255, 119, 0, 0.704);"></i></span>
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
             <div class="dash-widget dash-widget5">
-                <span class="float-left"><i class="fas fa-tshirt" style="font-size: 60px;"></i></span>
+                <span class="float-left"><i class="fas fa-tshirt"
+                        style="font-size: 60px; color:rgba(191, 255, 0, 0.704);"></i></span>
                 <div class="dash-widget-info text-right">
-                    <span>Tổng số sản phẩm</span>
+                    <h4>Tổng số sản phẩm</h4>
                     <h3>{{ number_format($products->count()) }}</h3>
                 </div>
             </div>
@@ -48,10 +52,11 @@
         <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
             <div class="dash-widget dash-widget5">
                 <div class="dash-widget-info d-inline-block text-left">
-                    <span>Tổng số đánh giá</span>
+                    <h4>Tổng số đánh giá</h4>
                     <h3>{{ number_format($comments->count()) }}</h3>
                 </div>
-                <span class="float-right"><i class="fas fa-star-half-alt" style="font-size: 60px;"></i></span>
+                <span class="float-right"><i class="fas fa-star-half-alt"
+                        style="font-size: 60px; color:rgba(0, 255, 162, 0.704);"></i></span>
             </div>
         </div>
     </div>
@@ -65,12 +70,12 @@
                                 Thống kê Số Lượng Đơn Hàng Trong Ngày
                             </div>
                         </div>
-                        <div class="col text-right d-flex">
+                        <div class="col text-right d-flex align-items-center">
                             <form action="{{ route('admin.home') }}" method="GET" class="d-flex">
-                                <div class="form-group mr-2">
+                                <div class="form-group mr-2 m-0">
                                     <input type="date" id="startDateO" name="startDateO" class="form-control">
                                 </div>
-                                <div class="form-group mr-2">
+                                <div class="form-group mr-2 m-0">
                                     <input type="date" id="endDate" name="endDate" class="form-control">
                                 </div>
                                 <button type="submit" style="height: 36px" class="btn btn-primary">Lọc</button>
@@ -93,12 +98,12 @@
                                 Thống Kê Thu Nhập Theo Ngày
                             </div>
                         </div>
-                        <div class="col text-right d-flex">
+                        <div class="col text-right d-flex align-items-center">
                             <form action="{{ route('admin.home') }}" method="GET" class="d-flex">
-                                <div class="form-group mr-2">
+                                <div class="form-group mr-2 m-0">
                                     <input type="date" id="startDateM" name="startDateM" class="form-control">
                                 </div>
-                                <div class="form-group mr-2">
+                                <div class="form-group mr-2 m-0">
                                     <input type="date" id="endDate" name="endDate" class="form-control">
                                 </div>
                                 <button type="submit" style="height: 36px" class="btn btn-primary">Lọc</button>

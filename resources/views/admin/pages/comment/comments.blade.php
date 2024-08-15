@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-comment"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a>
+                    <li class="breadcrumb-comment"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i> Home</a>
                     </li>
                     <li class="breadcrumb-comment"><span>{{ $title }}</span></li>
                 </ul>
