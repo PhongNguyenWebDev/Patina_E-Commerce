@@ -150,6 +150,7 @@ class ClCheckOutController extends Controller
                 $orderDetailData = [
                     'order_id' => $order->id,
                     'product_id' => $cart->product_id,
+                    'name' => $cart->product->name,
                     'price' => $cart->price,
                     'quantity' => $cart->quantity,
                 ];
