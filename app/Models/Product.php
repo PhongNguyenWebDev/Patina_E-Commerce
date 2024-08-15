@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -24,6 +25,7 @@ class Product extends Model
         'category_id',
         'total_buy'
     ];
+    protected $dates = ['deleted_at'];
     public function getRouteKey()
     {
         return 'slug';

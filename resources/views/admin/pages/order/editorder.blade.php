@@ -99,7 +99,7 @@
             </tr>
             @foreach ($order->details as $item)
                 <tr class="item">
-                    <td style="width:500px">{{ $item->product->name }} <span>X {{ $item->quantity }}</span></td>
+                    <td style="width:500px">{{ $item->name }} <span>X {{ $item->quantity }}</span></td>
 
                     <td>{{ number_format($item->price) }} VNĐ</td>
                 </tr>

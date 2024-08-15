@@ -10,6 +10,10 @@ class Slider extends Model
     use HasFactory;
     protected $table = 'sliders';
     protected $fillable = [
+        'title',
+        'event',
+        'link',
+        'summary',
         'image',
         'status'
     ];

@@ -23,13 +23,20 @@ class SliderRequest extends FormRequest
     {
         return [
             'image' => 'required',
-
+            'event' => 'required',
+            'title' => 'required',
+            'summary' => 'required',
+            'link' => 'required',
         ];
     }
     public function messages()
     {
         return [
             'image.required' => 'Ảnh bắt buộc phải nhập',
+            'event.required' => 'Event bắt buộc phải nhập',
+            'title.required' => 'Tiêu đề bắt buộc phải nhập',
+            'summary.required' => 'Mô tả bắt buộc phải nhập',
+            'link.required' => 'Link bắt buộc phải nhập',
         ];
     }
 }

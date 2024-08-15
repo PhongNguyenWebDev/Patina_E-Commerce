@@ -1,40 +1,26 @@
 @extends('layouts.client')
 @section('content')
+    <style>
+        .nav-link.active {
+            background-color: #f8f9fa;
+            /* Hoặc màu sắc khác để làm nổi bật */
+            font-weight: bold;
+        }
+
+        .item-brand a img {
+            border: 0;
+        }
+
+        .item-brand a.active img {
+            border: 1px solid #000;
+        }
+    </style>
     <!-- Products -->
     @include('client.blocks.banner')
     <section class="container py-5">
         <div class="row">
             <!-- Left -->
             <div class="col-xl-3">
-                <!-- Filter Price -->
-                <div>
-                    <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo giá</h6>
-                    <ul class="py-2 px-1">
-                        @php
-                            $priceRangesLabels = [
-                                '0-499' => 'Dưới $500',
-                                '500-999' => '$500 - $999',
-                                '1000-1999' => '$1000 - $1999',
-                                '2000-3999' => '$2000 - $3999',
-                                '4000-4999' => '$4000 - $4999',
-                                '5000+' => 'Over $5000',
-                            ];
-                        @endphp
-                        @foreach ($priceRangesLabels as $range => $label)
-                            <li class="d-flex align-items-center justify-content-between">
-                                <x-vertical-nav-link style="font-size:var(--font-size)"
-                                    href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => $range, 'category' => $categorySlug])) }}"
-                                    :active="request()->input('price_range') === $range">
-                                    {{ $label }}
-                                </x-vertical-nav-link>
-                                <p style="font-size: var(--font-size); margin: 0;" class="amout">
-                                    {{ $priceRanges[$range] ?? 0 }}</p>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-
-
                 <!-- Lọc theo danh mục -->
                 <div>
                     <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo danh mục</h6>
@@ -46,7 +32,7 @@
                                         <div class="accordion" id="accordion-{{ $category->slug }}">
                                             <div class="accordion-item border-0 show">
                                                 <div class="d-flex justify-content-between align-items-end">
-                                                    <a class="text-decoration-none p-0"
+                                                    <a class="text-decoration-none p-0 {{ request('category') === $category->slug ? 'active' : '' }}"
                                                         style="font-size: var(--font-size); color: var(--secondary-1200-color);"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#collapse-{{ $category->slug }}"
@@ -82,7 +68,7 @@
                                 @else
                                     <li class="d-flex align-items-center justify-content-between mt-1">
                                         <x-vertical-nav-link style="font-size: var(--font-size);"
-                                            href="{{ route('client.shop-page', $category->slug) }}" :active="request('category') === $category->slug">
+                                            href="{{ route('client.shop-page', $category->slug) }}" :class="request('category') === $category->slug ? 'active' : ''">
                                             {{ $category->name }}
                                         </x-vertical-nav-link>
                                         <p style="font-size: var(--font-size); margin: 0;" class="amout">
@@ -97,8 +83,6 @@
                     </ul>
                 </div>
 
-
-
                 <!-- Filter by Brand -->
                 <div class="brand">
                     <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo thương hiệu</h6>
@@ -106,17 +90,44 @@
                         <div class="row g-2">
                             @foreach ($brands as $brand)
                                 <div class="col-4 item-brand">
-                                    <x-vertical-nav-link
-                                        href="{{ route('client.shop-page', array_merge(request()->except('brand'), ['brand' => $brand->slug, 'category' => $categorySlug])) }}"
-                                        :slugBrand="request()->input('brand') === $brand->slug">
-                                        <img class="object-fit-contain img-thumbnail w-100 h-100 border-0"
-                                            src="{{ $brand->image }}" alt="">
-                                    </x-vertical-nav-link>
+                                    <a href="{{ route('client.shop-page', array_merge(request()->except('brand'), ['brand' => $brand->slug, 'category' => $categorySlug])) }}"
+                                        class="{{ request('brand') === $brand->slug ? 'active' : '' }}">
+                                        <img class="object-fit-contain img-thumbnail w-100 h-100" src="{{ $brand->image }}"
+                                            alt="">
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
+                <!-- Filter Price -->
+                <div>
+                    <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo giá</h6>
+                    <ul class="py-2 px-1">
+                        @php
+                            $priceRangesLabels = [
+                                '0-499' => 'Dưới $500',
+                                '500-999' => '$500 - $999',
+                                '1000-1999' => '$1000 - $1999',
+                                '2000-3999' => '$2000 - $3999',
+                                '4000-4999' => '$4000 - $4999',
+                                '5000+' => 'Over $5000',
+                            ];
+                        @endphp
+                        @foreach ($priceRangesLabels as $range => $label)
+                            <li class="d-flex align-items-center justify-content-between">
+                                <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => $range, 'category' => $categorySlug])) }}"
+                                    class="nav-link select-filter {{ request('price_range') === $range ? 'active' : '' }}">
+                                    {{ $label }}
+                                </a>
+                                <p style="font-size: var(--font-size); margin: 0;" class="amout">
+                                    {{ $priceRanges[$range] ?? 0 }}
+                                </p>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
                 <!-- Popular Product  -->
                 <div class="popular">
                     <h6 class="bg-filter p-2 mt-2 text-black">Sản phẩm phổ biến</h6>

@@ -77,6 +77,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('blog', AdBlogController::class);
     // Trang quản lý sản phẩm
     Route::resource('products', AdProductController::class);
+    Route::get('/product-trashed', [AdProductController::class, 'trashedProducts'])->name('products-trashed');
+    Route::patch('/products/restore/{slug}', [AdProductController::class, 'restore'])->name('products-restore');
     // Trang quản lý mã giảm giá
     Route::resource('coupons', AdCouponController::class);
     Route::get('/user-coupons', [AdCouponController::class, 'userCoupon'])->name('user-coupons');
