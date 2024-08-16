@@ -31,14 +31,14 @@
                     <div class="col-lg-3 col-md-4 col-12">
                         <div class="nav nav-pills flex-column" role="tablist">
                             <div class="card">
-                                <a href="{{ route('account.profile') }}"
+                                <a href="{{ route('client.account.profile-page') }}"
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="font-size: 17px; color:black;">THÔNG
                                     TIN TÀI KHOẢN
                                 </a>
-                                <a href="{{ route('account.hoadon') }}"
+                                <a href="{{ route('client.account.hoadon') }}"
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="font-size: 17px; color:black;">HÓA ĐƠN
                                 </a>
-                                <a href="{{ route('account.update') }}"
+                                <a href="{{ route('client.account.update') }}"
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="font-size: 17px; color:black;">THAY
                                     ĐỔI THÔNG TIN
                                 </a>

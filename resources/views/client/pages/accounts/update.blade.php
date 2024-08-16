@@ -16,7 +16,7 @@
                         <h4>Đổi Mật Khẩu</h4>
                         <div class="breadcrumb__links">
                             <a href="/">Home</a>
-                            <a href="{{ route('client.profile-page') }}">Tài Khoản</a>
+                            <a href="{{ route('client.account.profile-page') }}">Tài Khoản</a>
                             <span>Cập Nhật Tài Khoản</span>
                         </div>
                     </div>
@@ -31,12 +31,12 @@
                     <div class="col-lg-3 col-md-4 col-12">
                         <div class="nav nav-pills flex-column" role="tablist">
                             <div class="card">
-                                <a href="{{ route('client.profile-page') }}"
+                                <a href="{{ route('client.account.profile-page') }}"
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt"
                                     style="font-size: 17px; color:black;">THÔNG
                                     TIN TÀI KHOẢN
                                 </a>
-                                <a href="{{ route('client.bill') }}"
+                                <a href="{{ route('client.account.hoadon') }}"
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt"
                                     style="font-size: 17px; color:black;">HÓA ĐƠN
                                 </a>
@@ -46,7 +46,7 @@
                                     style="font-size: 17px; background-color:black;">THAY ĐỔI
                                     THÔNG TIN
                                 </button>
-                                <a href=""
+                                <a href="{{route('client.account.updatePass')}}"
                                     class=" btn nav-link border-0 border-bottom p-3 pdcatt"
                                     style="font-size: 17px; color:black;">ĐỔI MẬT
                                     KHẨU

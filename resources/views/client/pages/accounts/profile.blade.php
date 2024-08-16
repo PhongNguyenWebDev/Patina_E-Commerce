@@ -9,11 +9,11 @@
                         <h1 class="m-0 fs-1">Thông tin khách hàng</h1>
                     </li>
                     <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#update-info" href="/profile-page/update">Cập
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#update-info" href="{{route('client.account.update')}}">Cập
                             nhật</a>
                     </li>
                     <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#invoice-info" href="/profile-page/bill">Hóa
+                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#invoice-info" href="{{route('client.account.hoadon')}}">Hóa
                             đơn</a>
                     </li>
                     <li class="list-group-item">
@@ -52,12 +52,6 @@
                                                                 <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{$username}}
                                                                 </h4>
                                                                 <p class="mb-0">{{$email}}</p>
-                                                                <div class="mt-2">
-                                                                    <button class="btn btn-primary" type="button">
-                                                                        <i class="fa fa-fw fa-camera"></i>
-                                                                        <span>Thay đổi ảnh đại diện</span>
-                                                                    </button>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -116,36 +110,11 @@
                                                                 <div class="mb-2"><b>Thay đổi mật khẩu</b></div>
                                                                 <div class="row">
                                                                     <div class="col">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <div class="col">
-                                                                                    <div class="form-group">
-                                                                                        <label>Mật khẩu hiện tại</label>
-                                                                                        <input class="form-control"
-                                                                                            type="password"
-                                                                                            placeholder="••••••">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <div class="form-group">
-                                                                                    <label>Mật khẩu mới</label>
-                                                                                    <input class="form-control"
-                                                                                        type="password"
-                                                                                        placeholder="••••••">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="row">
-                                                                    <div class="col">
                                                                         <div class="form-group">
                                                                             <label>Confirm <span
                                                                                     class="d-none d-xl-inline">Password</span></label>
                                                                             <input class="form-control" type="password"
-                                                                                placeholder="••••••">
+                                                                                placeholder="Vui lòng nhập mật khẩu hiện tại của bạn vào đây để có thể thay đổi mật khẩu">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -154,7 +123,7 @@
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+                                                            <button class="btn btn-primary" type="submit">Thay đổi</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -165,84 +134,9 @@
                             </div>
                         </div>
                     </div>
-                    <div id="invoice-info" class="info-content d-none">
-                        <div class="container">
-                            <h2>Order Details</h2>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Customer Name</th>
-                                        <th>Address</th>
-                                        <th>Phone</th>
-                                        <th>Total Amount</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Phong</td>
-                                        <td>Đồng Nai</td>
-                                        <td>+84 305 6661</td>
-                                        <td>$ 15.36</td>
-                                        <td><i class="fas fa-eye eye-icon" onclick="showOrderDetails()"></i>
-                                        </td>
-                                        <td>
-                                            <div id="orderDetailsContainer" class="order-details-container">
-                                                <div class="order-details-content">
-                                                    <span class="close-btn" onclick="closeOrderDetails()">&times;</span>
-                                                    <h2>Order Details</h2>
-                                                    <p>Address: Đồng Nai - Tân Lập 2</p>
-                                                    <p>Phone: +84 305 6661</p>
-                                                    <p>Time: 30/12/2023</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- Add more rows for other orders -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="bank-info" class="info-content d-none">
-                        <div class="container">
-                            <h2>Transfer Information</h2>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Payment Method</th>
-                                        <th>Total Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Bank Transfer</td>
-                                        <td>$100</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>PayPal</td>
-                                        <td>$50</td>
-                                    </tr>
-                                    <!-- Add more rows for additional transfer information -->
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="2" class="text-right"><strong>Total:</strong></td>
-                                        <td><strong>$150</strong></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="other-info" class="info-content d-none">
-
-                    </div>
                 </div>
             </div>
+        </div>
     </section>
 @endsection
 

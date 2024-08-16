@@ -7,7 +7,7 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <a href="{{ route('home') }}"><img style="width: 100%; max-width: 300px"
+                                <a href="{{ route('client.home-page') }}"><img style="width: 100%; max-width: 300px"
                                         src="{{ asset('img/logo.png') }}" alt=""></a>
                             </td>
 
@@ -82,7 +82,7 @@
             @endforeach
             <tr class="total">
                 <td>
-                    <a class="btn btn-dark" href="{{ route('account.hoadon') }}">Quay lại</a>
+                    <a class="btn btn-dark" href="{{ route('client.account.hoadon') }}">Quay lại</a>
                 </td>
                 <td>Tổng: {{ number_format($order->totalPrice < 0 ? 0 : $order->totalPrice) }} VNĐ</td>
             </tr>
