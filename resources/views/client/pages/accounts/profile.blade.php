@@ -2,7 +2,7 @@
 @section('content')
     @include('client.blocks.banner')
     <section class="container my-5 pb-5">
-        <div class="d-flex row">
+        <div class="d-flex row" style="margin-bottom: 3rem">
             <div class="col-lg-4 p-0">
                 <ul class="list-group">
                     <li class="text-white list-group-item" style="background: var(--primary-1000-color);">
@@ -16,14 +16,14 @@
                         <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#invoice-info" href="{{route('client.account.hoadon')}}">Hóa
                             đơn</a>
                     </li>
-                    <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#bank-info">Ngân
-                            hàng</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#other-info">Chức
-                            năng khác</a>
-                    </li>
+{{--                    <li class="list-group-item">--}}
+{{--                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#bank-info">Ngân--}}
+{{--                            hàng</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="list-group-item">--}}
+{{--                        <a class="list-group-item list-group-item-action border-0 fs-5" data-target="#other-info">Chức--}}
+{{--                            năng khác</a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
             <div class="col-lg-8 d-flex justify-content-center">
@@ -107,25 +107,25 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="mb-2"><b>Thay đổi mật khẩu</b></div>
-                                                                <div class="row">
-                                                                    <div class="col">
-                                                                        <div class="form-group">
-                                                                            <label>Confirm <span
-                                                                                    class="d-none d-xl-inline">Password</span></label>
-                                                                            <input class="form-control" type="password"
-                                                                                placeholder="Vui lòng nhập mật khẩu hiện tại của bạn vào đây để có thể thay đổi mật khẩu">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+{{--                                                                <div class="mb-2"><b>Thay đổi mật khẩu</b></div>--}}
+{{--                                                                <div class="row">--}}
+{{--                                                                    <div class="col">--}}
+{{--                                                                        <div class="form-group">--}}
+{{--                                                                            <label>Confirm <span--}}
+{{--                                                                                    class="d-none d-xl-inline">Password</span></label>--}}
+{{--                                                                            <input class="form-control" type="password"--}}
+{{--                                                                                placeholder="Vui lòng nhập mật khẩu hiện tại của bạn vào đây để có thể thay đổi mật khẩu">--}}
+{{--                                                                        </div>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <div class="row mt-3">
-                                                        <div class="col d-flex justify-content-end">
-                                                            <button class="btn btn-primary" type="submit">Thay đổi</button>
-                                                        </div>
-                                                    </div>
+{{--                                                    <div class="row mt-3">--}}
+{{--                                                        <div class="col d-flex justify-content-end">--}}
+{{--                                                            <button class="btn btn-primary" type="submit">Thay đổi</button>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
                                                 </div>
                                             </div>
                                         </div>

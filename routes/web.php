@@ -162,8 +162,10 @@ Route::prefix('/')->name('client.')->group(function () {
             Route::get('/hoa-don/{order}',[ClProfileController::class,'showhoadon'])->name('showhoadon');
             // View trang cập nhật tài khoản
             Route::get('/update-profile', [ClProfileController::class, 'update'])->name('update');
+            Route::post('/update-profile', [ClProfileController::class, 'check_update']);
             // View trang đổi mật khẩu
             Route::get('/doi-mat-khau', [ClProfileController::class, 'updatePass'])->name('updatePass');
+            Route::post('/doi-mat-khau', [ClProfileController::class, 'check_updatePass']);
         });
         Route::prefix('cart-page')->name('cart-page.')->group(function () {
             Route::get('/', [ClCartController::class, 'cart'])->name('index');

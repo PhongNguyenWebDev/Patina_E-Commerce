@@ -24,7 +24,7 @@
             </div>
         </div>
     </section>
-    <div class="container-md mt-5">
+    <div class="container-md mt-5" style="margin-bottom: 18rem">
         <div class="row g-3">
             <div class="col-12">
                 <div class="row g-3">
