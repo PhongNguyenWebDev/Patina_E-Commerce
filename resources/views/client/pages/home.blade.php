@@ -11,7 +11,7 @@
                         <p class="text-secondary m-0">Để sử dụng, vui lòng sao chép <br> mã giảm giá và đăng ký tại</p>
                         <div class="pt-4">
                             <a href="http://127.0.0.1:8000/list-coupon-page" class="btn btn-warning rounded-0">Săn ngay</a>
-                            <button class="btn btn-secondary rounded-0" id="closeModalButton">Đóng</button>
+                            <button class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Đóng</button>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             </h4>
                             <a href=""
                                 class="btn btn-white rounded-0 border px-xl-4 py-xl-2 text-white animated-link"
-                                style="font-size:20px;">Mua ngay</a>
+                                style="font-size:20px;">Đến ngay -></a>
                         </div>
                     </div>
                 @endforeach
@@ -370,9 +370,9 @@
             <div class="row g-4">
                 @foreach ($blogs as $blog)
                     <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card border-0 shadow-sm">
+                        <div class="card-custom border-0 shadow-sm m-0">
                             <img src="{{ $blog->image }}" class="card-img-top" alt="...">
-                            <div class="card-body">
+                            <div class="card-body px-3 py-2">
                                 <h5 class="card-title fw-medium">{{ $blog->name }}</h5>
                                 <p class="card-text mb-2">
                                     {!! substr($blog->content, 40, 80) !!}
@@ -427,14 +427,9 @@
             $('#voucherModal').modal('show');
         }
 
-        $('#closeModalButton').click(function(event) {
-            event.preventDefault();
-            var confirmClose = confirm(
-                "Bạn có thật sự muốn đóng không?\nKhuyến mãi sẽ không hiển thị sau khi đóng.");
-            if (confirmClose) {
-                $('#voucherModal').modal('hide');
-                localStorage.setItem('voucherPopupClosedTime', new Date().getTime());
-            }
+        // Khi modal đóng, cập nhật thời gian đóng vào localStorage
+        $('#voucherModal').on('hidden.bs.modal', function() {
+            localStorage.setItem('voucherPopupClosedTime', new Date().getTime());
         });
     });
 </script>

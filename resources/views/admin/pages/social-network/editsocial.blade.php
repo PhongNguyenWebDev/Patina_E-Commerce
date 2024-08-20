@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label for="name">Tên Mạng Xã Hội</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{ $social->name }}"
-                        placeholder="Nhập tên Mạng Xã Hội">
+                        placeholder="Nhập tên Mạng Xã Hội" readonly>
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label for="class">Icon</label>
                     <input type="text" class="form-control" id="class" value="{{ $social->images }}" name="images"
-                        placeholder="Nhập Class">
+                        placeholder="Nhập Class" readonly>
                     @error('images')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>

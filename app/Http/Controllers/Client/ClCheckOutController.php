@@ -201,7 +201,7 @@ class ClCheckOutController extends Controller
             $order->token = $token;
             $order->save();
             Mail::to($user->email)->send(new OrderMail($order, $token));
-            return redirect()->route('account.hoadon')->with('ssmsg', 'Vui lòng check mail để xác thực đơn hàng');
+            return redirect()->route('client.account.hoadon')->with('ssmsg', 'Vui lòng check mail để xác thực đơn hàng');
         }
     }
 }

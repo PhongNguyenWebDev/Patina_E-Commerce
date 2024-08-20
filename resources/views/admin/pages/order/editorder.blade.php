@@ -24,13 +24,13 @@
                     <table>
                         <tr>
                             <td class="title">
-                                <a href="{{ route('client.home-page') }}"><img style="width: 100%; max-width: 300px"
-                                        src="{{ asset('img/logo.png') }}" alt=""></a>
+                                <a class="nav-link text-dark p-0" style="font-size: 4rem; letter-spacing: -8px;"
+                                    href="{{ route('client.home-page') }}">PATINA</a>
                             </td>
 
                             <td>
                                 Mã hóa đơn: {{ $order->id }}<br />
-                                Ngày tạo: {{ $order->created_at->format('d F Y') }}<br />
+                                Ngày tạo: {{ $order->created_at->format('d/m/Y') }}<br />
                             </td>
                         </tr>
                     </table>
@@ -43,10 +43,10 @@
                         <tr>
                             <td>
                                 <b>Thông tin cửa hàng</b><br />
-                                Male Fashion<br />
-                                anhlongdeptrai@gmail.com<br />
-                                +84 982-314-958<br />
-                                24 Phường 3, Quang Trung, Gò Vấp, TP.HCM
+                                PATINA<br />
+                                patina@gmail.com<br />
+                                +84 123-123-123<br />
+                                Tòa nhà QTSC9 (toà T), đường Tô Ký, phường Tân Chánh Hiệp, quận 12, TP HCM.
                             </td>
 
                             <td>
@@ -70,9 +70,10 @@
             <tr class="details">
                 <td>Trạng thái</td>
 
-                <td>
+                <td class="text-end" style="width: 20%">
                     @if ($order->status != 3)
-                        <form class="row" method="POST" action="{{ route('admin.orders.update', $order) }}">
+                        <form class="row justify-content-end" method="POST"
+                            action="{{ route('admin.orders.update', $order) }}">
                             @csrf
                             @method('PUT')
                             <select class="form-control" id="active" name="status"
@@ -84,7 +85,7 @@
                                 <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Hủy</option>
                             </select>
                             <input type="text" name="reason" id="reason" class="form-control" style="display: none;">
-                            <button type="submit" class="btn btn-primary">Xác nhận</button>
+                            <button type="submit" class="btn btn-primary my-2">Xác nhận</button>
                         </form>
                     @else
                         <b>Đã giao hàng</b>

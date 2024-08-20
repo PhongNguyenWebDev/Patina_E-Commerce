@@ -39,7 +39,7 @@
                                             <th>Mã Bình Luận </th>
                                             <th>ID Tài Khoản</th>
                                             <th>Tên Tài Khoản</th>
-                                            <th>ID Sản Phẩm</th>
+                                            <th>Tên Bài Viết</th>
                                             <th>Nội Dung Bình Luận</th>
                                             <th>Trạng Thái</th>
                                             <th>Ngày Tạo</th>
@@ -54,9 +54,9 @@
                                             <tr>
                                                 <td>{{ $comment->id }}</td>
                                                 <td>{{ $comment->user_id }}</td>
-                                                <td>{{ $comment->users->name }}</td>
-                                                <td>{{ $comment->product_id }}</td>
-                                                <td>{{ $comment->comment }}</td>
+                                                <td>{{ $comment->user->name }}</td>
+                                                <td>{{ $comment->blog->name }}</td>
+                                                <td>{{ $comment->content }}</td>
                                                 <td>{!! $comment->status == 1 ? '<a class="btn btn-primary">Hiện</a>' : '<a class="btn btn-danger">Ẩn</a>' !!}
                                                 </td>
 

@@ -140,7 +140,7 @@
                     </div>
                     <hr style="border: 1px solid; color: var(--primary-1000-color);">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h4>Total</h4>
+                        <h4>Tổng tiền</h4>
                         @if ($totalPrice > 500)
                             <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500,000)</small>
                             <h6>
@@ -171,7 +171,7 @@
                         </div>
                         <div class="col-6 d-flex justify-content-end">
                             <button style="border: none; background-color:#fff" type="button" class="close"
-                                data-dismiss="modal" aria-label="Close">
+                                data-bs-dismiss="modal" aria-label="Close">
                                 <i class="fa-regular fa-circle-xmark"></i>
                             </button>
                         </div>

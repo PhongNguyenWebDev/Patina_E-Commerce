@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label for="name">Tên giờ</label>
                     <input type="text" class="form-control" id="name" name="name" value="Giờ mở cửa"
-                        placeholder="Nhập Tên giờ">
+                        placeholder="Nhập Tên giờ" readonly>
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>

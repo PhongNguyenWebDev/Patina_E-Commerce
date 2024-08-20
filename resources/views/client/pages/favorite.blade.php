@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row mb-5">
                     <form class="col-md-12">
-                        <div class="site-blocks-table">
+                        <div class="site-blocks-table table-responsive">
                             <table class="table text-center">
                                 <tbody>
                                     <thead class="thead-light">
@@ -20,14 +20,14 @@
                                     @foreach ($favorite as $item)
                                         <tr data-id="{{ $item->id }}">
                                             <td class="product-name d-flex justify-content-center align-items-center">
-                                                <img class="d-none d-lg-block object-fit-cover" width="100"
-                                                    height="100" src="{{ $item->product->images }}" alt="Image">
+                                                <img class="object-fit-cover" width="100" height="100"
+                                                    src="{{ $item->product->images }}" alt="Image">
                                             </td>
                                             <td>
-                                                <h2 class="h5 text-black m-0">{{ $item->product->name }}</h2>
+                                                <h6 class="text-black m-0 fw-medium">{{ $item->product->name }}</h6>
                                             </td>
                                             <td>
-                                                <p class="p-0 m-0">${{ number_format($item->price) }}</p>
+                                                <p class="p-0 m-0">{{ number_format($item->price) }} VND</p>
                                             </td>
                                             <td>
                                                 <a class="btn btn-dark"

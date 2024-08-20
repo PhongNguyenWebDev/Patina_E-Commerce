@@ -49,11 +49,11 @@
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex flex-row">
                             @if ($product->sale_price > 0)
-                                <h5 id="sale_price" class="text-danger pe-3">
-                                    {{ number_format($product->sale_price, 0, ',', ',') }} VND
-                                </h5>
-                                <h5 class="text-secondary text-decoration-line-through" id="price">
+                                <h5 id="price" class="text-danger pe-3">
                                     {{ number_format($product->price, 0, ',', ',') }} VND
+                                </h5>
+                                <h5 class="text-secondary text-decoration-line-through" id="sale_price">
+                                    {{ number_format($product->sale_price, 0, ',', ',') }} VND
                                 </h5>
                             @else
                                 <h5 id="price">
@@ -79,10 +79,9 @@
                     <form action="{{ route('client.cart-page.add', $product->id) }}" method="POST">
                         @csrf
                         <div class="py-3">
-                            <h5 class="py-1" style="font-weight: var(--Medium);">Color
+                            <h5 class="py-1" style="font-weight: var(--Medium);">Chọn màu
                             </h5>
                             <div>
-
                                 @foreach ($uniqueColors as $index => $color)
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input color-radio" type="radio" name="color_id"
@@ -97,7 +96,7 @@
                         </div>
                         <!-- Size Products -->
                         <div>
-                            <h5 style="font-weight: var(--Medium);">Select Size</h5>
+                            <h5 style="font-weight: var(--Medium);">Chọn kích cỡ</h5>
                             <div class="py-3 d-flex justify-content-between" style="width: fit-content;">
                                 @foreach ($product->productDetails as $index => $detail)
                                     <div class="form-check form-check-inline size-option p-0"
@@ -123,12 +122,6 @@
                                             class="fa-solid fa-cart-shopping me-2 "></i>Thêm giỏ
                                         hàng</button>
                                 </div>
-                                <div class="col-xl-3 col-4">
-                                    <a class="btn btn-danger p-2 d-flex align-items-center justify-content-center">
-                                        <i class="fa-regular fs-5 fa-heart"></i>
-                                        <p class="m-0 px-1" style="font-size:18px">Yêu thích</p>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </form>
@@ -136,7 +129,6 @@
                 <div class="my-3">
                     <p style="font-weight: var(--Medium);color:rgba(255, 0, 0, 0.453)">Tồn kho: <span
                             id="stockQuantity"></span></p>
-
                 </div>
                 <!-- Description -->
                 <div class="my-3">
@@ -145,7 +137,7 @@
                 </div>
                 <!-- share & Tags -->
                 <div class="d-flex flex-row w-100">
-                    <div class="ps-3 d-flex align-items-center me-4">
+                    <div class="d-flex align-items-center me-4">
                         <h6 class="me-3">Share: </h6>
                         <div class="d-flex justify-content-between">
                             <div class="icon-footer">
@@ -306,87 +298,69 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const priceElement = document.getElementById('price');
-            const salePriceElement = document.getElementById('sale_price');
             const colorRadios = document.querySelectorAll('.color-radio');
             const sizeOptions = document.querySelectorAll('.size-option');
-            const stockQuantityElement = document.getElementById('stockQuantity');
-            const quantityInput = document.getElementById('quantityInput');
+            const stockQuantityElement = document.querySelector('#stockQuantity');
 
-            // Hàm cập nhật giá và hiển thị các kích cỡ tương ứng với màu sắc chọn
-            const updatePricesAndSizes = (colorId) => {
-                const selectedColorRadio = document.querySelector(`.color-radio[value="${colorId}"]`);
-                const selectedColorPrice = selectedColorRadio.getAttribute('data-price');
-                const selectedColorSalePrice = selectedColorRadio.getAttribute('data-sale-price');
-
-                // Định dạng giá thành VND với dấu phân cách hàng nghìn
-                const formattedPrice = Number(selectedColorPrice).toLocaleString('vi-VN') + ' VND';
-                const formattedSalePrice = selectedColorSalePrice ? Number(selectedColorSalePrice)
-                    .toLocaleString('vi-VN') + ' VND' : '';
-
-                // Cập nhật nội dung phần tử HTML
-                priceElement.textContent = formattedPrice;
-                salePriceElement.textContent = formattedSalePrice;
-
-
-                let hasVisibleSize = false;
+            // Hàm cập nhật kích cỡ và tồn kho khi chọn màu
+            const updateSizesForColor = (colorId) => {
+                let firstVisibleSizeOption = null;
 
                 sizeOptions.forEach(option => {
                     const optionColorId = option.getAttribute('data-color-id');
-                    const quantity = option.getAttribute('data-quantity');
+                    const quantity = parseInt(option.getAttribute('data-quantity'), 10);
 
-                    if (optionColorId === colorId || optionColorId === "all") {
-                        option.style.display = quantity > 0 ? 'inline-block' : 'none';
-                        if (quantity > 0) {
-                            hasVisibleSize = true;
+                    if (optionColorId === colorId && quantity > 0) {
+                        option.style.display = 'inline-block'; // Hiển thị kích cỡ
+                        if (!firstVisibleSizeOption) {
+                            firstVisibleSizeOption = option;
                         }
                     } else {
-                        option.style.display = 'none';
+                        option.style.display = 'none'; // Ẩn kích cỡ không phù hợp hoặc tồn kho bằng 0
                     }
                 });
 
-                if (!hasVisibleSize) {
-                    stockQuantityElement.textContent = '0';
-                    quantityInput.max = 0;
+                // Nếu có kích cỡ hợp lệ, chọn kích cỡ đầu tiên
+                if (firstVisibleSizeOption) {
+                    const sizeInput = firstVisibleSizeOption.querySelector('input.size-radio');
+                    sizeInput.checked = true;
+                    updateStockQuantity(sizeInput.value); // Cập nhật tồn kho cho kích cỡ đầu tiên
+                } else {
+                    stockQuantityElement.textContent =
+                    '0'; // Không có kích cỡ nào hợp lệ, đặt số lượng tồn kho là 0
                 }
             };
 
-            // Hàm cập nhật số lượng tồn kho khi thay đổi kích cỡ
-            const updateStockQuantity = (quantity) => {
-                stockQuantityElement.textContent = quantity;
-                quantityInput.max = quantity; // Cập nhật thuộc tính max của input số lượng
+            // Hàm cập nhật tồn kho khi chọn kích cỡ
+            const updateStockQuantity = (sizeId) => {
+                const sizeOption = document.querySelector(`.size-option input[value="${sizeId}"]`);
+                if (sizeOption) {
+                    const quantity = sizeOption.closest('.size-option').getAttribute('data-quantity');
+                    stockQuantityElement.textContent = quantity || '0';
+                } else {
+                    stockQuantityElement.textContent = '0';
+                }
             };
 
-            // Xử lý sự thay đổi của màu sắc
+            // Xử lý khi màu được chọn
             colorRadios.forEach(radio => {
                 radio.addEventListener('change', function() {
                     const selectedColorId = this.value;
-                    updatePricesAndSizes(selectedColorId);
-
-                    // Đặt trạng thái kích cỡ đầu tiên hiển thị (nếu có)
-                    const firstVisibleSizeOption = document.querySelector(
-                        '.size-option[style="display: inline-block;"] input.size-radio');
-                    if (firstVisibleSizeOption) {
-                        firstVisibleSizeOption.checked = true;
-                        firstVisibleSizeOption.dispatchEvent(new Event('change'));
-                    } else {
-                        // Không có kích cỡ hiển thị, đặt số lượng tồn kho về 0
-                        stockQuantityElement.textContent = '0';
-                        quantityInput.max = 0;
-                    }
+                    updateSizesForColor(selectedColorId);
                 });
             });
 
-            // Xử lý sự thay đổi của kích cỡ
+            // Xử lý khi kích cỡ được chọn
             sizeOptions.forEach(option => {
-                option.querySelector('input.size-radio').addEventListener('change', function() {
-                    const selectedSizeQuantity = this.closest('.size-option').getAttribute(
-                        'data-quantity');
-                    updateStockQuantity(selectedSizeQuantity);
-                });
+                const sizeInput = option.querySelector('input.size-radio');
+                if (sizeInput) {
+                    sizeInput.addEventListener('change', function() {
+                        updateStockQuantity(this.value);
+                    });
+                }
             });
 
-            // Kích hoạt sự kiện thay đổi trên màu sắc đầu tiên khi trang tải
+            // Kích hoạt sự kiện chọn màu đầu tiên khi trang tải
             if (colorRadios.length > 0) {
                 colorRadios[0].dispatchEvent(new Event('change'));
             }

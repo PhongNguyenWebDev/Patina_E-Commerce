@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label for="name">Tên info</label>
                     <input type="text" class="form-control" id="name" value="{{ $info->name }}" name="name"
-                        placeholder="Nhập Tên info">
+                        placeholder="Nhập Tên info" readonly>
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>
