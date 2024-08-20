@@ -350,6 +350,9 @@ h6 {
 
 /* end css patina home */
 /* start css header  */
+.dropdown-item:hover {
+    background-color: #636871;
+}
 .logoweb img {
     width: 75px;
     height: 75%;
@@ -723,9 +726,9 @@ main {
 
 /* End 404 */
 /* Blog */
-.card {
+.card-custom {
     max-width: 100%;
-    height: 15rem;
+    height: 20rem;
     margin: 10px auto;
 }
 .img-blog {
@@ -908,10 +911,10 @@ span {
 .test-xct {
     position: absolute;
     opacity: 0;
-    bottom: 16.5%;
+    bottom: -1.5%;
     font-weight: 500;
-    left: 7px;
-    width: 93%;
+    left: -5px;
+    width: 100%;
     text-align: center;
     /* min-height: 3em; */
     background: rgba(0, 0, 0, 0.7);

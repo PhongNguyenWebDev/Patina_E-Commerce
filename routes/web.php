@@ -148,13 +148,26 @@ Route::prefix('/')->name('client.')->group(function () {
     });
     // Trang thanh toán
     Route::middleware('cus')->group(function () {
-        Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');  //thêm ngày 22/6 bởi ta
-        // Trang thay đổi mật khẩu mới
-        Route::get('/profile-page/update', [ClProfileController::class, 'UpdateSite']);
-        // Trang Hóa đơn trong hồ sơ cá nhân.
-        Route::get('/profile-page/bill', [ClBillController::class, 'index'])->name('bill');
 
+//        // Trang thay đổi mật khẩu mới
+//        Route::get('/profile-page/update', [ClProfileController::class, 'UpdateSite']);
+//        // Trang Hóa đơn trong hồ sơ cá nhân.
+//        Route::get('/profile-page/bill', [ClBillController::class, 'index'])->name('bill');
 
+        Route::prefix('account')->name('account.')->group(function (){
+            // View trang profile
+            Route::get('/profile-page',[ClProfileController::class,'profile'])->name('profile-page') ;
+            // View trang danh sách hóa đơn
+            Route::get('/hoa-don',[ClProfileController::class,'hoadon'])->name('hoadon');
+            // View trang chi tiết hóa đơn
+            Route::get('/hoa-don/{order}',[ClProfileController::class,'showhoadon'])->name('showhoadon');
+            // View trang cập nhật tài khoản
+            Route::get('/update-profile', [ClProfileController::class, 'update'])->name('update');
+            Route::post('/update-profile', [ClProfileController::class, 'check_update']);
+            // View trang đổi mật khẩu
+            Route::get('/doi-mat-khau', [ClProfileController::class, 'updatePass'])->name('updatePass');
+            Route::post('/doi-mat-khau', [ClProfileController::class, 'check_updatePass']);
+        });
         Route::prefix('cart-page')->name('cart-page.')->group(function () {
             Route::get('/', [ClCartController::class, 'cart'])->name('index');
             Route::post('/add/{product}', [ClCartController::class, 'add'])->name('add');

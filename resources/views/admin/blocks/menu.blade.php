@@ -4,7 +4,7 @@
             <div class="header-left">
                 <a href="{{ route('client.home-page') }}"
                     class="d-flex align-items-center text-decoration-none h-100 justify-content-center">
-                    <p class="ms-5 m-0" style="font-size: 28px; color:black;">PATINA
+                    <p class="ms-5 m-0" style="font-weight:500; font-size: 28px; color:black;">PATINA
                     </p>
                 </a>
             </div>
@@ -21,8 +21,8 @@
                                 <li><a href="{{ route('admin.info.index') }}"><i
                                             class="fa-solid fa-circle-info"></i><span>Thông
                                             tin</span></a></li>
-                                <li><a href="{{ route('admin.gio-mo-cua.index') }}"><i
-                                            class="fa fa-clock"></i><span>Giờ mở cửa</span></a></li>
+                                <li><a href="{{ route('admin.gio-mo-cua.index') }}"><i class="fa fa-clock"></i><span>Giờ
+                                            mở cửa</span></a></li>
                                 <li><a href="{{ route('admin.social-network.index') }}"><i
                                             class="fas fa-share-alt"></i><span>Social Network</span></a></li>
                             </ul>

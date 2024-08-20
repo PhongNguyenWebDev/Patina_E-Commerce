@@ -309,7 +309,7 @@ div.dataTables_wrapper div.dataTables_paginate {
 .page-title {
     color: #565656;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 0;
     text-transform: capitalize;
 }
@@ -506,8 +506,9 @@ div.dataTables_wrapper div.dataTables_paginate {
 }
 
 .btn-primary {
-    background-color: #2fdf84;
+    background-color: #2fdf8436;
     border: 1px solid #2fdf84;
+    color: green;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active {
@@ -646,8 +647,9 @@ div.dataTables_wrapper div.dataTables_paginate {
 }
 
 .btn-danger {
-    background: #ff1300;
+    background: #ff130024;
     border: 1px solid #ff1300;
+    color: red;
 }
 
 .btn-danger:hover,
@@ -759,8 +761,8 @@ div.dataTables_wrapper div.dataTables_paginate {
 .card {
     border: 1px solid #d5dbe1;
     margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgb(36 37 38/8%);
+    border-radius: 5px;
+    /* box-shadow: 0 6px 15px rgb(36 37 38/8%); */
 }
 
 .card-header {
@@ -1601,8 +1603,8 @@ label {
 
 .page-header {
     border: 1px solid #d5dbe1;
-    padding: 25px;
-    border-radius: 10px;
+    padding: 15px;
+    border-radius: 5px;
     margin-bottom: 30px;
 }
 
@@ -1766,7 +1768,7 @@ label {
 
 .page-header .breadcrumb {
     border-radius: 4.25rem !important;
-    font-size: 12px;
+    font-size: 16px;
     background: 0 0;
 }
 
@@ -5689,7 +5691,7 @@ blockquote p {
     background: #fff;
     color: #333;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-bottom: 30px;
     border: 1px solid #d5dbe1;
     box-shadow: 0 6px 15px rgb(36 37 38/8%);

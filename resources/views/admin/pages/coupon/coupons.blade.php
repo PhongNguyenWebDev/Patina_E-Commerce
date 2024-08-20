@@ -10,7 +10,8 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i> Home</a>
+                    </li>
                     <li class="breadcrumb-item"><span>{{ $title }}</span></li>
                 </ul>
             </div>
@@ -69,11 +70,12 @@
                                                 <td>{{ number_format($item->max_price) }}$</td>
                                                 <td>{{ number_format($item->usage_limit) }}</td>
                                                 <td>{{ number_format($item->usage_count) }}</td>
-                                                <td>@if ($item->user_specific == 0)
-                                                    Tất cả
-                                                @else
-                                                    Người dùng đã lưu
-                                                @endif
+                                                <td>
+                                                    @if ($item->user_specific == 0)
+                                                        Tất cả
+                                                    @else
+                                                        Người dùng đã lưu
+                                                    @endif
                                                 </td>
                                                 <td>{{ $item->start_date }}</td>
                                                 <td>{{ $item->end_date }}</td>

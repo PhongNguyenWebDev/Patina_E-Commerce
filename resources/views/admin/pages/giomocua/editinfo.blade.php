@@ -10,7 +10,8 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i> Home</a>
+                    </li>
                     <li class="breadcrumb-item"><span>{{ $title }}</span></li>
                 </ul>
             </div>
@@ -25,7 +26,7 @@
                 <div class="form-group">
                     <label for="name">Tên info</label>
                     <input type="text" class="form-control" id="name" value="{{ $info->name }}" name="name"
-                        placeholder="Nhập Tên info">
+                        placeholder="Nhập Tên info" readonly>
                     @error('name')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                             {{ $message }}</span>

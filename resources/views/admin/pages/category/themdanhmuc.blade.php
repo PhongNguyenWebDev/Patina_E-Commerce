@@ -13,7 +13,8 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i> Home</a>
+                    </li>
                     <li class="breadcrumb-item"><span>{{ $title }}</span></li>
                 </ul>
             </div>
@@ -52,13 +53,12 @@
     </div>
 @endsection
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-
-    $(".select2_choose").select2({
-        tags: true,
-        tokenSeparators: [',']
-    });
-    $(".choose_init").select2({});
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(".select2_choose").select2({
+            tags: true,
+            tokenSeparators: [',']
+        });
+        $(".choose_init").select2({});
+    </script>
 @endsection

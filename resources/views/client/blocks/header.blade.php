@@ -65,7 +65,7 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('client.profile-page') }}">Hồ
+                                            <a class="dropdown-item" href="{{ route('client.account.profile-page') }}">Hồ
                                                 sơ
                                                 của
                                                 tôi</a>

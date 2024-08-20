@@ -73,8 +73,11 @@
     <!-- Binh luan -->
     <section class="container mb-5">
         <h3>Bình luận</h3>
-        @include('client.pages.partials.comments')
-        <form action="{{ route('client.comments.store', $blog->id) }}" method="POST" class="p-commentform">
+        <div id="commentsContainer">
+            @include('client.pages.partials.comments')
+        </div>
+        <form action="{{ route('client.comments.store', $blog->id) }}" id="commentForm" method="POST"
+            class="p-commentform">
             @csrf
             <div class="d-flex justify-content-between">
                 <div
@@ -90,3 +93,38 @@
         </form>
     </section>
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#commentForm').on('submit', function(e) {
+            e.preventDefault(); // Ngăn chặn gửi form mặc định
+
+            var form = $(this);
+            var url = form.attr('action');
+            var data = form.serialize(); // Lấy dữ liệu từ form
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        // Xóa nội dung textarea sau khi gửi thành công
+                        form.find('textarea[name="content"]').val('');
+
+                        // Cập nhật danh sách bình luận
+                        $('#commentsContainer').html(response.commentsHtml);
+                    } else {
+                        alert(response.error); // Hiển thị thông báo lỗi nếu có
+                    }
+                },
+                error: function(xhr) {
+                    alert(
+                        'Có lỗi xảy ra, vui lòng thử lại.'
+                    ); // Thông báo lỗi nếu yêu cầu AJAX thất bại
+                }
+            });
+        });
+    });
+</script>

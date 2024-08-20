@@ -33,12 +33,15 @@ class ClProductController extends Controller
             $color->sale_price = $detail->sale_price ? $detail->sale_price : $detail->price;
             return $color;
         });
+        $productDetail = $product->productDetails->first();
+
+        if (!$productDetail) {
+            return abort(404, 'Product details not found');
+        }
         $categoryId = $product->category_id;
 
-        // Get related products by category id
         $relatedProducts = $this->relatedProductsByCategory($categoryId, $product->id);
 
-        // Get reviews for the product
         $reviews = $this->showReview($productDetailId);
         $user = auth()->user();
         $userReview = null;

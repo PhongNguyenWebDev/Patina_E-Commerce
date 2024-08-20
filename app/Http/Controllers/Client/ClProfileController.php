@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangPassRequest;
+use App\Http\Requests\ProfileRequest;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +41,55 @@ class ClProfileController extends Controller
         {
             return redirect()->route('logIn');
         }
+    }
+    public function hoadon()
+    {
+        $title = 'Hóa đơn';
+        $users = auth()->user();
+        $orders = Order::where('user_id', $users->id)->paginate(6);
+        return view('client.pages.accounts.bill', compact('title','orders'));
+    }
+
+    public function showhoadon($id)
+    {
+        $title = 'Chi tiết hóa đơn';
+        $order = Order::find($id);
+        if (!$order) {
+            return redirect()->route('account.profile')->with('ermsg', 'Không tìm thấy hóa đơn');
+        }
+        return view('client.pages.accounts.hoadonchitiet', compact('title','order'));
+    }
+
+    public function update()
+    {
+        $title = "Cập nhật thông tin tài khoản";
+        $users = auth()->user();
+        return view('client.pages.accounts.update', compact('title','users'));
+    }
+    public function check_update(ProfileRequest $request)
+    {
+        $users = auth()->user();
+        $data = $request->only('name', 'phone', 'email', 'address');
+        $check = User::where('id', $users->id)->update($data);
+        if ($check) {
+            return redirect()->route('client.account.profile-page')->with('ssmsg', 'Cập nhật thông tin thành công');
+        }
+        return redirect()->route('client.account.update')->with('ermsg', 'Cập nhật thông tin thất bại');
+    }
+    public function updatePass()
+    {
+        $title = "Thay đổi mật khẩu";
+        $users = auth()->user();
+        return view('client.pages.accounts.doimatkhau', compact('title','users'));
+    }
+    public function check_updatePass(ChangPassRequest $request)
+    {
+        $users = auth()->user();
+        $data['password'] = bcrypt($request->password);
+        if (User::where('id', $users->id)->update($data)) {
+            return redirect()->route('client.account.profile-page')->with('ssmsg', 'Đổi mật khẩu thành công');
+        }
+        return redirect()->route('client.account.updatePass')->with('ermsg', 'Đổi mật khẩu thất bại');
     }
 }
 

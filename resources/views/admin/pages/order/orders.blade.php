@@ -10,7 +10,9 @@
             </div>
             <div class="col-md-6">
                 <ul class="breadcrumb mb-0 p-0 float-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item p-1"><a href="{{ route('admin.home') }}"><i class="fas fa-home p-1"></i>
+                            Home</a>
+                    </li>
                     <li class="breadcrumb-item"><span>{{ $title }}</span></li>
                 </ul>
             </div>
@@ -66,7 +68,7 @@
                                                     @elseif ($item->status == 3)
                                                         Đã giao hàng
                                                     @else
-                                                        Đã hủy | Lý do: {{ $item->reason}}
+                                                        Đã hủy | Lý do: {{ $item->reason }}
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->created_at }}</td>

@@ -4,12 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="https://laravel.com/img/favicon/favicon-16x16.png')}}" type='image/x-icon'>
     <title>@yield('title') | Male-Fashion</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/img/favicon.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    {{-- <link href="../../../../css?family=Roboto:300,400,500,700,900" rel="stylesheet"> --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ asset('assets/clients/img/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ asset('assets/clients/img/favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/clients/img/favicon_io/site.webmanifest') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/plugins/fontawesome/css/fontawesome.min.css') }}">

@@ -34,16 +34,17 @@
                                                 <div class="d-flex justify-content-between align-items-end">
                                                     <a class="text-decoration-none p-0 {{ request('category') === $category->slug ? 'active' : '' }}"
                                                         style="font-size: var(--font-size); color: var(--secondary-1200-color);"
-                                                        data-bs-toggle="collapse"
+                                                        data-bs-toggle="collapse" role="button"
                                                         data-bs-target="#collapse-{{ $category->slug }}"
-                                                        aria-expanded="true" aria-controls="collapse-{{ $category->slug }}">
+                                                        aria-expanded="false"
+                                                        aria-controls="collapse-{{ $category->slug }}">
                                                         {{ $category->name }}
                                                     </a>
                                                     <p style="font-size: var(--font-size); margin: 0;" class="amout">
                                                         {{ $category->totalChildProducts() }}</p>
                                                 </div>
                                                 <div id="collapse-{{ $category->slug }}"
-                                                    class="accordion-collapse collapse show">
+                                                    class="accordion-collapse collapse">
                                                     <div class="accordion-body p-0">
                                                         <ul>
                                                             @foreach ($category->parent as $child)
@@ -140,11 +141,16 @@
                                         alt="{{ $product->name }}">
                                     <div class="mx-2">
                                         <h6 style="font-size: 18px; font-weight:550">{{ $product->name }}</h6>
-                                        <p style="font-size: 16px; margin: 0;">
-                                            <del
-                                                style="color: red">${{ number_format($product->sale_price) ? number_format($product->price) : null }}</del>
-                                            ${{ number_format($product->sale_price) ? number_format($product->sale_price) : number_format($product->price) }}
-                                        </p>
+                                        @if ($product->sale_price > 0)
+                                            <p style="font-size: 16px; margin: 0;">
+                                                <del style="color: red">{{ number_format($product->price) }} VND</del>
+                                                {{ number_format($product->sale_price) }} VND
+                                            </p>
+                                        @else
+                                            <p style="font-size: 16px; margin: 0;">
+                                                {{ number_format($product->price) }} VND
+                                            </p>
+                                        @endif
                                     </div>
                                 </div>
                             </a>
@@ -177,11 +183,14 @@
                             @foreach ($products as $product)
                                 <div
                                     class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center change my-2">
-                                    <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
-                                        <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
-                                    </a>
-                                    <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi
-                                        tiết</a>
+                                    <div class="position-relative">
+                                        <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                                            <img class="object-fit-cover w-100" src="{{ $product->images }}"
+                                                alt="">
+                                        </a>
+                                        <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi
+                                            tiết</a>
+                                    </div>
                                     <div class="position-absolute top-0 p-3 w-100 end-0">
                                         <div class="d-flex align-items-center justify-content-between">
                                             @php
@@ -231,61 +240,14 @@
                             @endforeach
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center my-2">
+                        {{ $products->links('pagination::default') }}
+                    </div>
                 </div>
             </div>
             <!-- Pagination -->
-            <div class="d-flex justify-content-center">
-                {{ $products->links('pagination::default') }}
-            </div>
         </div>
-
-
         {{--            Show sản phẩm và sắp xếp sản phẩm bằng livewire  --}}
         {{-- @livewire('client-sort-products') --}}
     </section>
-    <!-- Flash Sales -->
-    {{-- <section class="container my-5">
-        <div class="p-xl-5 p-3" style="background-color:#F7F2EE; ">
-            <div class="d-flex flex-column flex-xl-row p-0 p-xl-5 bg-white w-100">
-                <!-- Left -->
-                <div class="col-xl-6 col-12">
-                    <div class="container pt-3 pt-xl-0">
-                        <span class="badge px-3 py-2 fs-4 text-bg-danger">- 20%</span>
-                        <div class="py-5">
-                            <h1>New Collection</h1>
-                            <p style="color: var(--secondary-1000-color); font-size: 18px;">Introducing our luxurious
-                                Harmony Chair – a perfect blend of comfort and style for your
-                                living space.</p>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between w-100">
-                            <div class="d-flex flex-column border py-2 align-items-center time-flash-sales"
-                                style="width: 7rem; background-color: #F7F2EE; color: black;">
-                                <h3 id="days"></h3>
-                                <p>Days</p>
-                            </div>
-                            <div class="d-flex flex-column border py-2 align-items-center time-flash-sales"
-                                style="width: 7rem; background-color: #F7F2EE; color: black;">
-                                <h3 id="hours"></h3>
-                                <p>Hours</p>
-                            </div>
-                            <div class="d-flex flex-column border py-2 align-items-center time-flash-sales"
-                                style="width: 7rem; background-color: #F7F2EE; color: black;">
-                                <h3 id="minutes"></h3>
-                                <p>Minutes</p>
-                            </div>
-                            <div class="d-flex flex-column border py-2 align-items-center time-flash-sales"
-                                style="width: 7rem; background-color: #F7F2EE; color: black;">
-                                <h3 id="seconds"></h3>
-                                <p>Seconds</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Right -->
-                <div class="col-12 col-xl-6 d-flex justify-xl-content-end justify-content-center">
-                    <img class="w-75" src="/assets/clients/img/Image-banner.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section> --}}
 @endsection

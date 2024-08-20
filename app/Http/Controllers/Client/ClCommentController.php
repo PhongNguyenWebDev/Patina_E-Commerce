@@ -14,23 +14,38 @@ class ClCommentController extends Controller
     public function store(Request $request, $blogId)
     {
         $request->validate([
-            'content' => 'required|string',
-            // Add more validation rules as needed
+            'content' => 'required|string|max:255',
+            'parent_id' => 'nullable|exists:comments,id', // Validate parent_id nếu có
         ]);
 
         $blog = Blog::findOrFail($blogId);
+
         if (Auth::check()) {
+            // Tạo bình luận mới
             $comment = $blog->comments()->create([
                 'user_id' => auth()->id(),
                 'content' => $request->content,
-                'parent_id' => $request->parent_id,
+                'parent_id' => $request->parent_id, // Thay đổi nếu bạn hỗ trợ bình luận trả lời
             ]);
 
-            return back()->with('success', 'Comment added successfully');
+            // Lấy danh sách bình luận mới nhất để cập nhật
+            $comments = $blog->comments()->where('status', 1)->orderBy('created_at', 'desc')->get();
+
+            // Render HTML cho danh sách bình luận
+            $commentsHtml = view('client.pages.partials.comments', compact('comments'))->render();
+
+            return response()->json([
+                'success' => true,
+                'commentsHtml' => $commentsHtml,
+            ]);
         } else {
-            return back()->with('error', 'Vui lòng đăng nhập để bình luận');
+            return response()->json([
+                'success' => false,
+                'error' => 'Vui lòng đăng nhập để bình luận',
+            ]);
         }
     }
+
 
     public function reply(Request $request, Comment $parentComment)
     {
