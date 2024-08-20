@@ -88,6 +88,9 @@ class AdCategoryController extends Controller
         if (!$category) {
             return redirect()->route('admin.category.index')->with('ermsg', 'Không tìm thấy danh mục cần xóa');
         }
+        if ($category->products()->count() > 0) {
+            return redirect()->route('admin.category.index')->with('ermsg', 'Danh mục không thể xóa vì có sản phẩm liên quan.');
+        }
         $category->delete();
         return redirect()->route('admin.category.index')->with('ssmsg', 'Xóa danh mục thành công');
     }

@@ -38,15 +38,27 @@
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
                         <input class="form-control" name="name" type="text" placeholder="Họ và tên"
                             value="{{ $users->name }}">
+                        @error('name')
+                            <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                                {{ $message }}</span>
+                        @enderror
                         <div class="row g-2 my-1 ">
                             <div class="col-6">
                                 <input class="form-control" name="email" type="Email" value="{{ $users->email }}"
                                     placeholder="Địa chỉ Email">
                             </div>
+                            @error('email')
+                                <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                                    {{ $message }}</span>
+                            @enderror
                             <div class="col-6">
                                 <input class="form-control" name="phone" type="text" value="{{ $users->phone }}"
                                     placeholder="Số điện thoại">
                             </div>
+                            @error('phone')
+                                <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                                    {{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <!-- Shipping Address -->
@@ -57,6 +69,10 @@
                             <input class="form-control" name="address" type="text" value="{{ $users->address }}"
                                 placeholder="Address">
                         </div>
+                        @error('address')
+                            <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                                {{ $message }}</span>
+                        @enderror
                     </div>
 
 

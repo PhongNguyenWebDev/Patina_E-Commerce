@@ -224,7 +224,7 @@ class AdProductController extends Controller
     {
         $this->data['title'] = 'Sản Phẩm Đã Xóa';
         $products = Product::onlyTrashed()->paginate(6);
-        return view('admin.pages.product.trashed', $this->data,compact('products'));
+        return view('admin.pages.product.trashed', $this->data, compact('products'));
     }
     public function restore(string $slug)
     {
@@ -236,5 +236,16 @@ class AdProductController extends Controller
         $product->restore();
 
         return redirect()->route('admin.products.index')->with('ssmsg', 'Sản phẩm đã được khôi phục thành công');
+    }
+    public function forceDelete(string $slug)
+    {
+        $product = Product::onlyTrashed()->where('slug', $slug)->first();
+        if (!$product) {
+            return redirect()->route('admin.products.index')->with('ermsg', 'Không tìm thấy sản phẩm đã bị xóa để xóa hoàn toàn');
+        }
+
+        $product->forceDelete();
+
+        return redirect()->route('admin.products.index')->with('ssmsg', 'Sản phẩm đã được xóa hoàn toàn thành công');
     }
 }
