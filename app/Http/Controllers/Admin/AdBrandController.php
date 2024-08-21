@@ -97,6 +97,9 @@ class AdBrandController extends Controller
         if (!$brand) {
             return redirect()->route('admin.brands.index')->with('ermsg', 'Không tìm thấy brand cần xóa');
         }
+        if ($brand->products()->count() > 0) {
+            return redirect()->route('admin.brands.index')->with('ermsg', 'Brand không thể xóa vì có sản phẩm liên quan.');
+        }
         $brand->delete();
         return redirect()->route('admin.brands.index')->with('ssmsg', 'Xóa brand thành công');
     }

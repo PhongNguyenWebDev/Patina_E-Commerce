@@ -22,7 +22,13 @@ class ClShopController extends Controller
         $products = $product->where('name', 'like', '%' . $query . '%');
         if ($categorySlug) {
             $cate = Category::where('slug', $categorySlug)->firstOrFail();
-            $product->where('category_id', $cate->id);
+
+            // Lấy tất cả các ID danh mục con
+            $categoryIds = $cate->parent()->pluck('id')->toArray();
+            $categoryIds[] = $cate->id; // Thêm ID của danh mục cha vào danh sách
+
+            // Lọc sản phẩm theo các danh mục cha và con
+            $product->whereIn('category_id', $categoryIds);
         }
         $priceRanges = [
             '0-499' => Product::whereBetween('price', [0, 499])->count(),

@@ -34,7 +34,7 @@
                 </div>
                 <div>
                     <div style="margin-left: 10px">
-                        <a href="{{route('admin.products.index')}}">Danh sách sản phẩm</a> |
+                        <a href="{{ route('admin.products.index') }}">Danh sách sản phẩm</a> |
                         <a style="font-weight: bold" href="#">Danh sách sản phẩm đã xóa</a>
                     </div>
 
@@ -53,7 +53,7 @@
                                                 <th>Ngày Tạo</th>
                                                 <th>Ẩn/Hiện</th>
                                                 <th class="text-right">Khôi Phục</th>
-                                                {{-- <th>Xóa</th> --}}
+                                                <th>Xóa</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -84,19 +84,19 @@
                                                                 </button>
                                                             </form>
                                                         </td>
-                                                        {{-- <td>
+                                                        <td class="text-right">
                                                             <form
-                                                                action="{{ route('admin.products.destroy', $item->slug) }}"
+                                                                action="{{ route('admin.products-force-delete', $item->slug) }}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button
-                                                                    onclick="return confirm('Bạn có chắc muốn xóa sản phẩm {{ $item->name }}?')"
+                                                                    onclick="return confirm('Bạn có chắc muốn xóa hoàn toàn sản phẩm {{ $item->name }}?')"
                                                                     type="submit" class="btn btn-danger btn-sm mb-1">
                                                                     <i class="far fa-trash-alt"></i>
                                                                 </button>
                                                             </form>
-                                                        </td> --}}
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             @else

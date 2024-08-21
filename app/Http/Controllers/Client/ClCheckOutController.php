@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CheckoutRequest;
 use App\Mail\OrderMail;
 use App\Models\Cart;
 use App\Models\Color;
@@ -111,7 +112,7 @@ class ClCheckOutController extends Controller
         }
         return true;
     }
-    public function checkout(Request $request)
+    public function checkout(CheckoutRequest $request)
     {
         $user = auth()->user();
         $data = $request->only('name', 'email', 'phone', 'address');
