@@ -46,7 +46,7 @@ class LogController extends Controller
     {
         if ($acc = User::create($request->all())) {
             Mail::to($acc->email)->send(new VerifyAccount($acc));
-            return redirect()->route('login')->with('ssmsg', 'Vui lòng mở mail để kích hoạt tài khoản.');
+            return redirect()->route('login')->with('ssmsg', 'Vui lòng mở mail để kích hoạt tài khoản và kiểm tra mail ở phần thư rác.');
         };
         return redirect()->back()->with('ermsg', 'Thất bại. Vui lòng kiểm tra lại.');
     }

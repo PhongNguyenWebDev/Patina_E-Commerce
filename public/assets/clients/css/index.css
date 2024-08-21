@@ -117,7 +117,9 @@ body {
         font-weight: var(--Regular);
         margin: 0;
     }
-
+    .main-content {
+        min-height: 70% !important;
+    }
     .cate-frame > li {
         width: 4rem !important;
         height: 2.75rem !important;
@@ -138,6 +140,14 @@ body {
         z-index: 2;
         font-size: 15px !important;
         height: 100px !important;
+    }
+    .carousel-caption > h4 {
+        font-size: 20px !important;
+        width: 75% !important;
+    }
+    .carousel-caption > a {
+        padding: 6px !important;
+        font-size: 16px !important;
     }
     .main-content {
         height: 400px !important;

@@ -1,11 +1,9 @@
 @extends('layouts.client')
 @section('content')
     <div class="container">
-        <video controls autoplay muted loop class="object-fit-cover w-100">
-            <source src="{{ asset('assets/clients/img/Bài đăng Instagram Sale 8.8 Hiện đại Tối giản Xanh vàng.mp4') }}"
-                type="video/mp4">
-            Trình duyệt của bạn không hỗ trợ thẻ video.
-        </video>
+        <div class="ratio ratio-4x3">
+            <img class="w-100" src="{{ asset('assets/clients/img/postcoupon.jpg') }}" alt="Hình lỗi" srcset="">
+        </div>
     </div>
 
     <div class="container my-5">
