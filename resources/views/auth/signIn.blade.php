@@ -11,7 +11,7 @@
                             <label for="" class="form-label form-label-register fw-bold">Họ
                                 và
                                 tên</label>
-                            <input type="text" class="form-control form-control-register" name="name"
+                            <input type="text" class="form-control form-control-register mb-2" name="name"
                                 style="font-size: 14px;" value="{{ old('name') }}" placeholder="Nhập họ và tên"
                                 aria-describedby="emailHelp">
                             @error('name')
@@ -22,7 +22,7 @@
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label form-label-register fw-bold">Email <span
                                     class="text-danger">*</span></label>
-                            <input type="email" class="form-control form-control-register" name="email"
+                            <input type="email" class="form-control form-control-register mb-2" name="email"
                                 style="font-size: 14px;" placeholder="Nhập địa chỉ Email" aria-describedby="emailHelp"
                                 value="{{ old('email') }}">
                             @error('email')
@@ -33,7 +33,7 @@
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label form-label-register fw-bold">Mật khẩu
                                 <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control form-control-register" style="font-size: 14px;"
+                            <input type="password" class="form-control form-control-register mb-2" style="font-size: 14px;"
                                 name="password" placeholder="Nhập mật khẩu" aria-describedby="emailHelp">
                             @error('password')
                                 <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
@@ -43,7 +43,7 @@
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label form-label-register fw-bold">Kiểm tra mật
                                 khẩu <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control form-control-register" style="font-size: 14px;"
+                            <input type="password" class="form-control form-control-register mb-2" style="font-size: 14px;"
                                 name="password_confirmation" placeholder="Nhập lại mật khẩu" aria-describedby="emailHelp">
                             @error('password')
                                 <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>

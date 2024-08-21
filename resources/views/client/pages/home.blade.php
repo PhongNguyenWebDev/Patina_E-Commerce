@@ -10,7 +10,7 @@
                         <h1 style="font-size:5rem; font-weight:400;">50%</h1>
                         <p class="text-secondary m-0">Để sử dụng, vui lòng sao chép <br> mã giảm giá và đăng ký tại</p>
                         <div class="pt-4">
-                            <a href="http://127.0.0.1:8000/list-coupon-page" class="btn btn-warning rounded-0">Săn ngay</a>
+                            <a href="{{ route('client.list-coupon.index') }}" class="btn btn-warning rounded-0">Săn ngay</a>
                             <button class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Đóng</button>
                         </div>
                     </div>
@@ -31,18 +31,15 @@
             <div class="carousel-inner position-relative">
                 @foreach ($sliders as $key => $slider)
                     <div class="carousel-item w-100 h-100 {{ $key == 0 ? 'active' : '' }}">
-                        <img src="{{ $slider->image }}" class="h-100 w-100 d-block" alt="Slide {{ $key + 1 }}">
-                        {{-- <div class="overlay"></div> --}}
-                        <div class="carousel-caption text-white" style="font-family:'Josefin Sans', sans-serif">
-                            <h4>Sản phẩm mới</h4>
-                            <h1 class="mb-3">Bộ quần áo player</h1>
-                            <h4 class="mb-xl-4 mb-2">Siêu ưu đãi giảm giá lên đến <span class="text-danger fs-1">70%</span>
-                                <br>
-                                khi
-                                mua sản
-                                phẩm.
+                        <div class="object-fit-cover">
+                            <img src="{{ $slider->image }}" class="h-100 w-100 d-block" alt="Slide {{ $key + 1 }}">
+                        </div>
+                        <div class="carousel-caption text-white w-75" style="font-family:'Josefin Sans', sans-serif">
+                            <h3>{{ $slider->event }}</h3>
+                            <h1 class="mb-xl-2 mb-2">{{ $slider->title }}</h1>
+                            <h4 class="mb-xl-4 mb-2 text-wrap w-50">{{ $slider->summary }}
                             </h4>
-                            <a href=""
+                            <a href="{{ $slider->link }}"
                                 class="btn btn-white rounded-0 border px-xl-4 py-xl-2 text-white animated-link"
                                 style="font-size:20px;">Đến ngay -></a>
                         </div>
@@ -129,31 +126,30 @@
                     <div class="container pt-3 pt-xl-0">
                         <span class="badge px-3 fs-5 text-bg-danger">- 20%</span>
                         <div class="py-3">
-                            <h3 class="fw-bold">New Collection</h3>
-                            <p style="color: var(--secondary-1000-color);">Introducing our luxurious
-                                Harmony Chair – a perfect blend of comfort and style for your
-                                living space.</p>
+                            <h3 class="fw-bold">Bộ sưu tập mới</h3>
+                            <p style="color: var(--secondary-1000-color);">Xin giới thiệu bộ sưu tập thời trang sang trọng
+                                của chúng tôi – sự kết hợp hoàn hảo giữa sự thoải mái và phong cách cho tủ đồ của bạn.</p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between w-100">
                             <div class="d-flex flex-column border py-3 align-items-center time-flash-sales"
                                 style="width: 6rem; background-color: #F0EFF5; color: black;">
                                 <h5 class="fw-medium" id="days"></h5>
-                                <p class="m-0">Days</p>
+                                <p class="m-0">Ngày</p>
                             </div>
                             <div class="d-flex flex-column border py-3 align-items-center time-flash-sales"
                                 style="width: 6rem; background-color: #F0EFF5; color: black;">
                                 <h5 class="fw-medium" id="hours"></h5>
-                                <p class="m-0">Hours</p>
+                                <p class="m-0">Giờ</p>
                             </div>
                             <div class="d-flex flex-column border py-3 align-items-center time-flash-sales"
                                 style="width: 6rem; background-color: #F0EFF5; color: black;">
                                 <h5 class="fw-medium" id="minutes"></h5>
-                                <p class="m-0">Minutes</p>
+                                <p class="m-0">Phút</p>
                             </div>
                             <div class="d-flex flex-column border py-3 align-items-center time-flash-sales"
                                 style="width: 6rem; background-color: #F0EFF5; color: black;">
                                 <h5 class="fw-medium" id="seconds"></h5>
-                                <p class="m-0">Seconds</p>
+                                <p class="m-0">Giây</p>
                             </div>
                         </div>
                     </div>
