@@ -34,7 +34,7 @@
                                     <label style="color: var(--secondary-1000-color); padding-right: 2px;"
                                         for="myCheck">Nhớ mật khẩu</label>
                                 </div>
-                                <a style="color: var(--secondary-1000-color);">Quên mật
+                                <a href="{{route('quenmk')}}" style="color: var(--secondary-1000-color);">Quên mật
                                     khẩu?</a>
                             </div>
                         </div>

@@ -63,6 +63,13 @@ Route::middleware('authlogin')->group(function () {
     // POST thông tin trong Trang đăng kí
     Route::post('/signIn-page', [LogController::class, 'register']);
     Route::get('/verify-account/{email}', [LogController::class, 'verify'])->name('verify');
+    // View của trang quên mật khẩu
+    Route::get('/forgotPassword',[LogController::class, 'viewquenmk'])->name('quenmk');
+
+    Route::post('/forgotPassword', [LogController::class, 'quenmk']);
+    // View của trang đổi mật khẩu
+    Route::get('/changePassword/{token}', [LogController::class, 'viewdoimk'])->name('doimk');
+    Route::post('/changePassword/{token}', [LogController::class, 'doimk']);
 });
 // View của trang admin
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {

@@ -63,6 +63,7 @@ return array(
     'App\\Http\\Requests\\BrandRequest' => $baseDir . '/app/Http/Requests/BrandRequest.php',
     'App\\Http\\Requests\\CategoryRequest' => $baseDir . '/app/Http/Requests/CategoryRequest.php',
     'App\\Http\\Requests\\ChangPassRequest' => $baseDir . '/app/Http/Requests/ChangPassRequest.php',
+    'App\\Http\\Requests\\CheckoutRequest' => $baseDir . '/app/Http/Requests/CheckoutRequest.php',
     'App\\Http\\Requests\\CouponRequest' => $baseDir . '/app/Http/Requests/CouponRequest.php',
     'App\\Http\\Requests\\DoimkRequest' => $baseDir . '/app/Http/Requests/DoimkRequest.php',
     'App\\Http\\Requests\\InfoRequest' => $baseDir . '/app/Http/Requests/InfoRequest.php',

@@ -633,6 +633,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Requests\\BrandRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BrandRequest.php',
         'App\\Http\\Requests\\CategoryRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CategoryRequest.php',
         'App\\Http\\Requests\\ChangPassRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ChangPassRequest.php',
+        'App\\Http\\Requests\\CheckoutRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CheckoutRequest.php',
         'App\\Http\\Requests\\CouponRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CouponRequest.php',
         'App\\Http\\Requests\\DoimkRequest' => __DIR__ . '/../..' . '/app/Http/Requests/DoimkRequest.php',
         'App\\Http\\Requests\\InfoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/InfoRequest.php',
