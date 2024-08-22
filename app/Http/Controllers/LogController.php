@@ -44,7 +44,9 @@ class LogController extends Controller
     }
     public function register(RegisterRequest $request)
     {
-        if ($acc = User::create($request->all())) {
+        $data = $request->except('social_provider');
+        $data['social_provider'] = '';
+        if ($acc = User::create($data)) {
             Mail::to($acc->email)->send(new VerifyAccount($acc));
             return redirect()->route('login')->with('ssmsg', 'Vui lòng mở mail để kích hoạt tài khoản và kiểm tra mail ở phần thư rác.');
         };

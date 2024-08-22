@@ -88,12 +88,6 @@
                                 <label class="form-check-label" for="inlineRadio1" style="font-size: 18px">Trả tiền
                                     mặt</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                    value="option2">
-                                <label class="form-check-label" for="inlineRadio2" style="font-size: 18px">Thanh toán bằng
-                                    thẻ</label>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -176,6 +170,10 @@
 
                 </div>
             </div>
+        </form>
+        <form action="{{ route('vnpay_payment') }}" method="post">
+            @csrf
+            <button class="btn btn-success" name="redirect">Thanh toán VNPay</button>
         </form>
         <div class="modal fade" id="voucherModal" tabindex="-1" role="dialog" aria-labelledby="voucherModalLabel"
             aria-hidden="true">

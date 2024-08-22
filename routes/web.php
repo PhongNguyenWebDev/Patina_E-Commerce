@@ -64,7 +64,7 @@ Route::middleware('authlogin')->group(function () {
     Route::post('/signIn-page', [LogController::class, 'register']);
     Route::get('/verify-account/{email}', [LogController::class, 'verify'])->name('verify');
     // View của trang quên mật khẩu
-    Route::get('/forgotPassword',[LogController::class, 'viewquenmk'])->name('quenmk');
+    Route::get('/forgotPassword', [LogController::class, 'viewquenmk'])->name('quenmk');
 
     Route::post('/forgotPassword', [LogController::class, 'quenmk']);
     // View của trang đổi mật khẩu
@@ -156,18 +156,18 @@ Route::prefix('/')->name('client.')->group(function () {
     // Trang thanh toán
     Route::middleware('cus')->group(function () {
 
-//        // Trang thay đổi mật khẩu mới
-//        Route::get('/profile-page/update', [ClProfileController::class, 'UpdateSite']);
-//        // Trang Hóa đơn trong hồ sơ cá nhân.
-//        Route::get('/profile-page/bill', [ClBillController::class, 'index'])->name('bill');
+        //        // Trang thay đổi mật khẩu mới
+        //        Route::get('/profile-page/update', [ClProfileController::class, 'UpdateSite']);
+        //        // Trang Hóa đơn trong hồ sơ cá nhân.
+        //        Route::get('/profile-page/bill', [ClBillController::class, 'index'])->name('bill');
 
-        Route::prefix('account')->name('account.')->group(function (){
+        Route::prefix('account')->name('account.')->group(function () {
             // View trang profile
-            Route::get('/profile-page',[ClProfileController::class,'profile'])->name('profile-page') ;
+            Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');
             // View trang danh sách hóa đơn
-            Route::get('/hoa-don',[ClProfileController::class,'hoadon'])->name('hoadon');
+            Route::get('/hoa-don', [ClProfileController::class, 'hoadon'])->name('hoadon');
             // View trang chi tiết hóa đơn
-            Route::get('/hoa-don/{order}',[ClProfileController::class,'showhoadon'])->name('showhoadon');
+            Route::get('/hoa-don/{order}', [ClProfileController::class, 'showhoadon'])->name('showhoadon');
             // View trang cập nhật tài khoản
             Route::get('/update-profile', [ClProfileController::class, 'update'])->name('update');
             Route::post('/update-profile', [ClProfileController::class, 'check_update']);
@@ -196,5 +196,5 @@ Route::prefix('/')->name('client.')->group(function () {
 });
 Route::get('/logout', [LogController::class, 'logout'])->name('logout');
 
-
+Route::post('/vnpay_payment', [ClCheckOutController::class, 'vnpay_payment'])->name('vnpay_payment');
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
