@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Coupon extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'coupons';
     protected $fillable = [
         'code',
@@ -24,6 +25,7 @@ class Coupon extends Model
         'start_date',
         'end_date',
     ];
+    protected $dates = ['deleted_at'];
     public function userCoupons()
     {
         return $this->hasMany(UserCoupon::class);
