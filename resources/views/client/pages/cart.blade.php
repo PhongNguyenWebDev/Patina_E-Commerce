@@ -139,7 +139,7 @@
                         $form.find('input.quantity-input').val(newQuantity);
 
                         // Cập nhật subtotal trên giao diện
-                        $('#total-amount').text('$' + newSubtotal);
+                        $('#total-amount').text(newSubtotal + 'VND');
 
                         console.log('Số lượng đã được cập nhật thành công.');
                     },

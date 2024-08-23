@@ -13,9 +13,9 @@
                     <div class="breadcrumb__text">
                         <h4>Quên Mật Khẩu</h4>
                         <div class="breadcrumb__links">
-                            <a href="">Home</a>
-                            <a href="">Login</a>
-                            <span>Quên mật khẩu</span>
+                            <a class="text-decoration-none text-black" href="{{ route('client.home-page') }}">Home</a> >
+                            <a class="text-decoration-none text-black" href="{{ route('login') }}">Login</a> >
+                            <span class="text-secondary">Quên mật khẩu</span>
                         </div>
                     </div>
                 </div>
@@ -27,9 +27,7 @@
             <div class="col-12">
                 <ul class="nav nav-pills border-0 justify-content-center mb-3">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link pdcatt border-0 active" id="tab-login" data-bs-toggle="tab"
-                                data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"
-                                style="font-size: 20px;background-color:black">QUÊN MẬT KHẨU</button>
+                        <h2>QUÊN MẬT KHẨU</h2>
                     </li>
                 </ul>
 
@@ -44,10 +42,10 @@
                                     <form class="pb-3" method="POST">
                                         @csrf
                                         <div class="mb-4">
-                                            <input type="email" class="form-control p-3"
-                                                   name="email" placeholder="Nhập Email">
+                                            <input type="email" class="form-control p-3" name="email"
+                                                placeholder="Nhập Email">
                                             @error('email')
-                                            <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
+                                                <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
                                                     {{ $message }}</span>
                                             @enderror
                                         </div>

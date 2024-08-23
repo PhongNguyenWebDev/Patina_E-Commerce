@@ -156,8 +156,9 @@
                 </div>
                 <!-- Right -->
                 <div class="col-12 col-xl-6 d-flex justify-xl-content-end justify-content-center">
-                    <a class="text-center" href="">
-                        <img class="w-75" src="{{ asset('assets/clients/img/Products/Shirt/24POLO-CREAM.webp') }}"
+                    <a class="text-center" href="http://127.0.0.1:8000/shop/balo-bama">
+                        <img class="w-75"
+                            src="{{ asset('assets/clients/img/Products/patinaImage/Phụ Kiện/Túi xách/Balo-BAMA-New-Basic-Backpack-NB111.jpg') }}"
                             alt="">
                     </a>
                 </div>

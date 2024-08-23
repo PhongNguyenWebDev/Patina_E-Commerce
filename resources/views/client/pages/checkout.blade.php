@@ -1,11 +1,16 @@
 @extends('layouts.client')
 @section('content')
     @include('client.blocks.banner')
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <!-- Checkout info & payment -->
     <section class="container my-5">
         <!-- Coupon -->
         <div class="row">
-            <div class="col-xl-7 mb-5 voucher-container">
+            <div class="col-xl-7 mb-xl-5 mb-2 voucher-container">
                 <form action="{{ route('client.checkout.apply_coupon') }}" method="POST">
                     @csrf
                     <h5 class="fw-medium">Mã giảm giá</h5>
@@ -21,7 +26,7 @@
                 </div>
 
             </div>
-            <div class="col-xl-5 d-flex align-items-center justify-content-center">
+            <div class="col-xl-5 d-flex align-items-center justify-content-center mb-xl-1 mb-3">
                 <a href="{{ route('client.home-page') }}" class="d-flex align-items-center text-decoration-none nav-link">
                     <h1 class="web-name m-0" style="letter-spacing: -2px">PATINA
                     </h1>
@@ -171,10 +176,12 @@
                 </div>
             </div>
         </form>
-        <form action="{{ route('vnpay_payment') }}" method="post">
-            @csrf
-            <button class="btn btn-success" name="redirect">Thanh toán VNPay</button>
-        </form>
+        <div class="position-absolute btn-vnpay">
+            <form class="m-0" action="{{ route('client.checkout.vnpay_payment') }}" method="post">
+                @csrf
+                <button class="btn btn-success" name="redirect" style="font-size:18px;">Thanh toán VNPay</button>
+            </form>
+        </div>
         <div class="modal fade" id="voucherModal" tabindex="-1" role="dialog" aria-labelledby="voucherModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">

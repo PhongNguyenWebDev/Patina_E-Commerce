@@ -22,26 +22,39 @@ class ProfileRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        // Khởi tạo mảng quy tắc cơ bản
+        $rules = [
             'name' => 'required|min:5',
             'email' => 'required|email|unique:users,email,' . auth()->id(),
-            'password' => [
+        ];
+
+        // Kiểm tra nếu người dùng không sử dụng đăng nhập qua Google
+        if (auth()->user()->social_provider !== 'google') {
+            $rules['password'] = [
                 'required',
                 function ($attribute, $value, $fail) {
                     if (!Hash::check($value, auth()->user()->password)) {
                         return $fail('Mật khẩu không đúng');
                     }
                 }
-            ],
-        ];
+            ];
+        }
+
+        return $rules;
     }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array<string, string>
+     */
     public function messages()
     {
         return [
             'name.required' => 'Họ và tên bắt buộc phải nhập',
             'name.min' => 'Họ và tên lớn hơn :min ký tự',
             'email.required' => 'Email bắt buộc phải nhập',
-            'email.email' => 'Email bắt buộc phải nhập',
+            'email.email' => 'Email không hợp lệ',
             'email.unique' => 'Email đã tồn tại',
             'password.required' => 'Mật khẩu bắt buộc phải nhập',
         ];

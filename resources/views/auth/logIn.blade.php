@@ -34,7 +34,7 @@
                                     <label style="color: var(--secondary-1000-color); padding-right: 2px;"
                                         for="myCheck">Nhớ mật khẩu</label>
                                 </div>
-                                <a href="{{route('quenmk')}}" style="color: var(--secondary-1000-color);">Quên mật
+                                <a href="{{ route('quenmk') }}" style="color: var(--secondary-1000-color);">Quên mật
                                     khẩu?</a>
                             </div>
                         </div>
@@ -46,9 +46,12 @@
                                 value="Tạo tài khoản đăng nhập">
                         </a>
                         <div class="position-relative">
-                            <i class="fa-brands fa-google fa-lg position-absolute ms-5" style="top:70%; left:6%;"></i>
-                            <a class="nav-link" href="{{ route('social.google') }}">
-                                <input type="button" class="btn btn-light form-control mt-4 login-under-2"
+                            {{-- <i class="fa-brands fa-google fa-lg position-absolute ms-5" style="top:70%; left:6%;"></i> --}}
+                            <a class="nav-link nav-link d-flex align-items-center mt-3" href="{{ route('social.google') }}">
+                                <img class="position-absolute" style="left: 60px;"
+                                    src="{{ asset('assets/clients/img/logogg.png') }}" width="26px" height="26px"
+                                    alt="" sizes="" srcset="">
+                                <input type="button" class="btn btn-light form-controllogin-under-2 w-100"
                                     value="Đăng nhập với Google">
                             </a>
                         </div>

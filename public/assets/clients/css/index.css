@@ -175,6 +175,10 @@ body {
         margin-top: 9rem !important; /* Adjust vertical position of the modal */
         margin-left: 5rem !important;
     }
+    .btn-vnpay {
+        top: 88rem !important;
+        left: 14.5rem !important;
+    }
 }
 .carousel-inner {
     width: 100%;
@@ -934,4 +938,8 @@ span {
     padding: 12px 0px;
     transition: opacity 0.5s ease;
     margin: 5px;
+}
+.btn-vnpay {
+    top: 54.3rem;
+    left: 65rem;
 }

@@ -191,10 +191,13 @@ Route::prefix('/')->name('client.')->group(function () {
             Route::post('/', [ClCheckoutController::class, 'checkout']);
             Route::get('/verify/{token}', [ClCheckOutController::class, 'verify'])->name('verify');
             Route::post('/apply-coupon', [ClCheckoutController::class, 'applyCoupon'])->name('apply_coupon');
+            Route::post('/vnpay_payment', [ClCheckOutController::class, 'vnpay_payment'])->name('vnpay_payment');
+            Route::get('/checkout-page/ReturnUrl', [ClCheckoutController::class, 'handleVnpayReturn'])->name('returnUrl');
+            Route::get('/payment-success', [ClCheckoutController::class, 'showSuccessPage'])->name('payment.success');
         });
     });
 });
 Route::get('/logout', [LogController::class, 'logout'])->name('logout');
 
-Route::post('/vnpay_payment', [ClCheckOutController::class, 'vnpay_payment'])->name('vnpay_payment');
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
