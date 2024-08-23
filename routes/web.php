@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdCommentController;
 use App\Http\Controllers\Admin\AdCouponController;
 use App\Http\Controllers\Admin\AdInfoController;
 use App\Http\Controllers\Admin\AdOrderController;
+use App\Http\Controllers\Admin\AdReviewController;
 use App\Http\Controllers\Admin\AdSliderController;
 use App\Http\Controllers\Admin\AdSocialsController;
 use App\Http\Controllers\Admin\AdTimeController;
@@ -92,6 +93,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/user-coupons', [AdCouponController::class, 'userCoupon'])->name('user-coupons');
     // Trang quản lý bình luận
     Route::resource('comments', AdCommentController::class);
+    // Trang quản lý bình luận
+    Route::resource('reviews', AdReviewController::class);
     // Trang quản lý Slider hình ảnh trang chủ
     Route::resource('sliders', AdSliderController::class);
     // Trang quản lý thông tin shop

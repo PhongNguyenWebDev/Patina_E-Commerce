@@ -66,6 +66,10 @@
                         <span> Comment</span></a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.reviews.index') }}"><i class="fa fa-comment-dots"></i>
+                        <span> Đánh Giá</span></a>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-chart-bar"></i><span>Đơn Hàng</span><span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
