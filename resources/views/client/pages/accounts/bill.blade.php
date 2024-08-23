@@ -84,6 +84,10 @@
                                                             <p class="m-0 text-bg-info badge">
                                                                 Đã giao hàng
                                                             </p>
+                                                        @elseif ($item->status == 4)
+                                                            <p class="m-0 text-bg-info badge">
+                                                                Đã thanh toán trước
+                                                            </p>
                                                         @else
                                                             <p class="m-0 text-bg-danger badge">
                                                                 Đã hủy

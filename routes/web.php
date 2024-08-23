@@ -111,8 +111,10 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/orders/dang-giao-hang', [AdOrderController::class, 'index2'])->name('orders.index2');
     // Trang quản lý hóa đơn đã thanh toán
     Route::get('/orders/da-thanh-toan', [AdOrderController::class, 'index3'])->name('orders.index3');
+    // Trang quản lý hóa đơn đã thanh toán
+    Route::get('/orders/da-thanh-toan-vnpay', [AdOrderController::class, 'index4'])->name('orders.index4');
     // Trang quản lý hóa đơn đã hủy
-    Route::get('/orders/da-huy', [AdOrderController::class, 'index4'])->name('orders.index4');
+    Route::get('/orders/da-huy', [AdOrderController::class, 'index5'])->name('orders.index5');
     // Trang chỉnh sửa hóa đơn
     Route::get('/orders/{order}/edit', [AdOrderController::class, 'edit'])->name('orders.edit');
     // Trang cập nhật mới hóa đơn

@@ -63,6 +63,8 @@
                                 Đang giao hàng
                             @elseif ($order->status == 3)
                                 Đã giao hàng
+                            @elseif ($order->status == 4)
+                                Đã thanh toán trước
                             @else
                                 Đã hủy | {{ $order->reason }}
                             @endif

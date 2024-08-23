@@ -66,7 +66,7 @@
                         <span> Comment</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.reviews.index') }}"><i class="fa fa-comment-dots"></i>
+                    <a href="{{ route('admin.reviews.index') }}"><i class="fa-regular fa-star"></i>
                         <span> Đánh Giá</span></a>
                 </li>
                 <li>
@@ -79,8 +79,10 @@
                                     Xác Nhận</span></a></li>
                         <li><a href="{{ route('admin.orders.index2') }}"><i class="fas fa-shipping-fast"></i><span>Đang
                                     Giao Hàng</span></a></li>
+                        <li><a href="{{ route('admin.orders.index4') }}"><i
+                                    class="fa-regular fa-credit-card"></i><span>Đã Trả Trước</span></a></li>
                         <li><a href="{{ route('admin.orders.index3') }}"><i
-                                    class="fas fa-money-check-alt"></i></i><span>Đã Giao Hàng</span></a></li>
+                                    class="fas fa-money-check-alt"></i><span>Đã Giao Hàng</span></a></li>
                         <li><a href="{{ route('admin.orders.index4') }}"><i class="fas fa-times"></i><span>Đã
                                     Hủy</span></a></li>
                     </ul>

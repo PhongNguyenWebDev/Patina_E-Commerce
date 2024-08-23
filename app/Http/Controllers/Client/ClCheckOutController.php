@@ -279,10 +279,8 @@ class ClCheckOutController extends Controller
 
     public function handleVnpayReturn(Request $request)
     {
-        // Lấy tất cả dữ liệu từ URL
         $data = $request->all();
         $user = auth()->user();
-        // Kiểm tra hash bảo mật (nếu cần)
         $vnp_HashSecret = env('VNP_HASH_SECRET');
         $vnpSecureHash = $data['vnp_SecureHash'];
         unset($data['vnp_SecureHash']);
@@ -299,14 +297,11 @@ class ClCheckOutController extends Controller
         $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
 
         if ($secureHash === $vnpSecureHash) {
-            // Kiểm tra trạng thái giao dịch
             if ($data['vnp_TransactionStatus'] == '02') {
-                // Quay lại trang checkout với thông báo lỗi
                 return redirect()->route('client.checkout.index')
                     ->with('ermsg', 'Đơn hàng chưa được thanh toán. Vui lòng thử lại.');
             }
 
-            // Lưu giao dịch vào DB
             $transaction = VnpayTransaction::create([
                 'vnp_TxnRef' => $data['vnp_TxnRef'],
                 'vnp_Amount' => $data['vnp_Amount'],
@@ -321,32 +316,57 @@ class ClCheckOutController extends Controller
                 'vnp_TransactionStatus' => $data['vnp_TransactionStatus'],
                 'vnp_SecureHash' => $vnpSecureHash,
             ]);
+
+            // Lưu đơn hàng vào bảng orders
+            $orderData = [
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'address' => $user->address,
+                'coupon_id' => Session::get('applied_coupon_id'),
+                'status' => 4, // Trạng thái đơn hàng đã thanh toán
+                'token' => Str::random(40),
+            ];
+
+            $order = Order::create($orderData);
+
+            // Lưu chi tiết đơn hàng vào bảng order_details
+            foreach ($user->carts as $cart) {
+                $orderDetailData = [
+                    'order_id' => $order->id,
+                    'product_id' => $cart->product_id,
+                    'name' => $cart->product->name,
+                    'price' => $cart->price,
+                    'quantity' => $cart->quantity,
+                ];
+                OrderDetail::create($orderDetailData);
+
+                // Cập nhật tồn kho sản phẩm
+                $colorId = Color::where('name', $cart->color)->first()->id;
+                $sizeId = Size::where('name', $cart->size)->first()->id;
+                $productDetail = ProductDetail::where('product_id', $cart->product_id)
+                    ->where('color_id', $colorId)
+                    ->where('size_id', $sizeId)
+                    ->first();
+
+                if ($productDetail) {
+                    $productDetail->quantity -= $cart->quantity;
+                    $productDetail->save();
+
+                    $product = Product::find($cart->product_id);
+                    $product->total_buy += $cart->quantity;
+                    $product->save();
+                }
+            }
+
+            // Xóa giỏ hàng của người dùng
             Cart::where('user_id', $user->id)->delete();
+
             // Gửi thông báo thanh toán thành công
-            return redirect()->route('client.checkout.payment.success', ['amount' => $transaction->vnp_Amount]);
+            return redirect()->route('client.account.hoadon')->with('ssmsg', 'Thanh toán thành công');
         } else {
-            // Gửi thông báo lỗi
             return response()->json(['message' => 'Xác thực thất bại!'], 400);
         }
-    }
-
-    public function showSuccessPage(Request $request)
-    {
-        $amount = $request->query('amount');
-        $title = 'Thanh toán thành công';
-        // Lấy thông tin giao dịch từ cơ sở dữ liệu dựa trên amount (hoặc bạn có thể sử dụng vnp_TxnRef hoặc một tham số khác)
-        $transaction = VnpayTransaction::where('vnp_Amount', $amount)->first();
-
-        if (!$transaction) {
-            return redirect('/')->with('error', 'Giao dịch không tìm thấy!');
-        }
-
-        // Hiển thị trang thành công với thông tin giao dịch
-        return view('client.pages.success', [
-            'title' => $title,
-            'amount' => $transaction->vnp_Amount,
-            'txnRef' => $transaction->vnp_TxnRef,
-            'orderInfo' => $transaction->vnp_OrderInfo
-        ]);
     }
 }
