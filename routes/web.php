@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdCommentController;
 use App\Http\Controllers\Admin\AdCouponController;
 use App\Http\Controllers\Admin\AdInfoController;
 use App\Http\Controllers\Admin\AdOrderController;
+use App\Http\Controllers\Admin\AdReviewController;
 use App\Http\Controllers\Admin\AdSliderController;
 use App\Http\Controllers\Admin\AdSocialsController;
 use App\Http\Controllers\Admin\AdTimeController;
@@ -92,6 +93,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/user-coupons', [AdCouponController::class, 'userCoupon'])->name('user-coupons');
     // Trang quản lý bình luận
     Route::resource('comments', AdCommentController::class);
+    // Trang quản lý bình luận
+    Route::resource('reviews', AdReviewController::class);
     // Trang quản lý Slider hình ảnh trang chủ
     Route::resource('sliders', AdSliderController::class);
     // Trang quản lý thông tin shop
@@ -108,8 +111,10 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/orders/dang-giao-hang', [AdOrderController::class, 'index2'])->name('orders.index2');
     // Trang quản lý hóa đơn đã thanh toán
     Route::get('/orders/da-thanh-toan', [AdOrderController::class, 'index3'])->name('orders.index3');
+    // Trang quản lý hóa đơn đã thanh toán
+    Route::get('/orders/da-thanh-toan-vnpay', [AdOrderController::class, 'index4'])->name('orders.index4');
     // Trang quản lý hóa đơn đã hủy
-    Route::get('/orders/da-huy', [AdOrderController::class, 'index4'])->name('orders.index4');
+    Route::get('/orders/da-huy', [AdOrderController::class, 'index5'])->name('orders.index5');
     // Trang chỉnh sửa hóa đơn
     Route::get('/orders/{order}/edit', [AdOrderController::class, 'edit'])->name('orders.edit');
     // Trang cập nhật mới hóa đơn

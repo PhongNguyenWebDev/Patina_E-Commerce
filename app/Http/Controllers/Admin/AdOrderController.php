@@ -38,8 +38,14 @@ class AdOrderController extends Controller
     }
     public function index4()
     {
-        $this->data['title'] = 'Hóa Đơn Đã Hủy';
+        $this->data['title'] = 'Hóa Đơn Đã Thanh Toán VnPay';
         $orders = Order::where('status',4)->orderBy('id', 'desc')->paginate(6);
+        return view('admin.pages.order.orders', $this->data, compact('orders'));
+    }
+    public function index5()
+    {
+        $this->data['title'] = 'Hóa Đơn Đã Hủy';
+        $orders = Order::where('status',5)->orderBy('id', 'desc')->paginate(6);
         return view('admin.pages.order.orders', $this->data, compact('orders'));
     }
 

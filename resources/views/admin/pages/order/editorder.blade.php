@@ -81,8 +81,9 @@
                                 <option value="0" {{ $order->status == 0 ? 'selected' : '' }}>Chưa xác nhận</option>
                                 <option value="1" {{ $order->status == 1 ? 'selected' : '' }}>Đã xác nhận</option>
                                 <option value="2" {{ $order->status == 2 ? 'selected' : '' }}>Đang giao hàng</option>
+                                <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Đã Thanh Toán VnPay</option>
                                 <option value="3" {{ $order->status == 3 ? 'selected' : '' }}>Đã giao hàng</option>
-                                <option value="4" {{ $order->status == 4 ? 'selected' : '' }}>Hủy</option>
+                                <option value="5" {{ $order->status == 5 ? 'selected' : '' }}>Hủy</option>
                             </select>
                             <input type="text" name="reason" id="reason" class="form-control" style="display: none;">
                             <button type="submit" class="btn btn-primary my-2">Xác nhận</button>
@@ -124,7 +125,7 @@
     <script>
         function toggleReasonInput(status) {
             var reasonInput = document.getElementById('reason');
-            if (status === '4') { // '4' corresponds to Đã hủy (Canceled)
+            if (status === '5') { // '5' corresponds to Đã hủy (Canceled)
                 reasonInput.style.display = 'block'; // Show reason input field
             } else {
                 reasonInput.style.display = 'none'; // Hide reason input field
