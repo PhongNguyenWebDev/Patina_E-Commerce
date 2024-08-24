@@ -173,8 +173,8 @@
                     <div class="col-xl-12 py-5">
                         <ul class="mt-tabs p-0 text-center text-uppercase d-flex justify-content-center">
                             <li class="nav-link me-3"><a class="nav-link item-detail fs-5" href="#tab1"
-                                    class="active">DESCRIPTION</a></li>
-                            <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab3">REVIEWS
+                                    class="active">Mô tả</a></li>
+                            <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab3">Đánh giá
                                     ({{ $reviewCount }})</a>
                             </li>
                         </ul>
@@ -188,42 +188,36 @@
                                     <div id="reviews">
                                         @include('client.pages.partials.reviews')
                                     </div>
-                                    @if (!$userReview)
-                                        <form action="{{ route('client.review', $product->slug) }}" method="POST"
-                                            class="p-commentform" id="formRating">
-                                            @csrf
-                                            <fieldset>
-                                                <h2 class="fs-4 fw-semibold py-2">Đánh giá</h2>
-                                                <p class="stars">
-                                                    <span>
-                                                        <a class="star-1" href="#" data-rating="1">1</a>
-                                                        <a class="star-2" href="#" data-rating="2">2</a>
-                                                        <a class="star-3" href="#" data-rating="3">3</a>
-                                                        <a class="star-4" href="#" data-rating="4">4</a>
-                                                        <a class="star-5" href="#" data-rating="5">5</a>
-                                                    </span>
-                                                </p>
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <input type="hidden" name="rating_point" id="rating_point"
-                                                    value="">
-                                                <input type="hidden" name="product_detail_id"
-                                                    value="{{ $product->productDetails->first()->id }}">
-                                                <div class="d-flex justify-content-between">
-                                                    <label class="col-xl-1 col-12 fs-5"></label>
-                                                    <textarea name="reviews" id="reviews" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
-                                                </div>
-                                                <div class="w-25 text-center pe-xl-2">
-                                                    <button type="button"
-                                                        class="btn border my-2 me-xl-5 shadow-sm mb-5 rounded btn-dark"
-                                                        id="submitReview">Gửi</button>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    @else
-                                        <div class="alert alert-info" role="alert">
-                                            Bạn đã đánh giá sản phẩm này trước đó.
-                                        </div>
-                                    @endif
+                                    <form action="{{ route('client.review', $product->slug) }}" method="POST"
+                                        class="p-commentform" id="formRating">
+                                        @csrf
+                                        <fieldset>
+                                            <h2 class="fs-4 fw-semibold py-2">Đánh giá</h2>
+                                            <p class="stars">
+                                                <span>
+                                                    <a class="star-1" href="#" data-rating="1">1</a>
+                                                    <a class="star-2" href="#" data-rating="2">2</a>
+                                                    <a class="star-3" href="#" data-rating="3">3</a>
+                                                    <a class="star-4" href="#" data-rating="4">4</a>
+                                                    <a class="star-5" href="#" data-rating="5">5</a>
+                                                </span>
+                                            </p>
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input type="hidden" name="rating_point" id="rating_point" value="">
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <div class="d-flex justify-content-between">
+                                                <label class="col-xl-1 col-12 fs-5"></label>
+                                                <textarea name="reviews" id="content-review" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
+                                            </div>
+                                            <div class="w-25 text-center pe-xl-2">
+                                                <button type="submit"
+                                                    class="btn border my-2 me-xl-5 shadow-sm mb-5 rounded btn-dark"
+                                                    id="submitReview">Gửi</button>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                    <div id="review-message" class="alert" style="display: none;"></div>
+
                                 </div>
                             </div>
                         </div>
@@ -327,7 +321,7 @@
                     updateStockQuantity(sizeInput.value); // Cập nhật tồn kho cho kích cỡ đầu tiên
                 } else {
                     stockQuantityElement.textContent =
-                    '0'; // Không có kích cỡ nào hợp lệ, đặt số lượng tồn kho là 0
+                        '0'; // Không có kích cỡ nào hợp lệ, đặt số lượng tồn kho là 0
                 }
             };
 
@@ -367,58 +361,67 @@
         });
     </script>
     <script>
+        var userHasReviewed = @json($userReview);
+    </script>
+    <script>
         $(document).ready(function() {
-            // Xử lý sự kiện khi người dùng gửi đánh giá
-            $('#submitReview').on('click', function(e) {
-                e.preventDefault();
+            // Kiểm tra xem người dùng đã đánh giá sản phẩm chưa khi tải trang
+            if (userHasReviewed) {
+                $('#formRating').hide(); // Ẩn form nếu đã đánh giá
+                $('#review-message').removeClass('alert-success').addClass('alert-info').text(
+                    'Bạn đã đánh giá sản phẩm này trước đó.').show();
+            }
 
-                var formData = $('#formRating').serialize();
+            // Xử lý sự kiện khi người dùng gửi đánh giá
+            $('#formRating').on('submit', function(e) {
+                e.preventDefault();
+                var form = $(this);
+                var url = form.attr('action');
+                var data = form.serialize();
 
                 $.ajax({
-                    url: "{{ route('client.review', $product->slug) }}",
-                    type: "POST",
-                    data: formData,
-                    dataType: "json",
+                    url: url,
+                    type: 'POST',
+                    data: data,
+                    dataType: 'json',
                     success: function(response) {
-                        console.log(response.message);
-                        fetchReviews
-                            (); // Sau khi gửi thành công, cập nhật lại danh sách đánh giá
+                        if (response.success) {
+                            form.find('textarea[name="reviews"]').val(
+                                ''); // Xóa nội dung textarea
+                            $('#reviews').html(response
+                                .reviewsHtml); // Cập nhật danh sách đánh giá
+                            $('#review-message').hide(); // Ẩn thông báo nếu thành công
+
+                            // Cập nhật giao diện sau khi gửi đánh giá
+                            $('#formRating').hide(); // Ẩn form sau khi gửi đánh giá thành công
+                            $('#review-message').removeClass('alert-success').addClass(
+                                    'alert-info').text('Cảm ơn bạn đã đánh giá sản phẩm.')
+                                .show();
+                        } else {
+                            if (response.message) {
+                                $('#review-message').removeClass('alert-success').addClass(
+                                    'alert-danger').text(response.message).show();
+                            } else if (response.error) {
+                                $('#review-message').removeClass('alert-success').addClass(
+                                    'alert-danger').text(response.error).show();
+                            }
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
-                        // Xử lý lỗi nếu cần
+                        $('#review-message').removeClass('alert-success').addClass(
+                                'alert-danger').text('Có lỗi xảy ra. Vui lòng thử lại sau.')
+                            .show();
                     }
                 });
             });
-
-            // Hàm AJAX để lấy danh sách đánh giá
-            function fetchReviews() {
-                $.ajax({
-                    url: "{{ route('client.reviews', $product->slug) }}",
-                    type: "GET",
-                    dataType: "html",
-                    success: function(response) {
-                        $('#reviews').html(response); // Cập nhật nội dung danh sách đánh giá
-                        $('#formRating')[0].reset(); // Xóa nội dung form sau khi gửi thành công
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                        // Xử lý lỗi nếu cần
-                    }
-                });
-            }
-
-            // Gọi hàm fetchReviews khi trang được tải
-            fetchReviews();
 
             // Xử lý chọn số sao
             $('.stars a').on('click', function(e) {
                 e.preventDefault();
                 $('.stars span, .stars a').removeClass('active');
-
                 $(this).addClass('active').prevAll().addClass('active');
                 $(this).find('span').addClass('active');
-
                 $('#rating_point').val($(this).attr('data-rating'));
             });
         });

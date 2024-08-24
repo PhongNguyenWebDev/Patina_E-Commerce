@@ -54,7 +54,7 @@
                                             <tr>
                                                 <td>{{ $review->user_id }}</td>
                                                 <td>{{ $review->user->name }}</td>
-                                                <td>{{ $review->productDetail->product->name }}</td>
+                                                <td>{{ $review->product->name }}</td>
                                                 <td>{{ $review->reviews }}</td>
                                                 <td>{{ $review->rating_point }}</td>
                                                 <td>{!! $review->status == 0 ? '<a class="btn btn-primary">Hiện</a>' : '<a class="btn btn-danger">Ẩn</a>' !!}

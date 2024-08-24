@@ -88,10 +88,16 @@
                         <hr style="border: 1px solid; color: var(--primary-1000-color);">
                         <div>
                             <div class="form-check form-check-inline my-3">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" checked
-                                    id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1" style="font-size: 18px">Trả tiền
+                                <input class="form-check-input" type="radio" name="payment_method" id="cashPayment"
+                                    value="cash" checked>
+                                <label class="form-check-label" for="cashPayment" style="font-size: 18px">Trả tiền
                                     mặt</label>
+                            </div>
+                            <div class="form-check form-check-inline my-3">
+                                <input class="form-check-input" type="radio" name="payment_method" id="onlinePayment"
+                                    value="online">
+                                <label class="form-check-label" for="onlinePayment" style="font-size: 18px">Thanh toán
+                                    online</label>
                             </div>
                         </div>
                     </div>
@@ -156,7 +162,7 @@
                     <hr style="border: 1px solid; color: var(--primary-1000-color);">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4>Tổng tiền</h4>
-                        @if ($totalPrice > 500)
+                        @if ($totalPrice > 500000)
                             <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500,000)</small>
                             <h6>
                                 <del style="color: red;">{{ number_format($totalPrice) }}
@@ -170,16 +176,16 @@
                             </h6>
                         @endif
                     </div>
-                    <button class="btn btn-dark my-2 fw-medium" style="font-size:18px">Thanh
+                    <button id="cashPaymentButton" class="btn btn-dark my-2 fw-medium" style="font-size:18px">Thanh
                         toán</button>
 
                 </div>
             </div>
         </form>
-        <div class="position-absolute btn-vnpay">
+        <div id="vnpayPaymentButton" class="position-absolute btn-vnpay">
             <form class="m-0" action="{{ route('client.checkout.vnpay_payment') }}" method="post">
                 @csrf
-                <button class="btn btn-success" name="redirect" style="font-size:18px;">Thanh toán VNPay</button>
+                <button class="btn btn-dark" name="redirect" style="font-size:18px;">Thanh toán VNPay</button>
             </form>
         </div>
         <div class="modal fade" id="voucherModal" tabindex="-1" role="dialog" aria-labelledby="voucherModalLabel"
@@ -237,3 +243,29 @@
         </div>
     </section>
 @endsection
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const cashPayment = document.getElementById('cashPayment');
+        const onlinePayment = document.getElementById('onlinePayment');
+        const cashPaymentButton = document.getElementById('cashPaymentButton');
+        const vnpayPaymentButton = document.getElementById('vnpayPaymentButton');
+
+        // Hàm xử lý hiển thị nút
+        function togglePaymentButtons() {
+            if (cashPayment.checked) {
+                cashPaymentButton.style.display = 'block';
+                vnpayPaymentButton.style.display = 'none';
+            } else if (onlinePayment.checked) {
+                cashPaymentButton.style.display = 'none';
+                vnpayPaymentButton.style.display = 'block';
+            }
+        }
+
+        // Lắng nghe sự kiện thay đổi
+        cashPayment.addEventListener('change', togglePaymentButtons);
+        onlinePayment.addEventListener('change', togglePaymentButtons);
+
+        // Gọi hàm lần đầu tiên để thiết lập nút theo radio đã chọn
+        togglePaymentButtons();
+    });
+</script>

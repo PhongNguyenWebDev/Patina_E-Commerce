@@ -33,25 +33,20 @@ class ClProductController extends Controller
             $color->sale_price = $detail->sale_price ? $detail->sale_price : $detail->price;
             return $color;
         });
-        $productDetail = $product->productDetails->first();
-
-        if (!$productDetail) {
-            return abort(404, 'Product details not found');
-        }
         $categoryId = $product->category_id;
 
         $relatedProducts = $this->relatedProductsByCategory($categoryId, $product->id);
 
-        $reviews = $this->showReview($productDetailId);
+        $reviews = $this->showReview($product->id);
         $user = auth()->user();
         $userReview = null;
 
         if ($user) {
-            $userReview = Review::where('product_detail_id', $product->productDetails->first()->id)
+            $userReview = Review::where('product_id', $product->id)
                 ->where('user_id', $user->id)
                 ->first();
         }
-        $reviewCount = Review::where('product_detail_id', $product->productDetails->first()->id)->count();
+        $reviewCount = Review::where('product_id', $product->id)->count();
         return view('client.pages.product-detail', compact('title', 'product', 'uniqueColors', 'colorsWithPrices', 'relatedProducts', 'reviews', 'userReview', 'reviewCount'));
     }
     public function relatedProductsByCategory($categoryId, $productId)
@@ -67,14 +62,12 @@ class ClProductController extends Controller
     public function review(Request $request)
     {
         try {
-            // Validate the incoming request data
             $request->validate([
                 'reviews' => 'required|string',
                 'rating_point' => 'required|integer|between:1,5',
-                'product_detail_id' => 'required|exists:product_detail,id',
+                'product_id' => 'required|exists:products,id',
             ]);
 
-            // Check if the user has purchased the product
             $hasPurchased = Order::where('user_id', Auth::id())
                 ->whereHas('orderDetails', function ($query) use ($request) {
                     $query->where('product_id', $request->input('product_id'));
@@ -85,9 +78,8 @@ class ClProductController extends Controller
                 return response()->json(['message' => 'You need to purchase the product before reviewing.'], 403);
             }
 
-            // Check if the user has already reviewed the product
             $hasReviewed = Review::where('user_id', Auth::id())
-                ->where('product_detail_id', $request->input('product_detail_id'))
+                ->where('product_id', $request->input('product_id'))
                 ->exists();
 
             if ($hasReviewed) {
@@ -98,34 +90,33 @@ class ClProductController extends Controller
             $review->reviews = $request->input('reviews');
             $review->rating_point = $request->input('rating_point');
             $review->user_id = Auth::id();
-            $review->product_detail_id = $request->input('product_detail_id');
+            $review->product_id = $request->input('product_id');
             $review->status = 0;
             $review->save();
 
-            return response()->json(['message' => 'Review submitted successfully.']);
+            // Lấy danh sách reviews
+            $reviews = $this->showReview($request->input('product_id'));
+
+            // Render html reviews
+            $reviewsHtml = view('client.pages.partials.reviews', compact('reviews'))->render();
+
+            return response()->json([
+                'success' => true,
+                'reviewsHtml' => $reviewsHtml,
+                'userReview' => true,
+            ]);
         } catch (\Exception $e) {
             Log::error('Review submission error: ' . $e->getMessage());
+            Log::error('Error file: ' . $e->getFile());
+            Log::error('Error line: ' . $e->getLine());
             return response()->json(['message' => 'An error occurred while submitting your review. Please try again later.'], 500);
         }
     }
-
-
-
-    public function showReview($productDetailId)
+    public function showReview($productId)
     {
         $reviews = Review::with('user')
-            ->where('product_detail_id', $productDetailId)
+            ->where('product_id', $productId)
             ->get();
-
         return $reviews;
-    }
-    public function fetchReviews($productSlug)
-    {
-        $product = Product::where('slug', $productSlug)->firstOrFail();
-        $productDetailId = $product->productDetails->pluck('id')->first();
-
-        $reviews = $this->showReview($productDetailId);
-
-        return View::make('client.pages.partials.reviews', compact('reviews'))->render();
     }
 }

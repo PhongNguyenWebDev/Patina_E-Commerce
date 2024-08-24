@@ -176,8 +176,8 @@ body {
         margin-left: 5rem !important;
     }
     .btn-vnpay {
-        top: 88rem !important;
-        left: 14.5rem !important;
+        top: 85.3rem !important;
+        left: 0.8rem !important;
     }
 }
 .carousel-inner {
@@ -940,6 +940,6 @@ span {
     margin: 5px;
 }
 .btn-vnpay {
-    top: 54.3rem;
-    left: 65rem;
+    top: 52.95rem;
+    left: 56rem;
 }

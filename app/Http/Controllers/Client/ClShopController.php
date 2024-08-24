@@ -31,19 +31,19 @@ class ClShopController extends Controller
             $product->whereIn('category_id', $categoryIds);
         }
         $priceRanges = [
-            '0-499' => Product::whereBetween('price', [0, 499])->count(),
-            '500-999' => Product::whereBetween('price', [500, 999])->count(),
-            '1000-1999' => Product::whereBetween('price', [1000, 1999])->count(),
-            '2000-3999' => Product::whereBetween('price', [2000, 3999])->count(),
-            '4000-4999' => Product::whereBetween('price', [4000, 4999])->count(),
-            '5000+' => Product::where('price', '>=', 5000)->count(),
+            '0-50000' => Product::whereBetween('price', [0, 50000])->count(),
+            '50000-150000' => Product::whereBetween('price', [50000, 150000])->count(),
+            '150000-300000' => Product::whereBetween('price', [150000, 300000])->count(),
+            '300000-500000' => Product::whereBetween('price', [300000, 500000])->count(),
+            '500000-2000000' => Product::whereBetween('price', [500000, 2000000])->count(),
+            '2000000+' => Product::where('price', '>=', 2000000)->count(),
         ];
         if ($request->has('price_range')) {
             $priceRange = explode('-', $request->input('price_range'));
             if (count($priceRange) == 2) {
                 $product->whereBetween('price', [$priceRange[0], $priceRange[1]]);
-            } elseif ($priceRange[0] == '5000+') {
-                $product->where('price', '>=', '400000');
+            } elseif ($priceRange[0] == '2000000+') {
+                $product->where('price', '>=', '2000000');
             }
         }
         if ($request->has('brand')) {

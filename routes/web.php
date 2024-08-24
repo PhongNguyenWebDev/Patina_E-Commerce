@@ -160,12 +160,6 @@ Route::prefix('/')->name('client.')->group(function () {
     });
     // Trang thanh toán
     Route::middleware('cus')->group(function () {
-
-        //        // Trang thay đổi mật khẩu mới
-        //        Route::get('/profile-page/update', [ClProfileController::class, 'UpdateSite']);
-        //        // Trang Hóa đơn trong hồ sơ cá nhân.
-        //        Route::get('/profile-page/bill', [ClBillController::class, 'index'])->name('bill');
-
         Route::prefix('account')->name('account.')->group(function () {
             // View trang profile
             Route::get('/profile-page', [ClProfileController::class, 'profile'])->name('profile-page');

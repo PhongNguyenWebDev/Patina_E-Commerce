@@ -29,7 +29,7 @@ class ClCommentController extends Controller
             ]);
 
             // Lấy danh sách bình luận mới nhất để cập nhật
-            $comments = $blog->comments()->where('status', 1)->orderBy('created_at', 'desc')->get();
+            $comments = $blog->comments()->where('status', 1)->orderBy('created_at', 'asc')->get();
 
             // Render HTML cho danh sách bình luận
             $commentsHtml = view('client.pages.partials.comments', compact('comments'))->render();

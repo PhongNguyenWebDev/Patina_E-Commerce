@@ -107,21 +107,22 @@
                     <ul class="py-2 px-1">
                         @php
                             $priceRangesLabels = [
-                                '0-499' => 'Dưới $500',
-                                '500-999' => '$500 - $999',
-                                '1000-1999' => '$1000 - $1999',
-                                '2000-3999' => '$2000 - $3999',
-                                '4000-4999' => '$4000 - $4999',
-                                '5000+' => 'Over $5000',
+                                '0-50000' => 'Dưới 50000 VND',
+                                '50000-150000' => '50000 - 150000 VND',
+                                '150000-300000' => '150000-300000 VND',
+                                '300000-500000' => '300000-500000 VND',
+                                '500000-2000000' => '500000-2000000 VND',
+                                '2000000+' => 'Trên 2000000 VND',
                             ];
                         @endphp
                         @foreach ($priceRangesLabels as $range => $label)
                             <li class="d-flex align-items-center justify-content-between">
-                                <a href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => $range, 'category' => $categorySlug])) }}"
+                                <a style="font-size: 16px;"
+                                    href="{{ route('client.shop-page', array_merge(request()->except('price_range'), ['price_range' => $range, 'category' => $categorySlug])) }}"
                                     class="nav-link select-filter {{ request('price_range') === $range ? 'active' : '' }}">
                                     {{ $label }}
                                 </a>
-                                <p style="font-size: var(--font-size); margin: 0;" class="amout">
+                                <p style="font-size:16px; margin: 0;" class="amout">
                                     {{ $priceRanges[$range] ?? 0 }}
                                 </p>
                             </li>

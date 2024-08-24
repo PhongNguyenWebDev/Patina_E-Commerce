@@ -112,7 +112,6 @@
                     if (response.success) {
                         // Xóa nội dung textarea sau khi gửi thành công
                         form.find('textarea[name="content"]').val('');
-
                         // Cập nhật danh sách bình luận
                         $('#commentsContainer').html(response.commentsHtml);
                     } else {
