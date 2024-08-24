@@ -1,13 +1,14 @@
 @extends('layouts.client')
 @section('content')
     @include('client.blocks.banner')
-    <section class="breadcrumb-option my-xl-5">
+    <section class="breadcrumb-option my-xl-5 my-2">
         <div class="container">
             <h4>Thông tin cá nhân</h4>
             <div class="col-lg-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-dark" href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a class="text-dark" href="{{ route('client.home-page') }}">Trang chủ</a>
+                        </li>
                         <li class="breadcrumb-item"><a class="text-dark" href="#">Tài khoản</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Cập nhật tài khoản</li>
                     </ol>
@@ -15,27 +16,29 @@
             </div>
         </div>
     </section>
-    <section class="container my-5 pb-5">
-        <div class="d-flex row" style="margin-bottom: 3rem">
-            <div class="col-lg-4 p-0 ">
-                <ul class="list-group rounded-0">
-                    <li class="list-group-item text-center" style="background: var(--primary-1000-color);">
-                        <h4 class="m-0 my-2">Thông tin cá nhân</h4>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 text-uppercase" style="font-size: 18px;"
-                            data-target="#update-info" href="{{ route('client.account.update') }}">Cập
-                            nhật</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a class="list-group-item list-group-item-action border-0 text-uppercase" style="font-size: 18px;"
-                            data-target="#invoice-info" href="{{ route('client.account.hoadon') }}">Hóa
-                            đơn</a>
-                    </li>
-                </ul>
+    <section class="container my-xl-5 pb-xl-5">
+        <div class="d-flex row">
+            <div class="col-lg-4 col-md-4 col-12 my-xl-0 my-3 ">
+                <div class="nav nav-pills flex-column" role="tablist">
+                    <x-nav-account href="{{ route('client.account.profile-page') }}" :active="request()->routeIs('client.account.profile-page')">
+                        THÔNG TIN TÀI KHOẢN
+                    </x-nav-account>
+
+                    <x-nav-account href="{{ route('client.account.hoadon') }}" :active="request()->routeIs('client.account.hoadon')">
+                        HÓA ĐƠN
+                    </x-nav-account>
+
+                    <x-nav-account href="{{ route('client.account.update') }}" :active="request()->routeIs('client.account.update')">
+                        THAY ĐỔI THÔNG TIN
+                    </x-nav-account>
+
+                    <x-nav-account href="{{ route('client.account.updatePass') }}" :active="request()->routeIs('client.account.updatePass')">
+                        ĐỔI MẬT KHẨU
+                    </x-nav-account>
+                </div>
             </div>
             <div class="col-lg-8 d-flex justify-content-center">
-                <div class="container ">
+                <div class="container my-xl-0 my-5">
                     <div id="update-info" class="info-content">
                         <div class="row flex-lg-nowrap ">
                             <div class="col">
@@ -104,25 +107,9 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                {{--                                                                <div class="mb-2"><b>Thay đổi mật khẩu</b></div> --}}
-                                                                {{--                                                                <div class="row"> --}}
-                                                                {{--                                                                    <div class="col"> --}}
-                                                                {{--                                                                        <div class="form-group"> --}}
-                                                                {{--                                                                            <label>Confirm <span --}}
-                                                                {{--                                                                                    class="d-none d-xl-inline">Password</span></label> --}}
-                                                                {{--                                                                            <input class="form-control p-2" type="password" --}}
-                                                                {{--                                                                                placeholder="Vui lòng nhập mật khẩu hiện tại của bạn vào đây để có thể thay đổi mật khẩu"> --}}
-                                                                {{--                                                                        </div> --}}
-                                                                {{--                                                                    </div> --}}
-                                                                {{--                                                                </div> --}}
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    {{--                                                    <div class="row mt-3"> --}}
-                                                    {{--                                                        <div class="col d-flex justify-content-end"> --}}
-                                                    {{--                                                            <button class="btn btn-primary" type="submit">Thay đổi</button> --}}
-                                                    {{--                                                        </div> --}}
-                                                    {{--                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>

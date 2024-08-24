@@ -6,10 +6,10 @@
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
                 aria-label="breadcrumb">
                 <ol class="breadcrumb align-items-center d-flex">
-                    <li class="breadcrumb-item "><a href="/" style="color: var(--primary-900-color);">Home</a></li>
+                    <li class="breadcrumb-item "><a href="/" style="color: var(--primary-900-color);">Trang chủ</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('client.shop-page') }}"
-                            style="color: var(--primary-900-color);">Shop</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Detail: {{ $product->name }}</li>
+                            style="color: var(--primary-900-color);">Cửa hàng</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Chi tiết: {{ $product->name }}</li>
                 </ol>
             </nav>
             <h3>{{ $product->name }}</h3>
@@ -18,8 +18,8 @@
     </section>
     <!-- Item Detail -->
     <section class="container">
-        <div class="row g-xl-5">
-            <div class="col-12 col-xl-5 d-flex justify-content-center">
+        <div class="row g-xl-5 my-1">
+            <div class="col-12 col-xl-5 d-flex justify-content-center my-xl-0 my-2">
                 <div class="row w-100">
                     <div class="container p-0 position-relative mb-3">
                         <div class="container position-absolute top-50">
@@ -33,21 +33,21 @@
                         <img class="w-100" id="mainImage" src="{{ $product->images }}" alt="">
                     </div>
                     <div class="container-fluid p-0">
-                        <div class="row h-50">
+                        <div class="row">
                             @foreach ($product->gallery as $item)
-                                <div class="col h-75">
-                                    <img class="img-fluid thumbnail h-100" src="{{ $item->name }}" alt="">
+                                <div class="col-3 col-md-3 col-lg-3">
+                                    <img class="img-fluid thumbnail" src="{{ $item->name }}" alt="">
                                 </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-xl-7 my-5">
+            <div class="col-12 col-xl-7 my-xl-5 my-2">
                 <div class="column w-100">
                     <!-- Price Products -->
                     <div class="d-flex flex-row justify-content-between">
-                        <div class="d-flex flex-row">
+                        <div class="d-flex flex-row align-items-center">
                             @if ($product->sale_price > 0)
                                 <h5 id="price" class="text-danger pe-3">
                                     {{ number_format($product->price, 0, ',', ',') }} VND
@@ -172,8 +172,8 @@
                 <div class="row">
                     <div class="col-xl-12 py-5">
                         <ul class="mt-tabs p-0 text-center text-uppercase d-flex justify-content-center">
-                            <li class="nav-link me-3"><a class="nav-link item-detail fs-5" href="#tab1"
-                                    class="active">Mô tả</a></li>
+                            <li class="nav-link me-3"><a class="nav-link item-detail fs-5 active" href="#tab1">Mô
+                                    tả</a></li>
                             <li class="nav-link"><a class="nav-link item-detail fs-5" href="#tab3">Đánh giá
                                     ({{ $reviewCount }})</a>
                             </li>
@@ -205,14 +205,13 @@
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <input type="hidden" name="rating_point" id="rating_point" value="">
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                            <div class="d-flex justify-content-between">
+                                            <div class="form-floating">
                                                 <label class="col-xl-1 col-12 fs-5"></label>
-                                                <textarea name="reviews" id="content-review" class="w-100 rounded-2 p-1" style="height: 10rem; border-color: gray;"></textarea>
-                                            </div>
-                                            <div class="w-25 text-center pe-xl-2">
-                                                <button type="submit"
-                                                    class="btn border my-2 me-xl-5 shadow-sm mb-5 rounded btn-dark"
-                                                    id="submitReview">Gửi</button>
+                                                <textarea name="reviews" id="content-review" class="form-control float-end" style=""></textarea>
+                                                <div class="my-2 text-start float-end btn-review">
+                                                    <button type="submit" class="btn btn-dark"
+                                                        id="submitReview">Gửi</button>
+                                                </div>
                                             </div>
                                         </fieldset>
                                     </form>
@@ -228,7 +227,7 @@
     </section>
     <!-- Related Product  -->
     <section class="container">
-        <h2 style="font-weight: var(--Medium);" class="text-center my-5 fs-1">Sản phẩm liên quan</h2>
+        <h2 class="text-center my-xl-4 my-2">Sản phẩm liên quan</h2>
         <div class="container mb-5">
             <div class="row position-relative">
                 @foreach ($relatedProducts as $product)

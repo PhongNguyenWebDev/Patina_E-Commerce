@@ -32,7 +32,7 @@
                 @foreach ($sliders as $key => $slider)
                     <div class="carousel-item w-100 h-100 {{ $key == 0 ? 'active' : '' }}">
                         <div class="object-fit-cover">
-                            <img src="{{ $slider->image }}" class="h-100 w-100 d-block" alt="Slide {{ $key + 1 }}">
+                            <img src="{{ $slider->image }}" class="img-fluid" alt="Slide {{ $key + 1 }}">
                         </div>
                         <div class="carousel-caption text-white w-75" style="font-family:'Josefin Sans', sans-serif">
                             <h3>{{ $slider->event }}</h3>

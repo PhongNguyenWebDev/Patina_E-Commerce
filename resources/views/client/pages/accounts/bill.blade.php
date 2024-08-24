@@ -7,7 +7,8 @@
             <div class="col-lg-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-dark" href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a class="text-dark" href="{{ route('client.home-page') }}">Trang chủ</a>
+                        </li>
                         <li class="breadcrumb-item"><a class="text-dark" href="#">Tài khoản</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Hóa đơn</li>
                     </ol>
@@ -18,29 +19,24 @@
     <div class="container-md mt-5 my-xl-4">
         <div class="row g-3">
             <div class="col-12">
-                <div class="row gx-5">
-                    <div class="col-lg-4 col-md-4 col-12">
+                <div class="row gx-5 mb-4">
+                    <div class="col-lg-4 col-md-4 col-12 my-xl-0 my-3">
                         <div class="nav nav-pills flex-column" role="tablist">
-                            <div class="card rounded-0">
-                                <a href="{{ route('client.account.profile-page') }}"
-                                    class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="color:black;">THÔNG
-                                    TIN TÀI KHOẢN
-                                </a>
-                                <button class="nav-link border-0 border-bottom p-3 pdcatt bg-secondary rounded-0 active"
-                                    id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
-                                    aria-controls="profile" aria-selected="false">HÓA ĐƠN
-                                </button>
-                                <a href="{{ route('client.account.update') }}"
-                                    class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="color:black;">THAY
-                                    ĐỔI THÔNG TIN
-                                </a>
-                                <a href="{{ route('client.account.updatePass') }}"
-                                    class=" btn nav-link border-0 border-bottom p-3 pdcatt" style="color:black;">ĐỔI MẬT
-                                    KHẨU
-                                </a>
-                                <a style="color:black;" class="btn p-3 pdcatt" href="{{ route('logout') }}">ĐĂNG
-                                    XUẤT</a>
-                            </div>
+                            <x-nav-account href="{{ route('client.account.profile-page') }}" :active="request()->routeIs('client.account.profile-page')">
+                                THÔNG TIN TÀI KHOẢN
+                            </x-nav-account>
+
+                            <x-nav-account href="{{ route('client.account.hoadon') }}" :active="request()->routeIs('client.account.hoadon')">
+                                HÓA ĐƠN
+                            </x-nav-account>
+
+                            <x-nav-account href="{{ route('client.account.update') }}" :active="request()->routeIs('client.account.update')">
+                                THAY ĐỔI THÔNG TIN
+                            </x-nav-account>
+
+                            <x-nav-account href="{{ route('client.account.updatePass') }}" :active="request()->routeIs('client.account.updatePass')">
+                                ĐỔI MẬT KHẨU
+                            </x-nav-account>
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-8 col-12">

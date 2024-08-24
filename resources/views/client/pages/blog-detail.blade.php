@@ -1,7 +1,7 @@
 @extends('layouts.client')
 @section('content')
-    <main class="container-fluid p-0" style="height: 35rem;">
-        <img class="img-fluid object-fit-cover w-100 h-100" src="{{ asset($blog->image) }}" alt="Bài viết {{ $blog->slug }}">
+    <main class="container-fluid p-0 blog-detail-main">
+        <img class="img-fluid" src="{{ asset($blog->image) }}" alt="Bài viết {{ $blog->slug }}">
     </main>
     <section class="container my-5">
         <div class="container my-3">
@@ -11,7 +11,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Trang chủ</a>
                 </li>
-                <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Blog</a></li>
+                <li class="breadcrumb-item"><a style="text-decoration: none; color: black;" href="#">Bài viết</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $blog->name }}</li>
             </ol>
             <div class="d-flex mb-5 mt-2">

@@ -2,7 +2,7 @@
 @section('content')
     <section class="container my-5">
         <div class="untree_co-section before-footer-section">
-            <div class="container">
+            <div class="container p-0">
                 <div class="row mb-5">
                     <form class="col-md-12">
                         <div class="site-blocks-table table-responsive">
