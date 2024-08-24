@@ -27,11 +27,7 @@
                             Bình luận</p>
                     </div>
                 </div>
-                <p style="color: var(--secondary-1100-color);" class="m-0 my-xl-3 my-2 fs-6 ">Fusce mattis nunc
-                    lacus,
-                    vulputate facilisis dui efficitur ut. Vestibulum sit amet metus euismod,
-                    condimentum lectus id, ultrices sem. Morbi in erat malesuada, sollicitudin massa at, tristique
-                    nisl. Maecenas id eros scelerisque, vulputate tortor quis, efficitur arcu</p>
+                <p style="color: var(--secondary-1100-color);" class="m-0 my-xl-3 my-2 fs-6 ">{{$blog->quote}}</p>
                 <div class="card">
                     <img class="img-blog" srcset="{{ $blog->image }} 1x" alt="">
                 </div>

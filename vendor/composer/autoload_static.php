@@ -335,13 +335,13 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         ),
         'Spatie\\LaravelIgnition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
-            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/laravel-ignition',
+            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/laravel-ignition',
+            1 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
         ),
         'Spatie\\Ignition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/ignition/src',
-            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
+            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
+            1 => __DIR__ . '/..' . '/spatie/ignition/src',
         ),
         'Spatie\\FlareClient\\' => 
         array (
@@ -587,6 +587,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Http\\Controllers\\Admin\\AdInfoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdInfoController.php',
         'App\\Http\\Controllers\\Admin\\AdOrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdOrderController.php',
         'App\\Http\\Controllers\\Admin\\AdProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdProductController.php',
+        'App\\Http\\Controllers\\Admin\\AdReviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdReviewController.php',
         'App\\Http\\Controllers\\Admin\\AdSliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdSliderController.php',
         'App\\Http\\Controllers\\Admin\\AdSocialsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdSocialsController.php',
         'App\\Http\\Controllers\\Admin\\AdTimeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdTimeController.php',
@@ -676,6 +677,7 @@ class ComposerStaticInitbfe12996eeecb6fdc8713a9fd9d431f8
         'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\UserCoupon' => __DIR__ . '/../..' . '/app/Models/UserCoupon.php',
+        'App\\Models\\VnpayTransaction' => __DIR__ . '/../..' . '/app/Models/VnpayTransaction.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
