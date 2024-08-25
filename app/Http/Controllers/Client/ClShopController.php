@@ -51,7 +51,8 @@ class ClShopController extends Controller
             $product->where('brand_id', $brand->id);
         }
         $products = $product->where('status', 1)->paginate(12);
+        $totalProducts = Product::count();
         $popularProducts = Product::orderBy('total_buy', 'desc')->take(4)->get();
-        return view('client.pages.shop', compact('title', 'brands', 'categories', 'categorySlug', 'priceRanges', 'products', 'query', 'popularProducts'));
+        return view('client.pages.shop', compact('title', 'brands', 'categories', 'categorySlug', 'priceRanges', 'products', 'query', 'popularProducts', 'totalProducts'));
     }
 }

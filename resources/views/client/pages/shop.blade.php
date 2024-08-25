@@ -163,7 +163,9 @@
             <div class="col-xl-9 container-fluid">
                 <div class="d-flex flex-column flex-xl-row ">
                     <div class="col-9">
-                        <p style="margin: 0; font-size: 18px;">Showing 1-12 of 14 results</p>
+                        Hiển thị {{ $products->firstItem() }}-{{ $products->lastItem() }} sản phẩm của
+                        {{ $totalProducts }} sản
+                        phẩm
                     </div>
                     {{-- <div class="col-3 dropdown d-flex justify-content-start justify-content-xl-end">
                         <button class="btn rounded dropdown-toggle p-0 p-xl-2" style="font-size: 18px;" type="button"

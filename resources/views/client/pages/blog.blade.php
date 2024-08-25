@@ -27,8 +27,8 @@
                             Bình luận</p>
                     </div>
                 </div>
-                <p style="color: var(--secondary-1100-color);" class="m-0 my-xl-3 my-2 fs-6 ">{{$blog->quote}}</p>
-                <div class="card">
+                <p style="color: var(--secondary-1100-color);" class="m-0 my-xl-3 my-2 fs-6 ">{{ $blog->quote }}</p>
+                <div class="card mb-3">
                     <img class="img-blog" srcset="{{ $blog->image }} 1x" alt="">
                 </div>
             @endforeach

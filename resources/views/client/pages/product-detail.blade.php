@@ -106,12 +106,13 @@
                                 @foreach ($product->productDetails as $index => $detail)
                                     <div class="form-check form-check-inline size-option p-0"
                                         data-color-id="{{ $detail->color_id }}" data-quantity="{{ $detail->quantity }}">
-                                        <input class="form-check-input size-radio visually-hidden" type="radio"
-                                            name="size_id" id="size_{{ $detail->size_id }}" value="{{ $detail->size_id }}"
-                                            data-price="{{ $detail->price }}" data-sale-price="{{ $detail->sale_price }}"
+                                        <input class="form-check-input visually-hidden size-radio" type="radio"
+                                            name="size_id" id="{{ $detail->color_id }}_size_{{ $detail->size_id }}"
+                                            value="{{ $detail->size_id }}" data-price="{{ $detail->price }}"
+                                            data-sale-price="{{ $detail->sale_price }}"
                                             {{ $index == 0 ? 'checked' : '' }}>
                                         <label class="form-check-label fs-5 size-label"
-                                            for="size_{{ $detail->size_id }}">{{ $detail->size->name }}</label>
+                                            for="{{ $detail->color_id }}_size_{{ $detail->size_id }}">{{ $detail->size->name }}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -308,8 +309,9 @@
                     const optionColorId = option.getAttribute('data-color-id');
                     const quantity = parseInt(option.getAttribute('data-quantity'), 10);
 
+                    // Chỉ hiển thị các kích cỡ thuộc màu đang chọn và có tồn kho > 0
                     if (optionColorId === colorId && quantity > 0) {
-                        option.style.display = 'inline-block'; // Hiển thị kích cỡ
+                        option.style.display = 'block'; // Hiển thị kích cỡ
                         if (!firstVisibleSizeOption) {
                             firstVisibleSizeOption = option;
                         }
@@ -321,8 +323,10 @@
                 // Nếu có kích cỡ hợp lệ, chọn kích cỡ đầu tiên
                 if (firstVisibleSizeOption) {
                     const sizeInput = firstVisibleSizeOption.querySelector('input.size-radio');
-                    sizeInput.checked = true;
-                    updateStockQuantity(sizeInput.value); // Cập nhật tồn kho cho kích cỡ đầu tiên
+                    if (sizeInput) {
+                        sizeInput.checked = true;
+                        updateStockQuantity(sizeInput.value, colorId); // Cập nhật tồn kho cho kích cỡ đầu tiên
+                    }
                 } else {
                     stockQuantityElement.textContent =
                         '0'; // Không có kích cỡ nào hợp lệ, đặt số lượng tồn kho là 0
@@ -330,14 +334,18 @@
             };
 
             // Hàm cập nhật tồn kho khi chọn kích cỡ
-            const updateStockQuantity = (sizeId) => {
-                const sizeOption = document.querySelector(`.size-option input[value="${sizeId}"]`);
-                if (sizeOption) {
-                    const quantity = sizeOption.closest('.size-option').getAttribute('data-quantity');
-                    stockQuantityElement.textContent = quantity || '0';
-                } else {
-                    stockQuantityElement.textContent = '0';
-                }
+            const updateStockQuantity = (sizeId, colorId) => {
+                let quantity = '0';
+                sizeOptions.forEach(option => {
+                    const optionColorId = option.getAttribute('data-color-id');
+                    const optionSizeId = option.querySelector('input.size-radio').value;
+
+                    if (optionColorId === colorId && optionSizeId === sizeId) {
+                        quantity = option.getAttribute('data-quantity');
+                    }
+                });
+
+                stockQuantityElement.textContent = quantity;
             };
 
             // Xử lý khi màu được chọn
@@ -353,7 +361,9 @@
                 const sizeInput = option.querySelector('input.size-radio');
                 if (sizeInput) {
                     sizeInput.addEventListener('change', function() {
-                        updateStockQuantity(this.value);
+                        const selectedColorId = document.querySelector('.color-radio:checked')
+                            .value;
+                        updateStockQuantity(this.value, selectedColorId);
                     });
                 }
             });
@@ -366,8 +376,6 @@
     </script>
     <script>
         var userHasReviewed = @json($userReview);
-    </script>
-    <script>
         $(document).ready(function() {
             // Kiểm tra xem người dùng đã đánh giá sản phẩm chưa khi tải trang
             if (userHasReviewed) {
@@ -427,7 +435,8 @@
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
                         $('#review-message').removeClass('alert-success').addClass(
-                                'alert-danger').text('Có lỗi xảy ra. Vui lòng thử lại sau.')
+                                'alert-danger').text(
+                                'Bạn không thể đánh giá khi chưa mua sản phẩm.')
                             .show();
                     }
                 });
