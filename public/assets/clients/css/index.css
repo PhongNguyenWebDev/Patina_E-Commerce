@@ -2,6 +2,9 @@
     box-sizing: border-box;
     padding: 0;
 }
+p {
+    margin-bottom: 0;
+}
 
 body {
     font-size: 16px;
@@ -193,7 +196,17 @@ body {
 }
 
 .blog-detail-main {
-    height: 90%;
+    height: 90vh; /* Chiều cao của khối chính bằng 90% chiều cao của viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ẩn phần hình ảnh vượt quá khung */
+}
+
+.blog-detail-main img {
+    width: 100%; /* Đặt chiều rộng của ảnh bằng chiều rộng của khối chứa */
+    height: 100%; /* Đặt chiều cao của ảnh bằng chiều cao của khối chứa */
+    object-fit: cover; /* Cắt hình ảnh để vừa với khung và giữ tỷ lệ */
 }
 .carousel-inner {
     width: 100%;
@@ -963,6 +976,15 @@ span {
     margin: 5px;
 }
 .btn-vnpay {
-    top: 117%;
+    top: 122%;
     left: 59%;
+}
+.stars a {
+    text-decoration: none;
+    color: #d3d3d3; /* Màu sao chưa chọn */
+    font-size: 24px;
+}
+
+.stars a.selected {
+    color: gold; /* Màu sao đã chọn */
 }

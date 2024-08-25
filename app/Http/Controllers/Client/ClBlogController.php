@@ -22,6 +22,8 @@ class ClBlogController extends Controller
         $title = 'Bài viết chi tiết';
         $blog = Blog::where('slug', $blogSlug)->firstOrFail();
         $comments = $blog->comments()->where('status', 1)->orderBy('left')->get();
-        return view('client.pages.blog-detail', compact('title', 'blog', 'comments'));
+        $newBlogs = Blog::orderBy('created_at', 'desc')->get();
+
+        return view('client.pages.blog-detail', compact('title', 'blog', 'comments', 'newBlogs'));
     }
 }

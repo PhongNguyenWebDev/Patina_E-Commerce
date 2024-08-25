@@ -366,16 +366,15 @@
             <h2 class="text-center mb-4">Bài viết nổi bật</h2>
             <div class="row g-4">
                 @foreach ($blogs as $blog)
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="card-custom border-0 shadow-sm m-0">
-                            <img src="{{ $blog->image }}" class="card-img-top" alt="...">
+                    <div class="col-sm-6 col-md-4 col-lg-4">
+                        <div class="card-custom border-0 shadow-sm m-0" style="height: fit-content">
+                            <img src="{{ $blog->image }}" height="200" class="card-img-top" alt="...">
                             <div class="card-body px-3 py-2">
                                 <h5 class="card-title fw-medium">{{ $blog->name }}</h5>
                                 <p class="card-text mb-2">
                                     {!! substr($blog->content, 40, 80) !!}
                                     <span>...</span>
                                 </p>
-
                                 <a class="text-secondary" href="{{ route('client.blog-detail', $blog->slug) }}"
                                     class="stretched-link nav-link">Xem thêm</a>
                             </div>

@@ -46,8 +46,16 @@ class ClProductController extends Controller
                 ->where('user_id', $user->id)
                 ->first();
         }
-        $reviewCount = Review::where('product_id', $product->id)->count();
-        return view('client.pages.product-detail', compact('title', 'product', 'uniqueColors', 'colorsWithPrices', 'relatedProducts', 'reviews', 'userReview', 'reviewCount'));
+
+        // Đánh giá sao sản phẩm
+        $ratings = Review::where('product_id', $product->id)
+            ->where('status', 'approved') // Hoặc điều kiện khác bạn cần
+            ->pluck('rating_point');
+        $reviewCount = $ratings->count(); // Số lượng đánh giá
+        // Tính trung bình cộng rating
+        $averageRating = $ratings->average();
+        $roundedAverageRating = ceil($averageRating);
+        return view('client.pages.product-detail', compact('title', 'product', 'uniqueColors', 'colorsWithPrices', 'relatedProducts', 'reviews', 'userReview', 'ratings', 'reviewCount', 'averageRating', 'roundedAverageRating'));
     }
     public function relatedProductsByCategory($categoryId, $productId)
     {

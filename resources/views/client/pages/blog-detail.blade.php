@@ -34,39 +34,20 @@
             </div>
             <div class="col-xl-4 col-12">
                 <h4 class="fw-bold mb-3">Bài viết phổ biến</h4>
-                <div class="row g-2 mb-2">
-                    <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
-                    <div class="col-9">
-                        <h6 class="fw-semibold">IDEAS FOR LIVING ROOM</h6>
-                        <p class="m-0 fs-6 text-secondary">Vestibulum sit amet
-                            metus
-                            euismod,
-                            condimentum lectus id, ultrices in erat ...</p>
-                        <p class="m-0">{{ $blog->created_at->format('d/m/Y') }}</p>
+                @foreach ($newBlogs as $item)
+                    <div class="row g-2 mb-2">
+                        <a class="nav-link d-flex" href="{{ $item->slug }}">
+                            <img class="img-fluid object-fit-cover col-3" src="{{ $item->image }}" alt="">
+                            <div class="col-9 ms-2">
+                                <h6 class="fw-semibold">{{ $item->name }}</h6>
+                                <p class="m-0 fs-6 text-secondary">
+                                    {!! substr($item->content, 40, 80) !!} <span>...</span>
+                                </p>
+                                <p class="m-0">{{ $item->created_at->format('d/m/Y') }}</p>
+                            </div>
+                        </a>
                     </div>
-                </div>
-                <!-- item 2 -->
-                <div class="row g-2 mb-2">
-                    <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
-                    <div class="col-9">
-                        <h4 class="fs-5 fw-semibold">IDEAS FOR LIVING ROOM</h4>
-                        <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">Vestibulum sit amet metus
-                            euismod,
-                            condimentum lectus id, ultrices in erat ...</p>
-                        <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">20/04/2024</p>
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="row g-2 mb-2">
-                    <img class="img-fluid col-3" src="{{ asset('assets/clients/img/blogimage.png') }}" alt="">
-                    <div class="col-9">
-                        <h4 class="fs-5 fw-semibold">IDEAS FOR LIVING ROOM</h4>
-                        <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">Vestibulum sit amet metus
-                            euismod,
-                            condimentum lectus id, ultrices in erat ...</p>
-                        <p class="m-0 fs-6" style="color: var(--secondary-1100-color);">20/04/2024</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

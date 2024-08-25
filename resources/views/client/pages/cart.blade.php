@@ -26,7 +26,7 @@
                                                     width="100" height="100" alt="Image">
                                                 <div class="col-5 mx-1">
                                                     <h6 class="my-2 fw-medium">{{ $item->product->name }}</h6>
-                                                    <small>Size: {{ $item->size }} | Color:
+                                                    <small>Kích thước: {{ $item->size }} | Màu:
                                                         {{ $item->color }}</small>
                                                 </div>
                                             </td>

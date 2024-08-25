@@ -66,14 +66,19 @@
 
                     <!-- Reviews -->
                     <div class="d-flex flex-row align-items-center">
-                        <div class="row ps-2 reviews-detail">
-                            <img src="/assets/clients/img/Icon/Star 1.png" alt="">
-                            <img src="/assets/clients/img/Icon/Star 1.png" alt="">
-                            <img src="/assets/clients/img/Icon/Star 1.png" alt="">
-                            <img src="/assets/clients/img/Icon/Star 1.png" alt="">
-                            <img src="/assets/clients/img/Icon/Star 1.png" alt="">
-                        </div>
-                        <p class="m-0 px-3" style="color: var(--secondary-1000-color);">({{ $reviewCount }} reviews)</p>
+                        <p class="stars">
+                            <span>
+                                <a class="star" href="#" data-rating="1"></a>
+                                <a class="star" href="#" data-rating="2"></a>
+                                <a class="star" href="#" data-rating="3"></a>
+                                <a class="star" href="#" data-rating="4"></a>
+                                <a class="star" href="#" data-rating="5"></a>
+                            </span>
+                        </p>
+                        <p class="m-0 px-3" style="color: var(--secondary-1000-color);">
+                            (<span id="averageRating">{{ $roundedAverageRating }}</span> / 5 từ {{ $reviewCount }} đánh
+                            giá)
+                        </p>
                     </div>
                     <!-- Color Products -->
                     <form action="{{ route('client.cart-page.add', $product->id) }}" method="POST">
@@ -132,7 +137,7 @@
                 </div>
                 <!-- Description -->
                 <div class="my-3">
-                    <h5 style="font-weight: var(--Medium);">Summary: </h5>
+                    <h5 style="font-weight: var(--Medium);">Mô tả ngắn: </h5>
                     {!! $product->summary !!}
                 </div>
                 <!-- share & Tags -->
@@ -195,11 +200,11 @@
                                             <h2 class="fs-4 fw-semibold py-2">Đánh giá</h2>
                                             <p class="stars">
                                                 <span>
-                                                    <a class="star-1" href="#" data-rating="1">1</a>
-                                                    <a class="star-2" href="#" data-rating="2">2</a>
-                                                    <a class="star-3" href="#" data-rating="3">3</a>
-                                                    <a class="star-4" href="#" data-rating="4">4</a>
-                                                    <a class="star-5" href="#" data-rating="5">5</a>
+                                                    <a class="star-1" href="#" data-rating="1"></a>
+                                                    <a class="star-2" href="#" data-rating="2"></a>
+                                                    <a class="star-3" href="#" data-rating="3"></a>
+                                                    <a class="star-4" href="#" data-rating="4"></a>
+                                                    <a class="star-5" href="#" data-rating="5"></a>
                                                 </span>
                                             </p>
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -396,6 +401,19 @@
                             $('#review-message').removeClass('alert-success').addClass(
                                     'alert-info').text('Cảm ơn bạn đã đánh giá sản phẩm.')
                                 .show();
+
+                            // Cập nhật điểm đánh giá và sao
+                            if (response.averageRating !== undefined) {
+                                const averageRating = parseFloat(response.averageRating);
+                                if (!isNaN(averageRating)) {
+                                    const roundedRating = Math.ceil(averageRating);
+                                    $('#averageRating').text(roundedRating.toFixed(1));
+                                    updateStarRating(roundedRating);
+                                } else {
+                                    console.error('Invalid averageRating value:', response
+                                        .averageRating);
+                                }
+                            }
                         } else {
                             if (response.message) {
                                 $('#review-message').removeClass('alert-success').addClass(
@@ -418,11 +436,28 @@
             // Xử lý chọn số sao
             $('.stars a').on('click', function(e) {
                 e.preventDefault();
-                $('.stars span, .stars a').removeClass('active');
-                $(this).addClass('active').prevAll().addClass('active');
-                $(this).find('span').addClass('active');
-                $('#rating_point').val($(this).attr('data-rating'));
+                $('.stars a').removeClass('active'); // Xóa lớp active cho tất cả các sao
+                $(this).addClass('active').prevAll().addClass(
+                    'active'); // Thêm lớp active cho sao hiện tại và các sao trước đó
+                $('#rating_point').val($(this).attr('data-rating')); // Cập nhật giá trị điểm đánh giá
             });
+            // Hàm để cập nhật số sao dựa trên điểm đánh giá
+            function updateStarRating(rating) {
+                $('.stars a').each(function() {
+                    const starRating = parseInt($(this).attr('data-rating'));
+                    if (starRating <= rating) {
+                        $(this).addClass('active');
+                    } else {
+                        $(this).removeClass('active');
+                    }
+                });
+            }
+
+            // Giả sử bạn đã truyền giá trị từ controller đến view
+            const roundedAverageRating = parseFloat($('#averageRating').text()) || 0;
+
+            // Cập nhật số sao dựa trên điểm đánh giá trung bình
+            updateStarRating(roundedAverageRating);
         });
     </script>
 @endsection
