@@ -1,4 +1,8 @@
 <div>
+    <div style="margin-left: 10px">
+        <a style="font-weight: bold" href="#">Danh sách sản phẩm</a> |
+        <a href="{{ route('admin.products-trashed') }}">Danh sách sản phẩm đã xóa</a>
+    </div>
     <form action="" class="" role="search">
         <input wire:model.live="search" class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search">
     </form>

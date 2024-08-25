@@ -8,9 +8,7 @@
                     </h3>
                 </div>
                 <p class="ms-xl-4 text-ms-center text-break" style="color: #797b86; width: 90%;">
-                    V Egestas dapibus massa cursus nibh adipiscing. Praesent nisl faucibus neque imperdiet mollis.
-                    Blandit sit consectetur placerat sapien amet. A pharetra sem massa bibendum at aliquam. Rhoncus et
-                    vitae nulla nec
+                    Patina – Tạo Dựng Phong Cách Riêng
                 </p>
                 <div class="d-flex ms-xl-4 ms-xl-3 justify-content-between" style="width: 50%;">
                     @foreach ($socialn as $social)

@@ -35,10 +35,7 @@
                 </div>
                 <div>
                     @livewire('admin-search-product')
-                    <div style="margin-left: 10px">
-                        <a style="font-weight: bold" href="#">Danh sách sản phẩm</a> |
-                        <a href="{{ route('admin.products-trashed') }}">Danh sách sản phẩm đã xóa</a>
-                    </div>
+
                     @livewire('admin-search-product')
                 </div>
                 {{--                <div class="card-body"> --}}

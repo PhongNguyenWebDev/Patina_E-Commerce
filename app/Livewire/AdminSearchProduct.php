@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Livewire;
-
 use App\Models\Product;
 use Livewire\Component;
 
 class AdminSearchProduct extends Component
 {
+
     public $search = "";
     public function render()
     {
