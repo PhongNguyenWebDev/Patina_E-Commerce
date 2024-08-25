@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
-    protected $appends = ['Price','subTotal'];
+    protected $appends = ['Price', 'subTotal'];
     protected $table = 'carts';
     protected $fillable = [
         'user_id',
@@ -31,14 +31,17 @@ class Cart extends Model
     {
         $colorId = $this->getColorIdByName($this->color);
         if ($colorId === null) {
-            return 0; 
+            return 0;
         }
 
         $productDetail = $this->product->productDetails()
             ->where('color_id', $colorId)
             ->first();
 
-        return $productDetail ? ($productDetail->sale_price ?: $productDetail->price) : 0;
+        if ($productDetail) {
+            return $productDetail->sale_price > 0 ? $productDetail->sale_price : $productDetail->price;
+        }
+        return 0;
     }
     public function getSubTotalAttribute()
     {

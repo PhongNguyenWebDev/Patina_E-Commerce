@@ -65,6 +65,8 @@
                                                         Đã xác nhận
                                                     @elseif ($item->status == 2)
                                                         Đang giao hàng
+                                                    @elseif ($item->status == 4)
+                                                        Đã thanh toán VnPay
                                                     @elseif ($item->status == 3)
                                                         Đã giao hàng
                                                     @else

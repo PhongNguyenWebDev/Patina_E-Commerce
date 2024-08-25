@@ -49,10 +49,10 @@
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex flex-row align-items-center">
                             @if ($product->sale_price > 0)
-                                <h5 id="price" class="text-danger pe-3">
+                                <h5 id="price" class="text-danger pe-3 text-decoration-line-through">
                                     {{ number_format($product->price, 0, ',', ',') }} VND
                                 </h5>
-                                <h5 class="text-secondary text-decoration-line-through" id="sale_price">
+                                <h5 class="text-secondary" id="sale_price">
                                     {{ number_format($product->sale_price, 0, ',', ',') }} VND
                                 </h5>
                             @else
