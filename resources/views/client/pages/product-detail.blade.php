@@ -48,18 +48,13 @@
                     <!-- Price Products -->
                     <div class="d-flex flex-row justify-content-between">
                         <div class="d-flex flex-row align-items-center">
-                            @if ($product->sale_price > 0)
-                                <h5 id="price" class="text-danger pe-3 text-decoration-line-through">
-                                    {{ number_format($product->price, 0, ',', ',') }} VND
-                                </h5>
-                                <h5 class="text-secondary" id="sale_price">
-                                    {{ number_format($product->sale_price, 0, ',', ',') }} VND
-                                </h5>
-                            @else
-                                <h5 id="price">
-                                    {{ number_format($product->price, 0, ',', ',') }} VND
-                                </h5>
-                            @endif
+                            <h5 id="price"
+                                class="{{ $product->sale_price > 0 ? 'text-danger pe-3 text-decoration-line-through' : '' }}">
+                                {{ number_format($product->price, 0, ',', ',') }} VND
+                            </h5>
+                            <h5 class="text-secondary" id="sale_price">
+                                {{ $product->sale_price > 0 ? number_format($product->sale_price, 0, ',', ',') . ' VND' : '' }}
+                            </h5>
                         </div>
                         <h5>SKU: PTN{{ $product->id }}</h5>
                     </div>
@@ -300,6 +295,8 @@
             const colorRadios = document.querySelectorAll('.color-radio');
             const sizeOptions = document.querySelectorAll('.size-option');
             const stockQuantityElement = document.querySelector('#stockQuantity');
+            const priceElement = document.querySelector('#price');
+            const salePriceElement = document.querySelector('#sale_price');
 
             // Hàm cập nhật kích cỡ và tồn kho khi chọn màu
             const updateSizesForColor = (colorId) => {
@@ -348,11 +345,29 @@
                 stockQuantityElement.textContent = quantity;
             };
 
+            // Hàm cập nhật giá theo màu sắc
+            const updatePriceForColor = (colorId) => {
+                const selectedColor = Array.from(colorRadios).find(radio => radio.value == colorId);
+                const price = selectedColor.getAttribute('data-price');
+                const salePrice = selectedColor.getAttribute('data-sale-price');
+
+                if (salePrice > 0 ) {
+                    priceElement.classList.add('text-decoration-line-through');
+                    priceElement.textContent = numberFormat(price) + ' VND';
+                    salePriceElement.textContent = numberFormat(salePrice) + ' VND';
+                } else {
+                    priceElement.classList.remove('text-decoration-line-through');
+                    priceElement.textContent = numberFormat(price) + ' VND';
+                    salePriceElement.textContent = '';
+                }
+            };
+
             // Xử lý khi màu được chọn
             colorRadios.forEach(radio => {
                 radio.addEventListener('change', function() {
                     const selectedColorId = this.value;
                     updateSizesForColor(selectedColorId);
+                    updatePriceForColor(selectedColorId); // Cập nhật giá khi chọn màu
                 });
             });
 
@@ -362,7 +377,7 @@
                 if (sizeInput) {
                     sizeInput.addEventListener('change', function() {
                         const selectedColorId = document.querySelector('.color-radio:checked')
-                            .value;
+                        .value;
                         updateStockQuantity(this.value, selectedColorId);
                     });
                 }
@@ -371,6 +386,11 @@
             // Kích hoạt sự kiện chọn màu đầu tiên khi trang tải
             if (colorRadios.length > 0) {
                 colorRadios[0].dispatchEvent(new Event('change'));
+            }
+
+            // Hàm format số
+            function numberFormat(number) {
+                return new Intl.NumberFormat('vi-VN').format(number);
             }
         });
     </script>

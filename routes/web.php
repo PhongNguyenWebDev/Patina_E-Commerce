@@ -167,6 +167,7 @@ Route::prefix('/')->name('client.')->group(function () {
             Route::get('/hoa-don', [ClProfileController::class, 'hoadon'])->name('hoadon');
             // View trang chi tiết hóa đơn
             Route::get('/hoa-don/{order}', [ClProfileController::class, 'showhoadon'])->name('showhoadon');
+            Route::post('/hoa-don/{order}/cancel', [ClProfileController::class, 'cancelOrder'])->name('cancelOrder');
             // View trang cập nhật tài khoản
             Route::get('/update-profile', [ClProfileController::class, 'update'])->name('update');
             Route::post('/update-profile', [ClProfileController::class, 'check_update']);

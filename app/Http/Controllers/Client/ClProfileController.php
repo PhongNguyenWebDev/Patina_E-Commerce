@@ -14,31 +14,25 @@ class ClProfileController extends Controller
 {
     public function profile()
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $title = 'Thông Tin Cá Nhân';
             $user = Auth::user();
             $username = $user->name;
             $email = $user->email;
             $address = $user->address;
             $password = $user->password;
-            return view('client.pages.accounts.profile', compact('title', 'username', 'email', 'address', 'password' ));
-        }
-        else
-        {
+            return view('client.pages.accounts.profile', compact('title', 'username', 'email', 'address', 'password'));
+        } else {
             return redirect()->route('logIn');
         }
     }
     public function UpdateSite()
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $title = 'Cập nhật thông tin';
             $users = Auth::user();
             return view('client.pages.accounts.update', compact('title', 'users'));
-        }
-        else
-        {
+        } else {
             return redirect()->route('logIn');
         }
     }
@@ -46,8 +40,27 @@ class ClProfileController extends Controller
     {
         $title = 'Hóa đơn';
         $users = auth()->user();
-        $orders = Order::where('user_id', $users->id)->paginate(6);
-        return view('client.pages.accounts.bill', compact('title','orders'));
+        $orders = Order::where('user_id', $users->id)->orderBy('id', 'desc')->paginate(6);
+        return view('client.pages.accounts.bill', compact('title', 'orders'));
+    }
+    public function cancelOrder(Request $request, $id)
+    {
+        $order = Order::find($id);
+        if (!$order) {
+            return redirect()->route('client.account.hoadon')->with('ermsg', 'Không tìm thấy hóa đơn');
+        }
+        if ($order->status == 5) {
+            return redirect()->route('client.account.hoadon')->with('ermsg', 'Bạn đã hủy đơn hàng này');
+        }
+        if ($order->status != 0 && $order->status != 1) {
+            return redirect()->route('client.account.hoadon')->with('ermsg', 'Không thể hủy đơn hàng đã được xử lý');
+        }
+        
+        $order->status = 5;
+        $order->reason = $request->input('reason', 'Không có lý do');
+        $order->save();
+
+        return redirect()->route('client.account.hoadon')->with('ssmsg', 'Đơn hàng đã được hủy');
     }
 
     public function showhoadon($id)
@@ -57,14 +70,14 @@ class ClProfileController extends Controller
         if (!$order) {
             return redirect()->route('account.profile')->with('ermsg', 'Không tìm thấy hóa đơn');
         }
-        return view('client.pages.accounts.hoadonchitiet', compact('title','order'));
+        return view('client.pages.accounts.hoadonchitiet', compact('title', 'order'));
     }
 
     public function update()
     {
         $title = "Cập nhật thông tin tài khoản";
         $users = auth()->user();
-        return view('client.pages.accounts.update', compact('title','users'));
+        return view('client.pages.accounts.update', compact('title', 'users'));
     }
     public function check_update(ProfileRequest $request)
     {
@@ -80,7 +93,7 @@ class ClProfileController extends Controller
     {
         $title = "Thay đổi mật khẩu";
         $users = auth()->user();
-        return view('client.pages.accounts.doimatkhau', compact('title','users'));
+        return view('client.pages.accounts.doimatkhau', compact('title', 'users'));
     }
     public function check_updatePass(ChangPassRequest $request)
     {
@@ -92,5 +105,3 @@ class ClProfileController extends Controller
         return redirect()->route('client.account.updatePass')->with('ermsg', 'Đổi mật khẩu thất bại');
     }
 }
-
-

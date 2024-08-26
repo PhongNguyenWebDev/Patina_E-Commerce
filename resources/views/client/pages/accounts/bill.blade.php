@@ -89,7 +89,7 @@
                                                                 Đã hủy
                                                             </p>
                                                             <br>
-                                                            ({{ $item->reason }})
+                                                            <small>Lý do: {{ $item->reason }}</small>
                                                         @endif
                                                     </td>
 
@@ -106,15 +106,45 @@
                                                             class="text-black btn"><i class="fa-solid fa-eye"></i></a>
                                                     </td>
                                                     <td>
-                                                        <form class="m-0" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn border-0">
+                                                        @if ($item->status == 0 || $item->status == 1)
+                                                        <button type="button" class="btn border-0"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#cancelOrderModal{{ $item->id }}">
                                                                 <i class="fa-solid text-danger fa-bomb fa-xl"></i>
                                                             </button>
-                                                        </form>
+                                                        @else
+                                                        <i class="fa-solid text-secondary fa-bomb fa-xl"></i>
+                                                        @endif
                                                     </td>
                                                 </tr>
+                                                <div class="modal fade" id="cancelOrderModal{{ $item->id }}"
+                                                    tabindex="-1" aria-labelledby="cancelOrderLabel{{ $item->id }}"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title"
+                                                                    id="cancelOrderLabel{{ $item->id }}">Lý do hủy đơn
+                                                                    hàng</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <form action="{{ route('client.account.cancelOrder', $item) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <textarea name="reason" class="form-control" placeholder="Nhập lý do hủy đơn hàng" required></textarea>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Đóng</button>
+                                                                    <button type="submit" class="btn btn-danger">Hủy đơn
+                                                                        hàng</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -129,7 +159,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('script')
-    <script src="https://kit.fontawesome.com/3377b5a3db.js" crossorigin="anonymous"></script>
 @endsection

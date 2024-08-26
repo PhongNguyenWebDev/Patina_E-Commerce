@@ -92,7 +92,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="price_sales">Giá Khuyến Mãi</label>
-                    <input type="number" class="form-control" id="price_sales" value="{{ old('sale_price') }}"
+                    <input type="number" class="form-control" id="price_sales" value="0"
                         name="sale_price" placeholder="Nhập giá khuyến mãi....">
                     @error('sale_price')
                         <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
