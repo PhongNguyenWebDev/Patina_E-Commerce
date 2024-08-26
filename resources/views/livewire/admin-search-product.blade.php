@@ -64,4 +64,8 @@
         @endif
         </tbody>
     </table>
+    <div class=" mt-3 pagination justify-content-center">
+        {{ $products->links() }}
+    </div>
 </div>
+

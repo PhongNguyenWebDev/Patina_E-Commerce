@@ -113,6 +113,7 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\View\\Components\\NavAccount' => $baseDir . '/app/View/Components/NavAccount.php',
     'App\\View\\Components\\NavLink' => $baseDir . '/app/View/Components/NavLink.php',
     'App\\View\\Components\\VerticalNavLink' => $baseDir . '/app/View/Components/VerticalNavLink.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
