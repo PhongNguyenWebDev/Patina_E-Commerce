@@ -124,7 +124,12 @@
                 <!-- Left -->
                 <div class="col-xl-6 col-12 d-flex align-items-center">
                     <div class="container pt-3 pt-xl-0">
-                        <span class="badge px-3 fs-5 text-bg-danger">- 20%</span>
+                        @php
+                            $percent = (($proMoiNhat->price - $proMoiNhat->sale_price) / $proMoiNhat->price) * 100;
+                        @endphp
+                        @if ($percent > 0 && $percent < 90)
+                        <span class="badge px-3 fs-5 text-bg-danger">- {{ number_format($percent, 2) }}%</span>
+                        @endif
                         <div class="py-3">
                             <h3 class="fw-bold">Bộ sưu tập mới</h3>
                             <p style="color: var(--secondary-1000-color);">Xin giới thiệu bộ sưu tập thời trang sang trọng
@@ -156,10 +161,8 @@
                 </div>
                 <!-- Right -->
                 <div class="col-12 col-xl-6 d-flex justify-xl-content-end justify-content-center">
-                    <a class="text-center" href="http://127.0.0.1:8000/shop/balo-bama">
-                        <img class="w-75"
-                            src="{{ asset('assets/clients/img/Products/patinaImage/Balo-BAMA-New-Basic-Backpack-NB111.jpg') }}"
-                            alt="">
+                    <a class="text-center" href="http://127.0.0.1:8000/shop/{{ $proMoiNhat->slug }}">
+                        <img class="w-75" src="{{ $proMoiNhat->images }}" alt="">
                     </a>
                 </div>
             </div>
@@ -173,6 +176,75 @@
                 <div class="container">
                     <div class="row position-relative">
                         @foreach ($proMuaNhieu as $product)
+                            <div
+                                class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center change my-2">
+                                <div class="position-relative">
+                                    <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
+                                        <img class="object-fit-cover w-100" src="{{ $product->images }}" alt="">
+                                    </a>
+                                    <a class="test-xct" href="{{ route('client.detail', $product->slug) }}">Xem chi
+                                        tiết</a>
+                                </div>
+                                <div class="position-absolute top-0 p-3 w-100 end-0">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        @php
+                                            $isFavorite = $favorite->contains('product_id', $product->id);
+                                        @endphp
+                                        @if (!$isFavorite)
+                                            <a class="nav-link mx-3"
+                                                href="{{ route('client.favorite.add', $product->id) }}">
+                                                <i style="background-color:#fff; color:#d8d8d8"
+                                                    class="fas fa-heart rounded-5 p-2"></i>
+                                            </a>
+                                        @else
+                                            <a class="nav-link mx-3" href="{{ route('client.favorite.index') }}">
+                                                <i style="background-color: rgb(203, 51, 51); color:white;"
+                                                    class="fas fa-heart rounded-5 p-2"></i>
+                                            </a>
+                                        @endif
+                                        @php
+                                            $percent =
+                                                (($product->price - $product->sale_price) / $product->price) * 100;
+                                        @endphp
+                                        @if ($percent > 0 && $percent < 90)
+                                            <span class="badge text-bg-danger mx-3">-
+                                                {{ number_format($percent, 2) }}%</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <h6 class="text-center my-2 fw-medium">{{ $product->name }}</h6>
+                                    <div class="d-flex justify-content-center text-center">
+                                        @if ($product->sale_price > 0)
+                                            <p style="font-size: var(--font-size); margin: 0;"
+                                                class="text-decoration-line-through text-danger mx-2">
+                                                {{ number_format($product->price, 0, ',', ',') }} VND
+                                            </p>
+                                            <p style="font-size: var(--font-size); margin: 0; color: black;">
+                                                {{ number_format($product->sale_price, 0, ',', ',') }} VND
+                                            </p>
+                                        @else
+                                            <p style="font-size: var(--font-size); margin: 0;">
+                                                {{ number_format($product->price, 0, ',', ',') }} VND
+                                            </p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- Sản phẩm bán chạy --}}
+    <section class="container-fluid mb-xl-5 pb-xl-5">
+        <div class="container p-0">
+            <h2 class="text-center my-xl-51" style="margin-top: -65px; margin-bottom: 3rem !important;">Sản phẩm mới</h2>
+            <div class="container-fluid">
+                <div class="container">
+                    <div class="row position-relative">
+                        @foreach ($proNew as $product)
                             <div
                                 class="col-xl-3 col-12 position-relative d-flex flex-wrap flex-column align-items-center change my-2">
                                 <div class="position-relative">
@@ -343,6 +415,8 @@
                         </div>
                     @endforeach
                 </div>
+                <div style="float: right"><a class="btn btn-dark border" href="{{ route('client.shop-page') }}">Xem thêm
+                        <small>(+99)</small></a></div>
             </div>
         </div>
     </div>
