@@ -38,7 +38,7 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>Ảnh</th>
-                                    <th>Tên Brand</th>
+                                    <th>Tên thương hiệu</th>
                                     <th>Slug</th>
                                     <th>Ngày Tạo</th>
                                     <th>Ngày Cập Nhật</th>

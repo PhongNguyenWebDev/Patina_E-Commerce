@@ -71,9 +71,11 @@
                                                 tôi</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('admin.home') }}">Vào trang
-                                                quản
-                                                trị</a>
+                                            @if(auth()->user()->role == 0)
+                                                <a class="dropdown-item" href="{{ route('admin.home') }}">Vào trang
+                                                    quản
+                                                    trị</a>
+                                            @endif
                                         </li>
                                         <li><a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
                                         </li>

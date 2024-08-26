@@ -10,7 +10,7 @@
             </div>
             <ul class="sidebar-ul">
                 <li>
-                    <a href="#"><i class="fa fa-cogs"></i><span>Client</span><span class="menu-arrow"></span></a>
+                    <a href="#"><i class="fa fa-cogs"></i><span>Trang khách hàng</span><span class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('admin.sliders.index') }}"><i
                                     class="far fa-images"></i><span>Slider</span></a></li>
@@ -24,7 +24,7 @@
                                 <li><a href="{{ route('admin.gio-mo-cua.index') }}"><i class="fa fa-clock"></i><span>Giờ
                                             mở cửa</span></a></li>
                                 <li><a href="{{ route('admin.social-network.index') }}"><i
-                                            class="fas fa-share-alt"></i><span>Social Network</span></a></li>
+                                            class="fas fa-share-alt"></i><span>Mạng xã hội</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -37,14 +37,14 @@
                             Mục</span></a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.brands.index') }}"><i class="fas fa-user-tie"></i><span> Brand</span></a>
+                    <a href="{{ route('admin.brands.index') }}"><i class="fas fa-user-tie"></i><span> Thương hiệu</span></a>
                 </li>
                 <li>
                     <a href="{{ route('admin.products.index') }}"><i class="fas fa-tshirt"></i><span> Sản
                             Phẩm</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-gift"></i><span>Voucher</span><span
+                    <a href="#"><i class="fas fa-gift"></i><span>Phiếu giảm giá</span><span
                             class="menu-arrow"></span></a>
                     <ul style="display: none;">
                         <li><a href="{{ route('admin.coupons.index') }}"><i
@@ -63,7 +63,7 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.comments.index') }}"><i class="fa fa-comment-dots"></i>
-                        <span> Comment</span></a>
+                        <span> Bình luận</span></a>
                 </li>
                 <li>
                     <a href="{{ route('admin.reviews.index') }}"><i class="fa-regular fa-star"></i>
