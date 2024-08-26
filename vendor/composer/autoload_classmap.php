@@ -79,6 +79,7 @@ return array(
     'App\\Http\\Requests\\UserRequest' => $baseDir . '/app/Http/Requests/UserRequest.php',
     'App\\Livewire\\AdminSearchProduct' => $baseDir . '/app/Livewire/AdminSearchProduct.php',
     'App\\Livewire\\ClientSortProducts' => $baseDir . '/app/Livewire/ClientSortProducts.php',
+    'App\\Livewire\\ShowUsers' => $baseDir . '/app/Livewire/ShowUsers.php',
     'App\\Livewire\\UserSearchProduct' => $baseDir . '/app/Livewire/UserSearchProduct.php',
     'App\\Mail\\ContactEmail' => $baseDir . '/app/Mail/ContactEmail.php',
     'App\\Mail\\ForgetAccount' => $baseDir . '/app/Mail/ForgetAccount.php',

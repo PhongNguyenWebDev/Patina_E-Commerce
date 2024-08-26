@@ -61,13 +61,13 @@
                                                 <td>{{ $item->discount_type }}</td>
                                                 <td>
                                                     @if ($item->discount_type == 'fixed')
-                                                        {{ number_format($item->discount) }}$
+                                                        {{ number_format($item->discount) }} VND
                                                     @else
                                                         {{ number_format($item->discount) }}%
                                                     @endif
                                                 </td>
-                                                <td>{{ number_format($item->min_price) }}$</td>
-                                                <td>{{ number_format($item->max_price) }}$</td>
+                                                <td>{{ number_format($item->min_price) }} VND</td>
+                                                <td>{{ number_format($item->max_price) }} VND</td>
                                                 <td>{{ number_format($item->usage_limit) }}</td>
                                                 <td>{{ number_format($item->usage_count) }}</td>
                                                 <td>

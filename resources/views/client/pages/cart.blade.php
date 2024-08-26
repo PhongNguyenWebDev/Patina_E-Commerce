@@ -81,7 +81,7 @@
                                         <h3 class="text-black h4 text-uppercase">Tổng tiền</h3>
                                     </div>
                                 </div>
-                                <div class="row mb-xl-5">
+                                <div class="row mb-xl-2">
                                     <div class="col-md-6">
                                         <span class="text-black h5"><strong>Tổng</strong></span>
                                     </div>

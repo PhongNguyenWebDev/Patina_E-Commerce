@@ -65,13 +65,14 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('client.account.profile-page') }}">Hồ
+                                            <a class="dropdown-item"
+                                                href="{{ route('client.account.profile-page') }}">Hồ
                                                 sơ
                                                 của
                                                 tôi</a>
                                         </li>
                                         <li>
-                                            @if(auth()->user()->role == 0)
+                                            @if (auth()->user()->role == 0)
                                                 <a class="dropdown-item" href="{{ route('admin.home') }}">Vào trang
                                                     quản
                                                     trị</a>

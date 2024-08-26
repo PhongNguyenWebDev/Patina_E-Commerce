@@ -2,13 +2,15 @@
     <div class="container">
         <div class="row w-100">
             <div class="col-lg-4 col-12">
-                <div class="logoweb d-flex align-items-center m-xl-4 my-2 ">
+                <div class="logoweb d-flex align-items-center my-xl-3 mx-xl-4 ">
                     <h3 class="web-name">
                         PATINA
                     </h3>
                 </div>
-                <p class="ms-xl-4 text-ms-center text-break" style="color: #797b86; width: 90%;">
-                    Patina – Tạo Dựng Phong Cách Riêng
+                <p class="ms-xl-4 text-ms-center text-break mb-xl-3" style="color: #797b86; width: 90%;">
+                    Patina – Tạo Dựng Phong Cách Riêng.
+                    Chào mừng bạn đến với Patina, nơi chúng tôi không chỉ cung cấp các sản phẩm chất lượng mà còn giúp
+                    bạn tạo dựng phong cách cá nhân độc đáo.
                 </p>
                 <div class="d-flex ms-xl-4 ms-xl-3 justify-content-between" style="width: 50%;">
                     @foreach ($socialn as $social)

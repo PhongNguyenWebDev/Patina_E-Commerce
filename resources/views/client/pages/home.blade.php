@@ -128,7 +128,7 @@
                             $percent = (($proMoiNhat->price - $proMoiNhat->sale_price) / $proMoiNhat->price) * 100;
                         @endphp
                         @if ($percent > 0 && $percent < 90)
-                        <span class="badge px-3 fs-5 text-bg-danger">- {{ number_format($percent, 2) }}%</span>
+                            <span class="badge px-3 fs-5 text-bg-danger">- {{ number_format($percent, 2) }}%</span>
                         @endif
                         <div class="py-3">
                             <h3 class="fw-bold">Bộ sưu tập mới</h3>
@@ -415,8 +415,9 @@
                         </div>
                     @endforeach
                 </div>
-                <div style="float: right"><a class="btn btn-dark border" href="{{ route('client.shop-page') }}">Xem thêm
-                        <small>(+99)</small></a></div>
+                <div style="float: right"><a
+                        class="btn btn-white rounded-0 border px-xl-4 py-xl-2 text-dark animated-link"
+                        href="{{ route('client.shop-page') }}">Xem thêm <i class="fa-solid fa-arrow-right"></i></a></div>
             </div>
         </div>
     </div>
