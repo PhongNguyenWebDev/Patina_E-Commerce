@@ -1,10 +1,10 @@
 @extends('layouts.client')
 @section('content')
-    <div class="main-content d-flex align-items-center justify-content-center" style="color: #1e1f24;">
-        <div class="form-container shadow p-xl-3 mb-5 bg-body rounded">
+    <div class="d-flex align-items-center justify-content-center" style="color: #1e1f24;">
+        <div class="form-container shadow p-xl-3 mb-5 bg-body rounded mt-4">
             <h3 class="text-center">Đăng nhập</h3>
             <div class="mt-3">
-                <div class="frame-login">
+                <div class="frame-login p-3">
                     <form method="POST">
                         @csrf
                         <div class="mb-3">

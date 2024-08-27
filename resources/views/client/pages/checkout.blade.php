@@ -176,10 +176,10 @@
                             </h6>
                         @endif
                     </div>
+                    <button id="cashPaymentButton" class="btn btn-dark my-2 fw-medium" style="font-size:18px">Thanh
+                        toán</button>
                 </div>
             </div>
-            <button id="cashPaymentButton" class="btn btn-dark my-2 fw-medium" style="font-size:18px">Thanh
-                toán</button>
         </form>
         <div id="vnpayPaymentButton" class="position-absolute btn-vnpay">
             <form class="m-0" action="{{ route('client.checkout.vnpay_payment') }}" method="post">

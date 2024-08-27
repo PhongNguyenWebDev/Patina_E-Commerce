@@ -74,7 +74,7 @@
                         @foreach ($categories as $category)
                             <li class="col-auto text-center">
                                 <a href="{{ route('client.shop-page', $category->slug) }}"
-                                    class="nav-link categories d-block p-2">
+                                    class="nav-link categories d-block p-2 my-xl-0 my-2">
                                     <img class="img-fluid rounded-circle bg-light object-fit-contain"
                                         src="{{ asset('assets/clients/img/Cate_img/' . $category->slug . '.png') }}"
                                         alt="{{ $category->name }}">
@@ -160,7 +160,7 @@
                     </div>
                 </div>
                 <!-- Right -->
-                <div class="col-12 col-xl-6 d-flex justify-xl-content-end justify-content-center">
+                <div class="col-12 col-xl-6 d-flex justify-xl-content-end justify-content-center my-xl-0 my-4">
                     <a class="text-center" href="http://127.0.0.1:8000/shop/{{ $proMoiNhat->slug }}">
                         <img class="w-75" src="{{ $proMoiNhat->images }}" alt="">
                     </a>

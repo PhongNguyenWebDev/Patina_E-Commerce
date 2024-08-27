@@ -1,5 +1,5 @@
-<footer class="footer container-fluid pt-2 footer" style="background-color: #f0eff5;">
-    <div class="container">
+<footer class="footer container-fluid pt-2" style="background-color: #f0eff5;">
+    <div class="container my-xl-0 my-2">
         <div class="row w-100">
             <div class="col-lg-4 col-12">
                 <div class="logoweb d-flex align-items-center my-xl-3 mx-xl-4 ">
@@ -7,7 +7,7 @@
                         PATINA
                     </h3>
                 </div>
-                <p class="ms-xl-4 text-ms-center text-break mb-xl-3" style="color: #797b86; width: 90%;">
+                <p class="ms-xl-4 text-ms-center text-break mb-xl-3 mb-2" style="color: #797b86; width: 90%;">
                     Patina – Tạo Dựng Phong Cách Riêng.
                     Chào mừng bạn đến với Patina, nơi chúng tôi không chỉ cung cấp các sản phẩm chất lượng mà còn giúp
                     bạn tạo dựng phong cách cá nhân độc đáo.

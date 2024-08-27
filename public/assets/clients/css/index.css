@@ -120,9 +120,6 @@ body {
         font-weight: var(--Regular);
         margin: 0;
     }
-    .main-content {
-        min-height: 40% !important;
-    }
     .cate-frame > li {
         width: 4rem !important;
         height: 2.75rem !important;
@@ -153,7 +150,7 @@ body {
         font-size: 16px !important;
     }
     .main-content {
-        height: 600px !important;
+        height: 400px !important;
     }
     .DMSP {
         text-align: center;
@@ -516,10 +513,10 @@ main {
 }
 
 /* Filter Brand */
-.item-brand > a > img {
-    width: 6rem;
-    height: 5.2rem;
-}
+/* .item-brand > a > img {
+    width: 10%;
+    height: 20%;
+} */
 
 /* Popular Product */
 

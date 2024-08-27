@@ -22,7 +22,7 @@
             <!-- Left -->
             <div class="col-xl-3">
                 <!-- Lọc theo danh mục -->
-                <div>
+                <div class="container-fluid p-0">
                     <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo danh mục</h6>
                     <ul class="py-2 px-1">
                         @forelse ($categories as $category)
@@ -85,7 +85,7 @@
                 </div>
 
                 <!-- Filter by Brand -->
-                <div class="brand">
+                <div class="brand container-fluid p-0">
                     <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo thương hiệu</h6>
                     <div class="container-fluid px-0 py-2">
                         <div class="row g-2">
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <!-- Filter Price -->
-                <div>
+                <div class="container-fluid p-0">
                     <h6 class="bg-filter p-2 mt-2 text-black">Lọc theo giá</h6>
                     <ul class="py-2 px-1">
                         @php
@@ -131,7 +131,7 @@
                 </div>
 
                 <!-- Popular Product  -->
-                <div class="popular">
+                <div class="popular container-fluid p-0">
                     <h6 class="bg-filter p-2 mt-2 text-black">Sản phẩm phổ biến</h6>
                     <div class="container-fluid p-0">
                         @foreach ($popularProducts as $product)
@@ -185,7 +185,7 @@
                         <div class="row position-relative">
                             @foreach ($products as $product)
                                 <div
-                                    class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center change my-2">
+                                    class="col-xl-4 col-12 position-relative d-flex flex-wrap flex-column align-items-center change my-2 px-xl-2 px-0">
                                     <div class="position-relative">
                                         <a class="nav-link" href="{{ route('client.detail', $product->slug) }}">
                                             <img class="object-fit-cover w-100" src="{{ $product->images }}"
