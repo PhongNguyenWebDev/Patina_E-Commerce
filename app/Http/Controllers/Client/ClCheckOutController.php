@@ -204,12 +204,14 @@ class ClCheckOutController extends Controller
             $order->token = $token;
             $order->save();
             Mail::to($user->email)->send(new OrderMail($order, $token));
-            return redirect()->route('client.account.hoadon')->with('ssmsg', 'Vui lòng check mail để xác thực đơn hàng');
+            return redirect()->route('client.account.showhoadon', $order->id)->with('ssmsg', 'Vui lòng check mail để xác thực đơn hàng');
         }
     }
 
-    public function vnpay_payment()
+    public function vnpay_payment(CheckoutRequest $request)
     {
+        $data = $request->all();
+        Session::put('checkout_data', $data);
         $total = Session::get('discounted_price');
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('client.checkout.returnUrl');
@@ -280,6 +282,7 @@ class ClCheckOutController extends Controller
     public function handleVnpayReturn(Request $request)
     {
         $data = $request->all();
+        $storedData = Session::get('checkout_data');
         $user = auth()->user();
         $vnp_HashSecret = env('VNP_HASH_SECRET');
         $vnpSecureHash = $data['vnp_SecureHash'];
@@ -320,10 +323,10 @@ class ClCheckOutController extends Controller
             // Lưu đơn hàng vào bảng orders
             $orderData = [
                 'user_id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'phone' => $user->phone,
-                'address' => $user->address,
+                'name' => $storedData['name'],
+                'email' => $storedData['email'],
+                'phone' => $storedData['phone'],
+                'address' => $storedData['address'],
                 'coupon_id' => Session::get('applied_coupon_id'),
                 'status' => 4, // Trạng thái đơn hàng đã thanh toán
                 'token' => Str::random(40),
@@ -364,7 +367,7 @@ class ClCheckOutController extends Controller
             Cart::where('user_id', $user->id)->delete();
 
             // Gửi thông báo thanh toán thành công
-            return redirect()->route('client.account.hoadon')->with('ssmsg', 'Thanh toán thành công');
+            return redirect()->route('client.account.showhoadon', $order->id)->with('ssmsg', 'Vui lòng check mail để xác thực đơn hàng');
         } else {
             return response()->json(['message' => 'Xác thực thất bại!'], 400);
         }

@@ -19,15 +19,15 @@ class AdHomeController extends Controller
     public function admin(Request $request)
     {
         $this->data['title'] = 'Thống Kê';
-        $orders = Order::whereNotIn('status',[4] )->get();
-        $ordersM =Order::where('status', 3)->get();
+        $orders = Order::whereNotIn('status', [5])->get();
+        $ordersM = Order::where('status', 3)->orWhere('status', 4)->get();
 
         $ordersTotalPrice = 0;
 
         foreach ($ordersM as $order) {
             $ordersTotalPrice += $order->totalPrice;
         }
-        $contacts= Contact::all();
+        $contacts = Contact::all();
         $users = User::all();
         $products = Product::all();
         $comments = Comment::all();
@@ -104,6 +104,6 @@ class AdHomeController extends Controller
         }
         $ordersMoneyPerDay = $ordersMoneyPerDay->sortBy('date');
         $ordersCountPerDay = $ordersCountPerDay->sortBy('date');
-        return view('admin.pages.home', $this->data, compact('orders', 'users', 'products', 'comments', 'orderCounts', 'statusLabels', 'ordersMoneyPerDay', 'ordersCountPerDay', 'cateCounts','ordersTotalPrice','contacts'));
+        return view('admin.pages.home', $this->data, compact('orders', 'users', 'products', 'comments', 'orderCounts', 'statusLabels', 'ordersMoneyPerDay', 'ordersCountPerDay', 'cateCounts', 'ordersTotalPrice', 'contacts'));
     }
 }

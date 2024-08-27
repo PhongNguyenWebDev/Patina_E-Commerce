@@ -49,8 +49,8 @@
                         @enderror
                         <div class="row g-2 my-1 ">
                             <div class="col-6">
-                                <input class="form-control" name="email" type="Email" value="{{ $users->email }}"
-                                    placeholder="Địa chỉ Email">
+                                <input class="form-control" id="emailForm1" name="email" type="Email"
+                                    value="{{ $users->email }}" placeholder="Địa chỉ Email">
                             </div>
                             @error('email')
                                 <span style="color: red"><i class="fa-solid fa-circle-exclamation fa-beat"></i>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="col-5 mx-1">
                                     <p class="my-2">{{ $item->product->name }}</p>
-                                    <small>Size: {{ $item->size }} | Color: {{ $item->color }}</small>
+                                    <small>Kích thước: {{ $item->size }} | Màu: {{ $item->color }}</small>
                                 </div>
                                 <div class="col-3">
                                     <p>{{ number_format($item->price) }} VND</p>
@@ -162,19 +162,9 @@
                     <hr style="border: 1px solid; color: var(--primary-1000-color);">
                     <div class="d-flex justify-content-between align-items-center">
                         <h4>Tổng tiền</h4>
-                        @if ($totalPrice > 500000)
-                            <small style="color: red; font-size:16px">(-10% với đơn hàng trên 500,000)</small>
-                            <h6>
-                                <del style="color: red;">{{ number_format($totalPrice) }}
-                                    VND</del> <br>
-                                {{ number_format($discountedPrice) }} VND
-
-                            </h6>
-                        @else
-                            <h6>
-                                {{ number_format($totalPrice) }} VND
-                            </h6>
-                        @endif
+                        <h6>
+                            {{ number_format($totalPrice) }} VND
+                        </h6>
                     </div>
                     <button id="cashPaymentButton" class="btn btn-dark my-2 fw-medium" style="font-size:18px">Thanh
                         toán</button>
@@ -182,9 +172,14 @@
             </div>
         </form>
         <div id="vnpayPaymentButton" class="position-absolute btn-vnpay">
-            <form class="m-0" action="{{ route('client.checkout.vnpay_payment') }}" method="post">
+            <form class="m-0" id="form2" action="{{ route('client.checkout.vnpay_payment') }}" method="post">
                 @csrf
-                <button class="btn btn-dark" name="redirect" style="font-size:18px;">Thanh toán VNPay</button>
+                <input type="hidden" name="name" id="nameForm2">
+                <input type="hidden" name="email" id="emailForm2">
+                <input type="hidden" name="address" id="addressForm2">
+                <input type="hidden" name="phone" id="phoneForm2">
+                <button class="btn btn-dark" name="redirect" onclick="submitForm2()" style="font-size:18px;">Thanh toán
+                    VNPay</button>
             </form>
         </div>
         <div class="modal fade" id="voucherModal" tabindex="-1" role="dialog" aria-labelledby="voucherModalLabel"
@@ -266,5 +261,22 @@
 
         // Gọi hàm lần đầu tiên để thiết lập nút theo radio đã chọn
         togglePaymentButtons();
+        const form1Name = document.querySelector('input[name="name"]');
+        const form1Email = document.querySelector('input[name="email"]');
+        const form1Address = document.querySelector('input[name="address"]');
+        const form1Phone = document.querySelector('input[name="phone"]');
+
+        const form2Name = document.getElementById('nameForm2');
+        const form2Email = document.getElementById('emailForm2');
+        const form2Address = document.getElementById('addressForm2');
+        const form2Phone = document.getElementById('phoneForm2');
+
+        document.querySelector('#vnpayPaymentButton form').addEventListener('submit', function(e) {
+            // Copy the values from form 1 to form 2
+            form2Name.value = form1Name.value;
+            form2Email.value = form1Email.value;
+            form2Address.value = form1Address.value;
+            form2Phone.value = form1Phone.value;
+        });
     });
 </script>
