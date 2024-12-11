@@ -1,66 +1,115 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 **Patina E-Commerce Website**
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📜 **Giới thiệu**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Patina E-Commerce Website** cung cấp một hệ sinh thái mua sắm trực tuyến toàn diện với các tính năng chính:
+- **Địa chỉ trang web**: https://thoitrangpatina.shop/ 
+- **Trang chủ**: Hiển thị sản phẩm nổi bật, banner quảng cáo, và danh mục sản phẩm.
+- **Quản lý tài khoản**: Đăng ký/đăng nhập qua email hoặc qua google, quản lý thông tin cá nhân và lịch sử mua hàng.
+- **Trang sản phẩm**: Bộ lọc sản phẩm đa dạng, hiển thị chi tiết và đánh giá khách hàng.
+- **Giỏ hàng & Thanh toán**: Thanh toán online và tùy chọn giao hàng linh hoạt, tích hợp VNPAY.
+- **Hệ thống tìm kiếm**: Tìm kiếm nâng cao.
+- **Trang bài viết**: Hiển thị bài viết nổi bật, bình luận bài viết (nested comment). 
+- **Trang quản trị**: Quản lý sản phẩm, đơn hàng, khách hàng, báo cáo doanh thu quản lý giao diện cho header, footer, banner, social media, đơn hàng, giảm giá, tài khoản khách hàng, bài viết - bình luận, đánh giá sản phẩm.
+- **Đánh giá & Bình luận**: Hỗ trợ để lại nhận xét sản phẩm.
+- **Hỗ trợ khách hàng**: FAQ, form liên hệ.
+- **Chương trình khuyến mãi**: Mã giảm giá và ưu đãi cho khách hàng nhận được mã giảm trên popup.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 **Tính năng nổi bật**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+✨ **Trang web thương mại điện tử đầy đủ chức năng**:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Sản phẩm biến thể.
+- Chức năng bình luận sản phẩm với khả năng lồng ghép bình luận.
+- Thiết lập và áp dụng mã giảm giá cho sản phẩm.
+- Quản lý đơn hàng cho người dùng.
+- Thêm sản phẩm vào giỏ hàng và thanh toán nhanh chóng.
+- Đăng nhập dễ dàng qua Google.
+- Giao diện thông minh và dễ sử dụng nhờ **Bootstrap** và **JavaScript**.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## 🛠️ **Công nghệ sử dụng**
 
-### Premium Partners
+### **Ngôn ngữ**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-## Contributing
+### **Frontend Framework & CSS**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-## Code of Conduct
+### **Backend Framework**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
-## Security Vulnerabilities
+### **Cơ sở dữ liệu**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 💻 **Cài đặt và chạy dự án**
+
+### **Yêu cầu hệ thống**
+
+- PHP >= 8.0
+- MySQL >= 8.0
+- Laravel >= 10.0
+
+---
+
+### **1. Clone repository**
+
+```bash
+git clone https://github.com/PhongNguyenWebDev/Patina_E-Commerce.git
+```
+
+### **2. Cài đặt các dependencies**
+
+```bash
+cd Patina_E-Commerce
+composer install
+```
+
+### **3. Sao chép file .env.example và cấu hình thông tin cơ sở dữ liệu**
+```bash
+cp .env.example .env
+```
+**Mở file .env và cập nhật thông tin kết nối cơ sở dữ liệu:
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=patina1
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### **4. Tạo key cho dự án**
+```bash
+php artisan key:generate
+```
+
+### **5. Chạy server**
+```bash
+php artisan serve
+```
+Mở trình duyệt và truy cập: http://localhost:8000
+
+📧 **Thông tin liên hệ**
+Nếu bạn cần hỗ trợ thêm, hãy gửi email cho tôi qua: 📧 phongtn302.work@gmail.com
+
+Cảm ơn bạn đã ghé thăm dự án của tôi! 🚀
+ 
